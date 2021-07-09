@@ -1,0 +1,40 @@
+.trtable {
+	width: 100%;
+}
+
+.trtable textarea {
+	width: 100%;
+	height: 6em;
+}
+
+.trtable input[type="text"] {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.tr_todo0 {
+	background-color: #40ff40;
+	font-weight: bold;
+}
+
+.tr_todo1 {
+	background-color: #40ff40;
+}
+
+.tr_todo2 {
+	background-color: #ffff00;
+}
+
+.tr_todo3, .tr_todo4 {
+	background-color: #ffa500;
+}
+
+.tr_published0 {
+	background-color: #00ffff;
+}
+
+input, button, select, textarea {
+	margin: 0;
+	padding: 0;
+	border: 1px solid #045fb4;
+}

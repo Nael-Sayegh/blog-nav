@@ -1,0 +1,35 @@
+@font-face {
+	font-family: Cantarell;
+	src: url(Cantarell-Regular.otf);
+}
+
+html, body {
+margin: 0;
+padding: 0;
+font-family: Helvetica, Arial;
+}
+
+#hautpage {
+margin-top: 0px;
+background: #CCCCCC url("/images/logo128.png") no-repeat left top;
+min-height: 128px;
+min-width: 256px;
+}
+
+#hautpage h1 {
+margin-left: 128px;
+padding: 10px;
+font-family: Cantarell;
+}
+
+#nav, #container, #footer {
+margin-top: 10px;
+background-color: #CCCCCC;
+border-radius: 10px;
+padding: 10px;
+margin-left: 20%;
+}
+
+ul {
+list-style-type: none;
+}

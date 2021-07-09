@@ -1,0 +1,38 @@
+#log {
+margin-top: 10px;
+font-size: 150%;
+}
+
+.log_quote {
+color: #04B404;
+}
+
+.result {
+margin-top: 5px;
+padding: 0 5px 5px 5px;
+}
+
+.result:hover {
+background-color: #E0E0FF;
+}
+
+.result * {
+margin: 0;
+}
+
+.result a {
+text-decoration: none;
+color: black;
+}
+
+.result a:hover {
+color: #045704;
+}
+
+.rs_cat {
+color: #04B404;
+}
+
+.rs_meta {
+color: #505050;
+}

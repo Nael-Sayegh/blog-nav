@@ -1,0 +1,8 @@
+Copyright 2018-2021 Team ProgAccess
+The ProgAccess website's translations (all the files contained in the `locales` folder) are licensed under the Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA). To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.
+
+Authors (from the beginning):
+ * Pascal Engélibert (fr, en, eo, es, it)
+ * Corentin Bacqué-Cazenave (fr, en)
+ * Patrick Zajda (fr, en)
+ * Oréana Deymar (it)

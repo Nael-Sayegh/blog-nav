@@ -1,0 +1,61 @@
+#tickets {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#tickets thead tr {
+	background-color: #0080FF;
+	color: white;
+	padding: 5px;
+}
+
+.ticket {
+	padding: 5px;
+}
+
+.ticket a {
+	color: black !important;
+	text-decoration: underline !important;
+}
+
+.ticket1 {
+	background-color: white;
+}
+
+.ticket2 {
+	background-color: #DDDDDD;
+}
+
+.ticket_0 {
+	background-color: #FF8080;
+}
+
+.ticket_1 {
+	background-color: yellow;
+}
+
+.ticket_2 {
+	background-color: #80FF80;
+}
+
+.ticket_3 {
+	background-color: grey;
+}
+
+.ticket_msg0 .ticket_msginfo {
+	border-top: 1px dashed #FF8000;
+	background-color: rgba(128,128,128,0.2);
+}
+
+.ticket_msg1 .ticket_msginfo {
+	border-top: 1px dashed #0080FF;
+	background-color: rgba(128,128,128,0.2);
+}
+
+.ticket_msg0 .ticket_msgtd {
+	background-color: #FF8000;
+}
+
+.ticket_msg1 .ticket_msgtd {
+	background-color: #0080FF;
+}

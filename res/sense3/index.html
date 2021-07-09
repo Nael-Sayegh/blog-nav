@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, follow" />
+  <title>Sense3 - Examples</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="css/demo.css" media="all" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+
+    <h1><img src="logo.png" alt="Sense3" /></h1>
+
+    <h2>Examples</h2>
+    <h3>Leaderboard (728 x 90)</h3>
+    <div class="text-center">
+      <script src="sense3.js" data-sense3="728x90;;;vangogh"></script>
+      <script src="sense3.js" data-sense3="728x90;;;wikipedia"></script>
+      <pre><code>&lt;script src="sense3.js" data-sense3="728x90"&gt;&lt;/script&gt;</code></pre>
+    </div>
+
+    <h3>Medium rectangle (350 x 200)</h3>
+    <div class="text-center">
+      <script src="sense3.js" data-sense3="300x250;;;vangogh"></script>
+      <script src="sense3.js" data-sense3="300x250;;;wikipedia"></script>
+      <pre><code>&lt;script src="sense3.js" data-sense3="300x250"&gt;&lt;/script&gt;</code></pre>
+    </div>
+
+    <h2>Customization</h2>
+    <p>Parameters can be added in the <code>data-sense3</code> attribut like this:</p>
+    <pre><code>data-sense3="&lt;size&gt;;&lt;keywords&gt;;&lt;colors&gt;;&lt;bannerId&gt;"</code></pre>
+    <p>Be careful with semicolons !</p>
+    <h3>Filters</h3>
+
+    <p>You can filter the banners to be randomly displayed according to a list of allowed keywords (separated by comas)…</p>
+    <div class="text-center col-sm-6" style="margin:0 auto; float:none;">
+      <script src="sense3.js" data-sense3="300x250;chaplin,hals"></script>
+      <pre><code>data-sense3="300x250;chaplin,hals"</code></pre>
+    </div>
+
+    <p class="clearfix">… or choose one specific banner to display.</p>
+    <div class="text-center col-sm-6">
+      <script src="sense3.js" data-sense3="300x250;;;mastodon"></script>
+      <pre><code>data-sense3="300x250;;;mastodon"</code></pre>
+    </div>
+    <div class="text-center col-sm-6">
+      <script src="sense3.js" data-sense3="300x250;;;dioGafam"></script>
+      <pre><code>data-sense3="300x250;;;dioGafam"</code></pre>
+    </div>
+
+    <p class="clearfix">… this one can be useful</p>
+    <div class="text-center">
+      <script src="/sense3/sense3.js" data-sense3="728x90;;;showInfos"></script>
+      <pre><code>data-sense3="728x90;;;showInfos"</code></pre>
+    </div>
+
+    <h3>Color</h3>
+    <p>Colors on text banners can be customized.<br>Default colors are:</p>
+    <div class="col-sm-6 clearfix" style="margin:0 auto; float:none;">
+      <table>
+        <thead>
+          <tr><th>Element</th><th>Color</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Background</td>
+            <td style="background:#FFFFFF">#FFFFFF</td>
+          </tr>
+          <tr>
+            <td>Text 1</td>
+            <td style="background:#963425;color:#fff;">#963425</td>
+          </tr>
+          <tr>
+            <td>Text 2</td>
+            <td style="background:#333333;color:#fff;">#333333</td>
+          </tr>
+          <tr>
+            <td>Link</td>
+            <td style="background:#757575">#757575</td>
+          </tr>
+          <tr>
+            <td>Button</td>
+            <td style="background:#963425;color:#fff;">#963425</td>
+          </tr>
+          <tr>
+            <td>Border</td>
+            <td style="background:#CCCCCC">#CCCCCC</td>
+          </tr>
+        </tbody>
+      </table>
+      <pre><code>#FFFFFF,#963425,#333333,#757575,#963425,#CCCCCC</code></pre>
+    </div>
+
+    <h4>Examples from FramAdsense (for April Fools' Day)</h4>
+    <div class="text-center">
+      <h5>Default</h5>
+      <script src="sense3.js" data-sense3="728x90;wikipedia;#FFF,#6A5687,#616161,#757575,#6A5687,#D3C5E8"></script>
+      <pre><code>data-sense3="728x90;;#FFFFFF,#6A5687,#616161,#757575,#6A5687,#D3C5E8"</code></pre>
+    </div>
+
+    <div class="text-center col-sm-6">
+      <h5>Peertube</h5>
+      <script src="sense3.js" data-sense3="300x250;wikipedia;#FFFFFF,#F1680D,#616161,#757575,#F1680D,#F1680D"></script>
+      <pre><code>data-sense3="300x250;;#FFFFFF,#F1680D,#616161,#757575,#F1680D,#F1680D"</code></pre>
+    </div>
+
+    <div class="text-center col-sm-6">
+      <h5>Framaporn</h5>
+      <script src="sense3.js" data-sense3="300x250;wikipedia;#FFF,#EF7896,#757776,#757575,#EF7896,#EF7896"></script>
+      <pre><code>data-sense3="300x250;;#FFF,#EF7896,#757776,#757575,#EF7896,#EF7896"</code></pre>
+    </div>
+
+    <h4>Examples from Google Adsense</h4>
+    <div class="text-center col-sm-6">
+      <h5>Default</h5>
+      <script src="sense3.js" data-sense3="300x250;wikipedia;#FFF,#3F7DFB,#000,#A1A1A1,#5B99FE,#F3F3F3"></script>
+      <pre><code>data-sense3="300x250;;#FFF,#3F7DFB,#000,#A1A1A1,#5B99FE,#F3F3F3"</code></pre>
+    </div>
+    <div class="text-center col-sm-6">
+      <h5>Minimalist</h5>
+      <script src="sense3.js" data-sense3="300x250;wikipedia;#FFF,#212121,#838383,#858585,#C3C3C3,#E0E0E0"></script>
+      <pre><code>data-sense3="300x250;;#FFF,#212121,#838383,#858585,#C3C3C3,#E0E0E0"</code></pre>
+    </div>
+    <div class="text-center col-sm-6">
+      <h5>Splash of color</h5>
+      <script src="sense3.js" data-sense3="300x250;wikipedia;#F1F1F1,#4A4A4A,#5E5E5E,#49C4A5,#BABABA,#F1F1F1"></script>
+      <pre><code>data-sense3="300x250;;#F1F1F1,#4A4A4A,#5E5E5E,#49C4A5,#BABABA,#F1F1F1"</code></pre>
+    </div>
+    <div class="text-center col-sm-6">
+      <h5>Prestige</h5>
+      <script src="sense3.js" data-sense3="300x250;wikipedia;#000000,#F7F7F7,#CBCBCB,#707070,#444444,#ffffff"></script>
+      <pre><code>data-sense3="300x250;;#000000,#F7F7F7,#CBCBCB,#707070,#444444,#ffffff"</code></pre>
+    </div>
+    <div class="text-center col-sm-6">
+      <h5>Colorful</h5>
+      <script src="sense3.js" data-sense3="300x250;wikipedia;#4D90FE,#FFFFFF,#FFFFFF,#9DC3FF,#9DC3FF,#4D90FE"></script>
+      <pre><code>data-sense3="300x250;;#4D90FE,#FFFFFF,#FFFFFF,#9DC3FF,#9DC3FF,#4D90FE"</code></pre>
+    </div>
+    <div class="text-center col-sm-6">
+      <h5>Dark blue reverse</h5>
+      <script src="sense3.js" data-sense3="300x250;wikipedia;#336699,#FFFFFF,#FFFFFF,#6FA2C1,#6FA2C1,#336699"></script>
+      <pre><code>data-sense3="300x250;;#336699,#FFFFFF,#FFFFFF,#6FA2C1,#6FA2C1,#336699"</code></pre>
+    </div>
+    <div class="text-center col-sm-6">
+      <h5>Notepad</h5>
+      <script src="sense3.js" data-sense3="300x250;wikipedia;#FFFEEB,#8C6239,#75746E,#C7B295,#C5B092,#8C6239"></script>
+      <pre><code>data-sense3="300x250;;#FFFEEB,#8C6239,#75746E,#C7B295,#C5B092,#8C6239"</code></pre>
+    </div>
+    <div class="text-center col-sm-6">
+      <h5>Neon</h5>
+      <script src="sense3.js" data-sense3="300x250;wikipedia;#000000,#FA8BDF,#FA8BDF,#731B50,#8C2367,#8C2367"></script>
+      <pre><code>data-sense3="300x250;;#000000,#FA8BDF,#FA8BDF,#731B50,#8C2367,#8C2367"</code></pre>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</body>
+</html>

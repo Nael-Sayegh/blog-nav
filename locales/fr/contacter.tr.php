@@ -1,0 +1,39 @@
+<?php $tr=array (
+  '_' => 'contacter',
+  '_todo_level' => 0,
+  '_last_author' => 'Corentin',
+  '_last_modif' => 1621431902,
+  'err_invalidlink' => 'Le lien que vous avez suivi est invalide. Veuillez réessayer.<br />Si le problème persiste, vous pouvez envoyer un nouveau message en faisant référence à l\'ancien dans le texte.',
+  'err_nametoolong' => 'Votre nom ne doit pas dépasser les 255 caractères.',
+  'err_namerequired' => 'Veuillez renseigner votre nom ou un pseudonyme de votre choix.',
+  'err_emailtoolong' => 'Votre adresse e-mail ne doit pas dépasser les 255 caractères.',
+  'err_emailrequired' => 'Veuillez renseigner une adresse e-mail valide (elle sera utilisée pour vous répondre).',
+  'err_objtoolong' => 'Le sujet du message ne doit pas dépasser les 255 caractères.',
+  'err_objrequired' => 'Veuillez renseigner le sujet de votre message.',
+  'err_msgtoolong' => 'Le message ne doit pas dépasser les 8192 caractères.',
+  'err_msgrequired' => 'Votre message serait certainement plus utile en comportant un nombre de caractères supérieur à 10.',
+  'title' => 'Contacter l\'équipe {{site}}',
+  'f_t_perso_info' => 'Informations personnelles',
+  'f_name' => 'Nom&nbsp;:',
+  'f_email' => 'Adresse e-mail&nbsp;:',
+  'f_t_msg' => 'Message',
+  'f_obj' => 'Sujet du message&nbsp;:',
+  'f_obj_sw' => 'Proposition de logiciel',
+  'f_obj_bug' => 'Rapport de bug',
+  'f_obj_tuto' => 'Suggestion de tutoriel',
+  'f_obj_modif' => 'Demande de modification',
+  'f_obj_site' => 'Demande de site',
+  'f_obj_akbug' => 'Bug de l\'AccessiKey',
+  'f_obj_mkbug' => 'Bug de MaintenanceKey',
+  'f_obj_privacy' => 'Demande sur la confidentialité',
+  'f_obj_graph' => 'Rapport de problème graphique',
+  'f_obj_other' => 'autre',
+  'tel' => '<h2>Standard téléphonique de {{site}}</h2>
+<p>Vous avez également la possibilité de nous laisser un message vocal sur notre standard téléphonique.<br />
+Selon nos disponibilités et la demande que vous nous faites, nous vous rappelons le plus rapidement possible.<br />
+<strong>IMPORTANT</strong>&nbsp;: n\'oubliez pas de laisser vos coordonnées dans votre message afin que nous puissions vous rappeler.</p>
+<ul>
+<li>Numéro de téléphone (APPEL NON SURTAXÉ DEPUIS LA FRANCE)&nbsp;: 0 972 221 193 (touche 2)</li>
+<li>Heures de rappel les plus courantes&nbsp;: du Lundi au Dimanche de 9h à 21h.</li>
+</ul>',
+); ?>

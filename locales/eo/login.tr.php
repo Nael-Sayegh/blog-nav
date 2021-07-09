@@ -1,0 +1,18 @@
+<?php $tr=array (
+  '_' => 'login',
+  '_todo_level' => 2,
+  '_last_author' => 'Pascal',
+  '_last_modif' => 1562494354,
+  'title' => 'Ensaluti',
+  'wrong' => 'Malĝustajn uzantnomon aŭ pasvorton.',
+  'confirmed' => 'Via retpoŝto estas bone konfirmita.',
+  'confirm_err' => 'La sekvita ligilo estas malfunkciebla aŭ malĝisdatigita. Bonvolu rekomenci.',
+  'logonly' => 'Vi devas esti identigita por aliri ĉin enhavon.',
+  'username' => 'Uzantnomo',
+  'password' => 'Pasvorto',
+  'bt_login' => 'Ensaluti',
+  'forgot_psw' => 'Ĉu vi forgesis vian pasvorton?',
+  'account_created' => 'Via konto estas sukcese kreita! Retmesaĝon ni sendis al vi por konfirmi vian conton.',
+  'signup' => 'Kreu konton por akcesi al pli kapabloj!',
+  'cookies' => 'Uzante ĉin formularon, vi devas uzi necesajn kuketojn.',
+); ?>

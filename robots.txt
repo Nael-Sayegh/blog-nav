@@ -1,0 +1,10 @@
+User-agent: *
+Sitemap: /sitemap.xml
+Allow: /
+Disallow: /r.php
+Disallow: /r
+Disallow: /audio/*
+Disallow: /css/*
+Disallow: /image/*
+Disallow: /scripts/*
+Disallow: /sources/*

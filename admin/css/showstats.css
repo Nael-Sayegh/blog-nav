@@ -1,0 +1,26 @@
+@font-face {
+	font-family: Cantarell;
+	src: url(/css/Cantarell-Regular.otf);
+}
+
+.tstats {
+	border-collapse: collapse;
+	font-family: Cantarell;
+}
+
+.tstats thead tr td, .tstats tbody tr td {
+	border: 1px solid #808080;
+	padding: 2px;
+}
+
+.tstats_2 {
+	background-color: rgba(140,140,140,0.2);
+}
+
+.tstats_date {
+	background-color: rgba(4,95,180,0.3);
+}
+
+.tstats_dt {
+	font-weight: bold;
+}
