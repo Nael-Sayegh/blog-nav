@@ -8,7 +8,6 @@ require_once 'inclus/lib/PHPMailer/src/PHPMailer.php';
 require_once 'inclus/lib/PHPMailer/src/Exception.php';
 require_once 'inclus/lib/PHPMailer/src/SMTP.php';
 require_once 'inclus/consts.php';
-require_once 'inclus/smtp.php';
 require 'inclus/log.php';
 $log = '';
 
@@ -27,11 +26,11 @@ if($nldata = $req->fetch()) {
 		
 		$mail = new PHPMailer;
 		$mail->isSMTP();
-		$mail->Host = $smtp_host;
-		$mail->Port = $smtp_port;
+		$mail->Host = SMTP_HOST;
+		$mail->Port = SMTP_PORT;
 		$mail->SMTPAuth = true;
-		$mail->Username = $smtp_username;
-		$mail->Password = $smtp_psw;
+		$mail->Username = SMTP_USERNAME;
+		$mail->Password = SMTP_PSW;
 		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
 		$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
 		$mail->addAddress($nldata['mail']);

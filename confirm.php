@@ -7,7 +7,6 @@ use PHPMailer\PHPMailer\SMTP;
 require_once 'inclus/lib/PHPMailer/src/PHPMailer.php';
 require_once 'inclus/lib/PHPMailer/src/Exception.php';
 require_once 'inclus/lib/PHPMailer/src/SMTP.php';
-require_once 'inclus/smtp.php';
 
 if(isset($_GET['id']) and isset($_GET['h'])) {
 	$req = $bdd->prepare('SELECT `id`, `username`, `email`, `signup_date`, `settings` FROM `accounts` WHERE `id`=? AND `signup_date`<? AND `confirmed`=0');
@@ -19,11 +18,11 @@ if(isset($_GET['id']) and isset($_GET['h'])) {
 			
 			$mail = new PHPMailer;
 			$mail->isSMTP();
-			$mail->Host = $smtp_host;
-			$mail->Port = $smtp_port;
+			$mail->Host = SMTP_HOST;
+			$mail->Port = SMTP_PORT;
 			$mail->SMTPAuth = true;
-			$mail->Username = $smtp_username;
-			$mail->Password = $smtp_psw;
+			$mail->Username = SMTP_USERNAME;
+			$mail->Password = SMTP_PSW;
 			$mail->setFrom('no_reply@progaccess.net', 'l\'administration '.$nomdusite);
 			$mail->addReplyTo('no_reply@progaccess.net', 'l\'administration '.$nomdusite);
 			$mail->addAddress($data['email']);
