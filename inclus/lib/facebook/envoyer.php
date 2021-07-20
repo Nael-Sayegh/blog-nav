@@ -4,8 +4,8 @@ require_once('vendor/autoload.php');
 
 function send_facebook($message) {
 $fb = new Facebook\Facebook([
-  'app_id' => $db_app_id,
-  'app_secret' => $fb_app_secret,
+  'app_id' => FB_APP_ID,
+  'app_secret' => FB_APP_SECRET,
   'default_graph_version' => 'v2.10',
   ]);
 
@@ -14,7 +14,7 @@ $linkData = [
   ];
 
 try {
-  $response = $fb->post('/me/feed', $linkData, $fb_token);
+  $response = $fb->post('/me/feed', $linkData, FB_TOKEN);
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   echo 'Graph returned an error: ' . $e->getMessage();
   exit;
