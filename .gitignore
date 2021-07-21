@@ -4,3 +4,4 @@ inclus/config.local.php
 stats
 source
 .well-known
+Diaspora/podslist.php
