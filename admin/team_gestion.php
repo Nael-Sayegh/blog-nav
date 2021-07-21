@@ -9,8 +9,8 @@ if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['status']) and
 	$account_id = NULL;
 	if(isset($_POST['account_id']) and !empty($_POST['account_id']))
 		$account_id = $_POST['account_id'];
-	$req = $bdd->prepare('INSERT INTO `team`(`name`, `status`, `date`, `age`, `account_id`, `short_name`, `bio`, `works`, `twitter`) VALUES(?,?,?,?,?,?,?,?,?)');
-	$req->execute(array($_POST['name'], $_POST['status'], time(), strtotime(preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $_POST['age'])), $account_id, $_POST['short_name'], $_POST['bio'], $_POST['works'], $_POST['twitter']));
+	$req = $bdd->prepare('INSERT INTO `team`(`name`, `status`, `date`, `age`, `account_id`, `short_name`, `bio`, `works`, `twitter`, `rights`) VALUES(?,?,?,?,?,?,?,?,?,?)');
+	$req->execute(array($_POST['name'], $_POST['status'], time(), strtotime(preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $_POST['age'])), $account_id, $_POST['short_name'], $_POST['bio'], $_POST['works'], $_POST['twitter'], ''));
 /*	$req = $bdd->prepare('SELECT `id`,`works`,`age`,`short_name` FROM `team` ORDER BY `id` DESC LIMIT 1');
 	$req->execute();
 	if($data = $req->fetch()) {
@@ -30,8 +30,8 @@ if(isset($_GET['delete'])) {
 	$req->execute(array($_GET['delete']));
 }
 if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['status']) and isset($_POST['age']) and isset($_POST['account_id']) and isset($_POST['short_name']) and isset($_POST['bio']) and isset($_POST['works']) and isset($_POST['twitter'])) {
-	$req = $bdd->prepare('UPDATE `team` SET `name`=?, `status`=?, `age`=?, `account_id`=?, `short_name`=?, `bio`=?, `works`=?, `twitter`=? WHERE `id`=? LIMIT 1');
-	$req->execute(array(htmlentities($_POST['name']), $_POST['status'], strtotime(preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $_POST['age'])), $_POST['account_id'], $_POST['short_name'], $_POST['bio'], $_POST['works'], $_POST['twitter'], $_GET['mod2']));
+	$req = $bdd->prepare('UPDATE `team` SET `name`=?, `status`=?, `age`=?, `account_id`=?, `short_name`=?, `bio`=?, `works`=?, `twitter`=?, `rights`=? WHERE `id`=? LIMIT 1');
+	$req->execute(array(htmlentities($_POST['name']), $_POST['status'], strtotime(preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $_POST['age'])), $_POST['account_id'], $_POST['short_name'], $_POST['bio'], $_POST['works'], $_POST['twitter'], '', $_GET['mod2']));
 }
 ?>
 <!DOCTYPE html>
