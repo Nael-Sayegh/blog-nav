@@ -338,11 +338,11 @@ while($data = $req->fetch()) {
 			</tbody>
 		</table><?php }
 if(isset($_GET['listfiles'])) {
-	$req1 = $bdd->prepare('SELECT id,name,category FROM softwares WHERE id=? ORDER BY date ASC');
+	$req1 = $bdd->prepare('SELECT id,name,category,website FROM softwares WHERE id=? ORDER BY date ASC');
 	$req1->execute(array($_GET['listfiles']));
 	if($data1 = $req1->fetch()) { ?>
 		<p>Liste des fichiers de&nbsp;: <a href="?id=<?php echo $data1['id']; ?>"><?php echo $data1['name']; ?></a></p>
-		<ul><li><a href="?addfile=<?php echo $data1['id']; ?>">Ajouter un fichier<?php if(DEV)echo ' (Zone dev&nbsp;: lien à l\'usage des développeurs, pour le test uniquement)'; ?></a></li><li><a href="?list=<?php echo $data1['category']; ?>"><?php echo $cat[$data1['category']]; ?></a></li><li><a href="translate.php?type=article&id=<?php echo $data1['id']; ?>">Traductions</a></ul>
+		<ul><li><a href="?addfile=<?php echo $data1['id']; ?>">Ajouter un fichier<?php if(DEV)echo ' (Zone dev&nbsp;: lien à l\'usage des développeurs, pour le test uniquement)'; ?></a></li><li><a href="?list=<?php echo $data1['category']; ?>"><?php echo $cat[$data1['category']]; ?></a></li><li><a href="translate.php?type=article&id=<?php echo $data1['id']; ?>">Traductions</a></li><?php if($data1['website'] != '') echo '<li><a target="_blank" rel="noopener" href="'.$data1['website'].'">Site officiel</a></li>'; ?></ul>
 		<form action="#" method="get">
 			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
 			<input type="hidden" name="rfiles" value="<?php echo $data1['id']; ?>" autocomplete="off" />
