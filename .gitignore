@@ -1,7 +1,10 @@
-cache/!.htaccess
-files/!.htaccess
+cache
+!cache/.htaccess
+files
+!files/.htaccess
 inclus/config.local.php
 stats
 source
 .well-known
 Diaspora/podslist.php
+journal_modif.xml
