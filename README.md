@@ -31,7 +31,7 @@ Dependencies:
 Steps:
 * This repository has to be the server root.
 * The folders `.`, `files`, `locales`, `cache` have to be writable by PHP.
-* Create MySQL database and tables. (TODO: add SQL file to repo)
+* Create MySQL database and tables.
 * Copy `inclus/config.php` to `inclus/config.local.php` and edit the copy. Ensure that this file is not readable from the network.
 * Create cron jobs for the files in `tasks` (TODO: add crontab to repo)
 
