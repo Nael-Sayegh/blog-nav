@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__.'/../inclus/consts.php');
+$document_root = __DIR__.'/..';
+require_once($document_root.'/inclus/consts.php');
 
 $req = $bdd->prepare('SELECT * FROM `softwares_files` WHERE `date`>=? ORDER BY `date` DESC');
 $req->execute(array(time()-86400));# modifiés aujourd'hui

@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__.'/../inclus/consts.php');
+$document_root = __DIR__.'/..';
+require_once($document_root.'/inclus/consts.php');
 
 # delete visitors entries up to 1 week
 $req = $bdd->prepare('DELETE FROM `count_visitors` WHERE `lastvisit`<?');

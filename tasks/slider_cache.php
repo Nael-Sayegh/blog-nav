@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__.'/../inclus/consts.php');
+$document_root = __DIR__.'/..';
+require_once($document_root.'/inclus/consts.php');
 
 foreach($langs_prio as &$lang_i) {
 	$tr = load_tr($lang_i, 'slider');

@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__.'/../inclus/consts.php');
+$document_root = __DIR__.'/..';
+require_once($document_root.'/inclus/dbconnect.php');
 
 // Make PHP languages cache
 $req = $bdd->query('SELECT `lang`,`name` FROM `languages` ORDER BY `name`ASC');
@@ -37,9 +38,11 @@ foreach($trsdirs as &$trsdir) {
 			$available_trs[$trsdir][] = $match[1];
 			$filename = $document_root.'/locales/'.$trsdir.'/'.$match[1].'.tr.php';
 			include $filename;
-			$available_trs_index[$trsdir][$tr['_']] = array('todo_level' => isset($tr['_todo_level'])? $tr['_todo_level']:NULL,
-														   'last_author' => isset($tr['_last_author'])? $tr['_last_author']:NULL,
-															'last_modif' => isset($tr['_last_modif'])? $tr['_last_modif']:NULL);
+			$available_trs_index[$trsdir][$tr['_']] = array(
+				'todo_level' => isset($tr['_todo_level'])? $tr['_todo_level']:NULL,
+				'last_author' => isset($tr['_last_author'])? $tr['_last_author']:NULL,
+				'last_modif' => isset($tr['_last_modif'])? $tr['_last_modif']:NULL
+			);
 			$zip->addFile($filename, 'locales/'.$trsdir.'/'.$match[1].'.tr.php');
 		}
 	}

@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__.'/../inclus/consts.php');
+$document_root = __DIR__.'/..';
+require_once($document_root.'/inclus/consts.php');
 require_once($document_root.'/inclus/lib/twitter/twitter.php');
 require_once($document_root.'/inclus/lib/facebook/envoyer.php');
 $req = $bdd->prepare('SELECT * FROM `team` ORDER BY `age` DESC');

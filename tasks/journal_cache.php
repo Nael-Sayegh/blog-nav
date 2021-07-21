@@ -1,6 +1,8 @@
 <?php
-require_once(__DIR__.'/../inclus/consts.php');
+$document_root = __DIR__.'/..';
+require_once($document_root.'/inclus/consts.php');
 $cachedir = $document_root.'/cache/';
+
 $time = time();
 $ltime = $time - 2678400;# 31 days ago
 

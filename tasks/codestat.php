@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__.'/../inclus/consts.php');
+$document_root = __DIR__.'/..';
+require_once($document_root.'/inclus/consts.php');
 
 $files = array('Slider.php', 'accueil.php', 'accueil_navigateurs.php', 'alist.php', 'art_list.php', 'article.php', 'auth_forum.php', 'cat.php', 'confidentialite.php', 'confirm.php', 'contact.php', 'contacter.php', 'gadgets.php', 'home.php', 'journal_modif.php', 'login.php', 'logout.php', 'mdp_demande.php', 'mdp_verif.php', 'newsletter.php', 'nlmod.php', 'opensearch.xml.php', 'opensource.php', 'param.php', 'r.php', 'redirection_navigation.php', 'robots.txt', 'search.php', 'signup.php', 'sitemap.xml', 'trident.php', 'update.php',
 	'403/403.html', '403B.php',

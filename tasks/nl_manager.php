@@ -7,7 +7,8 @@ if(!isset($simulate) and !isset($debug)) {
 $atime = microtime(true);
 $noct = true;
 
-require_once(__DIR__.'/../inclus/consts.php');
+$document_root = __DIR__.'/..';
+require_once($document_root.'/inclus/consts.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
