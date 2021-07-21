@@ -53,7 +53,7 @@ function human_filesize($bytes, $decimals = 1) {
 function get_article_trs($article_id) {
 	global $bdd;
 	$req = $bdd->prepare('
-		SELECT `softwares_tr`.`id`, `softwares_tr`.`lang`, `softwares_tr`.`name`, `softwares_tr`.`description`, `softwares_tr`.`sw_id`, `softwares`.`hits`, `softwares`.`downloads`, `softwares`.`date`
+		SELECT `softwares_tr`.`id`, `softwares_tr`.`lang`, `softwares_tr`.`name`, `softwares_tr`.`description`, `softwares_tr`.`sw_id`, `softwares`.`hits`, `softwares`.`downloads`, `softwares`.`date`, `softwares`.`category`
 		FROM `softwares`
 		LEFT JOIN `softwares_tr` ON `softwares`.`id`=`softwares_tr`.`sw_id`
 		WHERE `softwares`.`id`=?');
