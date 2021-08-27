@@ -1,20 +1,21 @@
 <?php
-if(!isset($simulate) and !isset($debug)) {
+/*if(!isset($simulate) and !isset($debug)) {
 	$nbrsc=rand(0, 540);
 	sleep($nbrsc);
-}
+}*/
 /* Ce programme envoie automatiquement la newsletter et nettoye la table. */
 $atime = microtime(true);
 $noct = true;
 
-$document_root = __DIR__.'/..';
-require_once($document_root.'/inclus/consts.php');
+require_once('document_root.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 require_once($document_root.'/inclus/lib/PHPMailer/src/PHPMailer.php');
 require_once($document_root.'/inclus/lib/PHPMailer/src/Exception.php');
 require_once($document_root.'/inclus/lib/PHPMailer/src/SMTP.php');
+require_once($document_root.'/inclus/smtp.php');
+require_once($document_root.'/inclus/consts.php');
 
 if(isset($simulate))
 	echo "--simulate--\n";
@@ -42,11 +43,11 @@ while($data = $req->fetch()) {
 	if(!isset($simulate)) {
 		$mail = new PHPMailer;
 		$mail->isSMTP();
-		$mail->Host = SMTP_HOST;
-		$mail->Port = SMTP_PORT;
+		$mail->Host = $smtp_host;
+		$mail->Port = $smtp_port;
 		$mail->SMTPAuth = true;
-		$mail->Username = SMTP_USERNAME;
-		$mail->Password = SMTP_PSW;
+		$mail->Username = $smtp_username;
+		$mail->Password = $smtp_psw;
 		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
 		$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
 		$mail->addAddress($data['mail']);
@@ -124,12 +125,12 @@ if($data = $req->fetch()) {
 	$maj_author = $data['authors'];
 	$maj_date = $data['date'];
 }
-
+$subject = '📰 L\'actu '.$nomdusite.' du '.$datejour.' '.$hrjr;
 $message1 = '<!DOCTYPE html>
 <html lang="{{lang}}">
 	<head>
 		<meta charset="utf-8" />
-		<title>L\'actu '.$nomdusite.' du '.$datejour.'</title>
+		<title>'.$subject.'</title>
 		<style type="text/css">
 @font-face {font-family: Cantarell;src: url(https://progaccess.net/css/Cantarell-Regular.otf);}
 html, body {margin: 0;padding: 0;font-family: Cantarell;}
@@ -141,14 +142,14 @@ html, body {margin: 0;padding: 0;font-family: Cantarell;}
 	</head>
 	<body>
 		<div id="header">
-					<h1>L\'actu '.$nomdusite.' du '.$datejour.'</h1>
-			<img id="logo" alt="Logo '.$nomdusite.'" src="https://www.progaccess.net/image/logo128-170.png" />
+					<h1>'.$subject.'</h1>
+			<img id="logo" alt="Logo de '.$nomdusite.'" src="https://www.progaccess.net/image/logo128-170.png" />
 		</div>
 		<div id="content">
 		<h2>Bonjour {{mail_user}},</h2>';
 $message2 = '<a id="link" href="https://www.progaccess.net/nlmod.php?id=';
-$message3 = '">Cliquez ici pour gérer votre abonnement (à toute fin utile votre numéro d\'abonné est N{{idabonne}})</a>
-			<p>Vous serez automatiquement désinscrit de notre lettre d\'informations le ';
+$message3 = '">Cliquez ici pour le renouveler avant cette date</a>
+			<p>Votre abonnement expire le ';
 $message4 = '.</p>
 			<p>Veuillez ne pas répondre, ce mail a été envoyé automatiquement, vous pouvez <a href="https://www.progaccess.net/contact.php">nous contacter via ce lien</a></p>
 			<p>Cordiales salutations.<br />L\'Administration '.$nomdusite.'</p>
@@ -159,8 +160,6 @@ $msgtxt1 = 'L\'actu '.$nomdusite.' du '.$datejour." (version texte)\nBonjour {{m
 $msgtxt2 = 'Allez à l\'adresse ci-dessous pour gérer votre abonnement (à toute fin utile votre numéro d\'abonné est N{{idabonne}}). Vous serez automatiquement désinscrit de notre lettre d\'informations le ';
 $msgtxt3 = ".\nhttps://www.progaccess.net/nlmod.php?id=";
 $msgtxt4 = "\n\nVeuillez ne pas répondre, ce mail a été envoyé automatiquement, cependant, vous pouvez nous contacter via notre formulaire de contact.\n\nCordiales salutations.\nL'Administration ".$nomdusite;
-
-$subject = '['.$nomdusite.'] : l\'actu du '.$datejour.' '.$hrjr.' 📰';
 
 # Envoi des mails
 if(isset($debug)) {
@@ -201,12 +200,12 @@ while($data = $req->fetch()) {
 				continue;
 			
 			$nbs ++;
-			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/a?id='.$sw_id.'">'.$software['trs'][$entry_tr]['name'].'</a> (<a href="https://www.progaccess.net/c?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['trs'][$entry_tr]['description']).'<br /><span class="software_hits">'.$software['hits'].' visites</span><span class="software_date"> (mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i:s', $software['date']).')</span></p><ul>';
+			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/a?id='.$sw_id.'">'.$software['trs'][$entry_tr]['name'].'</a> (<a href="https://www.progaccess.net/c?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['trs'][$entry_tr]['description']).'<br /><span class="software_date">Mis à jour le '.date('d/m/Y, H:i:s', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
 			$msgtxt .= ' * '.$software['trs'][$entry_tr]['name'].' ('.$cat[$software['category']].") :\n".$software['trs'][$entry_tr]['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i:s', $software['date']).")\n";
 			foreach($files as $file) {
 				if($file['sw_id'] == $sw_id and $file['date'] > $data['lastmail']) {
 					$nbf ++;
-					$message .= '<li><a href="https://www.progaccess.net/r?id='.$file['id'].'">'.$file['title'].' ('.$file['hits'].' téléchargements)</a></li>';
+					$message .= '<li><a href="https://www.progaccess.net/r?id='.$file['id'].'">'.$file['title'].' (téléchargé '.$file['hits'].' fois)</a></li>';
 					$msgtxt .= ' - '.$file['title'].', https://www.progaccess.net/r?id='.$file['id'].' ('.$file['hits']." téléchargements)\n";
 				}
 			}
@@ -216,7 +215,7 @@ while($data = $req->fetch()) {
 		}
 	}
 	unset($software);
-	$message = $message1 . '<p>Depuis le '.date('d/m/Y à H:i:s', $data['lastmail']).', nous avons modifiés <strong>'.$nbs.'</strong> articles et <strong>'.$nbf.'</strong> fichiers.</p>' . $message;
+	$message = $message1 . '<p>Depuis le '.date('d/m/Y, H:i:s', $data['lastmail']).', <strong>'.$nbs.'</strong> articles et <strong>'.$nbf.'</strong> fichiers ont été mis à jour.</p>' . $message;
 	$msgtxt = $msgtxt1 . 'Depuis le '.date('d/m/Y à H:i:s', $data['lastmail']).", nous avons modifiés $nbs articles et $nbf fichiers.\n\n" . $msgtxt;
 	echo $data['mail'];
 	if($nbs > 0 or $nbf > 0) {
@@ -225,7 +224,7 @@ while($data = $req->fetch()) {
 			$message .= '<h2>'.$nomdusite.' version '.$maj_name.' : '.$maj_id.' ('.$maj_author.')</h2><p>'.$maj_text.'</p>';
 			$msgtxt .= 'Mise à jour du site : '.$nomdusite.' version '.$maj_name.' ('.substr($maj_id).')'."\n".strip_tags(html_entity_decode($maj_text))."\n\n"; 
 		}
-		$message .= $message2.$data['hash'].$message3.date('d/m/Y à H:i:s', $data['expire']).$message4;
+		$message .= $message2.$data['hash'].$message3.date('d/m/Y, H:i:s', $data['expire']).$message4;
 		$msgtxt .= $msgtxt2.date('d/m/Y à H:i:s', $data['expire']).$msgtxt3.$data['hash'].$msgtxt4;
 		
 		$message = str_replace('{{lang}}', $data['lang'], $message);
@@ -241,11 +240,11 @@ while($data = $req->fetch()) {
 		if(!isset($simulate)) {
 			$mail = new PHPMailer;
 			$mail->isSMTP();
-			$mail->Host = SMTP_HOST;
-			$mail->Port = SMTP_PORT;
+			$mail->Host = $smtp_host;
+			$mail->Port = $smtp_port;
 			$mail->SMTPAuth = true;
-			$mail->Username = SMTP_USERNAME;
-			$mail->Password = SMTP_PSW;
+			$mail->Username = $smtp_username;
+			$mail->Password = $smtp_psw;
 			$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
 			$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
 			$mail->addAddress($data['mail']);
@@ -273,5 +272,7 @@ echo $nba.' abonnés, '.$nbt.' envois, '.$nbk.' OK, '.$btime."s\n";
 if($nbk > 0) {
 		$message = "📤 Mail d'actu envoyé :\n-*".(intval($btime*1000)/1000)." secondes ;\n-*".$nbt." inscrits !\nConsultez vos mails 📥";
 echo $message;
+/*require_once($document_root.'/inclus/lib/twitter/twitterNL.php');
+send_mp("157661342", $message);*/
 }
 ?>
