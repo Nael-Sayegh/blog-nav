@@ -12,6 +12,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 require_once($document_root.'/inclus/lib/PHPMailer/src/PHPMailer.php');
+
 require_once($document_root.'/inclus/lib/PHPMailer/src/Exception.php');
 require_once($document_root.'/inclus/lib/PHPMailer/src/SMTP.php');
 require_once($document_root.'/inclus/smtp.php');
@@ -147,11 +148,10 @@ html, body {margin: 0;padding: 0;font-family: Cantarell;}
 		</div>
 		<div id="content">
 		<h2>Bonjour {{mail_user}},</h2>';
-$message2 = '<a id="link" href="https://www.progaccess.net/nlmod.php?id=';
-$message3 = '">Cliquez ici pour le renouveler avant cette date</a>
-			<p>Votre abonnement expire le ';
-$message4 = '.</p>
-			<p>Veuillez ne pas répondre, ce mail a été envoyé automatiquement, vous pouvez <a href="https://www.progaccess.net/contact.php">nous contacter via ce lien</a></p>
+$message2 = '<p>Votre abonnement expire le ';
+$message3 = ', <a id="link" href="https://www.progaccess.net/nlmod.php?id=';
+$message4 = '">cliquez ici pour le renouveler avant cette date</a>.</p>
+			<p>Veuillez ne pas répondre, ce mail a été envoyé automatiquement, vous pouvez <a href="https://www.progaccess.net/contact.php">nous contacter ici</a></p>
 			<p>Cordiales salutations.<br />L\'Administration '.$nomdusite.'</p>
 		</div>
 	</body>
@@ -224,7 +224,7 @@ while($data = $req->fetch()) {
 			$message .= '<h2>'.$nomdusite.' version '.$maj_name.' : '.$maj_id.' ('.$maj_author.')</h2><p>'.$maj_text.'</p>';
 			$msgtxt .= 'Mise à jour du site : '.$nomdusite.' version '.$maj_name.' ('.substr($maj_id).')'."\n".strip_tags(html_entity_decode($maj_text))."\n\n"; 
 		}
-		$message .= $message2.$data['hash'].$message3.date('d/m/Y, H:i:s', $data['expire']).$message4;
+		$message .= $message2.date('d/m/Y, H:i:s', $data['expire']).$message3.$data['hash'].$message4;
 		$msgtxt .= $msgtxt2.date('d/m/Y à H:i:s', $data['expire']).$msgtxt3.$data['hash'].$msgtxt4;
 		
 		$message = str_replace('{{lang}}', $data['lang'], $message);
