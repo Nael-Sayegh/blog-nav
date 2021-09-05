@@ -148,7 +148,7 @@ html, body {margin: 0;padding: 0;font-family: Cantarell;}
 		</div>
 		<div id="content">
 		<h2>Bonjour {{mail_user}},</h2>';
-$message2 = '<p>Votre abonnement expire le ';
+$message2 = '<hr /><p role="contentinfo" aria-label="Informations sur l\'abonnement">Votre abonnement expire le ';
 $message3 = ', <a id="link" href="https://www.progaccess.net/nlmod.php?id=';
 $message4 = '">cliquez ici pour le renouveler avant cette date</a>.</p>
 			<p>Veuillez ne pas répondre, ce mail a été envoyé automatiquement, vous pouvez <a href="https://www.progaccess.net/contact.php">nous contacter ici</a></p>
