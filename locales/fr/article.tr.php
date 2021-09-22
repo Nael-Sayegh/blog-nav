@@ -16,7 +16,7 @@
   'files_date' => 'Modifié le',
   'files_hits' => 'Téléchargements',
   'files_sums' => 'Sommes de contrôle',
-  'mirrors_title' => 'Fichiers en miroir pour {{title}}&nbsp;:',
+  'mirrors_title' => 'Fichiers en miroir pour <em>{{title}}</em>&nbsp;:',
   'mirrors_filetitle' => 'Titre',
   'mirrors_mirrors' => 'Miroirs',
   'infos' => 'Autres infos&nbsp;:',

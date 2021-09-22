@@ -375,9 +375,7 @@ cursor: pointer;
 }
 
 #owlink {
-font-size: 14px;
 text-decoration: none;
-float: right;
 }
 #owlink:visited {
 color: blue;

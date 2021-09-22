@@ -13,7 +13,7 @@
   'files_date' => 'Modified on',
   'files_hits' => 'Downloads',
   'files_sums' => 'Check sums',
-  'mirrors_title' => 'Mirrored files for {{title}}:',
+  'mirrors_title' => 'Mirrored files for <em>{{title}}</em>:',
   'mirrors_filetitle' => 'Title',
   'mirrors_mirrors' => 'Mirrors',
   'infos' => 'Other infos:',
