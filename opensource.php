@@ -18,7 +18,7 @@ include 'inclus/loginbox.php'; ?>
 include 'inclus/menu.php'; ?>
 <div id="container" role="main">
 <h1 id="contenu"><?php print $titre; ?></h1>
-	<p>Nous avons développé durant des années le site en source fermée, et avons décidé durant l'été 2018 de le libérer. Le code source est donc désormais disponible librement sous licence GNU AGPL.</p>
+	<p>Nous avons développé durant des années le site en source fermée, et avons décidé durant l'été 2018 de le libérer. Le code source est donc désormais disponible librement <a href="https://gitlab.com/ProgAccess/ProgAccess">sur GitLab</a> sous licence GNU AGPL.</p>
 	<p>L'équipe compte deux développeurs aux manières assez différentes voire contradictoires en certains points et le code n'est pas organisé pour être compris facilement (l'essentiel consiste en des ajouts et réparations les uns sur les autres, et au final personne n'y comprend plus rien). La libération du code peut donc avoir peu de sens pour le moment, mais nous travaillons beaucoup à la réorganisation, pour avoir un design plus solide, logique, pratique, léger, sécurisé... enfin bref meilleur.</p>
 	
 	<h3>Organisation du code</h3>
@@ -57,21 +57,16 @@ include 'inclus/menu.php'; ?>
 	<p>Le texte du site (fichiers dans /locales/) est sous licence CC BY-SA. Plus d'informations concernant la licence des traductions, voir dans l'archive locales.zip disponible ci-dessous.</p>
 	
 	<h3>Participer</h3>
+	<a href="https://gitlab.com/ProgAccess/ProgAccess">Dépôt GitLab de ProgAccess</a>
 	<p>Si vous avez le courage de télécharger et de décrypter notre code, nous serions très heureux que vous puissiez nous aider à intégrer de nouvelles fonctionnalités, chasser et réparer les bugs, organiser le code...</p>
 	<p>Dès que possible, nous créerons un dépôt Git pour faciliter le développement. Pour le moment, nous avons une zone dev publique mais à source fermée pour des raisons de sécurité (le code de la zone dev n'est donc pas soumis à la licence GNU AGPL). Il y a une todo-list (privée pour le moment) et une liste des changements (publique). Nous faisons des modifications en zone dev puis déplaçons tout simplement les fichiers en prod (appelé aussi "pâdev", par opposition avec le "dev").</p>
 	
-	<h3>Télécharger</h3>
-	<ul>
-		<li>V17.0r1 29/04/2019 (<a href="/source/ProgAccess_V17-0r1_29-04-2019.tar.gz">TAR.GZ</a>) (<a href="/source/ProgAccess_V17-0r1_29-04-2019.tar.gz.sig">tgz sig</a>) (<a href="/source/ProgAccess_V17-0r1_29-04-2019.zip.sig">ZIP</a>) (<a href="/source/ProgAccess_V17-0r1_29-04-2019.zip">zip sig</a>) 6,2 Mo</li>
-		<li>V17.0 24/04/2019 (<a href="/source/ProgAccess_V17-0_24-04-2019.tar.gz">TAR.GZ</a>) (<a href="/source/ProgAccess_V17-0_24-04-2019.tar.gz.sig">tgz sig</a>) (<a href="/source/ProgAccess_V17-0_24-04-2019.zip.sig">ZIP</a>) (<a href="/source/ProgAccess_V17-0_24-04-2019.zip">zip sig</a>) 6,2 Mo</li>
-		<li>V16.2 14/08/2018 (<a href="/source/ProgAccess_V16-2_14-08-2018.tar.gz">TAR.GZ</a>) (<a href="/source/ProgAccess_V16-2_14-08-2018.tar.gz.sig">signature GPG</a>) 9,85 Mo</li>
-	</ul>
+	<h3>Traductions</h3>
 	<ul>
 		<?php if(file_exists($_SERVER['DOCUMENT_ROOT'].'/source/locales.zip')) { ?>
 		<li>Traductions&nbsp;: <a href="/source/locales.zip">locales.zip</a> (<?php echo strftime(tr($tr0,'fndatetime'), filemtime($_SERVER['DOCUMENT_ROOT'].'/source/locales.zip')); ?>) <?php echo numberlocale(human_filesize(filesize($_SERVER['DOCUMENT_ROOT'].'/source/locales.zip'))).tr($tr0,'byte_letter'); ?></li>
 		<?php } ?>
 	</ul>
-	<p>Les archives sont signées avec <a href="https://zettascript.org/gnupg/tuxmain.asc">la clé de Pascal Engélibert</a>.</p>
 </div>
 <?php include 'inclus/footer.php'; ?>
 </body>
