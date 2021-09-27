@@ -49,13 +49,13 @@ while($data = $req->fetch()) {
 		$mail->SMTPAuth = true;
 		$mail->Username = SMTP_USERNAME;
 		$mail->Password = SMTP_PSW;
-		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
-		$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
+		$mail->setFrom('no_reply@progaccess.net', $nomdusite);
+		$mail->addReplyTo('no_reply@progaccess.net', $nomdusite);
 		$mail->addAddress($data['mail']);
 		$mail->Subject = $nomdusite.' : votre abonnement à la lettre d\'informations expire bientôt';
 		$mail->CharSet = 'UTF-8';
 		$mail->IsHTML(false);
-		$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à la lettre d'informations de ProgAccess expire le ".date('d/m/Y à H:i:s', $data['expire']).".\nCliquez sur le lien suivant pour renouveler votre abonnement :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\nAdministration ".$nomdusite;
+		$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à la lettre d'informations de ProgAccess expire le ".date('d/m/Y à H:i:s', $data['expire']).".\nCliquez sur le lien suivant pour renouveler votre abonnement :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\n".$nomdusite;
 		$mail->send();
 	}
 	echo $data['mail'];
@@ -152,14 +152,14 @@ $message2 = '<hr /><p role="contentinfo" aria-label="Informations sur l\'abonnem
 $message3 = ', <a id="link" href="https://www.progaccess.net/nlmod.php?id=';
 $message4 = '">cliquez ici pour le renouveler avant cette date</a>.</p>
 			<p>Veuillez ne pas répondre, ce mail a été envoyé automatiquement, vous pouvez <a href="https://www.progaccess.net/contact.php">nous contacter ici</a></p>
-			<p>Cordiales salutations.<br />L\'Administration '.$nomdusite.'</p>
+			<p>Cordialement.<br />'.$nomdusite.'</p>
 		</div>
 	</body>
 </html>';
 $msgtxt1 = 'L\'actu '.$nomdusite.' du '.$datejour." (version texte)\nBonjour {{mail_user}},\nRetrouvez l'historique des mises à jour sur https://www.progaccess.net/journal_modif.php\n\n";
 $msgtxt2 = 'Allez à l\'adresse ci-dessous pour gérer votre abonnement (à toute fin utile votre numéro d\'abonné est N{{idabonne}}). Vous serez automatiquement désinscrit de notre lettre d\'informations le ';
 $msgtxt3 = ".\nhttps://www.progaccess.net/nlmod.php?id=";
-$msgtxt4 = "\n\nVeuillez ne pas répondre, ce mail a été envoyé automatiquement, cependant, vous pouvez nous contacter via notre formulaire de contact.\n\nCordiales salutations.\nL'Administration ".$nomdusite;
+$msgtxt4 = "\n\nVeuillez ne pas répondre, ce mail a été envoyé automatiquement, cependant, vous pouvez nous contacter via notre formulaire de contact.\n\nCordialement.\n".$nomdusite;
 
 # Envoi des mails
 if(isset($debug)) {
@@ -245,8 +245,8 @@ while($data = $req->fetch()) {
 			$mail->SMTPAuth = true;
 			$mail->Username = SMTP_USERNAME;
 			$mail->Password = SMTP_PSW;
-			$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
-			$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
+			$mail->setFrom('no_reply@progaccess.net', $nomdusite);
+			$mail->addReplyTo('no_reply@progaccess.net', $nomdusite);
 			$mail->addAddress($data['mail']);
 			$mail->Subject = $subject;
 			$mail->CharSet = 'UTF-8';
