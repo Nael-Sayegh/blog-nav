@@ -7,7 +7,7 @@
 $atime = microtime(true);
 $noct = true;
 
-require_once('document_root.php');
+$document_root = __DIR__.'/..';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
@@ -15,7 +15,7 @@ require_once($document_root.'/inclus/lib/PHPMailer/src/PHPMailer.php');
 
 require_once($document_root.'/inclus/lib/PHPMailer/src/Exception.php');
 require_once($document_root.'/inclus/lib/PHPMailer/src/SMTP.php');
-require_once($document_root.'/inclus/smtp.php');
+require_once($document_root.'/inclus/config.local.php');
 require_once($document_root.'/inclus/consts.php');
 
 if(isset($simulate))
@@ -44,11 +44,11 @@ while($data = $req->fetch()) {
 	if(!isset($simulate)) {
 		$mail = new PHPMailer;
 		$mail->isSMTP();
-		$mail->Host = $smtp_host;
-		$mail->Port = $smtp_port;
+		$mail->Host = SMTP_HOST;
+		$mail->Port = SMTP_PORT;
 		$mail->SMTPAuth = true;
-		$mail->Username = $smtp_username;
-		$mail->Password = $smtp_psw;
+		$mail->Username = SMTP_USERNAME;
+		$mail->Password = SMTP_PSW;
 		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
 		$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
 		$mail->addAddress($data['mail']);
@@ -240,11 +240,11 @@ while($data = $req->fetch()) {
 		if(!isset($simulate)) {
 			$mail = new PHPMailer;
 			$mail->isSMTP();
-			$mail->Host = $smtp_host;
-			$mail->Port = $smtp_port;
+			$mail->Host = SMTP_HOST;
+			$mail->Port = SMTP_PORT;
 			$mail->SMTPAuth = true;
-			$mail->Username = $smtp_username;
-			$mail->Password = $smtp_psw;
+			$mail->Username = SMTP_USERNAME;
+			$mail->Password = SMTP_PSW;
 			$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
 			$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
 			$mail->addAddress($data['mail']);
@@ -272,7 +272,5 @@ echo $nba.' abonnés, '.$nbt.' envois, '.$nbk.' OK, '.$btime."s\n";
 if($nbk > 0) {
 		$message = "📤 Mail d'actu envoyé :\n-*".(intval($btime*1000)/1000)." secondes ;\n-*".$nbt." inscrits !\nConsultez vos mails 📥";
 echo $message;
-/*require_once($document_root.'/inclus/lib/twitter/twitterNL.php');
-send_mp("157661342", $message);*/
 }
 ?>
