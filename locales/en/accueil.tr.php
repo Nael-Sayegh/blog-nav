@@ -39,7 +39,7 @@ We also rely on all of you, without whom the site wouldn\'t exist today.</p>
 <ul>
 	<li>Submit your help to code the site, update software, offer tutorials and more by using the <a href="/contacter.php">contact form</a>.</li>
 	<li>Make the site known to keep developing, by sharing it on social networks.</li>
-	<li>Download <a href="/opensource.php">the source code of the site</a> {{lastosv}} and improve it! It is available under the GNU AGPL v3 license.</li>
+	<li>If you have web or PHP programming skills, see <a href="/opensource.php">the source code of the site</a> and improve it! It is available under the GNU AGPL v3 license.</li>
 </ul>
 
 <h2>They\'re talking about us!</h2>

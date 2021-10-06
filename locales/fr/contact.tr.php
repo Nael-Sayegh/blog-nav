@@ -55,8 +55,9 @@ Ce site vient de l\'envie de Corentin (un étudiant non-voyant) de partager sa p
 
 <h3>Version de {{site}}</h3>
 <p>{{site}} est régulièrement mis à jour dès que d\'importants changements de code sont réalisés. La version actuelle de site est la {{lastv}}, elle porte l\'identifiant {{lastvid}} et a été publiée le {{lastvdate}}, vous pouvez <a href="/u?id={{lastvu}}">en consulter les changements ici</a>.</p>
+
 <h3>Code source de {{site}}</h3>
-<p>Nous mettons régulièrement à disposition le code source de {{site}}. Actuellement nous proposons le code source de la version {{lastvopensource}}. Vous pouvez <a href="opensource.php">en savoir plus sur le code source ici</a>.</p>
+<p>{{site}} est libre et open-source, son code est disponible sur <a href="https://gitlab.com/ProgAccess/ProgAccess">GitLab</a>. Vous pouvez <a href="opensource.php">en savoir plus sur le développement ici</a>.</p>
 
 <h2>Nos autres sites</h2>
 <p>Notre équipe travaille également activement sur d\'autres sites dont voici la liste&nbsp;:</p>

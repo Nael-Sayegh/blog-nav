@@ -37,7 +37,7 @@ Nous nous appuyons également sur vous tous sans qui le site n\'existerait pas a
 <ul>
 <li>Proposez votre aide pour coder le site, le traduire, mettre à jour des logiciels, proposer des tutoriels et autres via le <a href="/contacter.php">formulaire de contact</a>.</li>
 <li>Faites connaître le site pour l\'aider à se développer, notamment en le partageant sur les réseaux sociaux.</li>
-<li>Téléchargez <a href="/opensource.php">le code source du site</a> {{lastosv}} et améliorez-le&#8239;! Il est disponible sous licence GNU AGPL v3.</li>
+<li>Si vous avez des compétences en programmation web ou PHP, allez voir <a href="/opensource.php">le code source du site</a> et améliorez-le&#8239;! Il est publié sous licence GNU AGPL v3.</li>
 </ul>
 
 <h2>On parle de nous&#8239;!</h2>
