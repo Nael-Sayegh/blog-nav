@@ -7,10 +7,10 @@
   'maintext' => '<p>Cette page a pour but de vous apporter quelques informations diverses et variées sur notre site, son équipe et autre...</p>
 
 <h2>L\'administration de {{site}}</h2>
-<!--<p>Voici le détail des membres qui composent l\'équipe d\'administration du site&nbsp;:</p>
+<p>Voici le détail des membres qui composent l\'équipe d\'administration du site&nbsp;:</p>
 <ul>
 	{{teamlist}}
-</ul>-->
+</ul>
 <ul>
 	<li>Dessinateur du logo du site&nbsp;: <a href="https://facebook.com/crayongra">David ENGÉLIBERT</a>.</li>
 	<li><a href="/contacter.php">Contactez-nous</a>.</li>

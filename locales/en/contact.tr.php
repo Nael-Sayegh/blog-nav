@@ -7,10 +7,10 @@
   'maintext' => '<p>Here are the website\'s team, history, contacts... (all dates and times are given in the French timezone, GMT+1 or +2)</p>
 
 <h2>The {{site}} team</h2>
-<!--<p>Here is the list of the website administration team members:</p>
+<p>Here is the list of the website administration team members:</p>
 <ul>
 	{{teamlist}}
-</ul>-->
+</ul>
 <ul>
 	<li>The drawer of our logos: <a href="https://facebook.com/crayongra">David ENGÉLIBERT</a>.</li>
 	<li><a href="/contacter.php">Contact us</a>.</li>
