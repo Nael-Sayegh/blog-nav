@@ -24,8 +24,8 @@ At the time we\'re in, the active community of the site has changed, the team ha
 So we kept the initial work, but expanded our field of action:</p>
 <ul>
 	<li>List in an intuitive and organized way the software that can be used by everybody under Windows, Android or GNU / Linux;</li>
-	<li>Propose some audio or written tutorials as well as a remote computer assistance service (which is about to come) allowing beginner users to get better with their device;</li>
-	<li>Promote exchange and participation (the forum, still in development, should be coming soon);</li>
+	<li>Propose some audio or written tutorials and, in the futur, a remote computer assistance service allowing beginner users to get better with their device;</li>
+	<li>Promote exchange and participation with the <a href="https://forum.progaccess.net">forum</a>;</li>
 	<li>Create and defend a maximum free software (or free culture in general &#8211; free as in freedom);</li>
 	<li>Increase the attitudes and raise awareness of the extreme importance of accessibility in all areas (computing, health, trade, leisure and more);</li>
 	<li>Propose tests of more or less specialized equipment.</li>
