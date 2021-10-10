@@ -105,6 +105,5 @@ Ce site vient de l\'envie de Corentin (un étudiant non-voyant) de partager sa p
 </tr>
 </tbody>
 </table>',
-  'teamlist_item' => '{{age}} ans (anniversaire le {{anniv}}), a rejoint l\'équipe le {{date}} à {{time}}.',
-  'teamwork' => 'Travaille pour',
+  'teamlist_item' => '{{age}} ans, dans l\'équipe depuis le {{date}}.',
 ); ?>

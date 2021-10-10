@@ -60,5 +60,5 @@ This website comes from the Corentin\'s desire (a blind high school student) to 
 
 <h2>Help us</h2>
 You can donate in <a href="https://monnaie-libre.fr">libre currency</a> to ProgAccess, <a href="https://demo.cesium.app/#/app/wot/EEGevmgQcgzXou2ucaf1S9pCMvwKfu56ukRRLPn4D3y9/">with the public key EEGevmgQ</a>. (<a href="https://duniter.org/en/duniter-why-how/">What is a libre currency?</a>)',
-  'teamlist_item' => '{{age}} years old, joined on {{date}} at {{time}}.',
+  'teamlist_item' => '{{age}} years old, joined on {{date}}.',
 ); ?>
