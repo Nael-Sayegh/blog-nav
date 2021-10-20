@@ -57,4 +57,5 @@ We also rely on all of you, without whom the site wouldn\'t exist today.</p>
 <li>WCAG 2.0 (Level AA)</li>
 <li>HTML 5.1</li>
 </ul>',
+'mailconfirmtext' => 'Thanks for your message. You should receive an answer e-mail soon.',
 ); ?>
