@@ -32,11 +32,27 @@ include 'inclus/menu.php'; ?>
 <option value="2">Lettres uniquement</option>
 <option value="3">Caractères alphanumériques</option>
 <option value="4">Caractères alphanumériques et autres</option>
+<option value="5">Caractères alphanumériques et autres (personnalisés)</option>
 </select>
 <br />
+<label for="f_charpers">Spécifier les caractères spéciaux (tous collés)&nbsp;:</label>
+<input type="text" name="charpers" id="f_charpers" />
+<noscript>Ne spécifier les caractères que si "Caractères alphanumériques et autres (personnalisés)" est sélectionné</noscript><br />
 <label for="maj">Majuscules aléatoires :</label>
 <input type="checkbox" name="maj" id="maj" /><br />
 <input type="submit" value="Générer" />
+<script type="text/javascript">
+function showother() {
+	if(document.getElementById("typePasswd").value == "5") {
+		document.getElementById("f_charpers").style = "";
+		document.getElementById("charpers").style = "";
+	} else {
+		document.getElementById("f_charpers").style = "display: none;";
+		document.getElementById("charpers").style = "display: none;";
+	}
+}
+showother();
+</script>
 </form>
 <p>
 <?php
@@ -45,6 +61,7 @@ if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['type
 	else if($_POST['typePasswd'] == '2') $caract = 'abcdefghijklmnopqrstuvwxyz';
 	else if($_POST['typePasswd'] == '3') $caract = 'abcdefghijklmnopqrstuvwxyz0123456789';
 	else if($_POST['typePasswd'] == '4') $caract = 'abcdefghijklmnopqrstuvwxyz0123456789@!:;,/?*$=+.-_ &)(][{}#"\'';
+	else if($_POST['typePasswd'] == '5' && isset($_POST['charpers']) && !empty($_POST['charpers'])) $caract = 'abcdefghijklmnopqrstuvwxyz0123456789'.$_POST['charpers'];
 	for($nbrPasswd = 1; $nbrPasswd <=  $_POST['nbrPasswd']; $nbrPasswd++) {
 		for($i = 1; $i <= $_POST['nbrChr']; $i++) {
 			if(isset($_POST['maj']) and $_POST['maj'] == 'on' and rand(0,2) == 1)
