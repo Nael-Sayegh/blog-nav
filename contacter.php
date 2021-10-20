@@ -100,7 +100,7 @@ if(isset($_GET['act']) and ($_GET['act'] == 'contact' or $_GET['act'] == 'reply'
 				$tickid = $data['id'];
 			}
 		}
-		header('Location: /');
+		header('Location: /?contactconfirm');
 // 		$log = '<li>Nous vous remercions pour votre message. Vous devriez recevoir bientôt un e-mail de réponse.</li>';
 		$body = '<!DOCTYPE html>
 <html lang="fr">
