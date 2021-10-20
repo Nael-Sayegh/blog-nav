@@ -224,7 +224,7 @@ include 'inclus/searchtool.php'; ?>
 include 'inclus/menu.php'; ?>
 <div id="container" role="main">
 <h1 id="contenu">Contacter l'équipe <?php print $nomdusite; ?></h1>
-<?php echo tr($tr,'tel',array('site'=>$nomdusite));
+<?php echo tr($tr,'tel',array('site'=>$nomdusite)).'<h2>'.tr($tr,'mailformtitle').'</h2>';
 if(!empty($log)) echo '<ul id="log">'.$log.'</ul>'; ?>
 <form action="?act=<?php if($reply) echo 'reply&id='.$rdata['id'].'&h='.$rdata['hash']; else echo 'contact'; ?>" method="post" spellcheck="true">
 	<fieldset><legend>Informations personnelles</legend>

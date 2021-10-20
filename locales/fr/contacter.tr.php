@@ -36,4 +36,5 @@ Selon nos disponibilités et la demande que vous nous faites, nous vous rappelon
 <li>Numéro de téléphone (APPEL NON SURTAXÉ DEPUIS LA FRANCE)&nbsp;: 0 972 221 193 (touche 2)</li>
 <li>Heures de rappel les plus courantes&nbsp;: du Lundi au Dimanche de 9h à 21h.</li>
 </ul>',
+  'mailformtitle' => 'Mail',
 ); ?>
