@@ -101,7 +101,6 @@ if(isset($_GET['act']) and ($_GET['act'] == 'contact' or $_GET['act'] == 'reply'
 			}
 		}
 		header('Location: /?contactconfirm');
-// 		$log = '<li>Nous vous remercions pour votre message. Vous devriez recevoir bientôt un e-mail de réponse.</li>';
 		$body = '<!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -161,6 +160,53 @@ else
 		$mail->Body = $body;
 		$mail->AltBody = "Formulaire de contact $nomdusite \r\nUn message a été envoyé via le formulaire de contact de $nomdusite .\r\nConsulter les tickets à l'adresse suivante:\r\nhttps://www.progaccess.net/admin/tickets.php";
 		$mail->send();
+		if(isset($_POST['copy']))
+		{
+				$bodycopy = '<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>Formulaire de contact '.$nomdusite.'</title>
+	</head>
+	<body>
+		<h1>'.$nomdusite.' - Ticket '.$tickid.'</h1>
+<p>Nous avons bien reçu votre message et allons bientôt y répondre. Veuillez trouver ci-dessous une copie de votre message.</p>';
+if($reply2)
+{
+			$bodycopy.='<h2>'.$rdata2['subject'].' (par '.$rdata2['expeditor_name'].')</h2>';
+		}
+		else
+		{
+			$bodycopy.='<h2>'.$_POST['obj'].' (par '.$_POST['name'].')</h2>';
+		}
+		$bodycopy.='<p>'.nl2br($_POST['msg']).'</p>
+</body>
+</html>';
+		$mail = new PHPMailer;
+		$mail->isSMTP();
+		$mail->Host = SMTP_HOST;
+		$mail->Port = SMTP_PORT;
+		$mail->SMTPAuth = true;
+		$mail->Username = SMTP_USERNAME;
+		$mail->Password = SMTP_PSW;
+		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
+		$mail->addReplyTo('no_reply@progaccess.net', 'Formulaire '.$nomdusite);
+if($reply2)
+{
+		$mail->addAddress($rdata2['expeditor_email']);
+	$mail->Subject = 'Re : ['.$nomdusite.'] : '.$rdata2['subject'];
+}
+else
+{
+		$mail->addAddress($_POST['mail']);
+		$mail->Subject = '['.$nomdusite.'] : '.$_POST['obj'];
+}
+		$mail->CharSet = 'UTF-8';
+		$mail->isHTML(TRUE);
+		$mail->Body = $bodycopy;
+		$mail->AltBody = "Ce message est uniquement disponible en HTML. Veuillez activer l'affichage HTML.";
+		$mail->send();
+		}
 	}
 }
 ?>
@@ -198,6 +244,8 @@ if(!empty($log)) echo '<ul id="log">'.$log.'</ul>'; ?>
 		<textarea id="f_msg" name="msg" maxlength="8192" style="width: calc(100% - 10px);min-height: 100px;margin-bottom: 10px;" required><?php if(isset($_POST['msg']))echo htmlentities($_POST['msg']); ?></textarea><br />
 		<label for="f_agree" class="f_antispam">Veuillez ne pas cocher cette case&nbsp;:</label>
 		<input type="checkbox" id="f_agree" name="agree" class="f_antispam" /><br />
+		<label for="f_copy">Recevoir une copie de votre message&nbsp;:</label>
+		<input type="checkbox" id="f_copy" name="copy" /><br />
 		<input type="submit" value="Envoyer" />
 	</fieldset>
 </form>
