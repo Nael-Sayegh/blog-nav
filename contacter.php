@@ -100,7 +100,7 @@ if(isset($_GET['act']) and ($_GET['act'] == 'contact' or $_GET['act'] == 'reply'
 				$tickid = $data['id'];
 			}
 		}
-		header('Location: /?contactconfirm');
+		header('Location: /?contactconfirm=1');
 		$body = '<!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -226,7 +226,7 @@ include 'inclus/menu.php'; ?>
 <h1 id="contenu">Contacter l'équipe <?php print $nomdusite; ?></h1>
 <?php echo tr($tr,'tel',array('site'=>$nomdusite));
 if(!empty($log)) echo '<ul id="log">'.$log.'</ul>'; ?>
-<form action="?act=<?php if($reply) echo 'reply&id='.$rdata['id'].'&h='.$rdata['hash']; else echo 'contact'; ?>#log" method="post" spellcheck="true">
+<form action="?act=<?php if($reply) echo 'reply&id='.$rdata['id'].'&h='.$rdata['hash']; else echo 'contact'; ?>" method="post" spellcheck="true">
 	<fieldset><legend>Informations personnelles</legend>
 		<table>
 			<tr><td><label for="f_name">Nom&nbsp;:</label></td><td><input type="text" name="name" id="f_name"<?php if($reply) echo ' value="'.htmlentities($rdata['expeditor_name']).'" disabled'; else {if(isset($_POST['name']))echo ' value="'.htmlentities($_POST['name']);echo '" maxlength="255" required';if(!isset($_GET['act'])) echo ' autofocus';} ?> /></td></tr>
