@@ -37,6 +37,7 @@ else {
 }
 ?>
 <div id="contenu" role="main">
+<?php if($_GET['contactconfirm']) echo '<p role="alert">'.tr($tr,'mailconfirmtext').'</p>'; ?>
 <h2 style="margin:0;"><?php echo tr($tr,'texttitle'); ?></h2>
 <?php if(date('m') == '01') echo str_replace('{{year}}', date('Y'), tr($tr,'happynewyear')); ?>
 <?php echo tr($tr,'maintext',array('lastosv'=>$lastosv)); ?>

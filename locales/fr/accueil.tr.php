@@ -57,4 +57,5 @@ Nous nous appuyons également sur vous tous sans qui le site n\'existerait pas a
 </ul>',
   'sliderinactext' => '<p>Vous avez choisis de ne pas utiliser notre système d\'informations défilantes, retrouvez donc ci-dessous nos dernières actualités.</p>',
   'sliderinactitle' => 'Actualités',
+  'mailconfirmtext' => 'Nous vous remercions pour votre message. Vous devriez recevoir bientôt un e-mail de réponse.',
 ); ?>
