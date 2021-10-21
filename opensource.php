@@ -67,7 +67,7 @@ include 'inclus/menu.php'; ?>
 	<h3>Participer</h3>
 	<a href="https://gitlab.com/ProgAccess/ProgAccess">Dépôt GitLab de ProgAccess</a>
 	<p>Si vous avez le courage de lire et de décrypter notre code, nous serions très heureux que vous puissiez nous aider à intégrer de nouvelles fonctionnalités, chasser et réparer les bugs, organiser le code...</p>
-	<p>Dès que possible, nous créerons un dépôt Git pour faciliter le développement. Pour le moment, nous avons une zone dev publique mais à source fermée pour des raisons de sécurité (le code de la zone dev n'est donc pas soumis à la licence GNU AGPL). Il y a une todo-list (privée pour le moment) et une liste des changements (publique). Nous faisons des modifications en zone dev puis déplaçons tout simplement les fichiers en prod (appelé aussi "pâdev", par opposition avec le "dev").</p>
+	<p>Pour rapporter un bug ou suggérer une fonctionnalité, vous pouvez <a href="https://gitlab.com/ProgAccess/ProgAccess/-/issues">ouvrir un ticket sur le GitLab</a>, utiliser le <a href="/contacter.php">formulaire de contact</a> ou encore utiliser le <a href="https://forum.progaccess.net">forum</a>.</p>
 	
 	<h3>Traductions</h3>
 	<ul>
