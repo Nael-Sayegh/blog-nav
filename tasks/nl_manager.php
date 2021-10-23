@@ -222,7 +222,7 @@ while($data = $req->fetch()) {
 		echo ' send';
 		if($data['notif_site'] and $data['lastmail'] < $maj_date) {
 			$message .= '<h2>'.$nomdusite.' version '.$maj_name.' : '.$maj_id.' ('.$maj_author.')</h2><p>'.$maj_text.'</p>';
-			$msgtxt .= 'Mise à jour du site : '.$nomdusite.' version '.$maj_name.' ('.substr($maj_id).')'."\n".strip_tags(html_entity_decode($maj_text))."\n\n"; 
+			$msgtxt .= 'Mise à jour du site : '.$nomdusite.' version '.$maj_name.' ('.$maj_id.')'."\n".strip_tags(html_entity_decode($maj_text))."\n\n"; 
 		}
 		$message .= $message2.date('d/m/Y, H:i:s', $data['expire']).$message3.$data['hash'].$message4;
 		$msgtxt .= $msgtxt2.date('d/m/Y à H:i:s', $data['expire']).$msgtxt3.$data['hash'].$msgtxt4;
