@@ -18,9 +18,14 @@ elseif(isset($_GET['listfiles'])) {$sw_id = $_GET['listfiles'];$sw_mode = 2;}
 elseif(isset($_GET['addfile'])) {$sw_id = $_GET['addfile'];$sw_mode = 3;}
 
 if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POST['token']) and $_POST['token'] == $login['token'])) {
-	if(isset($_GET['mod']) and isset($_POST['name']) and isset($_POST['category']) and isset($_POST['keywords']) and isset($_POST['description']) and isset($_POST['website']) and isset($_POST['text'])) {
+	if(isset($_GET['mod']) and isset($_POST['name']) and isset($_POST['category'])) {
+		$mod_keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
+		$mod_description = isset($_POST['description']) ? $_POST['description'] : '';
+		$mod_text = isset($_POST['text']) ? $_POST['text'] : '';
+		$mod_website = isset($_POST['website']) ? $_POST['website'] : '';
+		
 		$req = $bdd->prepare('UPDATE softwares SET name=?, category=?, date=?, description=?, text=?, keywords=?, website=?, author=? WHERE id=?');
-		$req->execute(array($_POST['name'],$_POST['category'],$time,$_POST['description'],$_POST['text'],$_POST['keywords'],$_POST['website'],$nom,$_GET['mod']));
+		$req->execute(array($_POST['name'], $_POST['category'], $time, $mod_description, $mod_text, $mod_keywords, $mod_website, $nom, $_GET['mod']));
 		header('Location: sw_mod.php?list='.$_POST['category']);
 		include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
 		include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
@@ -389,11 +394,11 @@ while($dat2 = $rq2->fetch()) {
 }
 $rq2->closeCursor()
 ?></select><br />
-			<label for="f_mod_keywords">Mots clés&nbsp;:</label><input type="text" name="keywords" value="<?php echo $data['keywords']; ?>" id="f_mod_keywords" maxlength="255" required /><br />
-			<label for="f_mod_description">Description courte&nbsp;:</label><input type="text" name="description" value="<?php echo $data['description']; ?>" id="f_mod_description" maxlength="1024" required /><br />
+			<label for="f_mod_keywords">Mots clés&nbsp;:</label><input type="text" name="keywords" value="<?php echo $data['keywords']; ?>" id="f_mod_keywords" maxlength="255" /><br />
+			<label for="f_mod_description">Description courte&nbsp;:</label><input type="text" name="description" value="<?php echo $data['description']; ?>" id="f_mod_description" maxlength="1024" /><br />
 			<label for="f_website">Adresse du site officiel (facultatif)&nbsp;:</label><input type="url" name="website" value="<?php echo $data['website']; ?>" id="f_website" maxlength="255" /><br />
 			<label for="f_mod_text">Texte long (HTML)&nbsp;:</label><br />
-			<textarea name="text" id="f_mod_text" maxlength="20000" rows="20" cols="500" required><?php echo $data['text']; ?></textarea><br />
+			<textarea name="text" id="f_mod_text" maxlength="20000" rows="20" cols="500"><?php echo $data['text']; ?></textarea><br />
 			<input type="submit" value="Modifier" />
 		</form><?php }$req->closeCursor();}
 if(isset($_GET['addfile'])) {
