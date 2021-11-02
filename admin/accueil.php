@@ -13,7 +13,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
 <script src="/scripts/default.js"></script>
 </head>
 <body>
-<h1>Administration - <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+<h1>Administration - <a href="/"><?php print $nomdusite; ?></a></h1>
 <h2>Connecté en tant que <?php print $nom; ?></h2>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 <table><caption>Zone de gestion pour <?php echo urank($login['rank']); ?></caption>
