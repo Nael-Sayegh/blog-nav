@@ -46,8 +46,8 @@ foreach($langs_prio as &$lang_i) {
 	$req = $bdd->prepare('SELECT * FROM `site_updates` ORDER BY `date` DESC LIMIT 1');
 	$req->execute();
 	while($data = $req->fetch()) {
-		fwrite($file, '<p>'.tr($tr,'last_site_update_text', array('version'=>$data['name'], 'id'=>$data['id'], 'date'=>strftime(tr($tr0,'fndatetime'),$data['date']), 'link1'=>'<a href="/update.php?id='.$data['id'].'">', 'link2'=>'</a>')).'</p>');
-		//fwrite($file, '<p>La version '.$data['name'].' (V'.$data['id'].') du site est sortie le '.date('d/m/Y',$data['date']).' à '.date('H:i:s',$data['date']).'&nbsp;:<br /><a href="/update.php?id='.$data['id'].'">consultez ses changements</a>.</p>');
+		fwrite($file, '<p>'.tr($tr,'last_site_update_text', array('version'=>substr($data['name'],1), 'id'=>$data['id'], 'date'=>strftime(tr($tr0,'fndatetime'),$data['date']), 'link1'=>'<a href="/update.php?id='.$data['id'].'">', 'link2'=>'</a>')).'</p>');
+		//fwrite($file, '<p>La version '.substr($data['name'],1).' (V'.$data['id'].') du site est sortie le '.date('d/m/Y',$data['date']).' à '.date('H:i:s',$data['date']).'&nbsp;:<br /><a href="/update.php?id='.$data['id'].'">consultez ses changements</a>.</p>');
 	}
 	fwrite($file, '</div></div>');
 
