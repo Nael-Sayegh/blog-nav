@@ -6,7 +6,7 @@
   'label' => 'Infos',
   'most_visited' => 'Most visited',
   'last_site_update' => 'Last site version',
-  'last_site_update_text' => 'Site version {{version}} ({{id}}) has been released on {{date}}: {{link1}}read changes{{link2}}.',
+  'last_site_update_text' => 'Site version {{version}} (V{{id}}) has been released on {{date}}: {{link1}}read changes{{link2}}.',
   'last_updates' => 'Last updates',
   'last_updates_text' => 'by {{author}} on {{date}}',
   'most_downloaded' => 'Most downloaded',
