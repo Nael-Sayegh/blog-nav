@@ -15,7 +15,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<h1>Traduction&nbsp;: à faire &#8211; <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+		<h1>Traduction&nbsp;: à faire &#8211; <a href="/"><?php print $nomdusite; ?></a></h1>
 		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 		<a href="#trs-files">Traductions du site</a><br />
 		<h2 id="tr-articles">Articles</h2>

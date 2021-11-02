@@ -26,7 +26,7 @@ if(isset($_GET['domain']) and in_array($_GET['domain'], array('pa33','pa33_dev',
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Statistiques - <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+<h1>Statistiques - <a href="/"><?php print $nomdusite; ?></a></h1>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 		<form action="showstats.php" method="get">
 			<label for="f1_from">Depuis le (AAAA-MM-JJ)&nbsp;:</label><input type="text" id="f1_from" name="from" value="<?php echo $from; ?>" maxlength="10" /><br />

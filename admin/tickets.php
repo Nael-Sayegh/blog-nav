@@ -79,7 +79,7 @@ if(isset($_GET['send']) and isset($_POST['msg'])) {
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Tickets - <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+<h1>Tickets - <a href="/"><?php print $nomdusite; ?></a></h1>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 <ul>
 <?php if(isset($_GET['ticket'])) { ?>

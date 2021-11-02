@@ -19,7 +19,7 @@ $tr_todo = array(0=>'Référence', 1=>'OK', 2=>'À vérifier', 3=>'À modifier',
 		<script type="text/javascript" src="js/translate.js"></script>
 	</head>
 	<body>
-		<h1>Outil de traduction &#8211; <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+		<h1>Outil de traduction &#8211; <a href="/"><?php print $nomdusite; ?></a></h1>
 		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 		<a href="translate_todo.php">Toutes les traductions</a><br />
 		

@@ -33,7 +33,7 @@ elseif(isset($_GET['mm1'])) {
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<h1>Maintenance - <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+		<h1>Maintenance - <a href="/"><?php print $nomdusite; ?></a></h1>
 		<h2>Mode maintenance</h2>
 		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php';
 if(isset($modemaintenance) and $modemaintenance)

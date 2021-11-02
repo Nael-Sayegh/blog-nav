@@ -13,7 +13,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Inscrits à la NL - <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+<h1>Inscrits à la NL - <a href="/"><?php print $nomdusite; ?></a></h1>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 		<table>
 			<thead>

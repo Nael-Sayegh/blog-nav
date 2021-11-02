@@ -43,7 +43,7 @@ if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['status']) an
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<h1>Équipe - <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+		<h1>Équipe - <a href="/"><?php print $nomdusite; ?></a></h1>
 		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 		<table border="1">
 			<thead><tr><th>Numéro d'équipier</th><th>Nom</th><th>Nom court</th><th>Statut(s)</th><th>Date</th><th>Âge</th><th>Twitter</th><th>Actions</th></tr></thead>

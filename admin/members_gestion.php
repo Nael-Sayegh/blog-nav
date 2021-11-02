@@ -28,7 +28,7 @@ if(isset($_GET['mod2']) and isset($_POST['username']) and isset($_POST['email'])
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<h1>Membres - <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+		<h1>Membres - <a href="/"><?php print $nomdusite; ?></a></h1>
 		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 		<table border="1">
 			<thead><tr><th>Nom d'utilisateur</th><th>Adresse mail</th><th>Rang</th><th>Actions</th></tr></thead>

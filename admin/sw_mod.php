@@ -301,7 +301,7 @@ else
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<h1>Modifier les logiciels - <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+		<h1>Modifier les logiciels - <a href="/"><?php print $nomdusite; ?></a></h1>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 <a href="sw_add.php">Ajouter un article</a>
 <?php

@@ -34,7 +34,7 @@ if((isset($_POST['token']) and $_POST['token'] == $login['token']) or (isset($_G
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Slider - <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+<h1>Slider - <a href="/"><?php print $nomdusite; ?></a></h1>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 		<table border="1">
 			<thead><tr><th>Label</th><th>Langue</th><th>Titre</th><th>Actions</th><th>Modification</th><th>État</th><th>Publié</th></tr></thead>

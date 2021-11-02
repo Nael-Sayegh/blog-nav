@@ -25,7 +25,7 @@ if(isset($_GET['mod2']) and isset($_POST['name'])) {
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Catégories - <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+<h1>Catégories - <a href="/"><?php print $nomdusite; ?></a></h1>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 		<table border="1">
 			<thead><tr><th>Numéro de catégorie</th><th>Nom</th><th>Actions</th></tr></thead>

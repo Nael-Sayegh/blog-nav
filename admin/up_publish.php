@@ -46,7 +46,7 @@ if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['text'])) {
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Versions - <a href="/"><?php print $nomdusite.' '.$versionnom; ?></a></h1>
+<h1>Versions - <a href="/"><?php print $nomdusite; ?></a></h1>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 		<table border="1">
 			<thead><tr><th>ID</th><th>Numéro de version</th><th>Date</th><th>Actions</th></tr></thead>
