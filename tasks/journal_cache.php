@@ -89,7 +89,7 @@ foreach($days as &$day) {
 			foreach($cursft as &$curfile) {
 				if($curfile['label'] != '') {
 					$html .= '<li><a class="jrnl_r" href="/r.php?p='.$curfile['label'].'">'.$curfile['title'].'</a></li>';
-					$rss .= '<item><title>'.$curfile['title'].'</title><link>https://www.progaccess.net/r?p='.$curfile['label'].'</link><description>'.$c['description'].'</description><pubDate>'.date('r', $curfile['date']).'</pubDate></item>';
+					$rss .= '<item><title>'.$curfile['title'].'</title><link>https://www.progaccess.net/r?p='.$curfile['label'].'</link><dc:creator>'.$c['author'].'</dc:creator><description>'.$c['description'].'</description><pubDate>'.date('r', $curfile['date']).'</pubDate></item>';
 				}
 				else {
 					$html .= '<li><a class="jrnl_r" href="/r?id='.$curfile['id'].'">'.$curfile['title'].'</a></li>';
