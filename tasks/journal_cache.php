@@ -57,7 +57,7 @@ while($curtime >= $ltime) {
 # Open files
 $file_html = fopen($cachedir.'journal.html', 'w');
 $file_rss = fopen($document_root.'/journal_modif.xml', 'w');
-fwrite($file_rss, '<?xml version="1.0" encoding="utf-8"?><rss version="2.0"><channel><title>'.$nomdusite.'.net</title><link>https://www.progaccess.net</link><description>Journal des modifications sur '.$nomdusite.'.</description><copyright>2016-'.date('Y').' L\'administration '.$nomdusite.'</copyright><language>fr</language>');
+fwrite($file_rss, '<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>'.$nomdusite.'.net</title><link>https://www.progaccess.net</link><description>Journal des modifications sur '.$nomdusite.'.</description><copyright>2016-'.date('Y').' L\'administration '.$nomdusite.'</copyright><language>fr</language>');
 
 foreach($days as &$day) {
 	$html = '';
