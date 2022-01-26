@@ -46,7 +46,7 @@
   'footer_ontime' => 'on',
   'footer_devver' => 'Dev version',
   'footer_changelog' => 'See the changes of this beta',
-  'footer_copyright' => '{{site}} administration',
+  'footer_copyright' => '{{site}}',
   'footer_license' => 'The <a href="/opensource.php">code of {{site}}</a> is distributed under {{license}} license.<br />
 The text is under {{trlicense}} license.',
   'footer_opensource' => 'about source code',

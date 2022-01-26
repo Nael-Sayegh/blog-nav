@@ -23,7 +23,7 @@ include('inclus/stats.php'); ?>
 <a target="_blank" href="https://www.facebook.com/ProgAccess" title="<?php echo tr($tr0,'footer_link_fb'); ?>"><img id="facebook" alt="<?php echo tr($tr0,'footer_link_fb'); ?>" src="/image/facebook.png" /></a>
 <a target="_blank" href="https://twitter.com/ProgAccess" title="<?php echo tr($tr0,'footer_link_tw'); ?>"><img id="twitter" alt="<?php echo tr($tr0,'footer_link_tw'); ?>" src="/image/twitter.png" /></a>
 </details>
-Copyright &copy; 2015 - <?php print date('Y'); ?> (<?php echo tr($tr0,'footer_copyright',array('site'=>$nomdusite)); ?>)<br />
+Copyright &copy; 2015-<?php print date('Y'); ?> <?php echo tr($tr0,'footer_copyright',array('site'=>$nomdusite)); ?><br />
 <?php echo tr($tr0,'footer_license',array('{{site}}'=>$nomdusite,'license'=>'<a href="https://www.gnu.org/licenses/licenses.html#AGPL" title="GNU Affero General Public License v3">GNU AGPL v3</a>','trlicense'=>'<a href="http://creativecommons.org/licenses/by-sa/4.0/" title="Creative Commons Attribution-ShareAlike 4.0 International License">CC BY-SA 4.0</a>')); ?><br />
 <?php if(DEV) echo '<a href="https://www.progaccess.net/">'.tr($tr0,'footer_stablelink').'</a>';
 else echo '<a href="https://dev.progaccess.net/">'.tr($tr0,'footer_devlink').'</a>'; ?>
