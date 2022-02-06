@@ -39,7 +39,7 @@ $req = $bdd->prepare('
 	SELECT `softwares_tr`.`id`, `softwares_tr`.`lang`, `softwares_tr`.`name`, `softwares_tr`.`description`, `softwares_tr`.`sw_id`, `softwares`.`hits`, `softwares`.`downloads`, `softwares`.`date`
 	FROM `softwares`
 	LEFT JOIN `softwares_tr` ON `softwares`.`id`=`softwares_tr`.`sw_id`
-	WHERE `softwares`.`category`=?
+	WHERE `softwares`.`category`=? AND `softwares_tr`.`published`=1
 	ORDER BY `softwares`.`date` DESC');
 $req->execute(array($cat_id));
 while($data = $req->fetch()) {
