@@ -164,7 +164,7 @@ $req = $bdd->prepare('SELECT * FROM softwares_files WHERE sw_id=? ORDER BY date 
 $req->execute(array($sw['id']));
 while($data = $req->fetch()) {
 	if($first) {
-		echo '<table id="sw_files"><caption><strong>'.tr($tr,'files_title',array('title'=>$titre)).'</strong></caption><thead><tr><th>'.tr($tr,'files_size').'</th><th>'.tr($tr,'files_date').'</th><th>'.tr($tr,'files_hits').'</th><th>MD5, SHA1</th></tr></thead><tbody>';
+		echo '<table id="sw_files"><caption role="heading" aria-level="2"><strong>'.tr($tr,'files_title',array('title'=>$titre)).'</strong></caption><thead><tr><th>'.tr($tr,'files_size').'</th><th>'.tr($tr,'files_date').'</th><th>'.tr($tr,'files_hits').'</th><th>MD5, SHA1</th></tr></thead><tbody>';
 		$fichiersexistants = true;
 		$first = false;
 	}
