@@ -187,7 +187,7 @@ $req = $bdd->prepare('SELECT * FROM softwares_mirrors WHERE sw_id=? ORDER BY hit
 $req->execute(array($sw['id']));
 while($data = $req->fetch()) {
 	if($first) {
-		echo '<table id="sw_mirrors"><caption><strong>'.tr($tr,'mirrors_title',array('title'=>$titre)).'</strong></caption><thead><tr><th>'.tr($tr,'mirrors_filetitle').'</th><th>'.tr($tr,'mirrors_mirrors').'</th><th>'.tr($tr,'files_date').'</th><th>'.tr($tr,'files_hits').'</th></tr></thead><tbody>';
+		echo '<table id="sw_mirrors"><caption role="heading" aria-level="2"><strong>'.tr($tr,'mirrors_title',array('title'=>$titre)).'</strong></caption><thead><tr><th>'.tr($tr,'mirrors_filetitle').'</th><th>'.tr($tr,'mirrors_mirrors').'</th><th>'.tr($tr,'files_date').'</th><th>'.tr($tr,'files_hits').'</th></tr></thead><tbody>';
 		$first = false;
 	}
 	echo '<tr class="sw_file';
