@@ -126,7 +126,7 @@ if($data = $req->fetch()) {
 	$maj_author = $data['authors'];
 	$maj_date = $data['date'];
 }
-$subject = '📰 L\'actu '.$nomdusite.' du '.$datejour.' '.$hrjr;
+$subject = '📰 L\'actu '.$nomdusite.' du '.$datejour;
 $message1 = '<!DOCTYPE html>
 <html lang="{{lang}}">
 	<head>
@@ -200,7 +200,7 @@ while($data = $req->fetch()) {
 				continue;
 			
 			$nbs ++;
-			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/a?id='.$sw_id.'">'.$software['trs'][$entry_tr]['name'].'</a> (<a href="https://www.progaccess.net/c?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['trs'][$entry_tr]['description']).'<br /><span class="software_date">Mis à jour à '.date('H:i:s le d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
+			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/a?id='.$sw_id.'">'.$software['trs'][$entry_tr]['name'].'</a> (<a href="https://www.progaccess.net/c?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['trs'][$entry_tr]['description']).'<br /><span class="software_date">Mis à jour à '.date('H:i:s', $software['date']).' le '.date('d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
 			$msgtxt .= ' * '.$software['trs'][$entry_tr]['name'].' ('.$cat[$software['category']].") :\n".$software['trs'][$entry_tr]['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i:s', $software['date']).")\n";
 			foreach($files as $file) {
 				if($file['sw_id'] == $sw_id and $file['date'] > $data['lastmail']) {
