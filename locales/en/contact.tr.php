@@ -26,7 +26,7 @@
 <ul>
 	<li>21:23&nbsp: refreshing the home page\'s slides;</li>
 	<li>21:28&nbsp;: member accounts related tasks;</li>
-	<li>Bitween 20:12 and 20:21&nbsp;: sending newsletters.</li>
+	<li>19:50&nbsp;: sending newsletters.</li>
 </ul>
 
 <h2>Website\'s history</h2>

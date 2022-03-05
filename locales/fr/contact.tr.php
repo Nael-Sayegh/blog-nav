@@ -28,7 +28,7 @@
 	<li>21:23&nbsp;: actualisation des diapositives de l\'accueil&nbsp;;</li>
 	<li>21:28&nbsp;: exécution des tâches liées aux comptes membres&nbsp;;</li>
 	<!-- <li>21:33&nbsp;: publication du message listant les mises à jour de la journée écoulée sur Facebook&nbsp;;</li> -->
-	<li>Aléatoirement entre 20:12 et 20:21&nbsp;: envoi éventuel de la lettre d\'informations aux abonnés.</li>
+	<li>19:50&nbsp;: envoi éventuel de la lettre d\'informations aux abonnés.</li>
 </ul>
 
 <h2>Histoire du site</h2>

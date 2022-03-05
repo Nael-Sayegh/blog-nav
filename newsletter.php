@@ -105,7 +105,7 @@ include 'inclus/menu.php'; ?>
 <h1 id="contenu"><?php print $titre; ?></h1>
 <?php if(!empty($log)) echo '<p autofocus><b>'.$log.'</b></p>'; ?>
 <p>Inscrivez-vous à la lettre d'information pour connaître toutes les nouveautés et maintenir vos logiciels à jour! Vous pouvez choisir d'être notifié à chaque mise à jour d'un logiciel.<br />
-Veuillez noter que cette lettre d'information est envoyée automatiquement, sans aucune intervention de la part de l'équipe, entre 20:12 et 20:21.</p>
+Veuillez noter que cette lettre d'information est envoyée automatiquement, sans aucune intervention de la part de l'équipe, à 19:50.</p>
 <form action="?a=s" method="post">
 	<label for="f_mail">Adresse e-mail&nbsp;:</label>
 	<input type="email" name="mail" id="f_mail" maxlength="255" required /><br />
