@@ -34,32 +34,32 @@ if($nldata = $req->fetch()) {
 		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
 		$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
 		$mail->addAddress($nldata['mail']);
-		$mail->Subject = 'Désinscription de la lettre d\'informations de '.$nomdusite;
+		$mail->Subject = 'Désinscription de l\'actu '.$nomdusite;
 		$mail->CharSet = 'UTF-8';
 		$mail->IsHTML(TRUE);
 		$mail->Body = '<!DOCTYPE html>
 <html lang="'.$nldata['lang'].'">
 	<head>
 		<meta charset="utf-8" />
-		<title>Confirmation du désabonnement de la lettre d\'informations de '.$nomdusite.'</title>
+		<title>Confirmation du désabonnement de l\'actu '.$nomdusite.'</title>
 	</head>
 	<body>
 		<div id="header">
 <img src="https://www.progaccess.net/image/logo128.png" alt="Logo" />
-			<h1>Lettre d\'informations '.$nomdusite.'</h1>
+			<h1>L\'actu '.$nomdusite.'</h1>
 		</div>
 		<div id="content">
 			<h2>Bonjour '.$nldata['mail'].',</h2>
-			<p>Vous avez bien été désabonné de la lettre d\'informations de '.$nomdusite.'.</p>
+			<p>Vous avez bien été désabonné de l\'actu '.$nomdusite.'.</p>
 <p>Ceci sera notre dernier mail, nous sommes tristes de vous voir partir et nous espérons vous revoir bientôt sur <a href="https://www.progaccess.net">'.$nomdusite.'</a>.</p>
 			<p>Ce mail a été envoyé automatiquement, merci de ne pas répondre.</p>
 			<p>Cordialement,<br />l\'administration '.$nomdusite.'</p>
 		</div>
 	</body>
 </html>';
-		$mail->AltBody = 'Lettre d\'informations '.$nomdusite.'
+		$mail->AltBody = 'L\'actu '.$nomdusite.'
 Bonjour '.$nldata['mail'].',
-Vous avez bien été désabonné de la lettre d\'informations de '.$nomdusite.'.
+Vous avez bien été désabonné de l\'actu '.$nomdusite.'.
 Ceci sera notre dernier mail, nous sommes tristes de vous voir partir et nous espérons vous revoir bientôt sur https://www.progaccess.net/
 Ce mail a été envoyé automatiquement, merci de ne pas répondre.
 Cordialement,
@@ -72,7 +72,7 @@ l\'administration '.$nomdusite;
 	if(!$nldata['confirm']) {
 		$req2 = $bdd->prepare('UPDATE `newsletter_mails` SET `confirm`=1 , `lastmail`=? WHERE `id`=?');
 		$req2->execute(array(time(), $nldata['id']));
-		$log .= 'Votre inscription à la lettre d\'informations a bien été confirmée.<br />';
+		$log .= 'Votre inscription à la l\'actu '.$nomdusite.' a bien été confirmée.<br />';
 	}
 	if(isset($_GET['mod'])) {
 		$freq = $nldata['freq'];
@@ -98,7 +98,7 @@ else {
 	exit();
 }
 
-$titre='Lettre d\'information';
+$titre='L\'actu '.$nomdusite;
 $cheminaudio='/audio/sons_des_pages/nl.mp3';
 $stats_page = 'nlmod'; ?>
 <!doctype html>
