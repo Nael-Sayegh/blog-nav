@@ -91,7 +91,7 @@ if(isset($_GET['ticket'])) {
 	$req = $bdd->prepare('SELECT * FROM `tickets` WHERE `id`=? LIMIT 1');
 	$req->execute(array($_GET['ticket']));
 	if($data = $req->fetch()) {
-		echo '<p>Sujet&nbsp;: <b>'.htmlspecialchars($data['subject']).'</b><br />Expéditeur&nbsp: <b>'.htmlspecialchars($data['expeditor_name']).'</b><!-- (<b>'.htmlspecialchars($data['expeditor_email']).'</b>)--><br />Dernière activité&nbsp;: '.$data['lastadmreply'].' (le '.date('d/m/Y H:i:s', $data['date']).')<br />Statut&nbsp: <b style="color: #';
+		echo '<p>Sujet&nbsp;: <b>'.htmlspecialchars($data['subject']).'</b><br />Expéditeur&nbsp: <b>'.htmlspecialchars($data['expeditor_name']).'</b><!-- (<b>'.htmlspecialchars($data['expeditor_email']).'</b>)--><br />Dernière activité&nbsp;: '.$data['lastadmreply'].' (le '.date('d/m/Y H:i', $data['date']).')<br />Statut&nbsp: <b style="color: #';
 		switch($data['status']) {
 			case 0: echo 'C00000;">Nouveau'; break;
 			case 1: echo '606000;">Non lu'; break;
@@ -106,7 +106,7 @@ if(isset($_GET['ticket'])) {
 			echo '<td class="ticket_msginfo">';
 			if($msg['m'] == 1)
 				echo '<img alt="L\'administration '.$nomdusite.'" src="/image/logo16.png" /> ';
-			echo '<b>'.htmlspecialchars($msg['e']).'</b> '.date('d/m/Y H:i:s', $msg['d']).'</td></tr><tr><td>'.$msg['t'].'</td></tr>';
+			echo '<b>'.htmlspecialchars($msg['e']).'</b> '.date('d/m/Y H:i', $msg['d']).'</td></tr><tr><td>'.$msg['t'].'</td></tr>';
 		}
 		unset($msg);
 		echo '</table>';
@@ -157,7 +157,7 @@ if(isset($_GET['ticket'])) {
 			case 3: echo '3">Archivé'; break;
 			default: echo '">Erreur';
 		}
-		echo '</td><td><a href="?ticket='.$data['id'].'">'.htmlspecialchars($data['subject']).'</a></td><td>'.htmlspecialchars($data['expeditor_name']).'</td><td>'.$data['lastadmreply'] .'&nbsp;: le '.date('d/m/Y à H:i:s', $data['date']).'</td></tr>';
+		echo '</td><td><a href="?ticket='.$data['id'].'">'.htmlspecialchars($data['subject']).'</a></td><td>'.htmlspecialchars($data['expeditor_name']).'</td><td>'.$data['lastadmreply'] .'&nbsp;: le '.date('d/m/Y à H:i', $data['date']).'</td></tr>';
 	}
 ?>
 			</tbody>

@@ -70,7 +70,7 @@ ORDER BY `todo_level` DESC');
 						<td><a href="translate.php?type=article&id='.$data['sw_id'].'">'.$data['name'].'</a></td>
 						<td title="'.$data['lang'].'">'.$langs[$data['lang']].'</td>
 						<td>'.htmlentities($data['author']).'</td>
-						<td>'.date('d/m/Y H:i:s', $data['date']).'</td>
+						<td>'.date('d/m/Y H:i', $data['date']).'</td>
 						<td class="tr_todo'.$data['todo_level'].'">'.$tr_todo[$data['todo_level']].'</td>
 						<td class="tr_published'.$data['published'].'">'.($data['published']?'Public':'Privé').'</td>
 					</tr>';
@@ -114,7 +114,7 @@ ORDER BY `todo_level` DESC');
 							<td><a href="translate.php?type=trsfiles&trsfiles='.$trsfile.'">'.$trsfile.'</a></td>
 							<td title="'.$trsdir.'">'.$langs[$trsdir].'</td>
 							<td>'.htmlentities($data['last_author']).'</td>
-							<td>'.date('d/m/Y H:i:s', $data['last_modif']).'</td>
+							<td>'.date('d/m/Y H:i', $data['last_modif']).'</td>
 							<td class="tr_todo'.$data['todo_level'].'">'.$tr_todo[$data['todo_level']].'</td>
 						</tr>';
 					}

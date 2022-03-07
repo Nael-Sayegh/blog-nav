@@ -46,7 +46,7 @@ Vos informations sont les suivantes :</p>
 <li>Nom d\'utilisateur : '.htmlentities($data['username']).'</li>
 <li>Adresse mail : '.$data['email'].'</li>
 <li>Numéro de membre : M'.$data['id'].'</li>
-<li>Date d\'inscription : '.date('d/m/Y à H:i:s',$data['signup_date']).'</li>
+<li>Date d\'inscription : '.date('d/m/Y à H:i',$data['signup_date']).'</li>
 </ul>
 <p>Ne répondez pas à ce mail, il vous a été envoyé automatiquement.<br />
 Cordialement.<br />

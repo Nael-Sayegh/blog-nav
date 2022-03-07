@@ -25,7 +25,7 @@ $req = $bdd->prepare('SELECT * FROM `newsletter_mails`');
 $req->execute();
 
 while($data = $req->fetch()) {
-	echo '<tr><td>'.$data['mail'].'</td><td>'.$data['hash'].'</td><td>'.$data['freq'].'</td><td>'.date('d/m/Y H:i:s',$data['lastmail']).'</td><td>'.date('d/m/Y H:i:s',$data['expire']).'</td></tr>';
+	echo '<tr><td>'.$data['mail'].'</td><td>'.$data['hash'].'</td><td>'.$data['freq'].'</td><td>'.date('d/m/Y H:i',$data['lastmail']).'</td><td>'.date('d/m/Y H:i',$data['expire']).'</td></tr>';
 }
 
 $req->closeCursor();

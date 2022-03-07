@@ -45,7 +45,7 @@ echo '<option value="'.$data['id'].'">'.$data['id'].'</option>';
 <?php
 $req2 = $bdd->query('SELECT * FROM `accounts` ORDER BY id ASC');
 while($data = $req2->fetch()) {
-echo '<option value="'.$data['signup_date'].'">'.date('d/m/Y à H:i:s',$data['signup_date']).'</option>';
+echo '<option value="'.$data['signup_date'].'">'.date('d/m/Y à H:i',$data['signup_date']).'</option>';
 }
 ?>
 <option value="non">Je ne sais pas</option>

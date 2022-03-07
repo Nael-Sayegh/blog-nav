@@ -37,7 +37,7 @@ if(isset($_GET['form']) and isset($_POST['pf']) and isset($_POST['msg'])) {
 }*/
 
 if(isset($_GET['nl'])) {
-	$message = 'La lettre d\'infos du '.$datejour.' est envoyée à '.date('H:i:s').'!'."\n\n".$nom.', L\administration';
+	$message = 'La lettre d\'infos du '.$datejour.' est envoyée à '.date('H:i').'!'."\n\n".$nom;
 	if($_POST['nl'] == 'fb' or $_POST['nl'] == 'all') {
 		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 		send_facebook($message);

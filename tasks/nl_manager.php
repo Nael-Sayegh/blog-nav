@@ -22,7 +22,7 @@ if(isset($simulate))
 	echo "--simulate--\n";
 
 $datejour = strftime('%d/%m/%Y');
-$hrjr = strftime('%H:%M:%S');
+$hrjr = strftime('%H:%M');
 
 # Nettoyage de la table
 $req = $bdd->prepare('DELETE FROM `newsletter_mails` WHERE `expire`<?');

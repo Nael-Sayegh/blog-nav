@@ -90,7 +90,7 @@ l\'administration '.$nomdusite;
 	}
 	$req2 = $bdd->prepare('UPDATE newsletter_mails SET expire=? WHERE id=?');
 	$req2->execute(array(time()+31536000, $nldata['id']));
-	$log .= 'Votre abonnement pour <i>'.htmlspecialchars($nldata['mail']).'</i> expirera le '.date('d/m/Y H:i:s', time()+31536000).'.';
+	$log .= 'Votre abonnement pour <i>'.htmlspecialchars($nldata['mail']).'</i> expirera le '.date('d/m/Y H:i', time()+31536000).'.';
 	$args['id'] = $nldata['hash'];
 }
 else {

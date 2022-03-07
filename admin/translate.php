@@ -246,7 +246,7 @@ WHERE `sw_id`=?');
 						<td><input type="checkbox" name="s[]" value="'.$data2['id'].'" aria-label="Sélectionner '.$data2['language'].' (pour suppression)" title="Sélectionner" /></td>
 						<td title="'.$data2['lang'].'">'.$data2['language'].'</td>
 						<td>'.htmlentities($data2['author']).'</td>
-						<td>'.date('d/m/Y H:i:s', $data2['date']).'</td>
+						<td>'.date('d/m/Y H:i', $data2['date']).'</td>
 						<td class="tr_todo'.$data2['todo_level'].'">'.$tr_todo[$data2['todo_level']].'</td>
 						<td class="tr_published'.$data2['published'].'">'.($data2['published']?'Public':'Privé').'</td>
 						<td>
@@ -393,7 +393,7 @@ WHERE `sw_id`=?');
 						<td><input type="checkbox" name="s[]" value="'.$trsdir.'" aria-label="Sélection" title="Sélectionner" /></td>
 						<td title="'.$trsdir.'">'.$langs[$trsdir].'</td>
 						<td>'.htmlentities($data['last_author']).'</td>
-						<td>'.date('d/m/Y H:i:s', $data['last_modif']).'</td>
+						<td>'.date('d/m/Y H:i', $data['last_modif']).'</td>
 						<td class="tr_todo'.$data['todo_level'].'">'.$tr_todo[$data['todo_level']].'</td>
 						<td>
 							<input type="radio" title="Modèle" aria-label="Modèle" name="model" value="'.$trsdir.'" />

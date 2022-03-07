@@ -20,7 +20,7 @@ $postid = 'M0'.$_POST['sujet'];
 } else { $postid = 'Inconnu'; }
 
 if($_POST['msg'] != 'non') {
-$postmsg = date('d/m/Y à H:i:s',$_POST['msg']);
+$postmsg = date('d/m/Y à H:i',$_POST['msg']);
 } else $postmsg = 'Inconnue'; }
 
 $msg = '<!doctype html>

@@ -51,7 +51,7 @@ if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['status']) an
 <?php
 $req = $bdd->query('SELECT * FROM `team` ORDER BY `name` ASC');
 while($data = $req->fetch()) {
-	echo '<tr><td>M'.$data['account_id'].'/E'.$data['id'].'</td><td>'.$data['name'].'</td><td>'.$data['short_name'].'</td><td>'.$data['status'].'</td><td>'.date('d/m/Y H:i:s',$data['date']).'</td><td>'.intval((time()-$data['age'])/31557600).'</td><td>@'.$data['twitter'].'</td><td><a href="?mod='.$data['id'].'#mod">Modifier</a> | <a href="?delete='.$data['id'].'">Supprimer</a></td></tr>';
+	echo '<tr><td>M'.$data['account_id'].'/E'.$data['id'].'</td><td>'.$data['name'].'</td><td>'.$data['short_name'].'</td><td>'.$data['status'].'</td><td>'.date('d/m/Y H:i',$data['date']).'</td><td>'.intval((time()-$data['age'])/31557600).'</td><td>@'.$data['twitter'].'</td><td><a href="?mod='.$data['id'].'#mod">Modifier</a> | <a href="?delete='.$data['id'].'">Supprimer</a></td></tr>';
 }
 ?>
 			</tbody>

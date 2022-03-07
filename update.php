@@ -35,7 +35,7 @@ $req3 = $bdd->prepare('SELECT * FROM `site_updates` WHERE `id`>? ORDER BY `date`
 $req3->execute(array($data['id']));
 if($data3 = $req3->fetch()) {
 $versionxx3 = substr($data3['name'],1);
-echo '<a href="/update.php?id='.$data3['id'].'">Version suivante&nbsp;: '.$versionxx3.' (V'.$data3['id'].')</a> ('.date('d/m/Y H:i:s', $data3['date']).')<br />'; }
+echo '<a href="/update.php?id='.$data3['id'].'">Version suivante&nbsp;: '.$versionxx3.' (V'.$data3['id'].')</a> ('.date('d/m/Y H:i', $data3['date']).')<br />'; }
 echo '<p>Par '.$data['authors'].' ('.strftime(tr($tr0,'fndatetime'),$data['date']).')</p>'.str_replace('{{site}}', $nomdusite, $data['text']);
 		$codestat = json_decode($data['codestat']);
 		if(isset($codestat[0]) and isset($codestat[1]) and isset($codestat[2]) and $codestat[0] != -1 and $codestat[1] != -1 and $codestat[2] != -1) {

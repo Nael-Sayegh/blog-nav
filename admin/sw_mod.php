@@ -335,7 +335,7 @@ while($data = $req->fetch()) {
 	echo '<tr>
 		<td><a href="?id='.$data['id'].'" role="heading" aria-level="6">'.$data['name'].'</a></td>
 		<td>'.$cat[$data['category']].'</td>
-		<td>'.date('d/m/Y H:i:s',$data['date']).' par '.$data['author'].'</td>
+		<td>'.date('d/m/Y H:i',$data['date']).' par '.$data['author'].'</td>
 		<td><a href="?listfiles='.$data['id'].'">Afficher les fichiers</a> | <a href="translate.php?type=article&id='.$data['id'].'">Traductions</a>'.(($nom == $data['author']) ? ' | <a href="?rsw='.$data['id'].'">supprimer</a>':'').'</td>
 	</tr>';
 }
@@ -357,7 +357,7 @@ if(isset($_GET['listfiles'])) {
 	<?php	$req2 = $bdd->prepare('SELECT * FROM softwares_files WHERE sw_id=? ORDER BY date ASC');
 			$req2->execute(array($_GET['listfiles']));
 			while($data2 = $req2->fetch()) {
-				echo '<tr><td><a href="?modf='.$data2['id'].'">'.$data2['name'].'</a></td><td>'.$data2['title'].'</td><td><a href="/r.php?p='.$data2['label'].'">'.$data2['label'].'</a></td><td>'.$data2['filetype'].'</td><td>'.date('d/m/Y H:i:s',$data2['date']).'</td><td>'.human_filesize($data2['filesize']).'o</td><td><input type="checkbox" name="rfile'.$data2['id'].'" autocomplete="off" /></td></tr>';
+				echo '<tr><td><a href="?modf='.$data2['id'].'">'.$data2['name'].'</a></td><td>'.$data2['title'].'</td><td><a href="/r.php?p='.$data2['label'].'">'.$data2['label'].'</a></td><td>'.$data2['filetype'].'</td><td>'.date('d/m/Y H:i',$data2['date']).'</td><td>'.human_filesize($data2['filesize']).'o</td><td><input type="checkbox" name="rfile'.$data2['id'].'" autocomplete="off" /></td></tr>';
 			} $req2->closeCursor(); ?></tbody>
 			</table>
 			<table border="1">
@@ -366,7 +366,7 @@ if(isset($_GET['listfiles'])) {
 	<?php	$req2 = $bdd->prepare('SELECT * FROM `softwares_mirrors` WHERE `sw_id`=? ORDER BY `date` ASC');
 			$req2->execute(array($_GET['listfiles']));
 			while($data2 = $req2->fetch()) {
-				echo '<tr><td><a href="?modm='.$data2['id'].'">'.$data2['title'].'</a></td><td><textarea name="lmir'.$data2['id'].'" readonly>'.htmlentities($data2['links']).'</textarea></td><td><a href="/r.php?m&p='.$data2['label'].'">'.$data2['label'].'</a></td><td>'.date('d/m/Y H:i:s',$data2['date']).'</td><td><input type="checkbox" name="rmir'.$data2['id'].'" autocomplete="off" /></td></tr>';
+				echo '<tr><td><a href="?modm='.$data2['id'].'">'.$data2['title'].'</a></td><td><textarea name="lmir'.$data2['id'].'" readonly>'.htmlentities($data2['links']).'</textarea></td><td><a href="/r.php?m&p='.$data2['label'].'">'.$data2['label'].'</a></td><td>'.date('d/m/Y H:i',$data2['date']).'</td><td><input type="checkbox" name="rmir'.$data2['id'].'" autocomplete="off" /></td></tr>';
 			} $req2->closeCursor(); ?></tbody>
 			</table>
 			<input type="submit" value="Supprimer" />

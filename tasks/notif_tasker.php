@@ -153,8 +153,8 @@ while($data = $req->fetch()) {
 	$msgtxt = $msgtxt1;
 	foreach($sft as $software) {
 		if($software['date'] > $data['lastmail']) {
-			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/article.php?id='.$software['id'].'">'.$software['name'].'</a> (<a href="https://www.progaccess.net/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['description']).'<br /><span class="software_hits">'.$software['hits'].' visites</span><span class="software_date"> (mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i:s', $software['date']).')</span></p><ul>';
-			$msgtxt .= ' * '.$software['name'].' ('.$cat[$software['category']].') :\n'.$software['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['category'].' le '.date('d/m/Y à H:i:s', $software['date']).")\n";
+			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/article.php?id='.$software['id'].'">'.$software['name'].'</a> (<a href="https://www.progaccess.net/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['description']).'<br /><span class="software_hits">'.$software['hits'].' visites</span><span class="software_date"> (mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).')</span></p><ul>';
+			$msgtxt .= ' * '.$software['name'].' ('.$cat[$software['category']].') :\n'.$software['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['category'].' le '.date('d/m/Y à H:i', $software['date']).")\n";
 			foreach($files as $file) {
 				if($file['sw_id'] == $software['id'] and $file['date'] > $data['lastmail']) {
 					$message .= '<li><a href="https://www.progaccess.net/r?id='.$file['id'].'">'.$file['title'].' ('.$file['hits'].' téléchargements)</a></li>';
@@ -172,8 +172,8 @@ while($data = $req->fetch()) {
 			$message .= '<h2>Mise à jour du site&nbsp;: '.$nomdusite.' '.$maj_name.' ('.$maj_id.')</h2><p>'.$maj_text.'</p>';
 			$msgtxt .= 'Mise à jour du site : '.$nomdusite.' '.$maj_name.' ('.$maj_id.')'."\n".strip_tags(html_entity_decode($maj_text))."\n\n"; 
 		}
-		$message .= $message2.$data['hash'].$message3.date('d/m/Y à H:i:s', $data['expire']).$message4;
-		$msgtxt .= $msgtxt2.date('d/m/Y à H:i:s', $data['expire']).$msgtxt3.$data['hash'].$msgtxt4;
+		$message .= $message2.$data['hash'].$message3.date('d/m/Y à H:i', $data['expire']).$message4;
+		$msgtxt .= $msgtxt2.date('d/m/Y à H:i', $data['expire']).$msgtxt3.$data['hash'].$msgtxt4;
 		
 		$message = str_replace('{{lang}}', $data['lang'], $message
 		$message = str_replace('{{mail}}', $data['mail'], $message);
