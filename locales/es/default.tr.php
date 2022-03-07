@@ -10,7 +10,7 @@
   'ftdate' => '%A %e de %B de %Y',
   'ftime' => '%H:%M',
   'fstime' => '%H:%M:%S',
-  'fndatetime' => '%Y-%m-%d a %H:%M:%S',
+  'fndatetime' => '%Y-%m-%d a %H:%M',
   'ftdatetime' => '%A %e de %B de %Y a las %H:%M:%S',
   'loginbox_profilelink' => 'Perfil',
   'loginbox_alistlink' => 'Lista de los miembros',

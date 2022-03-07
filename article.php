@@ -243,7 +243,7 @@ $req->execute(array($sw['id']));
 while($data = $req->fetch()) {
 	echo '<div class="comment"><div class="comment_h"><h3><!--K'.$data['id'].': -->';
 	echo htmlentities($data['pseudo']);
-	echo ' ('.date('d/m/Y, H:i:s', $data['date']).')</h3>';
+	echo ' ('.date('d/m/Y, H:i', $data['date']).')</h3>';
 	echo '</div>';
 	echo '<p class="comment_p">'.str_replace("\n",'<br/>',htmlentities($data['text'])).'</p></div>';
 		if(($data['ip'] == sha1($_SERVER['REMOTE_ADDR']) and $data['date'] > time()-86400) OR (isset($logged) && $logged == 'true' AND $login['rank'] == 'a' AND $workn == '0' or $workn == '2')) {

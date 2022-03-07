@@ -52,10 +52,10 @@ while($data = $req->fetch()) {
 		$mail->setFrom('no_reply@progaccess.net', $nomdusite);
 		$mail->addReplyTo('no_reply@progaccess.net', $nomdusite);
 		$mail->addAddress($data['mail']);
-		$mail->Subject = $nomdusite.' : votre abonnement à la lettre d\'informations expire bientôt';
+		$mail->Subject = $nomdusite.' : votre abonnement à l\'actu '.$nomdusite.' expire bientôt';
 		$mail->CharSet = 'UTF-8';
 		$mail->IsHTML(false);
-		$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à la lettre d'informations de ProgAccess expire le ".date('d/m/Y à H:i:s', $data['expire']).".\nCliquez sur le lien suivant pour renouveler votre abonnement :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\n".$nomdusite;
+		$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à l'actu ProgAccess expire le ".date('d/m/Y à H:i', $data['expire']).".\nCliquez sur le lien suivant pour le renouveler :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\n".$nomdusite;
 		$mail->send();
 	}
 	echo $data['mail'];
@@ -157,7 +157,7 @@ $message4 = '">cliquez ici pour le renouveler avant cette date</a>.</p>
 	</body>
 </html>';
 $msgtxt1 = 'L\'actu '.$nomdusite.' du '.$datejour." (version texte)\nBonjour {{mail_user}},\nRetrouvez l'historique des mises à jour sur https://www.progaccess.net/journal_modif.php\n\n";
-$msgtxt2 = 'Allez à l\'adresse ci-dessous pour gérer votre abonnement (à toute fin utile votre numéro d\'abonné est N{{idabonne}}). Vous serez automatiquement désinscrit de notre lettre d\'informations le ';
+$msgtxt2 = 'Allez à l\'adresse ci-dessous pour gérer votre abonnement (à toute fin utile votre numéro d\'abonné est N{{idabonne}}). Vous serez automatiquement désinscrit de l\'actu le ';
 $msgtxt3 = ".\nhttps://www.progaccess.net/nlmod.php?id=";
 $msgtxt4 = "\n\nVeuillez ne pas répondre, ce mail a été envoyé automatiquement, cependant, vous pouvez nous contacter via notre formulaire de contact.\n\nCordialement.\n".$nomdusite;
 
@@ -200,8 +200,8 @@ while($data = $req->fetch()) {
 				continue;
 			
 			$nbs ++;
-			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/a?id='.$sw_id.'">'.$software['trs'][$entry_tr]['name'].'</a> (<a href="https://www.progaccess.net/c?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['trs'][$entry_tr]['description']).'<br /><span class="software_date">Mis à jour à '.date('H:i:s', $software['date']).' le '.date('d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
-			$msgtxt .= ' * '.$software['trs'][$entry_tr]['name'].' ('.$cat[$software['category']].") :\n".$software['trs'][$entry_tr]['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i:s', $software['date']).")\n";
+			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/a?id='.$sw_id.'">'.$software['trs'][$entry_tr]['name'].'</a> (<a href="https://www.progaccess.net/c?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['trs'][$entry_tr]['description']).'<br /><span class="software_date">Mis à jour à '.date('H:i', $software['date']).' le '.date('d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
+			$msgtxt .= ' * '.$software['trs'][$entry_tr]['name'].' ('.$cat[$software['category']].") :\n".$software['trs'][$entry_tr]['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).")\n";
 			foreach($files as $file) {
 				if($file['sw_id'] == $sw_id and $file['date'] > $data['lastmail']) {
 					$nbf ++;
@@ -224,8 +224,8 @@ while($data = $req->fetch()) {
 			$message .= '<h2>'.$nomdusite.' version '.$maj_name.' : '.$maj_id.' ('.$maj_author.')</h2><p>'.$maj_text.'</p>';
 			$msgtxt .= 'Mise à jour du site : '.$nomdusite.' version '.$maj_name.' ('.$maj_id.')'."\n".strip_tags(html_entity_decode($maj_text))."\n\n"; 
 		}
-		$message .= $message2.date('d/m/Y, H:i:s', $data['expire']).$message3.$data['hash'].$message4;
-		$msgtxt .= $msgtxt2.date('d/m/Y à H:i:s', $data['expire']).$msgtxt3.$data['hash'].$msgtxt4;
+		$message .= $message2.date('d/m/Y, H:i', $data['expire']).$message3.$data['hash'].$message4;
+		$msgtxt .= $msgtxt2.date('d/m/Y à H:i', $data['expire']).$msgtxt3.$data['hash'].$msgtxt4;
 		
 		$message = str_replace('{{lang}}', $data['lang'], $message);
 		$message = str_replace('{{mail}}', $data['mail'], str_replace('{{mail_user}}', ucfirst(explode('@', $data['mail'])[0]), str_replace('{{idabonne}}', $data['id'], $message)));

@@ -10,7 +10,7 @@
   'ftdate' => '%A %e of %B %Y',
   'ftime' => '%H:%M',
   'fstime' => '%H:%M:%S',
-  'fndatetime' => '%Y-%m-%d at %H:%M:%S',
+  'fndatetime' => '%Y-%m-%d at %H:%M',
   'ftdatetime' => '%A %e of %B %Y at %H:%M:%S',
   'decimal_separator' => '.',
   'byte_letter' => 'B',
