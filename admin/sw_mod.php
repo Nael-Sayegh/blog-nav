@@ -236,7 +236,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 						$somsg = $_POST['title'].' :';
 						if(!empty($label))
 							$somsg .= ' https://www.progaccess.net/r?p='.$label;
-						$somsg .= ' '.$nom;
+						$somsg .= ' '. https://www.progaccess.net/a?id='.$_GET['upload'].' '.$nom;
 						include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
 						send_twitter($somsg);
 						include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
