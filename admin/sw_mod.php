@@ -99,7 +99,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 			include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 			
 			if(isset($_POST['social']) and $_POST['social'] == 'on') {
-				$somsg = $_POST['title'].' : https://www.progaccess.net/r?'.(!empty($_POST['label']) ? ('p='.$_POST['label']):('id='.$data['id'])).' '.$nom;
+				$somsg = $_POST['title'].' : https://www.progaccess.net/r?'.(!empty($_POST['label']) ? ('p='.$_POST['label']):('id='.$data['id'])).' https://www.progaccess.net/a?id='.$data['sw_id'].' '.$nom;
 				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
 				send_twitter($somsg);
 				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
@@ -127,7 +127,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$req2->execute(array(finfo_file($finfo,$file), time(), filesize($file), md5_file($file), sha1_file($file), $data['id']));
 				finfo_close($finfo);
 				if(isset($_GET['social']) and $_GET['social'] == 'on') {
-					$somsg = $data['title'].' : https://www.progaccess.net/r?'.(!empty($data['label']) ? ('p='.$data['label']):('id='.$data['id'])).' '.$nom;
+					$somsg = $data['title'].' : https://www.progaccess.net/r?'.(!empty($data['label']) ? ('p='.$data['label']):('id='.$data['id'])).' https://www.progaccess.net/a?id='.$data['sw_id'].' '.$nom;
 					include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
 					send_twitter($somsg);
 					include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
