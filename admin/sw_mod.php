@@ -99,7 +99,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 			include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 			
 			if(isset($_POST['social']) and $_POST['social'] == 'on') {
-				$reqf=$bdd->prepare('SELECT * FROM `softwares_files` ORDER BY `id` DESC LIMIT 1');
+				$reqf=$bdd->prepare('SELECT * FROM `softwares_files` ORDER BY `date` DESC LIMIT 1');
 				$reqf->execute();
 				if($data=$reqf->fetch()) {
 				$somsg = $_POST['title'].' : https://www.progaccess.net/r?'.(!empty($_POST['label']) ? ('p='.$_POST['label']):('id='.$data['id'])).' https://www.progaccess.net/a?id='.$data['sw_id'].' '.$nom;
