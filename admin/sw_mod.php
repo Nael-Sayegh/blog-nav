@@ -99,11 +99,15 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 			include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 			
 			if(isset($_POST['social']) and $_POST['social'] == 'on') {
+				$reqf=$bdd->prepare('SELECT * FROM `softwares_files` ORDER BY `id` DESC LIMIT 1');
+				$reqf->execute();
+				if($data=$reqf->fetch()) {
 				$somsg = $_POST['title'].' : https://www.progaccess.net/r?'.(!empty($_POST['label']) ? ('p='.$_POST['label']):('id='.$data['id'])).' https://www.progaccess.net/a?id='.$data['sw_id'].' '.$nom;
 				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
 				send_twitter($somsg);
 				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 				send_facebook($somsg);
+				}
 			}
 			exit();
 		}
