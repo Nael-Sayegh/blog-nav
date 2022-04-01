@@ -1,8 +1,4 @@
 <?php
-if(date('dm') == '0104' and !isset($_GET['noredirfool'])) {
-	header('Location: https://www.nvda-fr.org?noredirfool');
-	exit();
-}
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 $stats_page = 'accueil';
 include_once 'inclus/log.php';
