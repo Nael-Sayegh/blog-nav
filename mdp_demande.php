@@ -6,6 +6,68 @@ include_once 'inclus/log.php';
 require_once 'inclus/consts.php';
 $titre='Mot de passe oublié';
 $cheminaudio='/audio/sons_des_pages/membre.mp3';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+require_once 'inclus/lib/PHPMailer/src/PHPMailer.php';
+require_once 'inclus/lib/PHPMailer/src/Exception.php';
+require_once 'inclus/lib/PHPMailer/src/SMTP.php';
+if(isset($_GET['act']) && $_GET['act'] == 'form' && isset($_POST['username']) and isset($_POST['email']) and isset($_POST['nummember']) and isset($_POST['signup']))
+{
+	$req=$bdd->prepare('SELECT * FROM `accounts` WHERE `id`=? LIMIT 1');
+	$req->execute(array($_POST['nummember']));
+	if($data=$req->fetch())
+	{
+		if($_POST['signup'] == $data['signup_date'] && $_POST['username'] == $data['username'] && $_POST['email'] == $data['email'])
+		{
+			$caract = 'abcdefghijklmnopqrstuvwxyz0123456789@!:;,/?*$=+.-_ &)(][{}#"\'';
+			$pwd='';
+			for($i = 1; $i <= 12; $i++) {
+				$pwd.=strtoupper($caract[mt_rand(0,(strlen($caract)-1))]);
+			}
+			$req2=$bdd->prepare('UPDATE `accounts` SET password=? WHERE id=? LIMIT 1');
+			$req2->execute(array(password_hash($pwd, PASSWORD_DEFAULT), $_POST['nummember']));
+			$msg = '<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Réinitialisation du mot de passe '.$nomdusite.'</title>
+</head>
+<body>
+<h1>'.$nomdusite.' - Réinitialisation de mot de passe</h1>
+<p>Bonjour '.htmlentities($data['username']).'<br />
+vous avez demandé la réinitialisation de votre mot de passe sur '.$nomdusite.', celle-ci a été réalisée avec succès.<br />
+Votre nouveau mot de passe est&nbsp;:<br />
+'.$pwd.'
+<br />par mesure de sécurité, nous vous invitons vivement à modifier ce mot de passe dans <a href="https://www.progaccess.net/home.php">votre profil</a>.<br />
+Cordialement.<br />
+'.$nomdusite.'</p>
+</body>
+</html>';
+$mail = new PHPMailer;
+$mail->isSMTP();
+$mail->Host = SMTP_HOST;
+$mail->Port = SMTP_PORT;
+$mail->SMTPAuth = true;
+$mail->Username = SMTP_USERNAME;
+$mail->Password = SMTP_PSW;
+$mail->setFrom($data['email'], $data['username']);
+$mail->addReplyTo('no_reply@progaccess.net', $nomdusite);
+$mail->AddAddress($data['email']);
+$mail->Subject = 'Réinitialisation de mot de passe '.$nomdusite;
+$mail->CharSet = 'UTF-8';
+$mail->IsHTML(TRUE);
+$mail->Body = $msg;
+if($mail->send()) {
+$log='Votre mot de passe a été réinitialisé et vous a été envoyé par email';
+}
+		}
+		else
+		{
+			$log='Les informations fournies ne permettent pas de vous identifier. Veuillez <a href="/contact.php">nous contacter pour obtenir de l\'aide';
+		}
+	}
+}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -22,26 +84,25 @@ include 'inclus/searchtool.php'; ?>
 include 'inclus/menu.php'; ?>
 <div id="container" role="main">
 <h1 id="contenu"><?php print $titre; ?></h1>
-<p>SI vous avez oublié le mot de passe de votre compte membre sur <?php print $nomdusite; ?>, vous pouvez remplir le formulaire ci-dessous.<br />
-Des informations bien précises vous sont demandés telles que votre numéro de membre ou votre date d'inscription, si vous ne les connaissez pas la réinitialisation sera plus compliquée puisqu'il nous sera moins évident de nous assurer que vous êtes bien le propriétaire légitime du compte.<br />
-Dans tous les cas, votre demande sera traîtée par un membre de l'équipe administrative qui vous répondra dans les meilleurs délets.</p>
-<form action="mdp_verif.php" method="post" spellcheck="true">
+<?php if(!empty($log)) print $log; ?>
+<p>Remplissez le formulaire ci-dessous pour réinitialiser votre mot de passe <?php print $nomdusite; ?></p>
+<form action="?act=form" method="post" spellcheck="true">
 <fieldset>
 <legend>Informations personnelles :</legend>
-<label for="f_identite">Votre nom d'utilisateur :</label><input type="text" name="identite" id="f_identite" autocomplete="off" maxlength="100" required /><br />
-<label for="f_email">Votre adresse mail :</label><input type="email" name="email" id="f_email" autocomplete="off" maxlength="100" required /><br />
-<label for="f_sujet">Votre numéro de membre :</label>
-<select name="sujet" id="f_sujet">
+<label for="f_username">Votre nom d'utilisateur&nbsp;:</label><input type="text" name="username" id="f_username" autocomplete="off" maxlength="100" required /><br />
+<label for="f_email">Votre adresse mail&nbsp;:</label><input type="email" name="email" id="f_email" autocomplete="off" maxlength="100" required /><br />
+<label for="f_nummember">Votre numéro de membre&nbsp;:</label>
+<select name="nummember" id="f_nummember">
 <?php
 $req = $bdd->query('SELECT * FROM `accounts` ORDER BY id ASC');
 while($data = $req->fetch()) {
-echo '<option value="'.$data['id'].'">'.$data['id'].'</option>';
+echo '<option value="'.$data['id'].'">M'.$data['id'].'</option>';
 }
 ?>
 <option value="non">Je ne sais pas</option>
 </select><br />
-<label for="f_msg">Votre date d'inscription :</label>
-<select name="msg" id="f_msg">
+<label for="f_signup">Votre date d'inscription&nbsp;:</label>
+<select name="signup" id="f_signup">
 <?php
 $req2 = $bdd->query('SELECT * FROM `accounts` ORDER BY id ASC');
 while($data = $req2->fetch()) {
