@@ -50,3 +50,11 @@ function redirect(event,elm){
 function showjs(id) {
 	document.getElementById(id).style.display = "initial";
 }
+
+function close_confirm() {
+	window.onbeforeunload = function(e) {
+		e = e || window.event;
+		if(e) e.returnValue = "Sure?";
+		return "Sure?";
+	};
+}

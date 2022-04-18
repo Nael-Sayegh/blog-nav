@@ -169,6 +169,7 @@ WHERE `softwares`.`id`=? LIMIT 1');
 			<input type="checkbox" id="tr_sw_new_uad" name="update_article_date" autocomplete="off"<?php if(isset($_GET['ref'])) echo 'checked'; ?> /><br />
 			<input type="submit" value="Envoyer" />
 		</form>
+		<script type="text/javascript">close_confirm();</script>
 		<hr />
 		<?php
 			}
@@ -226,6 +227,7 @@ WHERE `softwares`.`id`=? LIMIT 1');
 			<input type="checkbox" id="tr_sw_edit_uad" name="update_article_date" autocomplete="off"<?php if($tr_mod['todo_level']==0) echo 'checked'; ?> /><br />
 			<input type="submit" value="Envoyer" />
 		</form>
+		<script type="text/javascript">close_confirm();</script>
 		<hr />
 		<?php
 			} ?>
@@ -267,7 +269,8 @@ WHERE `sw_id`=?');
 				<label for="tr_sw_new_todo">Changer l'état&nbsp;:</label> <select id="tr_sw_new_todo" name="tr_todo"><option value="0">Référence</option><option value="1">OK</option><option value="2">À vérifier</option><option value="3">À modifier</option></select>
 				<button type="submit" name="a" value="todo">Changer l'état</button>
 			</fieldset>
-		</form><?php
+		</form>
+		<script type="text/javascript">close_confirm();</script><?php
 		}
 	}
 	
@@ -371,6 +374,7 @@ WHERE `sw_id`=?');
 			<input type="button" value="Ajouter" onclick="trsfiles_add_tr(<?php echo $model ? 'true' : 'false'; ?>);" /><br />
 			<input type="submit" value="Envoyer" />
 		</form>
+		<script type="text/javascript">close_confirm();</script>
 		<hr />
 		<?php
 		}
@@ -418,6 +422,7 @@ WHERE `sw_id`=?');
 				<button type="submit" name="a" value="new">Créer</button>
 			</fieldset>
 		</form>
+		<script type="text/javascript">close_confirm();</script>
 		<?php
 	}
 }

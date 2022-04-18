@@ -141,5 +141,6 @@ if(!empty($log)) echo '<ul>'.$log.'</ul>';
 			</fieldset>
 			<input type="submit" value="Ajouter" />
 		</form>
+		<script type="text/javascript">close_confirm();</script>
 	</body>
 </html>

@@ -374,7 +374,8 @@ if(isset($_GET['listfiles'])) {
 			} $req2->closeCursor(); ?></tbody>
 			</table>
 			<input type="submit" value="Supprimer" />
-		</form><?php }
+		</form>
+		<script type="text/javascript">close_confirm();</script><?php }
 	$req1->closeCursor();
 }
 
@@ -404,7 +405,8 @@ $rq2->closeCursor()
 			<label for="f_mod_text">Texte long (HTML)&nbsp;:</label><br />
 			<textarea name="text" id="f_mod_text" maxlength="20000" rows="20" cols="500"><?php echo $data['text']; ?></textarea><br />
 			<input type="submit" value="Modifier" />
-		</form><?php }$req->closeCursor();}
+		</form>
+		<script type="text/javascript">close_confirm();</script><?php }$req->closeCursor();}
 if(isset($_GET['addfile'])) {
 	$req = $bdd->prepare('SELECT * FROM softwares WHERE id=? ORDER BY name ASC');
 	$req->execute(array($_GET['addfile']));
@@ -494,6 +496,7 @@ f_addfile_group_method();
 				<input type="submit" value="Ajouter" />
 			</fieldset>
 		</form>
+		<script type="text/javascript">close_confirm();</script>
 <?php }$req->closeCursor();}
 if(isset($_GET['modf'])) {
 	$req = $bdd->prepare('SELECT * FROM softwares_files WHERE id=?');
@@ -577,6 +580,7 @@ function f_modf_submit(e) {
 f_modf_group_method();
 </script>
 		</form>
+		<script type="text/javascript">close_confirm();</script>
 <?php }$req->closeCursor();}
 if(isset($_GET['modm'])) {
 	$req = $bdd->prepare('SELECT * FROM `softwares_mirrors` WHERE `id`=? LIMIT 1');
@@ -593,6 +597,7 @@ if(isset($_GET['modm'])) {
 			<input type="text" name="label" id="f_modm_label" value="<?php echo $data['label']; ?>" /><br />
 			<input type="submit" value="Modifier" />
 		</form>
+		<script type="text/javascript">close_confirm();</script>
 <?php }$req->closeCursor();} ?>
 	</body>
 </html>
