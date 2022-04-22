@@ -3,10 +3,10 @@ require_once('dbconnect.php');
 
 $domain = '';
 if(!isset($stats_page)) $stats_page = '';
-if(strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'dev.progaccess33.net/')) $domain = 'pa33_dev';
-else if(strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'progaccess33.net/')) $domain = 'pa33';
-else if(strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'dev.pa33netki3kw4kjk.onion/')) $domain = 'pa33_onion_dev';
-else if(strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'pa33netki3kw4kjk.onion/')) $domain = 'pa33_onion';
+if(strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'dev.progaccess.net/')) $domain = 'pa33_dev';
+else if(strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'progaccess.net/')) $domain = 'pa33';
+else if(strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'dev.paccessl2fmohkmdgh77xmfkgqfor2gtx52sr4plroewwix2y7dph5id.onion/')) $domain = 'pa33_onion_dev';
+else if(strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'paccessl2fmohkmdgh77xmfkgqfor2gtx52sr4plroewwix2y7dph5id.onion/')) $domain = 'pa33_onion';
 
 require_once('isbot.php');
 if(!(isset($logged) and $logged and $settings['rank'] == 'a') and !$isbot) {
