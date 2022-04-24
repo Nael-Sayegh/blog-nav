@@ -143,7 +143,7 @@ WHERE `softwares`.`id`=? LIMIT 1');
 						<?php if($model) { ?>
 						<td class="trform2"><label for="tr_sw_new_model_text">Texte modèle&nbsp;:</label><br /><textarea id="tr_sw_new_model_text" readonly><?php echo htmlentities($model['text']); ?></textarea></td>
 						<?php } ?>
-						<td class="trform<?php echo ($model?'2':'1'); ?>"><label for="tr_sw_new_text">Texte nouveau&nbsp;:</label><br /><textarea id="tr_sw_new_text" name="tr_text" maxlength="35535" autocomplete="off"></textarea></td>
+						<td class="trform<?php echo ($model?'2':'1'); ?>"><label for="tr_sw_new_text">Texte nouveau&nbsp;:</label><br /><textarea id="tr_sw_new_text" name="tr_text" maxlength="35535" autocomplete="off" onkeyup="close_confirm=true"></textarea></td>
 					</tr>
 					<tr>
 						<?php if($model) { ?>
@@ -169,7 +169,7 @@ WHERE `softwares`.`id`=? LIMIT 1');
 			<input type="checkbox" id="tr_sw_new_uad" name="update_article_date" autocomplete="off"<?php if(isset($_GET['ref'])) echo 'checked'; ?> /><br />
 			<input type="submit" value="Envoyer" />
 		</form>
-		<script type="text/javascript">close_confirm();</script>
+		<script type="text/javascript">init_close_confirm();</script>
 		<hr />
 		<?php
 			}
@@ -201,7 +201,7 @@ WHERE `softwares`.`id`=? LIMIT 1');
 						<?php if($model) { ?>
 						<td class="trform2"><label for="tr_sw_edit_model_text">Texte modèle&nbsp;:</label><br /><textarea id="tr_sw_edit_model_text" readonly><?php echo htmlentities($model['text']); ?></textarea></td>
 						<?php } ?>
-						<td class="trform<?php echo ($model?'2':'1'); ?>"><label for="tr_sw_edit_text">Texte en modification&nbsp;:</label><br /><textarea id="tr_sw_edit_text" name="tr_text" autocomplete="off" maxlength="35535"><?php echo htmlentities($tr_mod['text']); ?></textarea></td>
+						<td class="trform<?php echo ($model?'2':'1'); ?>"><label for="tr_sw_edit_text">Texte en modification&nbsp;:</label><br /><textarea id="tr_sw_edit_text" name="tr_text" autocomplete="off" maxlength="35535" onkeyup="close_confirm=true"><?php echo htmlentities($tr_mod['text']); ?></textarea></td>
 					</tr>
 					<tr>
 						<?php if($model) { ?>
@@ -227,7 +227,7 @@ WHERE `softwares`.`id`=? LIMIT 1');
 			<input type="checkbox" id="tr_sw_edit_uad" name="update_article_date" autocomplete="off"<?php if($tr_mod['todo_level']==0) echo 'checked'; ?> /><br />
 			<input type="submit" value="Envoyer" />
 		</form>
-		<script type="text/javascript">close_confirm();</script>
+		<script type="text/javascript">init_close_confirm();</script>
 		<hr />
 		<?php
 			} ?>
@@ -269,8 +269,7 @@ WHERE `sw_id`=?');
 				<label for="tr_sw_new_todo">Changer l'état&nbsp;:</label> <select id="tr_sw_new_todo" name="tr_todo"><option value="0">Référence</option><option value="1">OK</option><option value="2">À vérifier</option><option value="3">À modifier</option></select>
 				<button type="submit" name="a" value="todo">Changer l'état</button>
 			</fieldset>
-		</form>
-		<script type="text/javascript">close_confirm();</script><?php
+		</form><?php
 		}
 	}
 	
@@ -346,7 +345,7 @@ WHERE `sw_id`=?');
 						<td class="trform<?php echo ($model?'2':'1'); ?>">
 							<input type="checkbox" id="tr_trsfiles_edit_e0_<?php echo htmlentities($key); ?>" name="tr0_<?php echo htmlentities($key); ?>" aria-label="Activer" checked autocomplete="off"/>
 							<label for="tr_trsfiles_edit_e_<?php echo htmlentities($key); ?>"><em><?php echo htmlentities($key); ?></em></label><br />
-							<textarea id="tr_trsfiles_edit_e_<?php echo htmlentities($key); ?>" name="tr_<?php echo htmlentities($key); ?>" autocomplete="off"><?php echo htmlentities($text); ?></textarea></td>
+							<textarea id="tr_trsfiles_edit_e_<?php echo htmlentities($key); ?>" name="tr_<?php echo htmlentities($key); ?>" autocomplete="off" onkeyup="close_confirm=true"><?php echo htmlentities($text); ?></textarea></td>
 					</tr>
 					<?php
 			}
@@ -361,7 +360,7 @@ WHERE `sw_id`=?');
 						<td class="trform<?php echo ($model?'2':'1'); ?>">
 							<input type="checkbox" id="tr_trsfiles_edit_e0_<?php echo htmlentities($key); ?>" name="tr0_<?php echo htmlentities($key); ?>" aria-label="Activer" unchecked autocomplete="off" />
 							<label for="tr_trsfiles_edit_e_<?php echo htmlentities($key); ?>"><em><?php echo htmlentities($key); ?></em></label><br />
-							<textarea id="tr_trsfiles_edit_e_<?php echo htmlentities($key); ?>" name="tr_<?php echo htmlentities($key); ?>" autocomplete="off"></textarea></td>
+							<textarea id="tr_trsfiles_edit_e_<?php echo htmlentities($key); ?>" name="tr_<?php echo htmlentities($key); ?>" autocomplete="off" onkeyup="close_confirm=true"></textarea></td>
 					</tr>
 					<?php
 				}
@@ -374,7 +373,7 @@ WHERE `sw_id`=?');
 			<input type="button" value="Ajouter" onclick="trsfiles_add_tr(<?php echo $model ? 'true' : 'false'; ?>);" /><br />
 			<input type="submit" value="Envoyer" />
 		</form>
-		<script type="text/javascript">close_confirm();</script>
+		<script type="text/javascript">init_close_confirm();</script>
 		<hr />
 		<?php
 		}
@@ -422,7 +421,6 @@ WHERE `sw_id`=?');
 				<button type="submit" name="a" value="new">Créer</button>
 			</fieldset>
 		</form>
-		<script type="text/javascript">close_confirm();</script>
 		<?php
 	}
 }

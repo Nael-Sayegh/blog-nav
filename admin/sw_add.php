@@ -132,7 +132,7 @@ if(!empty($log)) echo '<ul>'.$log.'</ul>';
 				<label for="f_website">Adresse du site officiel (facultatif)&nbsp;:</label>
 				<input type="url" name="website" id="f_website"<?php if(isset($website))echo ' value="'.htmlentities($website).'"'; ?> maxlength="255" /><br />
 				<label for="f_text">Texte long (HTML)&nbsp;:</label><br />
-				<textarea name="text" id="f_text" maxlength="20000" style="width:100%;height:10em;"><?php if(isset($text))echo htmlentities($text); ?></textarea><br />
+				<textarea name="text" id="f_text" maxlength="20000" style="width:100%;height:10em;" onkeyup="close_confirm=true"><?php if(isset($text))echo htmlentities($text); ?></textarea><br />
 				<p>Il est possible de modifier ces informations et de rajouter des liens et fichiers ultérieurement.</p>
 				<label for="f_so">Annoncer l'ajout sur les réseaux sociaux&nbsp;:</label>
 				<input type="checkbox" id="f_so" name="social"<?php if((isset($social) and $social) or !isset($social))echo ' checked'; ?> /><br />
@@ -141,6 +141,6 @@ if(!empty($log)) echo '<ul>'.$log.'</ul>';
 			</fieldset>
 			<input type="submit" value="Ajouter" />
 		</form>
-		<script type="text/javascript">close_confirm();</script>
+		<script type="text/javascript">init_close_confirm();</script>
 	</body>
 </html>

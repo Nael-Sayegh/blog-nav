@@ -51,10 +51,13 @@ function showjs(id) {
 	document.getElementById(id).style.display = "initial";
 }
 
-function close_confirm() {
+var close_confirm = false;
+function init_close_confirm() {
 	window.onbeforeunload = function(e) {
-		e = e || window.event;
-		if(e) e.returnValue = "Sure?";
-		return "Sure?";
+		if(close_confirm) {
+			e = e || window.event;
+			if(e) e.returnValue = "Sure?";
+			return "Sure?";
+		}
 	};
 }

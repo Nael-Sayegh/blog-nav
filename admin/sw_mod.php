@@ -375,7 +375,7 @@ if(isset($_GET['listfiles'])) {
 			</table>
 			<input type="submit" value="Supprimer" />
 		</form>
-		<script type="text/javascript">close_confirm();</script><?php }
+		<?php }
 	$req1->closeCursor();
 }
 
@@ -403,10 +403,10 @@ $rq2->closeCursor()
 			<label for="f_mod_description">Description courte&nbsp;:</label><input type="text" name="description" value="<?php echo $data['description']; ?>" id="f_mod_description" maxlength="1024" /><br />
 			<label for="f_website">Adresse du site officiel (facultatif)&nbsp;:</label><input type="url" name="website" value="<?php echo $data['website']; ?>" id="f_website" maxlength="255" /><br />
 			<label for="f_mod_text">Texte long (HTML)&nbsp;:</label><br />
-			<textarea name="text" id="f_mod_text" maxlength="20000" rows="20" cols="500"><?php echo $data['text']; ?></textarea><br />
+			<textarea name="text" id="f_mod_text" maxlength="20000" rows="20" cols="500" onkeyup="close_confirm=true"><?php echo $data['text']; ?></textarea><br />
 			<input type="submit" value="Modifier" />
 		</form>
-		<script type="text/javascript">close_confirm();</script><?php }$req->closeCursor();}
+		<script type="text/javascript">init_close_confirm();</script><?php }$req->closeCursor();}
 if(isset($_GET['addfile'])) {
 	$req = $bdd->prepare('SELECT * FROM softwares WHERE id=? ORDER BY name ASC');
 	$req->execute(array($_GET['addfile']));
@@ -489,14 +489,14 @@ f_addfile_group_method();
 				<label for="f_addmirror_title">Titre du fichier&nbsp;:</label>
 				<input type="text" name="title" id="f_addmirror_title" /><br />
 				<label for="f_addmirror_urls">URLs des miroirs&nbsp;:</label><br />
-				<textarea name="urls" id="f_addmirror_urls" style="width: 100%;"></textarea>
+				<textarea name="urls" id="f_addmirror_urls" style="width: 100%;" onkeyup="close_confirm=true"></textarea>
 				<p>Exemple&nbsp;: [["ZettaScript","https://zettascript.org/fichier.tar.gz"],["CommentÇaMarche","https://commentcamarche.net/download/fichier"]]</p>
 				<label for="f_addmirror_label">Label&nbsp;:</label>
 				<input type="text" name="label" id="f_addmirror_label" /><br />
 				<input type="submit" value="Ajouter" />
 			</fieldset>
 		</form>
-		<script type="text/javascript">close_confirm();</script>
+		<script type="text/javascript">init_close_confirm();</script>
 <?php }$req->closeCursor();}
 if(isset($_GET['modf'])) {
 	$req = $bdd->prepare('SELECT * FROM softwares_files WHERE id=?');
@@ -580,7 +580,6 @@ function f_modf_submit(e) {
 f_modf_group_method();
 </script>
 		</form>
-		<script type="text/javascript">close_confirm();</script>
 <?php }$req->closeCursor();}
 if(isset($_GET['modm'])) {
 	$req = $bdd->prepare('SELECT * FROM `softwares_mirrors` WHERE `id`=? LIMIT 1');
@@ -597,7 +596,6 @@ if(isset($_GET['modm'])) {
 			<input type="text" name="label" id="f_modm_label" value="<?php echo $data['label']; ?>" /><br />
 			<input type="submit" value="Modifier" />
 		</form>
-		<script type="text/javascript">close_confirm();</script>
 <?php }$req->closeCursor();} ?>
 	</body>
 </html>
