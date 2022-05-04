@@ -17,7 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
 	<body>
 		<h1>Traduction&nbsp;: à faire &#8211; <a href="/"><?php print $nomdusite; ?></a></h1>
 		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
-		<a href="#trs-files">Traductions du site</a><br />
+		<!--<a href="#trs-files">Traductions du site</a><br />-->
 		<h2 id="tr-articles">Articles</h2>
 		<form action="translate_todo.php#tr-articles" method="get">
 			<fieldset>
@@ -78,6 +78,7 @@ ORDER BY `todo_level` DESC');
 			</tbody>
 		</table>
 		
+<?php /*
 		<h2 id="trs-files">Texte du site</h2>
 		<form action="translate_todo.php#trs-files" method="get">
 			<fieldset>
@@ -122,5 +123,6 @@ ORDER BY `todo_level` DESC');
 				?>
 			</tbody>
 		</table>
+*/ ?>
 	</body>
 </html>
