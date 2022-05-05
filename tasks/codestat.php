@@ -10,7 +10,7 @@ $files = array('Slider.php', 'accueil.php', 'accueil_navigateurs.php', 'alist.ph
 	'admin/js/sliderstyles.js', 'admin/js/translate.js',
 	'api/account.php', 'api/accueil.php', 'api/api_inc.php', 'api/get.php',
 	'c/accueil.php',
-	'css/default.css', 'css/forum.css', 'css/search.css', 'css/slider.css',
+	'css/default.css', 'css/search.css', 'css/slider.css',
 	'gadgets/IP.php', 'gadgets/horloge.php', 'GEOIP/infos.php', 'gadgets/ParamPasswd.php', 'gadgets/pof.php',
 	'inclus/403.php', 'inclus/OS.php', 'inclus/compteur.php', 'inclus/config.php', 'inclus/consts.php', 'inclus/dbconnect.php', 'inclus/flarum.php', 'inclus/footer.php', 'inclus/header.php', 'inclus/isbot.php', 'inclus/log.php', 'inclus/loginbox.php', 'inclus/maintenance_mode.php', 'inclus/maintenancemode.html', 'inclus/menu.php', 'inclus/searchtool.php', 'inclus/sendconfirm.php', 'inclus/son.php', 'inclus/sontrident.php', 'inclus/stats.php', 'inclus/trident.php', 'inclus/user_rank.php',
 	'inclus/lib/facebook/envoyer.php', 'inclus/lib/twitter/twitter.php',
