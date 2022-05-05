@@ -104,7 +104,7 @@ Ce site vient de l'envie de Corentin (un étudiant non-voyant) de partager sa pa
 		</tr>
 	</tbody>
 </table>
-<p>Si vous avez des questions sur l'accessibilité de votre projet, <a href="https://forum.progaccess.net">on en discuter sur le forum</a>.</p>
+<p>Si vous avez des questions sur l'accessibilité de votre projet, <a href="https://forum.progaccess.net">on en discute sur le forum</a>.</p>
 
 <h2>Horaires du site</h2>
 <h3>Tâches automatisées</h3>
