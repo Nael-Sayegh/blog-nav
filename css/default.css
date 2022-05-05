@@ -485,3 +485,11 @@ width: 1px;
 .rk_0, .rk_1 {color: #008000;}
 .rk_i {color: black;}
 .rk_b {color: #808080;}
+
+.table1 {
+	border-collapse: collapse;
+}
+.table1 td, .table1 th {
+	padding: 1px 3px 1px 3px;
+	border: 1px solid #04b404;
+}

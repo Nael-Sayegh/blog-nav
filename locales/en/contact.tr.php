@@ -54,7 +54,7 @@ This website comes from the Corentin's desire (a blind high school student) to s
 
 <h2>Our contributions</h2>
 <p>The members of {{site}} contribute to other projects!</p>
-<table>
+<table class="table1">
 	<caption>Our contributions</caption>
 	<thead>
 		<tr>

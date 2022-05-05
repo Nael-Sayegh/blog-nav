@@ -61,7 +61,7 @@ Ce site vient de l'envie de Corentin (un étudiant non-voyant) de partager sa pa
 
 <h2>Nos contributions</h2>
 <p>Les membres de {{site}} contribuent à d'autres projets&#8239;!</p>
-<table>
+<table class="table1">
 	<caption>Nos contributions</caption>
 	<thead>
 		<tr>
