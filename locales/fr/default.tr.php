@@ -20,7 +20,7 @@
   'loginbox_logoutlink' => 'Déconnexion',
   'loginbox_memberarea' => 'Identifiez-vous…',
   'loginbox_loginlabel' => 'S\'identifier',
-  'loginbox_username' => 'Nom d\'utilisateur',
+  'loginbox_username' => 'Nom d\'utilisateur ou adresse mail',
   'loginbox_password' => 'Mot de passe',
   'loginbox_forgotpsw' => 'Mot de passe oublié',
   'loginbox_signup' => 'S\'inscrire',

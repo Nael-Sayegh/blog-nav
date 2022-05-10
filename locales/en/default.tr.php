@@ -20,7 +20,7 @@
   'loginbox_logoutlink' => 'Logout',
   'loginbox_memberarea' => 'Guest…',
   'loginbox_loginlabel' => 'Login',
-  'loginbox_username' => 'User name',
+  'loginbox_username' => 'User name or email address',
   'loginbox_password' => 'Password',
   'loginbox_forgotpsw' => 'Forgot password',
   'loginbox_signup' => 'Sign up',

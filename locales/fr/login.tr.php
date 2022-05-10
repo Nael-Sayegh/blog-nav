@@ -9,7 +9,7 @@
   'confirm_err' => 'Le lien que vous avez suivi est invalide ou expiré. Veuillez recommencer.',
   'logonly' => 'Vous devez être identifié pour accéder à ce contenu.',
   'account_created' => 'Votre compte a bien été créé&#8239;! Vous devriez recevoir un e-mail de confirmation à l\'adresse <i>{{mail}}</i>.',
-  'username' => 'Nom d\'utilisateur',
+  'username' => 'Nom d\'utilisateur ou adresse mail',
   'password' => 'Mot de passe',
   'bt_login' => 'S\'identifier',
   'forgot_psw' => 'Vous avez oublié votre mot de passe&#8239;? Cliquez-ici&#8239;!',

@@ -12,8 +12,8 @@ $log = '';
 if(isset($_POST['username']) and isset($_POST['psw'])) {
 	require_once('inclus/lib/random/random.php');
 	
-	$req = $bdd->prepare('SELECT * FROM `accounts` WHERE `username`=? LIMIT 1');
-	$req->execute(array($_POST['username']));
+	$req = $bdd->prepare('SELECT * FROM `accounts` WHERE `username`=? OR `email`=? LIMIT 1');
+	$req->execute(array($_POST['username'], $_POST['username']));
 	
 	if($data = $req->fetch()) {
 		if(password_verify($_POST['psw'], $data['password'])) {
