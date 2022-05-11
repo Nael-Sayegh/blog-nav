@@ -34,7 +34,6 @@ if(isset($_POST['username']) and isset($_POST['psw'])) {
 		}
 		else $log = tr($tr,'wrong');
 	}
-	else $log = tr($tr,'wrong');
 }
 if(isset($_GET['signed']) and isset($_GET['mail'])) {
 	$req = $bdd->prepare('SELECT `email` FROM `accounts` WHERE `id`=? AND `confirmed`=0 LIMIT 1');
