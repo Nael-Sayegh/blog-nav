@@ -12,10 +12,10 @@ $log = '';
 if(isset($_POST['username']) and isset($_POST['psw'])) {
 	require_once('inclus/lib/random/random.php');
 	
-	$req = $bdd->prepare('SELECT * FROM `accounts` WHERE `username`=? OR `email`=? LIMIT 1');
+	$req = $bdd->prepare('SELECT * FROM `accounts` WHERE `username`=? OR `email`=? LIMIT 2');
 	$req->execute(array($_POST['username'], $_POST['username']));
 	
-	if($data = $req->fetch()) {
+	while($data = $req->fetch()) {
 		if(password_verify($_POST['psw'], $data['password'])) {
 			$session = hash('sha512', time().random_int(100000,999999).sha1(random_int(100000,999999).$_POST['psw']));
 			$connectid = hash('sha256', time().random_int(100000,999999).sha1(random_int(100000,999999).$data['id']));
