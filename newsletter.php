@@ -26,6 +26,8 @@ if(isset($_GET['a']) and $_GET['a'] == 's') {
 			if(isset($_POST['notif_site']) and $_POST['notif_site'] == 'on') $f_site = true;
 			$f_upd = false;
 			if(isset($_POST['notif_up']) and $_POST['notif_up'] == 'on') $f_upd = true;
+			$f_upd_n = false;
+			if(isset($_POST['notif_up_n']) and $_POST['notif_up_n'] == 'on') $f_upd_n = true;
 			$message = '<!DOCTYPE html>
 <html>
 	<head>
@@ -75,8 +77,8 @@ L'équipe $nomdusite";
 			$mail->Body = $message;
 			$mail->AltBody = $msgtext;
 			if($mail->send()) {
-				$req = $bdd->prepare('INSERT INTO `newsletter_mails` (`hash`, `mail`, `expire`, `freq`, `notif_site`, `notif_upd`, `confirm`, `lang`) VALUES (?, ?, ?, ?, ?, ?, 0, ?)');
-				$req->execute(array($hash, $_POST['mail'], time()+86400, $_POST['freq'], $f_site, $f_upd, $lang));
+				$req = $bdd->prepare('INSERT INTO `newsletter_mails` (`hash`, `mail`, `expire`, `freq`, `freq_n`, ``notif_site`, `notif_upd`, `notif_upd_n`, ``confirm`, `lang`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?)');
+				$req->execute(array($hash, $_POST['mail'], time()+86400, $_POST['freq'], $_POST['freq_n'],  $f_site, $f_upd, $f_upd_n, $lang));
 
 				$log .= 'Vous êtes bien inscrit à l\'actu'.$nomdusite.'.<br />Veuillez cliquer sur le lien valable 24 heures envoyé à '.$_POST['mail'].' pour confirmer votre inscription.<br />Le mail peut mettre quelques minutes à arriver. Si vous ne le recevez toujours pas, vérifiez dans les indésirables.';
 			} else
@@ -109,12 +111,20 @@ Veuillez noter que le mail de l'actu <?php print $nomdusite; ?> est envoyé auto
 <form action="?a=s" method="post">
 	<label for="f_mail">Adresse e-mail&nbsp;:</label>
 	<input type="email" name="mail" id="f_mail" maxlength="255" required /><br />
+	<fieldset><legend>Actu <?php print $nomdusite; ?></legend>
 	<label for="f_freq">Recevoir un mail&nbsp;:</label>
 	<select name="freq" id="f_freq"><option value="1">Quotidiennement</option><option value="2">Tous les 2 jours</option><option value="3" selected>Hebdomadairement</option><option value="4">Quinzomadairement</option><option value="5">Mensuellement</option></select><br />
 	<label for="f_notif_site">Me notifier d'une mise à jour du site&nbsp;:</label>
 	<input type="checkbox" name="notif_site" id="f_notif_site" /><br />
-	<label for="f_notif_up">Me notifier de la mise à jour d'un logiciel&nbsp;:</label>
+	<label for="f_notif_up">Me notifier de la mise à jour d'un article&nbsp;:</label>
 	<select name="notif_up" id="f_notif_up"><option value="on" selected>Oui</option><option value="off">Non</option></select><br />
+	</fieldset>
+	<fieldset><legend>Actu NVDA-FR</legend>
+		<label for="f_freq_n">Recevoir un mail&nbsp;:</label>
+	<select name="freq_n" id="f_freq_n"><option value="1">Quotidiennement</option><option value="2">Tous les 2 jours</option><option value="3" selected>Hebdomadairement</option><option value="4">Quinzomadairement</option><option value="5">Mensuellement</option></select><br />
+	<label for="f_notif_up_n">Me notifier de la mise à jour d'un article&nbsp;:</label>
+	<select name="notif_up_n" id="f_notif_up_n"><option value="on" selected>Oui</option><option value="off">Non</option></select><br />
+	</fieldset>
 	<p>Votre adresse e-mail ainsi que toutes vos informations personnelles ne seront pas partagées avec des tiers. Cet abonnement peut être annulé à tout moment. Il sera automatiquement annulé au bout d'un an si vous ne le renouvelez pas (la date d'expiration est affichée en bas de chaque mail).</p>
 	<input type="submit" value="S'abonner" />
 </form>
