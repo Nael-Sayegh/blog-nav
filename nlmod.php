@@ -70,8 +70,8 @@ l\'administration '.$nomdusite;
 		exit();
 	}
 	if(!$nldata['confirm']) {
-		$req2 = $bdd->prepare('UPDATE `newsletter_mails` SET `confirm`=1 , `lastmail`=? WHERE `id`=?');
-		$req2->execute(array(time(), $nldata['id']));
+		$req2 = $bdd->prepare('UPDATE `newsletter_mails` SET `confirm`=1 , `lastmail`=?, `lastmail_n`=? WHERE `id`=?');
+		$req2->execute(array(time(), time(), $nldata['id']));
 		$log .= 'Votre inscription à la l\'actu '.$nomdusite.' a bien été confirmée.<br />';
 	}
 	if(isset($_GET['mod'])) {

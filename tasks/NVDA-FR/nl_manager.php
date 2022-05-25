@@ -151,12 +151,12 @@ while($data = $req->fetch()) {
 	$nbs = 0;# number of updated articles
 	$nbf = 0;# number of updated files
 	foreach($sft as $sw_id => $software) {
-		if($software['date'] > $data['lastmail']) {
+		if($software['date'] > $data['lastmail_n']) {
 			$nbs ++;
 			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.nvda-fr.org/article.php?id='.$sw_id.'">'.$software['name'].'</a> (<a href="https://www.nvda-fr.org/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['description']).'<br /><span class="software_date">Mis à jour à '.date('H:i', $software['date']).' le '.date('d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
 			$msgtxt .= ' * '.$software['name'].' ('.$cat[$software['category']].") :\n".$software['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).")\n";
 			foreach($files as $file) {
-				if($file['sw_id'] == $sw_id and $file['date'] > $data['lastmail']) {
+				if($file['sw_id'] == $sw_id and $file['date'] > $data['lastmail_n']) {
 					$nbf ++;
 					$message .= '<li><a href="https://www.nvda-fr.org/r.php?id='.$file['id'].'">'.$file['title'].' (téléchargé '.$file['hits'].' fois)</a></li>';
 					$msgtxt .= ' - '.$file['title'].', https://www.nvda-fr.org/r.php?id='.$file['id'].' ('.$file['hits']." téléchargements)\n";
@@ -168,8 +168,8 @@ while($data = $req->fetch()) {
 		}
 	}
 	unset($software);
-	$message = $message1 . '<p>Depuis le '.date('d/m/Y', $data['lastmail']).', <strong>'.$nbs.'</strong> articles et <strong>'.$nbf.'</strong> fichiers ont été mis à jour.</p>' . $message;
-	$msgtxt = $msgtxt1 . 'Depuis le '.date('d/m/Y', $data['lastmail']).", nous avons modifiés $nbs articles et $nbf fichiers.\n\n" . $msgtxt;
+	$message = $message1 . '<p>Depuis le '.date('d/m/Y', $data['lastmail_n']).', <strong>'.$nbs.'</strong> articles et <strong>'.$nbf.'</strong> fichiers ont été mis à jour.</p>' . $message;
+	$msgtxt = $msgtxt1 . 'Depuis le '.date('d/m/Y', $data['lastmail_n']).", nous avons modifiés $nbs articles et $nbf fichiers.\n\n" . $msgtxt;
 	echo $data['mail'];
 	if($nbs > 0 or $nbf > 0) {
 		echo ' send';
@@ -205,7 +205,7 @@ while($data = $req->fetch()) {
 			
 			if($mail->send()) {
 				echo ' OK';
-				$req2 = $bdd2->prepare('UPDATE `newsletter_mails` SET `lastmail`=? WHERE id=? LIMIT 1');
+				$req2 = $bdd2->prepare('UPDATE `newsletter_mails` SET `lastmail_n`=? WHERE id=? LIMIT 1');
 				$req2->execute(array(time(), $data['id']));
 				$nbk ++;
 			}
