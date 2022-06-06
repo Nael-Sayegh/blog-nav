@@ -77,7 +77,7 @@ L'équipe $nomdusite";
 			$mail->Body = $message;
 			$mail->AltBody = $msgtext;
 			if($mail->send()) {
-				$req = $bdd->prepare('INSERT INTO `newsletter_mails` (`hash`, `mail`, `expire`, `freq`, `freq_n`, ``notif_site`, `notif_upd`, `notif_upd_n`, ``confirm`, `lang`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?)');
+				$req = $bdd->prepare('INSERT INTO `newsletter_mails` (`hash`, `mail`, `expire`, `freq`, `freq_n`, `notif_site`, `notif_upd`, `notif_upd_n`, `confirm`, `lang`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?)');
 				$req->execute(array($hash, $_POST['mail'], time()+86400, $_POST['freq'], $_POST['freq_n'],  $f_site, $f_upd, $f_upd_n, $lang));
 
 				$log .= 'Vous êtes bien inscrit à l\'actu'.$nomdusite.'.<br />Veuillez cliquer sur le lien valable 24 heures envoyé à '.$_POST['mail'].' pour confirmer votre inscription.<br />Le mail peut mettre quelques minutes à arriver. Si vous ne le recevez toujours pas, vérifiez dans les indésirables.';
