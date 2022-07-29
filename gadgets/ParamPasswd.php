@@ -87,10 +87,15 @@ function CopyToClipboard(containerid) {
     range.selectNode(document.getElementById(containerid));
     window.getSelection().addRange(range);
     document.execCommand("copy");
-    document.querySelector('#BtnCopy').innerHTML = 'Copié !';
-    document.querySelector('#BtnCopy').innerText = 'Copié !';
-    document.querySelector('#BtnCopy').textContent = 'Copié !';
-    //alert("Copié !")
+    document.querySelector('#BtnCopy').innerHTML = 'Résultat copié !';
+    document.querySelector('#BtnCopy').innerText = 'Résultat copié !';
+    document.querySelector('#BtnCopy').textContent = 'Résultat copié !';
+    var delayInMilliseconds = 3000;
+    setTimeout(function() {
+        document.querySelector('#BtnCopy').innerHTML = 'Copier le résultat';
+        document.querySelector('#BtnCopy').innerText = 'Copier le résultat';
+        document.querySelector('#BtnCopy').textContent = 'Copier le résultat';
+    }, delayInMilliseconds);
   }
 }
 </script>
