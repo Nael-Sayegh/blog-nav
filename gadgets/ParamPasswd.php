@@ -74,7 +74,7 @@ if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['type
 }
 ?>
 </p>
-<button onclick="CopyToClipboard('result')">Copier le résultat</button><br />
+<button id="BtnCopy" onclick="CopyToClipboard('result')">Copier le résultat</button><br />
 <script type="text/javascript">
 function CopyToClipboard(containerid) {
   if (document.selection) {
@@ -87,7 +87,10 @@ function CopyToClipboard(containerid) {
     range.selectNode(document.getElementById(containerid));
     window.getSelection().addRange(range);
     document.execCommand("copy");
-    alert("Copié !")
+    document.querySelector('#BtnCopy').innerHTML = 'Copié !';
+    document.querySelector('#BtnCopy').innerText = 'Copié !';
+    document.querySelector('#BtnCopy').textContent = 'Copié !';
+    //alert("Copié !")
   }
 }
 </script>
