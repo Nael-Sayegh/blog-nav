@@ -54,7 +54,7 @@ function showother() {
 showother();
 </script>
 </form>
-<p>
+<p id="result">
 <?php
 if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['typePasswd'])) {
 	if($_POST['typePasswd'] == '1') $caract = '0123456789';
@@ -74,6 +74,15 @@ if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['type
 }
 ?>
 </p>
+<button onclick="copyToClipBoard()">Copier le résultat</button>
+<script type="text/javascript">
+function copyToClipBoard() {
+    var content = document.getElementById('result');
+    content.select();
+    document.execCommand('copy');
+    alert("Copié !");
+}
+</script>
 <a href="/gadgets.php">Retour à la liste des gadgets.</a>
 </div>
 </div>
