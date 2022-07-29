@@ -74,13 +74,21 @@ if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['type
 }
 ?>
 </p>
-<button onclick="copyToClipBoard()">Copier le résultat</button>
+<button onclick="copyToClipBoard('result')">Copier le résultat</button><br />
 <script type="text/javascript">
-function copyToClipBoard() {
-    var content = document.getElementById('result');
-    content.select();
-    document.execCommand('copy');
-    alert("Copié !");
+function CopyToClipboard(containerid) {
+  if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select().createTextRange();
+    document.execCommand("copy");
+  } else if (window.getSelection) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(containerid));
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    alert("Copié !")
+  }
 }
 </script>
 <a href="/gadgets.php">Retour à la liste des gadgets.</a>
