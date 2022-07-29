@@ -74,7 +74,7 @@ if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['type
 }
 ?>
 </p>
-<button onclick="copyToClipBoard('result')">Copier le résultat</button><br />
+<button onclick="CopyToClipboard('result')">Copier le résultat</button><br />
 <script type="text/javascript">
 function CopyToClipboard(containerid) {
   if (document.selection) {
