@@ -65,14 +65,25 @@ if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['type
 	for($nbrPasswd = 1; $nbrPasswd <=  $_POST['nbrPasswd']; $nbrPasswd++) {
 		for($i = 1; $i <= $_POST['nbrChr']; $i++) {
 			if(isset($_POST['maj']) and $_POST['maj'] == 'on' and rand(0,2) == 1)
-				print strtoupper($caract[mt_rand(0,(strlen($caract)-1))]);
+				$pwd = strtoupper($caract[mt_rand(0,(strlen($caract)-1))]);
 			else
-				print $caract[mt_rand(0,(strlen($caract)-1))];
+				$pwd = $caract[mt_rand(0,(strlen($caract)-1))];
 		}
-		echo '<br />';
+		echo $pwd.'<br />';
+		echo '<button onclick="copyToClipboard('.$pwd.')">Copier</button>';
 	}
 }
 ?>
+<script type="text/javascript">
+function copyToClipboard(text) {
+    var dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+}
+</script>
 </p>
 <a href="/gadgets.php">Retour à la liste des gadgets.</a>
 </div>
