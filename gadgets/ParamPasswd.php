@@ -74,6 +74,8 @@ if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['type
 }
 ?>
 </p>
+<?php
+if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['typePasswd'])) { ?>
 <button id="BtnCopy" onclick="CopyToClipboard('result')">Copier le résultat</button><br />
 <script type="text/javascript">
 function CopyToClipboard(containerid) {
@@ -99,6 +101,7 @@ function CopyToClipboard(containerid) {
   }
 }
 </script>
+<?php } ?>
 <a href="/gadgets.php">Retour à la liste des gadgets.</a>
 </div>
 </div>
