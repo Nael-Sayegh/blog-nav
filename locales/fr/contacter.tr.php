@@ -28,13 +28,5 @@
   'f_obj_privacy' => 'Demande sur la confidentialité',
   'f_obj_graph' => 'Rapport de problème graphique',
   'f_obj_other' => 'autre',
-  'tel' => '<h2>Standard téléphonique de {{site}}</h2>
-<p>Vous avez également la possibilité de nous laisser un message vocal sur notre standard téléphonique.<br />
-Selon nos disponibilités et la demande que vous nous faites, nous vous rappelons le plus rapidement possible.<br />
-<strong>IMPORTANT</strong>&nbsp;: n\'oubliez pas de laisser vos coordonnées dans votre message afin que nous puissions vous rappeler.</p>
-<ul>
-<li>Numéro de téléphone (APPEL NON SURTAXÉ DEPUIS LA FRANCE)&nbsp;: 0 972 221 193 (touche 2)</li>
-<li>Heures de rappel les plus courantes&nbsp;: du Lundi au Dimanche de 9h à 21h.</li>
-</ul>',
   'mailformtitle' => 'Mail',
 ); ?>

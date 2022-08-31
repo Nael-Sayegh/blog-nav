@@ -18,8 +18,6 @@
 </ul>
 <ul>
 <li><a href="https://discord.gg/nd45eqN">Rejoignez-nous sur Discord</a></li>
-	<li><a href="skype:live:miklhcos?chat">Discuter sur Skype (nécessite qu'un client Skype soit installé)</a></li>
-	<li><a href="skype:live:miklhcos?call">Nous appeler sur Skype (nécessite qu'un client Skype soit installé)</a></li>
 </ul>
 
 <h2>Histoire du site</h2>
