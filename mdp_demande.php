@@ -51,7 +51,7 @@ $mail->Port = SMTP_PORT;
 $mail->SMTPAuth = true;
 $mail->Username = SMTP_USERNAME;
 $mail->Password = SMTP_PSW;
-$mail->setFrom($data['email'], $data['username']);
+$mail->setFrom('no_reply@progaccess.net', $nomdusite);
 $mail->addReplyTo('no_reply@progaccess.net', $nomdusite);
 $mail->AddAddress($data['email']);
 $mail->Subject = 'Réinitialisation de mot de passe '.$nomdusite;
