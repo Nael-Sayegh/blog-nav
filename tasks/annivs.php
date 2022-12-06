@@ -6,15 +6,10 @@ require_once($document_root.'/inclus/lib/twitter/twitter.php');
 require_once($document_root.'/inclus/lib/facebook/envoyer.php');
 $req = $bdd->prepare('SELECT * FROM `team` ORDER BY `age` DESC');
 $req->execute();
-/*echo '<ul><li>'.date('d/m/Y').'</li>';
-while($data = $req->fetch()) {
-	echo '<li>'.$data['name'].'&nbsp;: '.date('d/m/Y', $data['age']).' ('.intval((time()-$data['age'])/31557600).' ans</li>';
-}
-echo '</ul>';*/
 while($data = $req->fetch()) {
 	if(date('d/m') == date('d/m', $data['age'])) {
 		if($data['twitter']) {
-			$messaget = '🎂 L\'équipe '.$nomdusite.' souhaite un joyeux anniversaire à '.$data['short_name'].' (@'.$data['twitter'].') qui fête aujourd\'hui ses '.intval((time()-$data['age'])/31557600).' ans !';
+			$messaget = '🎂 L\'équipe '.$nomdusite.' souhaite un joyeux anniversaire à '.$data['short_name'].' (@'.$data['twitter'].') qui souffle aujourd\'hui ses '.intval((time()-$data['age'])/31557600).' 🕯️ !';
 		} else {
 			$messaget = '🎂 L\'équipe '.$nomdusite.' souhaite un joyeux anniversaire à '.$data['short_name'].' qui souffle aujourd\'hui ses '.intval((time()-$data['age'])/31557600).' 🕯️ !';
 		}

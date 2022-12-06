@@ -1,5 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/config.local.php';
+$document_root = __DIR__.'/../../..';
+require_once $document_root.'/inclus/config.local.php';
 require_once('vendor/autoload.php');
 
 function send_facebook($message) {
