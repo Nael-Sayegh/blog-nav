@@ -55,7 +55,7 @@ while($data = $req->fetch()) {
 		$mail->Subject = $nomdusite.' : votre abonnement à l\'actu '.$nomdusite.' expire bientôt';
 		$mail->CharSet = 'UTF-8';
 		$mail->IsHTML(false);
-		$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à l'actu '.$nomdusite.' expire le ".date('d/m/Y à H:i', $data['expire']).".\nCliquez sur le lien suivant pour le renouveler :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\n".$nomdusite;
+		$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à l'actu ".$nomdusite." expire le ".date('d/m/Y à H:i', $data['expire']).".\nCliquez sur le lien suivant pour le renouveler :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\n".$nomdusite;
 		$mail->send();
 	}
 	echo $data['mail'];
