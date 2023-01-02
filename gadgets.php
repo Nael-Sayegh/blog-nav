@@ -22,8 +22,8 @@ include 'inclus/menu.php'; ?>
 <h2 id="interne">Les gadgets internes à <?php print $nomdusite; ?></h2>
 <ul>
 <li id="infos"><a href="GEOIP/infos.php">Infos diverses vous concernant</a></li>
-<li id="heure"><a href="gadgets/horloge.php">Horloge <?php print $nomdusite; ?></a></li>
 <li id="mdp"><a href="gadgets/ParamPasswd.php">Générateur de mots de passe</a></li>
+<li id="heure"><a href="gadgets/horloge.php">Horloge <?php print $nomdusite; ?></a></li>
 <li id="POF"><a href="/gadgets/pof.php">Pile ou face</a></li>
 </ul>
 <h2 id="services">Les services <?php print $nomdusite; ?></h2>
