@@ -69,7 +69,6 @@ if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['type
 			else
 				print $caract[mt_rand(0,(strlen($caract)-1))];
 		}
-		echo '<br />';
 	}
 }
 ?>
