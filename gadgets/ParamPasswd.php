@@ -27,7 +27,7 @@ include 'inclus/menu.php'; ?>
 <input id="taille" name="nbrChr" type="number" required />
 <br />
 <label for="type">Type de mot de passe :</label>
-<select id="type" name="typePasswd">
+<select id="type" name="typePasswd" onchange="showother()">
 <option value="1">Chiffres uniquement</option>
 <option value="2">Lettres uniquement</option>
 <option value="3">Caractères alphanumériques</option>
