@@ -43,7 +43,7 @@ include 'inclus/menu.php'; ?>
 <input type="submit" value="Générer" />
 <script type="text/javascript">
 function showother() {
-	if(document.getElementById("typePasswd").value == "5") {
+	if(document.getElementById("type").value == "5") {
 		document.getElementById("f_charpers").style = "";
 		document.getElementById("charpers").style = "";
 	} else {
