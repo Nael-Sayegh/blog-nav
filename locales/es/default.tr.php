@@ -3,7 +3,7 @@
   '_todo_level' => 4,
   '_last_author' => 'Pascal',
   '_last_modif' => 1550842017,
-  'sitename' => 'CrossAccess',
+  'sitename' => 'ProgAccess',
   'slogan' => 'Accesibilidad en todas partes, por todos, para todos',
   'banner_homelink' => 'Página de inicio',
   'fndate' => '%Y-%m-%d',

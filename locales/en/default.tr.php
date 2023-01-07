@@ -3,7 +3,7 @@
   '_todo_level' => 2,
   '_last_author' => 'O. D.',
   '_last_modif' => 1585217501,
-  'sitename' => 'CrossAccess',
+  'sitename' => 'ProgAccess',
   'slogan' => 'Accessibility everywhere, by everyone, for everyone',
   'banner_homelink' => 'Back to homepage',
   'fndate' => '%Y-%m-%d',

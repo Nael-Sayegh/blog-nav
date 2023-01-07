@@ -3,7 +3,7 @@
   '_todo_level' => 0,
   '_last_author' => 'Corentin',
   '_last_modif' => 1621426624,
-  'sitename' => 'CrossAccess',
+  'sitename' => 'ProgAccess',
   'slogan' => 'L\'accessibilité partout, par tous, pour tous',
   'banner_homelink' => 'Retour à l\'accueil',
   'fndate' => '%d/%m/%Y',
