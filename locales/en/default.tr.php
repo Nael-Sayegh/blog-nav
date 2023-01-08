@@ -24,6 +24,7 @@
   'loginbox_password' => 'Password',
   'loginbox_forgotpsw' => 'Forgot password',
   'loginbox_signup' => 'Sign up',
+  'loginbox_arialab_menu' => 'User menu',
   'searchtool_label' => 'Search',
   'searchtool_text' => 'Search for a software/tuto',
   'searchtool_cat' => 'Category',

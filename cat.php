@@ -69,6 +69,13 @@ foreach($entries as $sw_id => $entry) {
 }
 ?>
 </div>
+<script>
+<?php $php_ulli_id="ulli_linkcat_".$cat_id; $php_sel_id="sel_linkcat_".$cat_id; ?>
+	var ulli_id=<?php echo json_encode($php_ulli_id); ?>;
+	var sel_id=<?php echo json_encode($php_sel_id); ?>;
+	document.getElementById(ulli_id).setAttribute("aria-current", "page");
+	document.getElementById(sel_id).setAttribute("aria-current", "page");
+</script>
 <?php include 'inclus/footer.php'; ?>
 </body>
 </html>

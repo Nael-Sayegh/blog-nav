@@ -29,6 +29,7 @@
   'loginbox_notifs_pl' => '{{n}} notifications',
   'loginbox_notifs_readall' => 'Tout marquer comme lu',
   'loginbox_notifs_read' => 'Marquer comme lu',
+  'loginbox_arialab_menu' => 'Menu utilisateur',
   'searchtool_label' => 'Rechercher',
   'searchtool_text' => 'Rechercher un logiciel/tuto',
   'searchtool_cat' => 'Catégorie',

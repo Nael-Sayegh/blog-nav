@@ -18,7 +18,7 @@ function date_heure(id)
 	return true;
 }
 
-function rdisp(id) {
+function rdisp(id,aria_popup_id) {
 	var obj = document.getElementById(id);
 	if(rdisps[id] == undefined) {
 		if(obj.style.display == undefined)
@@ -28,10 +28,16 @@ function rdisp(id) {
 		else
 			rdisps[id] = [true, obj.style.display];
 	}
-	if(rdisps[id][0])
+	if(rdisps[id][0]){
 		obj.style.display = "none";
-	else
+		if(typeof(aria_popup_id) != undefined)
+			document.getElementById(aria_popup_id).setAttribute("aria-expanded", "false");
+	}
+	else{
 		obj.style.display = rdisps[id][1];
+		if(typeof(aria_popup_id) != undefined)
+			document.getElementById(aria_popup_id).setAttribute("aria-expanded", "true");
+	}
 	rdisps[id][0] = !rdisps[id][0];
 }
 
