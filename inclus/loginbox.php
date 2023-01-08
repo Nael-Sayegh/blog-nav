@@ -6,8 +6,8 @@ if(isset($logged) and $logged) {
 	$n_notifs = 0;
 	while($req->fetch()) {$n_notifs ++;} ?>
 	<div id="boutonjs2" style="display:none;">
-		<input type="button" onclick="rdisp('menu_user')" value="<?php echo ($login['rank']=='a')? $nom : htmlentities($login['username']); $date=getdate(); if(isset($settings['bd_m']) and isset($settings['bd_d']) and (($settings['bd_m']==$date['mon'] and $settings['bd_d']==$date['mday']) or ($settings['bd_m']==2 and $date['mon']==3 and $settings['bd_d']==29 and $date['mday']==1 and $date['year']%4==0))) echo ' &#127874;'; ?>" />
-		<div id="menu_user" style="display: none;">
+		<input type="button" id="menu_user_popup" onclick="rdisp('menu_user','menu_user_popup')" value="<?php echo ($login['rank']=='a')? $nom : htmlentities($login['username']); $date=getdate(); if(isset($settings['bd_m']) and isset($settings['bd_d']) and (($settings['bd_m']==$date['mon'] and $settings['bd_d']==$date['mday']) or ($settings['bd_m']==2 and $date['mon']==3 and $settings['bd_d']==29 and $date['mday']==1 and $date['year']%4==0))) echo ' &#127874;'; ?>" aria-haspopup="true" aria-expanded="false" />
+		<div id="menu_user" style="display: none;" role="menu" aria-label="<?php echo tr($tr0,'loginbox_arialab_menu'); ?>">
 		<?php if($login['rank'] == 'a') {
 $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 				$req->execute(array($login['id']));
@@ -15,23 +15,23 @@ $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 					$worksnum1 = $data['works'];
 				}
 				if(!strstr($_SERVER['PHP_SELF'], '/admin/accueil.php') && $worksnum1 == '1' or $worksnum1 == '2') { ?>
-<a class="hlink" href="/admin"><?php echo tr($tr0,'loginbox_adminlink').' ('.$nomdusite.')'; ?></a><br />
+<a role="menuitem" class="hlink" href="/admin"><?php echo tr($tr0,'loginbox_adminlink').' ('.$nomdusite.')'; ?></a><br />
 				<?php }
 				if($worksnum1 == '0' or $worksnum1 == '2') { ?>
-					<a class="hlink" href="https://www.nvda-fr.org/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr0,'loginbox_adminlink').' (NVDA-FR)'; ?></a><br />
+					<a role="menuitem" class="hlink" href="https://www.nvda-fr.org/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr0,'loginbox_adminlink').' (NVDA-FR)'; ?></a><br />
 				<?php } ?>
-				<a class="hlink" href="/alist.php"><?php echo tr($tr0,'loginbox_alistlink'); ?></a><br />
+				<a role="menuitem" class="hlink" href="/alist.php"><?php echo tr($tr0,'loginbox_alistlink'); ?></a><br />
 				<?php } ?>
-			<a class="hlink" href="/home.php"><?php echo tr($tr0,'loginbox_profilelink'); ?></a><br />
-			<?php echo '<a href="/home.php#notifs">'.($n_notifs>0? '<strong>'.tr($tr0,'loginbox_notifs_'.($n_notifs>1?'pl':'sg'), array('n'=>$n_notifs)).'</strong>':tr($tr0,'loginbox_notifs')).'</a><br />'; ?>
-						<a class="hlink" href="/logout.php?token=<?php echo $login['token']; ?>"><?php echo tr($tr0,'loginbox_logoutlink').' ('; if($login['rank'] == 'a') {echo $nom.')'; } else { echo htmlentities($login['username']).')'; } ?></a>
+			<a role="menuitem" class="hlink" href="/home.php"><?php echo tr($tr0,'loginbox_profilelink'); ?></a><br />
+			<?php echo '<a role="menuitem" href="/home.php#notifs">'.($n_notifs>0? '<strong>'.tr($tr0,'loginbox_notifs_'.($n_notifs>1?'pl':'sg'), array('n'=>$n_notifs)).'</strong>':tr($tr0,'loginbox_notifs')).'</a><br />'; ?>
+						<a role="menuitem" class="hlink" href="/logout.php?token=<?php echo $login['token']; ?>"><?php echo tr($tr0,'loginbox_logoutlink').' ('; if($login['rank'] == 'a') {echo $nom.')'; } else { echo htmlentities($login['username']).')'; } ?></a>
 		</div>
 	</div>
 	<script>document.getElementById("boutonjs2").style.display="block";</script>
 	<noscript>
 		<details>
 			<summary><?php echo ($login['rank']=='a')? $nom : $login['username']; $date=getdate(); if(isset($settings['bd_m']) and isset($settings['bd_d']) and (($settings['bd_m']==$date['mon'] and $settings['bd_d']==$date['mday']) or ($settings['bd_m']==2 and $date['mon']==3 and $settings['bd_d']==29 and $date['mday']==1 and $date['year']%4==0))) echo ' &#127874;'; ?></summary>
-			<div id="menu_user2" style="display: block;">
+			<div id="menu_user2" style="display: block;" role="menu" aria-label="<?php echo tr($tr0,'loginbox_arialab_menu'); ?>">
 		<?php if($login['rank'] == 'a') {
 $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 				$req->execute(array($login['id']));
@@ -39,22 +39,22 @@ $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 					$worksnum1 = $data['works'];
 				}
 				if(!strstr($_SERVER['PHP_SELF'], '/admin/accueil.php') && $worksnum1 == '1' or $worksnum1 == '2') { ?>
-<a class="hlink" href="/admin"><?php echo tr($tr0,'loginbox_adminlink').' ('.$nomdusite.')'; ?></a><br />
+<a role="menuitem" class="hlink" href="/admin"><?php echo tr($tr0,'loginbox_adminlink').' ('.$nomdusite.')'; ?></a><br />
 				<?php }
 				if($worksnum1 == '0' or $worksnum1 == '2') { ?>
-					<a class="hlink" href="https://www.nvda-fr.org/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr0,'loginbox_adminlink').' (NVDA-FR)'; ?></a><br />
+					<a role="menuitem" class="hlink" href="https://www.nvda-fr.org/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr0,'loginbox_adminlink').' (NVDA-FR)'; ?></a><br />
 				<?php } ?>
-				<a class="hlink" href="/alist.php"><?php echo tr($tr0,'loginbox_alistlink'); ?></a><br />
+				<a role="menuitem" class="hlink" href="/alist.php"><?php echo tr($tr0,'loginbox_alistlink'); ?></a><br />
 				<?php } ?>
-				<a class="hlink" href="/home.php"><?php echo tr($tr0,'loginbox_profilelink'); ?></a><br />
-				<?php 	echo '<a href="/home.php#notifs">'.($n_notifs>0? '<strong>'.tr($tr0,'loginbox_notifs_'.($n_notifs>1?'pl':'sg'), array('n'=>$n_notifs)).'</strong>':tr($tr0,'loginbox_notifs')).'</a><br />'; ?>
-				<a class="hlink" href="/logout.php?token=<?php echo $login['token']; ?>"><?php echo tr($tr0,'loginbox_logoutlink').' ('; if($login['rank'] == 'a') {echo $nom.')'; } else { echo $login['username'].')'; } ?></a>
+				<a role="menuitem" class="hlink" href="/home.php"><?php echo tr($tr0,'loginbox_profilelink'); ?></a><br />
+				<?php 	echo '<a role="menuitem" href="/home.php#notifs">'.($n_notifs>0? '<strong>'.tr($tr0,'loginbox_notifs_'.($n_notifs>1?'pl':'sg'), array('n'=>$n_notifs)).'</strong>':tr($tr0,'loginbox_notifs')).'</a><br />'; ?>
+				<a role="menuitem" class="hlink" href="/logout.php?token=<?php echo $login['token']; ?>"><?php echo tr($tr0,'loginbox_logoutlink').' ('; if($login['rank'] == 'a') {echo $nom.')'; } else { echo $login['username'].')'; } ?></a>
 			</div>
 		</details>
 	</noscript>
 		<?php } else { ?>
 <div id="boutonjs205" style="display:none;">
-	<input type="button" onclick="rdisp('loginbox_form')" value="<?php echo tr($tr0,'loginbox_memberarea'); ?>" />
+	<input type="button" id="loginbox_form_popup" onclick="rdisp('loginbox_form','loginbox_form_popup')" value="<?php echo tr($tr0,'loginbox_memberarea'); ?>" aria-haspopup="true" aria-expanded="false" />
 	<form id="loginbox_form" action="/login.php?a=form" method="post" aria-label="<?php echo tr($tr0,'loginbox_loginlabel'); ?>" style="display: none;">
 		<label for="login_username" style="position:absolute; top:-999px; left:-9999px;"><?php echo tr($tr0,'loginbox_username'); ?></label>
 		<input type="text" id="login_username" name="username" placeholder="<?php echo tr($tr0,'loginbox_username'); ?>" maxlength="32" aria-label="<?php echo tr($tr0,'loginbox_username'); ?>" /><br />
