@@ -9,7 +9,7 @@ $ulmenu = function() {
 	<?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_ulli.html'); ?>
 	<li class="menutitle"><?php echo tr($tr0,'menu_news'); ?></li>
 	<li><a href="/newsletter.php" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl'); ?></a></li>
-	<li><a href="/journal_modif.xml"><?php echo tr($tr0,'menu_rss'); ?></a></li>
+	<li><a type="application/rss+xml" href="/journal_modif.xml"><?php echo tr($tr0,'menu_rss'); ?></a></li>
 	<li><a href="/journal_modif.php" <?php if($_SERVER['DOCUMENT_URI'] == '/journal_modif.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_journal'); ?></a></li>
 	<li class="menutitle"><?php echo tr($tr0,'menu_usefull'); ?></li>
 	<li><a href="/param.php" <?php if($_SERVER['DOCUMENT_URI'] == '/param.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_sets'); ?></a></li>
