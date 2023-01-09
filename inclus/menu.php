@@ -48,7 +48,7 @@ if(isset($_COOKIE['menu']) && $_COOKIE['menu'] == '1') { ?>
 </form>
 <?php } else { ?>
 <div id="boutonjs" style="display:none;">
-<input type="button" id="popup_ulli_menu" onclick="rdisp('ulli_menu','popup_ulli_menu')" value="<?php echo tr($tr0,'menu_switchmenu'); ?>" aria-haspopup="true" aria-expanded="false" />
+<button type="button" id="popup_ulli_menu" onclick="rdisp('ulli_menu','popup_ulli_menu')" aria-haspopup="true" aria-expanded="false"><?php echo tr($tr0,'menu_switchmenu'); ?></button>
 <div id="ulli_menu" style="display: block;">
 <?php $ulmenu(); ?>
 </div>

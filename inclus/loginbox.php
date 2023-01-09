@@ -6,7 +6,7 @@ if(isset($logged) and $logged) {
 	$n_notifs = 0;
 	while($req->fetch()) {$n_notifs ++;} ?>
 	<div id="boutonjs2" style="display:none;">
-		<input type="button" id="menu_user_popup" onclick="rdisp('menu_user','menu_user_popup')" value="<?php echo ($login['rank']=='a')? $nom : htmlentities($login['username']); $date=getdate(); if(isset($settings['bd_m']) and isset($settings['bd_d']) and (($settings['bd_m']==$date['mon'] and $settings['bd_d']==$date['mday']) or ($settings['bd_m']==2 and $date['mon']==3 and $settings['bd_d']==29 and $date['mday']==1 and $date['year']%4==0))) echo ' &#127874;'; ?>" aria-haspopup="true" aria-expanded="false" />
+		<button type="button" id="menu_user_popup" onclick="rdisp('menu_user','menu_user_popup')" aria-haspopup="true" aria-expanded="false"><?php echo ($login['rank']=='a')? $nom : htmlentities($login['username']); $date=getdate(); if(isset($settings['bd_m']) and isset($settings['bd_d']) and (($settings['bd_m']==$date['mon'] and $settings['bd_d']==$date['mday']) or ($settings['bd_m']==2 and $date['mon']==3 and $settings['bd_d']==29 and $date['mday']==1 and $date['year']%4==0))) echo ' &#127874;'; ?></button>
 		<div id="menu_user" style="display: none;" role="menu" aria-label="<?php echo tr($tr0,'loginbox_arialab_menu'); ?>">
 		<?php if($login['rank'] == 'a') {
 $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
@@ -54,7 +54,7 @@ $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 	</noscript>
 		<?php } else { ?>
 <div id="boutonjs205" style="display:none;">
-	<input type="button" id="loginbox_form_popup" onclick="rdisp('loginbox_form','loginbox_form_popup')" value="<?php echo tr($tr0,'loginbox_memberarea'); ?>" aria-haspopup="true" aria-expanded="false" />
+	<button type="button" id="loginbox_form_popup" onclick="rdisp('loginbox_form','loginbox_form_popup')" aria-haspopup="true" aria-expanded="false"><?php echo tr($tr0,'loginbox_memberarea'); ?></button>
 	<form id="loginbox_form" action="/login.php?a=form" method="post" aria-label="<?php echo tr($tr0,'loginbox_loginlabel'); ?>" style="display: none;">
 		<label for="login_username" style="position:absolute; top:-999px; left:-9999px;"><?php echo tr($tr0,'loginbox_username'); ?></label>
 		<input type="text" id="login_username" name="username" placeholder="<?php echo tr($tr0,'loginbox_username'); ?>" maxlength="32" aria-label="<?php echo tr($tr0,'loginbox_username'); ?>" /><br />
