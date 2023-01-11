@@ -20,7 +20,7 @@ $ulmenu = function() {
 	<li class="menusep">&nbsp;</li>
 </ul>
 <?php }; ?>
-<div id="nav" role="navigation" style="display: block;" onload="showjs('boutonjs')">
+<nav id="nav" style="display: block;" onload="showjs('boutonjs')">
 <h2 id="menusite"><?php echo tr($tr0,'menu_menutitle'); ?></h2>
 <?php
 if(isset($_COOKIE['menu']) && $_COOKIE['menu'] == '1') { ?>
@@ -68,4 +68,4 @@ if(820 >= window.innerWidth) rdisp("ulli_menu");</script>
 unset($ulmenu);
 ?>
 <a href="#hautpage" accesskey="h"><?php echo tr($tr0,'menu_toplink'); ?></a>
-</div>
+</nav>

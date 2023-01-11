@@ -2,7 +2,7 @@
 $permalink = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 $titremodifie = str_replace(' ',' ',$titre);
 ?>
-<div id="footer" role="contentinfo">
+<footer id="footer">
 <a style="position:absolute; top:-999px; left:-9999px;" href="#hautpage" accesskey="H"><?php echo tr($tr0,'footer_toplink'); ?></a>
 <div id="social_share" role="complementary">
 <details open>
@@ -35,4 +35,4 @@ Copyright &copy; 2015-<?php print date('Y'); ?> <?php echo tr($tr0,'footer_copyr
 </div>
 <script>document.getElementById("ag003030").style.display="block";date_heure("date_heure");</script>
 <?php } ?>
-</div>
+</footer>
