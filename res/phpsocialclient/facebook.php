@@ -23,7 +23,7 @@ $now = localtime();
 ?><!doctype html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title><?php echo str_replace('{{title}}', $fbdata['title'], $tr['FB_TITLE']); ?></title>
 		<style type="text/css">
 @font-face {font-family: "Nimbus Sans L";src: url("NimbusSansL-Regular.otf");}
@@ -62,7 +62,7 @@ foreach($fbdata['msgs'] as &$msg) {
 	}
 	else
 		echo strftime($tr['PHP_TIME_YEAR'], $msg['time']);
-	echo '</span><div class="msg_b"><a href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffacebook.com%2F'.$page.'%2Fposts%2F'.$msg['id'].'&display=popup&ref=plugin&src=post" target="_parent"><img alt="'.$tr['FB_SHARE'].'" src="images/fb_share24.png" /></a><a href="https://facebook.com/'.$page.'/posts/'.$msg['id'].'" target="_parent"><img alt="'.$tr['FB_FBLNK'].'" src="images/fb_logo24.png" /></a></div></div><div class="msg_c"><p class="msg_t">'.$msg['text'].'</p></div></div>';
+	echo '</span><div class="msg_b"><a href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffacebook.com%2F'.$page.'%2Fposts%2F'.$msg['id'].'&display=popup&ref=plugin&src=post" target="_parent"><img alt="'.$tr['FB_SHARE'].'" src="images/fb_share24.png"></a><a href="https://facebook.com/'.$page.'/posts/'.$msg['id'].'" target="_parent"><img alt="'.$tr['FB_FBLNK'].'" src="images/fb_logo24.png"></a></div></div><div class="msg_c"><p class="msg_t">'.$msg['text'].'</p></div></div>';
 }
 unset($msg);
 ?>

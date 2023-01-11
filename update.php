@@ -1,23 +1,17 @@
 <?php
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-include_once 'inclus/log.php';
-require_once 'inclus/consts.php';
+require_once('inclus/log.php');
+require_once('inclus/consts.php');
 $titre='Mise à jour du site';
 $stats_page = 'update';
 $cheminaudio='/audio/sons_des_pages/V.mp3'; ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<?php require_once 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<div id="hautpage" role="banner">
-<h1><a href="/" title="Retour à l'accueil"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/loginbox.php';
-include 'inclus/searchtool.php'; ?>
-</div>
-<?php include('inclus/son.php');
-include('inclus/menu.php'); ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+<main id="container">
 <h1 id="contenu"><?php print $titre; ?></h1>
 <?php
 if(isset($_GET['id'])) {
@@ -25,21 +19,21 @@ if(isset($_GET['id'])) {
 	$req->execute(array($_GET['id']));
 	if($data = $req->fetch()) {
 $versionxx = substr($data['name'],1);
-echo '<h2>'.$versionxx.' (V'.$data['id'].')</h2><a href="/update.php">Liste des versions</a><br />';
+echo '<h2>'.$versionxx.' (V'.$data['id'].')</h2><a href="/update.php">Liste des versions</a><br>';
 $req2 = $bdd->prepare('SELECT * FROM `site_updates` WHERE `id`<? ORDER BY `date` DESC LIMIT 1');
 		$req2->execute(array($data['id']));
 if($data2 = $req2->fetch()) {
 $versionxx2 = substr($data2['name'],1);
-echo '<a href="/update.php?id='.$data2['id'].'">Version précédente&nbsp;: '.$versionxx2.' (V'.$data2['id'].')</a> ('.strftime(tr($tr0,'fndatetime'),$data2['date']).')<br />'; }
+echo '<a href="/update.php?id='.$data2['id'].'">Version précédente&nbsp;: '.$versionxx2.' (V'.$data2['id'].')</a> ('.strftime(tr($tr0,'fndatetime'),$data2['date']).')<br>'; }
 $req3 = $bdd->prepare('SELECT * FROM `site_updates` WHERE `id`>? ORDER BY `date` ASC LIMIT 1');
 $req3->execute(array($data['id']));
 if($data3 = $req3->fetch()) {
 $versionxx3 = substr($data3['name'],1);
-echo '<a href="/update.php?id='.$data3['id'].'">Version suivante&nbsp;: '.$versionxx3.' (V'.$data3['id'].')</a> ('.date('d/m/Y H:i', $data3['date']).')<br />'; }
+echo '<a href="/update.php?id='.$data3['id'].'">Version suivante&nbsp;: '.$versionxx3.' (V'.$data3['id'].')</a> ('.date('d/m/Y H:i', $data3['date']).')<br>'; }
 echo '<p>Par '.$data['authors'].' ('.strftime(tr($tr0,'fndatetime'),$data['date']).')</p>'.str_replace('{{site}}', $nomdusite, $data['text']);
 		$codestat = json_decode($data['codestat']);
 		if(isset($codestat[0]) and isset($codestat[1]) and isset($codestat[2]) and $codestat[0] != -1 and $codestat[1] != -1 and $codestat[2] != -1) {
-			echo '<hr /><p>À cette version, le code du site est composé de <strong>'.$codestat[0].'</strong> fichiers, <strong>'.$codestat[1].'</strong> lignes, soit <strong>'.$codestat[2].'</strong> octets ('.human_filesize($codestat[2]).'o).<br />Seuls les fichiers PHP, HTML, CSS, JS, XML et texte brut sont pris en compte. Les fichiers dont nous ne sommes pas les auteurs ne sont pas comptés (bibliothèques, outils), ni les fichiers dynamiques (caches générés automatiquement), ni les fichiers de traduction (ne contenant que du texte).</p>';
+			echo '<hr><p>À cette version, le code du site est composé de <strong>'.$codestat[0].'</strong> fichiers, <strong>'.$codestat[1].'</strong> lignes, soit <strong>'.$codestat[2].'</strong> octets ('.human_filesize($codestat[2]).'o).<br>Seuls les fichiers PHP, HTML, CSS, JS, XML et texte brut sont pris en compte. Les fichiers dont nous ne sommes pas les auteurs ne sont pas comptés (bibliothèques, outils), ni les fichiers dynamiques (caches générés automatiquement), ni les fichiers de traduction (ne contenant que du texte).</p>';
 		}
 	} 
 } else {
@@ -55,7 +49,7 @@ echo '<p>Par '.$data['authors'].' ('.strftime(tr($tr0,'fndatetime'),$data['date'
 $req->closeCursor();
 }
 ?>
-</div>
-<?php include 'inclus/footer.php'; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 </body>
 </html>

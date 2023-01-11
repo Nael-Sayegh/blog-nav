@@ -60,7 +60,7 @@ if(isset($_GET['swfb'])) {
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Publication sur les réseaux - <?php print $nomdusite; ?></title>
 <?php print $cssadmin; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
@@ -72,9 +72,9 @@ if(!empty($log)) print '<p><b>'.$log.'</b></p>'; ?>
 		<form action="?form" method="post">
 			<label for="f_platform">Publier&nbsp;:</label>
 			<ul id="f_platform">
-				<li><input id="f_platform_fb" type="checkbox" name="pf[]" value="fb" checked /> <label for="f_platform_fb">Facebook</label></li>
-				<li><input id="f_platform_tw" type="checkbox" name="pf[]" value="tw" checked /> <label for="f_platform_tw">Twitter</label></li>
-				<li><input id="f_platform_dd" type="checkbox" name="pf[]" value="dd" checked /> <label for="f_platform_dd">Discord</label></li>
+				<li><input id="f_platform_fb" type="checkbox" name="pf[]" value="fb" checked> <label for="f_platform_fb">Facebook</label></li>
+				<li><input id="f_platform_tw" type="checkbox" name="pf[]" value="tw" checked> <label for="f_platform_tw">Twitter</label></li>
+				<li><input id="f_platform_dd" type="checkbox" name="pf[]" value="dd" checked> <label for="f_platform_dd">Discord</label></li>
 			</ul>
 			
 			<!--<select id="f_platform" name="platform">
@@ -85,13 +85,13 @@ if(!empty($log)) print '<p><b>'.$log.'</b></p>'; ?>
 				<option value="5">Facebook et Twitter</option>
 				<option value="6">Facebook et Discord</option>
 				<option value="7">Twitter et Discord</option>
-			</select><br />-->
-			<label for="f_msg">Message&nbsp;:</label><br />
-			<textarea id="f_msg" name="msg" autocomplete="off" rows="20" style="width: 100%;" required></textarea><br />
-			<input type="submit" value="Publier" />
+			</select><br>-->
+			<label for="f_msg">Message&nbsp;:</label><br>
+			<textarea id="f_msg" name="msg" autocomplete="off" rows="20" style="width: 100%;" required></textarea><br>
+			<input type="submit" value="Publier">
 		</form>
 		<p>Utilisez <i>$$</i> comme séparateur pour Twitter, et <i>$$$$</i> pour écrire vraiment <i>$$</i>.</p>
-		<!--<a href="?swfb">Publier le message Facebook des logiciels mis à jour.</a><br />
+		<!--<a href="?swfb">Publier le message Facebook des logiciels mis à jour.</a><br>
 		<a href="?swfb&debug">Debug message Facebook des logiciels mis à jour.</a>-->
 	</body>
 </html>

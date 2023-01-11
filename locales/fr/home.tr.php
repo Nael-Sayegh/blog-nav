@@ -43,7 +43,7 @@
   'chpsw_new' => 'Nouveau mot de passe&nbsp;:',
   'chpsw_new_re' => 'Nouveau mot de passe (vérification)&nbsp;:',
   'remove_account' => 'Supprimer le compte',
-  'remove_account_warn' => '<b>Attention</b>&nbsp;: En supprimant votre compte vous perdez toutes vos données personnelles qui y sont enregistrées. Toutefois, vos publications sur le forum et autres resteront visibles.<br />Nous vous prions d\'écrire ci-dessous la raison de votre départ pour nous aider à améliorer le site.',
+  'remove_account_warn' => '<b>Attention</b>&nbsp;: En supprimant votre compte vous perdez toutes vos données personnelles qui y sont enregistrées. Toutefois, vos publications sur le forum et autres resteront visibles.<br>Nous vous prions d\'écrire ci-dessous la raison de votre départ pour nous aider à améliorer le site.',
   'remove_account_msg' => 'Motif du départ&nbsp;:',
   'remove_account_psw' => 'Mot de passe&nbsp;:',
   'remove_account_submit' => 'Confirmer',

@@ -15,15 +15,15 @@ $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 					$worksnum1 = $data['works'];
 				}
 				if(!strstr($_SERVER['PHP_SELF'], '/admin/accueil.php') && $worksnum1 == '1' or $worksnum1 == '2') { ?>
-<a role="menuitem" class="hlink" href="/admin"><?php echo tr($tr0,'loginbox_adminlink').' ('.$nomdusite.')'; ?></a><br />
+<a role="menuitem" class="hlink" href="/admin"><?php echo tr($tr0,'loginbox_adminlink').' ('.$nomdusite.')'; ?></a><br>
 				<?php }
 				if($worksnum1 == '0' or $worksnum1 == '2') { ?>
-					<a role="menuitem" class="hlink" href="https://www.nvda-fr.org/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr0,'loginbox_adminlink').' (NVDA-FR)'; ?></a><br />
+					<a role="menuitem" class="hlink" href="https://www.nvda-fr.org/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr0,'loginbox_adminlink').' (NVDA-FR)'; ?></a><br>
 				<?php } ?>
-				<a role="menuitem" class="hlink" href="/alist.php"><?php echo tr($tr0,'loginbox_alistlink'); ?></a><br />
+				<a role="menuitem" class="hlink" href="/alist.php"><?php echo tr($tr0,'loginbox_alistlink'); ?></a><br>
 				<?php } ?>
-			<a role="menuitem" class="hlink" href="/home.php"><?php echo tr($tr0,'loginbox_profilelink'); ?></a><br />
-			<?php echo '<a role="menuitem" href="/home.php#notifs">'.($n_notifs>0? '<strong>'.tr($tr0,'loginbox_notifs_'.($n_notifs>1?'pl':'sg'), array('n'=>$n_notifs)).'</strong>':tr($tr0,'loginbox_notifs')).'</a><br />'; ?>
+			<a role="menuitem" class="hlink" href="/home.php"><?php echo tr($tr0,'loginbox_profilelink'); ?></a><br>
+			<?php echo '<a role="menuitem" href="/home.php#notifs">'.($n_notifs>0? '<strong>'.tr($tr0,'loginbox_notifs_'.($n_notifs>1?'pl':'sg'), array('n'=>$n_notifs)).'</strong>':tr($tr0,'loginbox_notifs')).'</a><br>'; ?>
 						<a role="menuitem" class="hlink" href="/logout.php?token=<?php echo $login['token']; ?>"><?php echo tr($tr0,'loginbox_logoutlink').' ('; if($login['rank'] == 'a') {echo $nom.')'; } else { echo htmlentities($login['username']).')'; } ?></a>
 		</div>
 	</div>
@@ -39,15 +39,15 @@ $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 					$worksnum1 = $data['works'];
 				}
 				if(!strstr($_SERVER['PHP_SELF'], '/admin/accueil.php') && $worksnum1 == '1' or $worksnum1 == '2') { ?>
-<a role="menuitem" class="hlink" href="/admin"><?php echo tr($tr0,'loginbox_adminlink').' ('.$nomdusite.')'; ?></a><br />
+<a role="menuitem" class="hlink" href="/admin"><?php echo tr($tr0,'loginbox_adminlink').' ('.$nomdusite.')'; ?></a><br>
 				<?php }
 				if($worksnum1 == '0' or $worksnum1 == '2') { ?>
-					<a role="menuitem" class="hlink" href="https://www.nvda-fr.org/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr0,'loginbox_adminlink').' (NVDA-FR)'; ?></a><br />
+					<a role="menuitem" class="hlink" href="https://www.nvda-fr.org/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr0,'loginbox_adminlink').' (NVDA-FR)'; ?></a><br>
 				<?php } ?>
-				<a role="menuitem" class="hlink" href="/alist.php"><?php echo tr($tr0,'loginbox_alistlink'); ?></a><br />
+				<a role="menuitem" class="hlink" href="/alist.php"><?php echo tr($tr0,'loginbox_alistlink'); ?></a><br>
 				<?php } ?>
-				<a role="menuitem" class="hlink" href="/home.php"><?php echo tr($tr0,'loginbox_profilelink'); ?></a><br />
-				<?php 	echo '<a role="menuitem" href="/home.php#notifs">'.($n_notifs>0? '<strong>'.tr($tr0,'loginbox_notifs_'.($n_notifs>1?'pl':'sg'), array('n'=>$n_notifs)).'</strong>':tr($tr0,'loginbox_notifs')).'</a><br />'; ?>
+				<a role="menuitem" class="hlink" href="/home.php"><?php echo tr($tr0,'loginbox_profilelink'); ?></a><br>
+				<?php 	echo '<a role="menuitem" href="/home.php#notifs">'.($n_notifs>0? '<strong>'.tr($tr0,'loginbox_notifs_'.($n_notifs>1?'pl':'sg'), array('n'=>$n_notifs)).'</strong>':tr($tr0,'loginbox_notifs')).'</a><br>'; ?>
 				<a role="menuitem" class="hlink" href="/logout.php?token=<?php echo $login['token']; ?>"><?php echo tr($tr0,'loginbox_logoutlink').' ('; if($login['rank'] == 'a') {echo $nom.')'; } else { echo $login['username'].')'; } ?></a>
 			</div>
 		</details>
@@ -57,10 +57,10 @@ $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 	<button type="button" id="loginbox_form_popup" onclick="rdisp('loginbox_form','loginbox_form_popup')" aria-haspopup="true" aria-expanded="false"><?php echo tr($tr0,'loginbox_memberarea'); ?></button>
 	<form id="loginbox_form" action="/login.php?a=form" method="post" aria-label="<?php echo tr($tr0,'loginbox_loginlabel'); ?>" style="display: none;">
 		<label for="login_username" style="position:absolute; top:-999px; left:-9999px;"><?php echo tr($tr0,'loginbox_username'); ?></label>
-		<input type="text" id="login_username" name="username" placeholder="<?php echo tr($tr0,'loginbox_username'); ?>" maxlength="32" aria-label="<?php echo tr($tr0,'loginbox_username'); ?>" /><br />
+		<input type="text" id="login_username" name="username" placeholder="<?php echo tr($tr0,'loginbox_username'); ?>" maxlength="32" aria-label="<?php echo tr($tr0,'loginbox_username'); ?>"><br>
 		<label for="login_psw" style="position:absolute; top:-999px; left:-9999px;"><?php echo tr($tr0,'loginbox_password'); ?></label>
-		<input type="password" id="login_psw" name="psw" placeholder="<?php echo tr($tr0,'loginbox_password'); ?>" maxlength="64" aria-label="<?php echo tr($tr0,'loginbox_password'); ?>" /><br />
-		<input type="submit" id="login_submit" value="<?php echo tr($tr0,'loginbox_loginlabel'); ?>" />
+		<input type="password" id="login_psw" name="psw" placeholder="<?php echo tr($tr0,'loginbox_password'); ?>" maxlength="64" aria-label="<?php echo tr($tr0,'loginbox_password'); ?>"><br>
+		<input type="submit" id="login_submit" value="<?php echo tr($tr0,'loginbox_loginlabel'); ?>">
 		<a id="login_mdp" class="hlink" href="/mdp_demande.php"><?php echo tr($tr0,'loginbox_forgotpsw'); ?></a>
 		<a id="login_signup" class="hlink" href="/signup.php"><?php echo tr($tr0,'loginbox_signup'); ?></a>
 	</form>
@@ -71,10 +71,10 @@ $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 		<summary><?php echo tr($tr0,'loginbox_memberarea'); ?></summary>
 		<form id="loginbox_form2" action="/login.php?a=form" method="post" aria-label="<?php echo tr($tr0,'loginbox_loginlabel'); ?>" style="display: block;">
 			<label for="login_username2" style="position:absolute; top:-999px; left:-9999px;"><?php echo tr($tr0,'loginbox_username'); ?></label>
-			<input type="text" id="login_username2" name="username" placeholder="<?php echo tr($tr0,'loginbox_username'); ?>" maxlength="32" aria-label="<?php echo tr($tr0,'loginbox_username'); ?>" /><br />
+			<input type="text" id="login_username2" name="username" placeholder="<?php echo tr($tr0,'loginbox_username'); ?>" maxlength="32" aria-label="<?php echo tr($tr0,'loginbox_username'); ?>"><br>
 			<label for="login_psw2" style="position:absolute; top:-999px; left:-9999px;"><?php echo tr($tr0,'loginbox_password'); ?></label>
-			<input type="password" id="login_psw2" name="psw" placeholder="<?php echo tr($tr0,'loginbox_password'); ?>" maxlength="64" aria-label="<?php echo tr($tr0,'loginbox_password'); ?>" /><br />
-			<input type="submit" id="login_submit2" value="<?php echo tr($tr0,'loginbox_loginlabel'); ?>" />
+			<input type="password" id="login_psw2" name="psw" placeholder="<?php echo tr($tr0,'loginbox_password'); ?>" maxlength="64" aria-label="<?php echo tr($tr0,'loginbox_password'); ?>"><br>
+			<input type="submit" id="login_submit2" value="<?php echo tr($tr0,'loginbox_loginlabel'); ?>">
 			<a id="login_mdp2" class="hlink" href="/mdp_demande.php"><?php echo tr($tr0,'loginbox_forgotpsw'); ?></a>
 			<a id="login_signup2" class="hlink" href="/signup.php"><?php echo tr($tr0,'loginbox_signup'); ?></a>
 		</form>

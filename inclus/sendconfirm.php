@@ -15,12 +15,12 @@ function send_confirm($account, $email, $mhash, $username) {
 	$message = '<!DOCTYPE html>
 	<html>
 		<head>
-			<meta charset="utf-8" />
+			<meta charset="utf-8">
 			<title>'.tr($tr1,'title').'</title>
 		</head>
 		<body>
 			<div id="header">
-	<img src="https://www.progaccess.net/image/logo128-170.png" alt="'.tr($tr1,'logo').'" />
+	<img src="https://www.progaccess.net/image/logo128-170.png" alt="'.tr($tr1,'logo').'">
 				<h1>'.tr($tr1,'title2').'</h1>
 			</div>
 			<div id="content">

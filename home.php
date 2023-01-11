@@ -1,9 +1,9 @@
 <?php
 $logonly = true;
-include_once 'inclus/log.php';
+require_once('inclus/log.php');
 $stats_page='home';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once 'inclus/consts.php';
+require_once('inclus/consts.php');
 $tr = load_tr($lang, 'home');
 $cheminaudio='/audio/sons_des_pages/membre.mp3';
 $titre = tr($tr,'title');
@@ -11,7 +11,7 @@ $titre = tr($tr,'title');
 $log = '';
 if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POST['token']) and $_POST['token'] == $login['token'])) {
 	if(isset($_GET['sendmail'])) {
-		include('inclus/sendconfirm.php');
+		require_once('inclus/sendconfirm.php');
 		send_confirm($login['id'], $login['email'], $settings['mhash'], $login['username']);
 	}
 	if(isset($_GET['settings']) and isset($_POST['username']) and isset($_POST['mail'])) {
@@ -46,7 +46,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$req = $bdd->prepare('UPDATE `accounts` SET `username`=?, `email`=?, `confirmed`=0, `settings`=?, `subscribed_comments`=? WHERE `id`=? LIMIT 1');
 				$req->execute(array($username, $_POST['mail'], json_encode($settings), $comments_sub, $login['id']));
 				header('Location: /home.php?settings_ok&mail_sent');
-				include('inclus/sendconfirm.php');
+				require_once('inclus/sendconfirm.php');
 				send_confirm($login['id'], $_POST['mail'], $settings['mhash'], $username);
 			}
 			else {
@@ -113,7 +113,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 		$req->execute(array(time()-1, $login['id'], $_GET['rm_ses'], time()));
 	}
 }
-include_once('inclus/user_rank.php');
+require_once('inclus/user_rank.php');
 if(isset($_GET['settings_ok']))
 	$log .= '<li>'.tr($tr,'log_settings_ok').'</li>';
 if(isset($_GET['psw_ok']))
@@ -121,23 +121,17 @@ if(isset($_GET['psw_ok']))
 if(isset($_GET['mail_sent']))
 	$log .= '<li>'.tr($tr,'log_mail_sent').'</li>';
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-<?php include 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<div id="hautpage" role="banner">
-<h1><a href="/" title="Retour à l'accueil"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/loginbox.php';
-include 'inclus/searchtool.php'; ?>
-</div>
-<?php include('inclus/son.php');
-include('inclus/menu.php'); ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+<main id="container">
 	<h1 id="contenu"><?php print $titre; ?></h1>
 <?php if(!empty($log)) echo '<ul class="log">'.$log.'</ul>';
 if($login['confirmed'] == 0)
-	echo '<p>'.tr($tr,'confirm_mail').'<br /><a href="/home.php?sendmail&mail_sent&token='.$login['token'].'">'.tr($tr,'send_mail').'</a></p>';
+	echo '<p>'.tr($tr,'confirm_mail').'<br><a href="/home.php?sendmail&mail_sent&token='.$login['token'].'">'.tr($tr,'send_mail').'</a></p>';
 ?>
 <ul>
 	<li><?php echo tr($tr,'profile_rank', array('rank'=>urank($login['rank']))); ?></li>
@@ -196,39 +190,39 @@ while($data = $req->fetch()) {
 	
 	<h3 id="settings"><?php echo tr($tr,'settings'); ?></h3>
 	<form action="?settings" method="post">
-		<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
+		<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
 		<fieldset><legend><?php echo tr($tr,'settings_account'); ?></legend>
 			<table>
 				<tr><td class="formlabel"><label for="f1_username"><?php echo tr($tr,'settings_name'); ?></label></td>
-					<td><input type="text" id="f1_username" name="username" value="<?php echo htmlentities($login['username']); ?>" maxlength="32" required /></td></tr>
+					<td><input type="text" id="f1_username" name="username" value="<?php echo htmlentities($login['username']); ?>" maxlength="32" required></td></tr>
 				<tr><td class="formlabel"><label for="f1_mail"><?php echo tr($tr,'settings_mail'); ?></label></td>
-					<td><input type="email" id="f1_mail" name="mail" value="<?php echo htmlentities($login['email']); ?>" maxlength="255" required /></td></tr>
+					<td><input type="email" id="f1_mail" name="mail" value="<?php echo htmlentities($login['email']); ?>" maxlength="255" required></td></tr>
 				<?php /*<tr><td class="formlabel"><label for="f1_notifcom"><?php echo tr($tr,'settings_notifcom'); ?></label></td>
-					<td><input type="checkbox" id="f1_notifcom" name="notifcom" autocomplete="off"<?php if(isset($settings['notifcom']) and $settings['notifcom']==1)echo ' checked'; ?> /></td></tr>*/ ?>
+					<td><input type="checkbox" id="f1_notifcom" name="notifcom" autocomplete="off"<?php if(isset($settings['notifcom']) and $settings['notifcom']==1)echo ' checked'; ?>></td></tr>*/ ?>
 				<tr><td class="formlabel"><?php echo tr($tr,'settings_birthday'); ?></td>
-					<td><label for="f1_bd_m"><?php echo tr($tr,'settings_birthday_month'); ?></label> <input type="number" id="f1_bd_m" name="bd_m" value="<?php echo isset($settings['bd_m'])? $settings['bd_m']:'0'; ?>" min="0" max="12" size="4" />
-						<label for="f1_bd_d"><?php echo tr($tr,'settings_birthday_day'); ?></label> <input type="number" id="f1_bd_d" name="bd_d" value="<?php echo isset($settings['bd_d'])? $settings['bd_d']:'0'; ?>" min="0" max="31" size="4" /></td></tr>
+					<td><label for="f1_bd_m"><?php echo tr($tr,'settings_birthday_month'); ?></label> <input type="number" id="f1_bd_m" name="bd_m" value="<?php echo isset($settings['bd_m'])? $settings['bd_m']:'0'; ?>" min="0" max="12" size="4">
+						<label for="f1_bd_d"><?php echo tr($tr,'settings_birthday_day'); ?></label> <input type="number" id="f1_bd_d" name="bd_d" value="<?php echo isset($settings['bd_d'])? $settings['bd_d']:'0'; ?>" min="0" max="31" size="4"></td></tr>
 				<tr><td class="formlabel"><label for="f1_comments_sub"><?php echo tr($tr,'settings_comments_sub'); ?></label></td>
-					<td><input type="checkbox" id="f1_comments_sub" name="comments_sub"<?php echo $login['subscribed_comments']? ' checked':''; ?> /></td></tr>
+					<td><input type="checkbox" id="f1_comments_sub" name="comments_sub"<?php echo $login['subscribed_comments']? ' checked':''; ?>></td></tr>
 				<!-- <tr><td class="formlabel"><label for="f1_notif_mail"><?php echo tr($tr,'settings_notif_mail'); ?></label></td>
-					<td><input type="checkbox" id="f1_notif_mail" name="notif_mail"<?php echo $settings['notif_mail']? ' checked':''; ?> /></td></tr>-->
+					<td><input type="checkbox" id="f1_notif_mail" name="notif_mail"<?php echo $settings['notif_mail']? ' checked':''; ?>></td></tr>-->
 				<tr><td></td>
-					<td><input type="submit" value="<?php echo tr($tr,'settings_submit'); ?>" /></td></tr>
+					<td><input type="submit" value="<?php echo tr($tr,'settings_submit'); ?>"></td></tr>
 			</table>
 		</fieldset>
 	</form>
 	<form action="?chpsw" method="post">
-		<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
+		<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
 		<fieldset><legend><?php echo tr($tr,'chpsw'); ?></legend>
 			<table>
 				<tr><td class="formlabel"><label for="f2_oldpsw"><?php echo tr($tr,'chpsw_old'); ?></label></td>
-					<td><input type="password" id="f2_oldpsw" name="oldpsw" maxlength="64" required /></td></tr>
+					<td><input type="password" id="f2_oldpsw" name="oldpsw" maxlength="64" required></td></tr>
 				<tr><td class="formlabel"><label for="f2_newpsw"><?php echo tr($tr,'chpsw_new'); ?></label></td>
-					<td><input type="password" id="f2_newpsw" name="newpsw" maxlength="64" required /></td></tr>
+					<td><input type="password" id="f2_newpsw" name="newpsw" maxlength="64" required></td></tr>
 				<tr><td class="formlabel"><label for="f2_newrpsw"><?php echo tr($tr,'chpsw_new_re'); ?></label></td>
-					<td><input type="password" id="f2_newrpsw" name="newrpsw" maxlength="64" required /></td></tr>
+					<td><input type="password" id="f2_newrpsw" name="newrpsw" maxlength="64" required></td></tr>
 				<tr><td></td>
-					<td><input type="submit" value="<?php echo tr($tr,'chpsw_submit'); ?>" /></td></tr>
+					<td><input type="submit" value="<?php echo tr($tr,'chpsw_submit'); ?>"></td></tr>
 			</table>
 		</fieldset>
 	</form>
@@ -240,14 +234,14 @@ if(isset($login['forum_id']) and $login['forum_id'] !== NULL) {
 		$forum_username = $data['forum_username'];
 ?>
 	<form action="?chforum" method="post">
-		<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
+		<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
 		<fieldset><legend><?php echo tr($tr,'chforum'); ?></legend>
 			<p><?php echo tr($tr,'chforum_username_info'); ?></p>
 			<table>
 				<tr><td class="formlabel"><label for="f4_username"><?php echo tr($tr,'chforum_username'); ?></label></td>
-					<td><input type="text" id="f4_username" name="username" maxlength="64" value="<?php echo $forum_username; ?>" autocomplete="off" required /></td></tr>
+					<td><input type="text" id="f4_username" name="username" maxlength="64" value="<?php echo $forum_username; ?>" autocomplete="off" required></td></tr>
 				<tr><td></td>
-					<td><input type="submit" value="<?php echo tr($tr,'chforum_submit'); ?>" /></td></tr>
+					<td><input type="submit" value="<?php echo tr($tr,'chforum_submit'); ?>"></td></tr>
 			</table>
 		</fieldset>
 	</form>
@@ -264,21 +258,21 @@ if(isset($login['forum_id']) and $login['forum_id'] !== NULL) {
 }
 ?>
 	<form action="?rm" method="post">
-		<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
+		<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
 		<fieldset><legend><?php echo tr($tr,'remove_account'); ?></legend>
 			<table>
 				<tr><td colspan="2"><?php echo tr($tr,'remove_account_warn'); ?></td></tr>
 				<tr><td class="formlabel"><label for="f3_msg"><?php echo tr($tr,'remove_account_msg'); ?></label></td>
 					<td><textarea id="f3_msg" style="width:100%;" name="msgrm" maxlength="8192"><?php if(isset($_POST['msgrm']) and strlen($_POST['msgrm'])<=8192)echo htmlentities($_POST['msgrm']); ?></textarea></td></tr>
 				<tr><td class="formlabel"><label for="f3_psw"><?php echo tr($tr,'remove_account_psw'); ?></label></td>
-					<td><input type="password" id="f3_psw" name="psw" maxlength="64" required /></td></tr>
+					<td><input type="password" id="f3_psw" name="psw" maxlength="64" required></td></tr>
 				<tr><td></td>
-					<td><input type="submit" value="<?php echo tr($tr,'remove_account_submit'); ?>" /></td></tr>
+					<td><input type="submit" value="<?php echo tr($tr,'remove_account_submit'); ?>"></td></tr>
 			</table>
 		</fieldset>
 	</form>
-</div>
-<?php include 'inclus/footer.php'; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 
 <script type="text/javascript" src="/scripts/jquery.js"></script>
 <script type="text/javascript" src="/scripts/pa_api.js"></script>

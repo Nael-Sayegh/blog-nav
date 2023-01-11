@@ -37,7 +37,7 @@ if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['status']) an
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Gestion de l'équipe de <?php print $nomdusite; ?></title>
 		<?php print $cssadmin; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
@@ -63,9 +63,9 @@ if(isset($_GET['mod'])) {
 	if($data = $req->fetch()) { ?>
 		<h3 id="mod">Modifier</h3>
 		<form action="?mod2=<?php echo $data['id']; ?>" method="post">
-			<label for="f2_name">Nom&nbsp;:</label><input type="text" name="name" id="f2_name" maxlength="255" value="<?php echo $data['name']; ?>" required /><br />
-			<label for="f2_text">Statut(s)&nbsp;:</label><input type="text" name="status" id="f2_text" maxlength="255" value="<?php echo htmlentities($data['status']); ?>" required /><br />
-			<label for="f2_age">Date de naissance (dd/mm/aaaa)&nbsp;:</label><input type="text" name="age" id="f2_age" value="<?php echo date('d/m/Y', $data['age']); ?>" maxlength="10" required /><br />
+			<label for="f2_name">Nom&nbsp;:</label><input type="text" name="name" id="f2_name" maxlength="255" value="<?php echo $data['name']; ?>" required><br>
+			<label for="f2_text">Statut(s)&nbsp;:</label><input type="text" name="status" id="f2_text" maxlength="255" value="<?php echo htmlentities($data['status']); ?>" required><br>
+			<label for="f2_age">Date de naissance (dd/mm/aaaa)&nbsp;:</label><input type="text" name="age" id="f2_age" value="<?php echo date('d/m/Y', $data['age']); ?>" maxlength="10" required><br>
 			<label for="f2_account">Compte membre&nbsp;:</label>
 			<select id="f2_account" name="account_id" autocompletion="off">
 				<option value="">Aucun</option>
@@ -76,19 +76,19 @@ if(isset($_GET['mod'])) {
 			echo '<option value="'.$data2['id'].'"'.(($data2['id'] == $data['account_id']) ? ' selected':'').'>M'.$data2['id'].' '.htmlentities($data2['username']).'</option>';
 		}
 ?>
-			</select><br />
+			</select><br>
 			<label for="f2_short">Nom court&nbsp;:</label>
-			<input type="text" name="short_name" id="f2_short" value="<?php echo $data['short_name']; ?>" maxlength="255" required /><br />
+			<input type="text" name="short_name" id="f2_short" value="<?php echo $data['short_name']; ?>" maxlength="255" required><br>
 			<label for="f2_bio">Courte bio&nbsp;:</label>
-			<textarea id="f2_bio" name="bio" style="width:100%;height:10em;"><?php echo htmlentities($data['bio']); ?></textarea><br />
+			<textarea id="f2_bio" name="bio" style="width:100%;height:10em;"><?php echo htmlentities($data['bio']); ?></textarea><br>
 <label for="f2_works">Travaille pour&nbsp;:</label>
 <select id="f2_works" name="works">
 <option value="0" <?php if($data['works'] == '0') { echo 'selected'; } ?>>NVDA-FR</option>
 <option value="1" <?php if($data['works'] == '1') { echo 'selected'; } ?>><?php print $nomdusite; ?></option>
 <option value="2" <?php if($data['works'] == '2') { echo 'selected'; } ?>>NVDA-FR et <?php print $nomdusite; ?></option>
-</select><br />
-			<label for="f2_twitter">Pseudo Twitter (sans le @)&nbsp;:</label><input type="text" name="twitter" id="f2_twitter" maxlength="255" value="<?php echo $data['twitter']; ?>" /><br />
-			<input type="submit" value="Modifier" />
+</select><br>
+			<label for="f2_twitter">Pseudo Twitter (sans le @)&nbsp;:</label><input type="text" name="twitter" id="f2_twitter" maxlength="255" value="<?php echo $data['twitter']; ?>"><br>
+			<input type="submit" value="Modifier">
 		</form>
 <?php
 	}
@@ -97,9 +97,9 @@ if(isset($_GET['mod'])) {
 		
 		<h2>Ajouter</h2>
 		<form action="?add" method="post">
-			<label for="f_name">Nom&nbsp;:</label><input type="text" name="name" id="f_name" maxlength="255" required /><br />
-			<label for="f_text">Statut(s)&nbsp;:</label><input type="text" name="status" id="f_text" maxlength="255" required /><br />
-			<label for="f_age">Date de naissance (dd/mm/aaaa)&nbsp;:</label><input type="text" name="age" id="f_age" maxlength="10" required /><br />
+			<label for="f_name">Nom&nbsp;:</label><input type="text" name="name" id="f_name" maxlength="255" required><br>
+			<label for="f_text">Statut(s)&nbsp;:</label><input type="text" name="status" id="f_text" maxlength="255" required><br>
+			<label for="f_age">Date de naissance (dd/mm/aaaa)&nbsp;:</label><input type="text" name="age" id="f_age" maxlength="10" required><br>
 			<label for="f_account">Compte membre&nbsp;:</label>
 			<select id="f_account" name="account_id">
 				<option value="">Aucun</option>
@@ -110,19 +110,19 @@ while($data = $req->fetch()) {
 	echo '<option value="'.$data['id'].'">M'.$data['id'].' '.htmlentities($data['username']).'</option>';
 }
 ?>
-			</select><br />
+			</select><br>
 			<label for="f_short">Nom court&nbsp;:</label>
-			<input type="text" name="short_name" id="f_short" maxlength="255" required /><br />
+			<input type="text" name="short_name" id="f_short" maxlength="255" required><br>
 			<label for="f_bio">Courte bio&nbsp;:</label>
-			<textarea id="f_bio" name="bio" style="width:100%;height:10em;"></textarea><br />
+			<textarea id="f_bio" name="bio" style="width:100%;height:10em;"></textarea><br>
 <label for="f_works">Travaille pour&nbsp;:</label>
 <select id="f_works" name="works">
 <option value="0">NVDA-FR</option>
 <option value="1"><?php print $nomdusite; ?></option>
 <option value="2">NVDA-FR et <?php print $nomdusite; ?></option>
-</select><br />
-			<label for="f_twitter">Pseudo Twitter (sans le @)&nbsp;:</label><input type="text" name="twitter" id="f_twitter" maxlength="255" /><br />
-			<input type="submit" value="Ajouter" />
+</select><br>
+			<label for="f_twitter">Pseudo Twitter (sans le @)&nbsp;:</label><input type="text" name="twitter" id="f_twitter" maxlength="255"><br>
+			<input type="submit" value="Ajouter">
 		</form>
 	</body>
 </html>

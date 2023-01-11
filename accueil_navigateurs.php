@@ -1,6 +1,6 @@
 <?php
-require 'inclus/log.php';
-require_once 'inclus/consts.php';
+require_once('inclus/log.php');
+require_once('inclus/consts.php');
 $tr = load_tr($lang, 'accueil_navigateurs');
 $titre = tr($tr,'title');
 $cheminaudio = '/audio/sons_des_pages/accueil.mp3';
@@ -31,19 +31,14 @@ if(isset($_GET['act']) and $_GET['act'] == 'ok')
 	$log = 'ok';
 $stats_page = 'start';
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-<?php require_once 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<h1><a href="/" title="<?php echo tr($tr0,'banner_homelink'); ?>"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/loginbox.php';
-include 'inclus/searchtool.php'; ?>
-</div>
-<?php include 'inclus/menu.php'; ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php'); ?>
+<main id="container">
 <h1 id="contenu"><?php print $titre; ?></h1>
-<p><?php print tr($tr,'text_up'); ?><br /><a href="https://www.progaccess.net/accueil_navigateurs.php">https://www.progaccess.net/accueil_navigateurs.php</a>.</p>
+<p><?php print tr($tr,'text_up'); ?><br><a href="https://www.progaccess.net/accueil_navigateurs.php">https://www.progaccess.net/accueil_navigateurs.php</a>.</p>
 <p><?php print tr($tr,'search_change'); ?></p>
 <ul>
 <li>ddg&nbsp;: Duckduckgo</li>
@@ -75,7 +70,7 @@ $moteur = isset($_COOKIE['moteur']) ? $_COOKIE['moteur'] : 'ddg';
 <option value="millionshort" id="mshort" <?php if($moteur == 'millionshort') echo 'selected'; ?>>Million Short</option>
 </select>
 <p><?php print tr($tr,'text_down'); ?></p>
-<input type="submit" value="<?php print tr($tr,'buton_confirm'); ?>" />
+<input type="submit" value="<?php print tr($tr,'buton_confirm'); ?>">
 </form>
 <div id="wrap">
 <div id="form" role="search">
@@ -83,66 +78,66 @@ $moteur = isset($_COOKIE['moteur']) ? $_COOKIE['moteur'] : 'ddg';
 if($moteur == 'ddg')
 echo '<form action="https://duckduckgo.com" method="get">
 <label for="searchinput">'.tr($tr,'text_search').' Duckduckgo</label>
-<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus /><br />
-<input type="submit" value="'.tr($tr,'buton_search').'" /><br />
+<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus><br>
+<input type="submit" value="'.tr($tr,'buton_search').'"><br>
 </form>';
 else if($moteur == 'ecos')
 echo '<form action="https://www.ecosia.org/search" method="get">
 <label for="searchinput">'.tr($tr,'text_search').' Écosia</label>
-<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus /><br />
-<input type="submit" value="'.tr($tr,'buton_search').'" /><br />
+<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus><br>
+<input type="submit" value="'.tr($tr,'buton_search').'"><br>
 </form>';
 else if($moteur == 'bing')
 echo '<form action="https://www.bing.com/search" method="get">
 <label for="searchinput">'.tr($tr,'text_search').' Microsoft Bing</label>
-<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus /><br />
-<input type="submit" value="'.tr($tr,'buton_search').'" /><br />
+<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus><br>
+<input type="submit" value="'.tr($tr,'buton_search').'"><br>
 </form>';
 else if($moteur == 'qwant')
 echo '<form action="https://www.qwant.com" method="get">
 <label for="searchinput">'.tr($tr,'text_search').' Qwant</label>
-<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus /><br />
-<input type="submit" value="'.tr($tr,'buton_search').'" /><br />
+<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus><br>
+<input type="submit" value="'.tr($tr,'buton_search').'"><br>
 </form>';
 else if($moteur == 'ixquick')
 echo '<form action="https://www.ixquick.com/do/search" method="get">
 <label for="searchinput">'.tr($tr,'text_search').' Ixquick</label>
-<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus /><br />
-<input type="submit" value="'.tr($tr,'buton_search').'" /><br />
+<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus><br>
+<input type="submit" value="'.tr($tr,'buton_search').'"><br>
 </form>';
 else if($moteur == 'goog')
 echo '<form action="https://www.google.fr/search" method="get">
 <label for="searchinput">'.tr($tr,'text_search').' Google</label>
-<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus /><br />
-<input type="submit" value="'.tr($tr,'buton_search').'" /><br />
+<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus><br>
+<input type="submit" value="'.tr($tr,'buton_search').'"><br>
 </form>';
 else if($moteur == 'ask')
 echo '<form action="https://fr.ask.com/web" method="get">
 <label for="searchinput">'.tr($tr,'text_search').' Ask</label>
-<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus /><br />
-<input type="submit" value="'.tr($tr,'buton_search').'" /><br />
+<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus><br>
+<input type="submit" value="'.tr($tr,'buton_search').'"><br>
 </form>';
 else if($moteur == 'yahoo')
 echo '<form action="https://fr.search.yahoo.com/search" method="get">
 <label for="searchinput">'.tr($tr,'text_search').' Yahoo Search</label>
-<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus /><br />
-<input type="submit" value="'.tr($tr,'buton_search').'" /><br />
+<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus><br>
+<input type="submit" value="'.tr($tr,'buton_search').'"><br>
 </form>';
 else if($moteur == 'aol')
 echo '<form action="https://recherche.aol.fr/aol/search" method="get">
 <label for="searchinput">'.tr($tr,'text_search').' AOL Search</label>
-<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus /><br />
-<input type="submit" value="'.tr($tr,'buton_search').'" /><br />
+<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus><br>
+<input type="submit" value="'.tr($tr,'buton_search').'"><br>
 </form>';
 else if($moteur == 'millionshort')
 echo '<form action="https://millionshort.com/search" method="get">
 <label for="searchinput">'.tr($tr,'text_search').' Million Short</label>
-<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus /><br />
-<input type="submit" value="'.tr($tr,'buton_search').'" /><br />
+<input type="search" name="q" id="searchinput" style="width: 255px\;" maxlength="255" autofocus><br>
+<input type="submit" value="'.tr($tr,'buton_search').'"><br>
 </form>'; ?>
 </div>
 </div>
-</div>
-<?php include 'inclus/footer.php'; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 </body>
 </html>

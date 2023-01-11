@@ -23,11 +23,11 @@ include 'inclus/menu.php'; ?>
 $i =rand(1,2);
 if($i == 1)
 {
-echo 'C\'est pile <br />';
+echo 'C\'est pile <br>';
 }
 else
 {
-echo 'C\'est face <br />';
+echo 'C\'est face <br>';
 }
 ?>
 <a href="/gadgets.php">Retour à la liste des gadgets.</a>

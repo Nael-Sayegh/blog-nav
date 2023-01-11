@@ -27,7 +27,7 @@ elseif(isset($_GET['mm1'])) {
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Maintenance - Administration - <?php print $nomdusite; ?></title>
 		<?php print $cssadmin; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
@@ -42,7 +42,7 @@ else
 	echo '<p>Mode maintenance désactivé</p><a href="?mm1">Activer le mode maintenance</a>';
 ?>
 		<h2>Statistiques du code</h2>
-		<p><?php echo $codestat_n_files.' fichiers, '.$codestat_n_lines.' lignes, '.$codestat_n_chars; ?> octets.<br />
+		<p><?php echo $codestat_n_files.' fichiers, '.$codestat_n_lines.' lignes, '.$codestat_n_chars; ?> octets.<br>
 Une valeur -1 est une erreur (essayer de refaire le cache).</p>
 		<a href="?codestat">Recalculer les valeurs</a>
 	</body>

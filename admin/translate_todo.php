@@ -8,16 +8,16 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Traductions &#8211; <?php print $nomdusite; ?></title>
 		<?php print $cssadmin; ?>
-		<link rel="stylesheet" href="css/translate.css" />
+		<link rel="stylesheet" href="css/translate.css">
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
 		<h1>Traduction&nbsp;: à faire &#8211; <a href="/"><?php print $nomdusite; ?></a></h1>
 		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
-		<!--<a href="#trs-files">Traductions du site</a><br />-->
+		<!--<a href="#trs-files">Traductions du site</a><br>-->
 		<h2 id="tr-articles">Articles</h2>
 		<form action="translate_todo.php#tr-articles" method="get">
 			<fieldset>
@@ -26,7 +26,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
 				<select id="f_sort_article_lang" name="article_lang" autocomplete="off">
 					<option value="">Tout</option>
 					<?php echo isset($_GET['article_lang']) ? langs_html_opts($_GET['article_lang']) : $langs_html_opts; ?>
-				</select><br />
+				</select><br>
 				<label for="f_sort_article_todo">État</label>
 				<select id="f_sort_article_todo" name="article_todo" autocomplete="off">
 					<option value="">Tout</option>
@@ -36,8 +36,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
 						echo '<option value="'.$key.'"'.($foo_todo===$key ? ' selected':'').'>'.$val.'</option>';
 					}
 					?>
-				</select><br />
-				<input type="submit" value="Trier" />
+				</select><br>
+				<input type="submit" value="Trier">
 			</fieldset>
 		</form>
 		<table border="1">
@@ -87,7 +87,7 @@ ORDER BY `todo_level` DESC');
 				<select id="f_sort_tr_lang" name="tr_lang" autocomplete="off">
 					<option value="">Tout</option>
 					<?php echo isset($_GET['tr_lang']) ? langs_html_opts($_GET['tr_lang']) : $langs_html_opts; ?>
-				</select><br />
+				</select><br>
 				<label for="f_sort_tr_todo">État</label>
 				<select id="f_sort_tr_todo" name="tr_todo" autocomplete="off">
 					<option value="">Tout</option>
@@ -97,8 +97,8 @@ ORDER BY `todo_level` DESC');
 						echo '<option value="'.$key.'"'.($foo_todo===$key ? ' selected':'').'>'.$val.'</option>';
 					}
 					?>
-				</select><br />
-				<input type="submit" value="Trier" />
+				</select><br>
+				<input type="submit" value="Trier">
 			</fieldset>
 		</form>
 		<table border="1">

@@ -2,16 +2,16 @@
 $nolog = true;
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 $stats_page = 'mdpforget';
-include_once 'inclus/log.php';
-require_once 'inclus/consts.php';
+require_once('inclus/log.php');
+require_once('inclus/consts.php');
 $titre='Mot de passe oublié';
 $cheminaudio='/audio/sons_des_pages/membre.mp3';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once 'inclus/lib/PHPMailer/src/PHPMailer.php';
-require_once 'inclus/lib/PHPMailer/src/Exception.php';
-require_once 'inclus/lib/PHPMailer/src/SMTP.php';
+require_once('inclus/lib/PHPMailer/src/PHPMailer.php');
+require_once('inclus/lib/PHPMailer/src/Exception.php');
+require_once('inclus/lib/PHPMailer/src/SMTP.php');
 if(isset($_GET['act']) && $_GET['act'] == 'form' && isset($_POST['username']) and isset($_POST['email']) and isset($_POST['nummember']) and isset($_POST['signup']))
 {
 	$req=$bdd->prepare('SELECT * FROM `accounts` WHERE `id`=? LIMIT 1');
@@ -30,17 +30,17 @@ if(isset($_GET['act']) && $_GET['act'] == 'form' && isset($_POST['username']) an
 			$msg = '<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8" />
+<meta charset="utf-8">
 <title>Réinitialisation du mot de passe '.$nomdusite.'</title>
 </head>
 <body>
 <h1>'.$nomdusite.' - Réinitialisation de mot de passe</h1>
-<p>Bonjour '.htmlentities($data['username']).'<br />
-vous avez demandé la réinitialisation de votre mot de passe sur '.$nomdusite.', celle-ci a été réalisée avec succès.<br />
-Votre nouveau mot de passe est&nbsp;:<br />
+<p>Bonjour '.htmlentities($data['username']).'<br>
+vous avez demandé la réinitialisation de votre mot de passe sur '.$nomdusite.', celle-ci a été réalisée avec succès.<br>
+Votre nouveau mot de passe est&nbsp;:<br>
 '.$pwd.'
-<br />par mesure de sécurité, nous vous invitons vivement à modifier ce mot de passe dans <a href="https://www.progaccess.net/home.php">votre profil</a>.<br />
-Cordialement.<br />
+<br>par mesure de sécurité, nous vous invitons vivement à modifier ce mot de passe dans <a href="https://www.progaccess.net/home.php">votre profil</a>.<br>
+Cordialement.<br>
 '.$nomdusite.'</p>
 </body>
 </html>';
@@ -69,28 +69,21 @@ $log='Votre mot de passe a été réinitialisé et vous a été envoyé par emai
 	}
 }
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<?php $chemincss .= '<link rel="stylesheet" href="/css/slider.css" />';
-include 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<div id="hautpage" role="banner">
-<h1><a href="/" title="Retour à l'accueil"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/loginbox.php';
-include 'inclus/searchtool.php'; ?>
-</div>
-<?php include 'inclus/son.php';
-include 'inclus/menu.php'; ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+<main id="container">
 <h1 id="contenu"><?php print $titre; ?></h1>
 <?php if(!empty($log)) print $log; ?>
 <p>Remplissez le formulaire ci-dessous pour réinitialiser votre mot de passe <?php print $nomdusite; ?></p>
 <form action="?act=form" method="post" spellcheck="true">
 <fieldset>
 <legend>Informations personnelles :</legend>
-<label for="f_username">Votre nom d'utilisateur&nbsp;:</label><input type="text" name="username" id="f_username" autocomplete="off" maxlength="100" required /><br />
-<label for="f_email">Votre adresse mail&nbsp;:</label><input type="email" name="email" id="f_email" autocomplete="off" maxlength="100" required /><br />
+<label for="f_username">Votre nom d'utilisateur&nbsp;:</label><input type="text" name="username" id="f_username" autocomplete="off" maxlength="100" required><br>
+<label for="f_email">Votre adresse mail&nbsp;:</label><input type="email" name="email" id="f_email" autocomplete="off" maxlength="100" required><br>
 <label for="f_nummember">Votre numéro de membre&nbsp;:</label>
 <select name="nummember" id="f_nummember">
 <?php
@@ -100,7 +93,7 @@ echo '<option value="'.$data['id'].'">M'.$data['id'].'</option>';
 }
 ?>
 <option value="non">Je ne sais pas</option>
-</select><br />
+</select><br>
 <label for="f_signup">Votre date d'inscription&nbsp;:</label>
 <select name="signup" id="f_signup">
 <?php
@@ -110,11 +103,11 @@ echo '<option value="'.$data['signup_date'].'">'.date('d/m/Y à H:i',$data['sign
 }
 ?>
 <option value="non">Je ne sais pas</option>
-</select><br />
-<input type="submit" value="Envoyer" />
+</select><br>
+<input type="submit" value="Envoyer">
 </fieldset>
 </form>
-</div>
-<?php include 'inclus/footer.php'; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 </body>
 </html>

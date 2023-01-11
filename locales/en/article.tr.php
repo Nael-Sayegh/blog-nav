@@ -4,7 +4,7 @@
   '_last_author' => 'Corentin',
   '_last_modif' => 1589314773,
   'comment_sent' => 'The comment has been sent.',
-  'comment_toolong' => 'The pseudo cannot exceed 31 characters.<br />The text cannot exceed 1023 characters.',
+  'comment_toolong' => 'The pseudo cannot exceed 31 characters.<br>The text cannot exceed 1023 characters.',
   'commentmod_toolong' => 'The text cannot exceed 1023 characters.',
   'commentmod_error' => 'Error modifying the comment',
   'categories_link' => 'See here the complete article list',

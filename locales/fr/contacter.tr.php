@@ -3,7 +3,7 @@
   '_todo_level' => 0,
   '_last_author' => 'Corentin',
   '_last_modif' => 1621431902,
-  'err_invalidlink' => 'Le lien que vous avez suivi est invalide. Veuillez réessayer.<br />Si le problème persiste, vous pouvez envoyer un nouveau message en faisant référence à l\'ancien dans le texte.',
+  'err_invalidlink' => 'Le lien que vous avez suivi est invalide. Veuillez réessayer.<br>Si le problème persiste, vous pouvez envoyer un nouveau message en faisant référence à l\'ancien dans le texte.',
   'err_nametoolong' => 'Votre nom ne doit pas dépasser les 255 caractères.',
   'err_namerequired' => 'Veuillez renseigner votre nom ou un pseudonyme de votre choix.',
   'err_emailtoolong' => 'Votre adresse e-mail ne doit pas dépasser les 255 caractères.',

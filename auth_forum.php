@@ -1,8 +1,8 @@
 <?php
 $logonly = true;
-require 'inclus/log.php';
-require_once 'inclus/consts.php';
-require_once 'inclus/flarum.php';
+require_once('inclus/log.php');
+require_once('inclus/consts.php');
+require_once('inclus/flarum.php');
 
 if(isset($_GET['token']) and $_GET['token'] == $login['token']) {
 	if(isset($login['forum_id']) and $login['forum_id']) {

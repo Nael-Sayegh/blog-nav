@@ -14,7 +14,7 @@ function trsfiles_add_tr(model) {
 		html += '1';
 	html += '">\
 		<input type="checkbox" id="tr_trsfiles_edit_e0_'+key+'" name="tr0_'+key+'" aria-label="Activer" checked autocomplete="off"/>\
-		<label for="tr_trsfiles_edit_e_'+key+'"><em>'+key+'</em></label><br />\
+		<label for="tr_trsfiles_edit_e_'+key+'"><em>'+key+'</em></label><br>\
 		<textarea id="tr_trsfiles_edit_e_'+key+'" name="tr_'+key+'" autocomplete="off"></textarea></td>\
 	</tr>';
 	$("#tr_trsfiles_edit_t").append(html);

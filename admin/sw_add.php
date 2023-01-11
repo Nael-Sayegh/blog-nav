@@ -103,7 +103,7 @@ if(isset($_GET['form']) and isset($_POST['sname']) and isset($_POST['category'])
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Ajout d'un logiciel sur <?php print $nomdusite; ?></title>
 		<?php print $cssadmin; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
@@ -116,30 +116,30 @@ if(!empty($log)) echo '<ul>'.$log.'</ul>';
 		<form action="?form" method="post">
 			<fieldset><legend>Structure</legend>
 				<label for="f_sname">Nom (en interne)&nbsp;:</label>
-				<input type="text" name="sname" id="f_sname"<?php if(isset($sname))echo ' value="'.htmlentities($sname).'"'; ?> maxlength="255" required /><br />
+				<input type="text" name="sname" id="f_sname"<?php if(isset($sname))echo ' value="'.htmlentities($sname).'"'; ?> maxlength="255" required><br>
 				<label for="f_category">Catégorie&nbsp;:</label>
 				<select name="category" id="f_category"><?php foreach($categories as $cid => $cname) {echo '<option value="'.$cid.'"'.((isset($category) and $category==$cid) ? ' selected':'').'>'.$cname.'</option>';} ?></select>
 			</fieldset>
 			<fieldset><legend>Données de référence</legend>
 				<label for="f_lang">Langue&nbsp;:</label>
-				<select id="f_lang" name="lang" autocomplete="off"><option value=""<?php if(isset($f_lang) and $f_lang=='')echo ' selected'; ?>>Ne pas créer de traduction initiale</option><?php echo langs_html_opts(isset($f_lang)?$f_lang:$lang); ?></select><br />
+				<select id="f_lang" name="lang" autocomplete="off"><option value=""<?php if(isset($f_lang) and $f_lang=='')echo ' selected'; ?>>Ne pas créer de traduction initiale</option><?php echo langs_html_opts(isset($f_lang)?$f_lang:$lang); ?></select><br>
 				<label for="f_name">Nom&nbsp;:</label>
-				<input type="text" name="name" id="f_name"<?php if(isset($name))echo ' value="'.htmlentities($name).'"'; ?> maxlength="255" /><br />
+				<input type="text" name="name" id="f_name"<?php if(isset($name))echo ' value="'.htmlentities($name).'"'; ?> maxlength="255"><br>
 				<label for="f_keywords">Mots clés&nbsp;:</label>
-				<input type="text" name="keywords" id="f_keywords"<?php if(isset($keywords))echo ' value="'.htmlentities($keywords).'"'; ?> maxlength="511" /><br />
+				<input type="text" name="keywords" id="f_keywords"<?php if(isset($keywords))echo ' value="'.htmlentities($keywords).'"'; ?> maxlength="511"><br>
 				<label for="f_description">Description courte&nbsp;:</label>
-				<input type="text" name="description" id="f_description"<?php if(isset($description))echo ' value="'.htmlentities($description).'"'; ?> maxlength="511" /><br />
+				<input type="text" name="description" id="f_description"<?php if(isset($description))echo ' value="'.htmlentities($description).'"'; ?> maxlength="511"><br>
 				<label for="f_website">Adresse du site officiel (facultatif)&nbsp;:</label>
-				<input type="url" name="website" id="f_website"<?php if(isset($website))echo ' value="'.htmlentities($website).'"'; ?> maxlength="255" /><br />
-				<label for="f_text">Texte long (HTML)&nbsp;:</label><br />
-				<textarea name="text" id="f_text" maxlength="20000" style="width:100%;height:10em;" onkeyup="close_confirm=true"><?php if(isset($text))echo htmlentities($text); ?></textarea><br />
+				<input type="url" name="website" id="f_website"<?php if(isset($website))echo ' value="'.htmlentities($website).'"'; ?> maxlength="255"><br>
+				<label for="f_text">Texte long (HTML)&nbsp;:</label><br>
+				<textarea name="text" id="f_text" maxlength="20000" style="width:100%;height:10em;" onkeyup="close_confirm=true"><?php if(isset($text))echo htmlentities($text); ?></textarea><br>
 				<p>Il est possible de modifier ces informations et de rajouter des liens et fichiers ultérieurement.</p>
 				<label for="f_so">Annoncer l'ajout sur les réseaux sociaux&nbsp;:</label>
-				<input type="checkbox" id="f_so" name="social"<?php if((isset($social) and $social) or !isset($social))echo ' checked'; ?> /><br />
+				<input type="checkbox" id="f_so" name="social"<?php if((isset($social) and $social) or !isset($social))echo ' checked'; ?>><br>
 				<label for="f_published">Publier&nbsp;:</label>
-				<input type="checkbox" id="f_published" name="published"<?php if((isset($published) and $published) or !isset($published))echo ' checked'; ?> />
+				<input type="checkbox" id="f_published" name="published"<?php if((isset($published) and $published) or !isset($published))echo ' checked'; ?>>
 			</fieldset>
-			<input type="submit" value="Ajouter" />
+			<input type="submit" value="Ajouter">
 		</form>
 		<script type="text/javascript">init_close_confirm();</script>
 	</body>

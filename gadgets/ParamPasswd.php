@@ -21,11 +21,11 @@ include 'inclus/menu.php'; ?>
 <p>Vous avez bien été redirigé vers notre générateur de mots de passe.</p>
 <form action="ParamPasswd.php" method="post">
 <label for="nombre">Nombre de mots de passe a générer :</label>
-<input id="nombre" name="nbrPasswd" type="number" required />
-<br />
+<input id="nombre" name="nbrPasswd" type="number" required>
+<br>
 <label for="taille">Nombre de caractères :</label>
-<input id="taille" name="nbrChr" type="number" required />
-<br />
+<input id="taille" name="nbrChr" type="number" required>
+<br>
 <label for="type">Type de mot de passe :</label>
 <select id="type" name="typePasswd" onchange="showother()">
 <option value="1">Chiffres uniquement</option>
@@ -34,13 +34,13 @@ include 'inclus/menu.php'; ?>
 <option value="4">Caractères alphanumériques et autres</option>
 <option value="5">Caractères alphanumériques et autres (personnalisés)</option>
 </select>
-<br />
+<br>
 <label for="f_charpers">Spécifier les caractères spéciaux (tous collés)&nbsp;:</label>
-<input type="text" name="charpers" id="f_charpers" />
-<noscript>Ne spécifier les caractères que si "Caractères alphanumériques et autres (personnalisés)" est sélectionné</noscript><br />
+<input type="text" name="charpers" id="f_charpers">
+<noscript>Ne spécifier les caractères que si "Caractères alphanumériques et autres (personnalisés)" est sélectionné</noscript><br>
 <label for="maj">Majuscules aléatoires :</label>
-<input type="checkbox" name="maj" id="maj" /><br />
-<input type="submit" value="Générer" />
+<input type="checkbox" name="maj" id="maj"><br>
+<input type="submit" value="Générer">
 <script type="text/javascript">
 function showother() {
 	if(document.getElementById("type").value == "5") {
@@ -75,7 +75,7 @@ if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['type
 </p>
 <?php
 if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['typePasswd'])) { ?>
-<button id="BtnCopy" onclick="CopyToClipboard('result')">Copier le résultat</button><br />
+<button id="BtnCopy" onclick="CopyToClipboard('result')">Copier le résultat</button><br>
 <script type="text/javascript">
 function CopyToClipboard(containerid) {
   if (document.selection) {

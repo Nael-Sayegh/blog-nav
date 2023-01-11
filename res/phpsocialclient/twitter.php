@@ -23,7 +23,7 @@ $now = localtime();
 ?><!doctype html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title><?php echo str_replace('{{title}}', $twdata['title'], $tr['TW_TITLE']); ?></title>
 		<style type="text/css">
 @font-face {font-family: "Nimbus Sans L";src: url("NimbusSansL-Regular.otf");}

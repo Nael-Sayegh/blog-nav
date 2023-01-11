@@ -526,7 +526,7 @@
           html = `
           <a id="img" href="${d[id].link[llg]}" target="_blank" title="${d[id].text[tlg].join(' - ')}">
             <img alt="" src="img/${id}-${w}_${h}-${llg}.${type}"
-              onerror="this.style='display:none;';document.getElementById('text').style='';" />
+              onerror="this.style='display:none;';document.getElementById('text').style='';">
           </a>
           <a id="text" href="${d[id].link[llg]}" target="_blank" style="display:none;">
             <h1>${t1}</h1>
@@ -559,7 +559,7 @@
         }
         html = `${html}
           <a id="about" href="https://sense3.org" target="_blank" title="${i18n[lg].notad}">
-            <img src="frameicon.png" alt="s3" />
+            <img src="frameicon.png" alt="s3">
           </a>
           <a id="close" href="#" onclick="document.getElementsByTagName('body')[0].className = 'hidden'; return false;" title="${i18n[lg].close}">
             <i aria-hidden="true">&times;</i>
@@ -636,9 +636,9 @@
           </thead>
           <tbody>
             <tr>
-              <td><img src="img/icons/os/${img.os}" alt="" /><br>${bowser.osname} ${(bowser.osversion || '')}</td>
-              <td><img src="img/icons/browsers/${img.browser}" alt="" /><br>${bowser.name} ${(bowser.version || '')}</td>
-              <td><img src="img/icons/ublock/${img.adblock}" alt="" /><br>${(s.is.adblock() ? i18n[lg].enabled : i18n[lg].disabled)}</td>
+              <td><img src="img/icons/os/${img.os}" alt=""><br>${bowser.osname} ${(bowser.osversion || '')}</td>
+              <td><img src="img/icons/browsers/${img.browser}" alt=""><br>${bowser.name} ${(bowser.version || '')}</td>
+              <td><img src="img/icons/ublock/${img.adblock}" alt=""><br>${(s.is.adblock() ? i18n[lg].enabled : i18n[lg].disabled)}</td>
             <tr>
           </tbody>
         </table>

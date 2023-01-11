@@ -146,7 +146,7 @@ margin-bottom: 20px;
 	height: 5px;
 	}
 	
-	.ulmenu li {
+	.ulmenu_js li, .ulmenu_njs li {
 	border-top: 1px solid #AAAAAA;
 	margin-left: -40px !important;
 	padding-left: initial !important;
@@ -154,11 +154,11 @@ margin-bottom: 20px;
 	background-image: none !important;
 	}
 
-	.ulmenu li a, .ulmenu li a:visited {
+	.ulmenu_js li a, .ulmenu_njs li a:visited {
 	color: #003f94;
 	}
 
-	.ulmenu li a:hover {
+	.ulmenu_js li a:hover, .ulmenu_njs a:hover {
 	color: #045fb4;
 	}
 

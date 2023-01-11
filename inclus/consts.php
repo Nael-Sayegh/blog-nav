@@ -24,7 +24,7 @@ function zeros($n, $d=3) {
 function args_html_form($args) {
 	$r = '';
 	foreach($args as $name => $value) {
-		$r .= '<input type="hidden" name="'.$name.'" value="'.$value.'" autocomplete="off" />';
+		$r .= '<input type="hidden" name="'.$name.'" value="'.$value.'" autocomplete="off">';
 	}
 	return $r;
 }
@@ -116,8 +116,8 @@ setlocale(LC_NUMERIC, 'en');
 // MISC CONSTS/VARS
 $tr0 = load_tr($lang, 'default');
 $nomdusite = tr($tr0,'sitename');
-$chemincss = '<link rel="stylesheet" href="/css/default.css" />';
-$cssadmin = '<link rel="stylesheet" href="/admin/css/admin.css" />';
+$chemincss = '<link rel="stylesheet" href="/css/default.css">';
+$cssadmin = '<link rel="stylesheet" href="/admin/css/admin.css">';
 $slogan = tr($tr0,'slogan');
 $lastosv = '17.0';
 $tr_todo = array(0=>'Référence', 1=>'OK', 2=>'À vérifier', 3=>'À modifier', 4=>'À terminer');

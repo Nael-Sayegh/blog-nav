@@ -1,7 +1,7 @@
 <?php
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-include 'inclus/log.php';
-require_once 'inclus/consts.php';
+require_once('inclus/log.php');
+require_once('inclus/consts.php');
 $tr = load_tr($lang, 'param');
 if(isset($_GET['act']) and $_GET['act'] == 'form') {
 	$menu = '0';
@@ -67,25 +67,19 @@ header('Location: /'); }
 $stats_page='parametres';
 $titre=tr($tr,'title');
 $cheminaudio='/audio/sons_des_pages/settings.mp3'; ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<?php include 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<div id="hautpage" role="banner">
-<h1><a href="/" title="Retour à l'accueil"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/loginbox.php';
-include 'inclus/searchtool.php'; ?>
-</div>
-<?php include('inclus/son.php');
-include 'inclus/menu.php'; ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+<main id="container">
 <h1 id="contenu"><?php print $titre; ?></h1>
 <?php echo tr($tr,'maintext'); ?>
 <form action="?act=form" method="post" aria-label="Options">
 <?php
 if($logged)
-	echo '<input type="hidden" name="token" value="'.$login['token'].'" autocomplete="off" />';
+	echo '<input type="hidden" name="token" value="'.$login['token'].'" autocomplete="off">';
 $menu = isset($_COOKIE['menu']) ? $_COOKIE['menu'] : '0';
 $audio = isset($_COOKIE['audio']) ? $_COOKIE['audio'] : 0;
 $date = isset($_COOKIE['date']) ? $_COOKIE['date'] : 0;
@@ -93,33 +87,33 @@ $infosdef = isset($_COOKIE['infosdef']) ? $_COOKIE['infosdef'] : 1;
 ?>
 <h3><?php echo tr($tr,'gui'); ?></h3>
 <label for="choix_menu"><?php echo tr($tr,'combomenu'); ?></label>
-<input type="checkbox" id="choix_menu" name="menu"<?php if($menu==1)echo ' checked="checked"'; ?> /><br />
+<input type="checkbox" id="choix_menu" name="menu"<?php if($menu==1)echo ' checked="checked"'; ?>><br>
 <label for="f_fontsize"><?php echo tr($tr,'textsize'); ?></label>
 <?php if(isset($_COOKIE['fontsize'])) $fontsize = $_COOKIE['fontsize']; else $fontsize = '16'; ?>
 <select id="f_fontsize" name="fontsize">
-<option value="11" style="font-size: 11px;" <?php if($fontsize=='11')echo'selected';?>><?php echo tr($tr,'11'); ?></option><option value="16" style="font-size: 16px;" <?php if($fontsize=='16')echo'selected';?>><?php echo tr($tr,'16'); ?></option><option value="20" style="font-size: 20px;" <?php if($fontsize=='20')echo'selected';?>><?php echo tr($tr,'20'); ?></option><option value="24" style="font-size: 24px;" <?php if($fontsize=='24')echo'selected';?>><?php echo tr($tr,'24'); ?></option></select><br />
+<option value="11" style="font-size: 11px;" <?php if($fontsize=='11')echo'selected';?>><?php echo tr($tr,'11'); ?></option><option value="16" style="font-size: 16px;" <?php if($fontsize=='16')echo'selected';?>><?php echo tr($tr,'16'); ?></option><option value="20" style="font-size: 20px;" <?php if($fontsize=='20')echo'selected';?>><?php echo tr($tr,'20'); ?></option><option value="24" style="font-size: 24px;" <?php if($fontsize=='24')echo'selected';?>><?php echo tr($tr,'24'); ?></option></select><br>
 <h3><?php echo tr($tr,'audio'); ?></h3>
 <label for="f_audio"><?php echo tr($tr,'soundsvolume'); ?></label>
-<input type="range" min="0" max="10" step="1" defaultValue="0" value="<?php echo htmlspecialchars($audio); ?>" name="audio" id="f_audio" /><br />
+<input type="range" min="0" max="10" step="1" defaultValue="0" value="<?php echo htmlspecialchars($audio); ?>" name="audio" id="f_audio"><br>
 <h3><?php echo tr($tr,'other'); ?></h3>
 <label for="f_date"><?php echo tr($tr,'datetime'); ?></label>
-<input type="checkbox" id="f_date" name="date" <?php if($date==1) echo 'checked="checked"'; ?> /><br />
+<input type="checkbox" id="f_date" name="date" <?php if($date==1) echo 'checked="checked"'; ?>><br>
 <label for="f_slideridcc"><?php echo tr($tr,'slider'); ?></label>
-<input type="checkbox" id="f_slideridcc" name="infosdef" <?php if($infosdef==1) echo 'checked="checked"'; ?> /><br />
-<input type="submit" value="<?php echo tr($tr,'savebtn'); ?>" />
+<input type="checkbox" id="f_slideridcc" name="infosdef" <?php if($infosdef==1) echo 'checked="checked"'; ?>><br>
+<input type="submit" value="<?php echo tr($tr,'savebtn'); ?>">
 </form>
 <form action="?act=0" method="post" aria-label="Réinitialiser">
 <?php
 if($logged)
-	echo '<input type="hidden" name="token" value="'.$login['token'].'" autocomplete="off" />';
+	echo '<input type="hidden" name="token" value="'.$login['token'].'" autocomplete="off">';
 $menu = isset($_COOKIE['menu']) ? $_COOKIE['menu'] : '0';
 $audio = isset($_COOKIE['audio']) ? $_COOKIE['audio'] : 0;
 $date = isset($_COOKIE['date']) ? $_COOKIE['date'] : 0;
 $infosdef = isset($_COOKIE['infosdef']) ? $_COOKIE['infosdef'] : 1;
 ?>
-<input type="submit" value="<?php echo tr($tr,'resetbtn'); ?>" />
+<input type="submit" value="<?php echo tr($tr,'resetbtn'); ?>">
 </form>
-</div>
-<?php include 'inclus/footer.php'; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 </body>
 </html>
