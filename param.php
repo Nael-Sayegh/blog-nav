@@ -79,7 +79,7 @@ require_once('inclus/son.php'); ?>
 <form action="?act=form" method="post" aria-label="Options">
 <?php
 if($logged)
-	echo '<input type="hidden" name="token" value="'.$login['token'].'" autocomplete="off">';
+	echo '<input type="hidden" name="token" value="'.$login['token'].'">';
 $menu = isset($_COOKIE['menu']) ? $_COOKIE['menu'] : '0';
 $audio = isset($_COOKIE['audio']) ? $_COOKIE['audio'] : 0;
 $date = isset($_COOKIE['date']) ? $_COOKIE['date'] : 0;
@@ -105,7 +105,7 @@ $infosdef = isset($_COOKIE['infosdef']) ? $_COOKIE['infosdef'] : 1;
 <form action="?act=0" method="post" aria-label="Réinitialiser">
 <?php
 if($logged)
-	echo '<input type="hidden" name="token" value="'.$login['token'].'" autocomplete="off">';
+	echo '<input type="hidden" name="token" value="'.$login['token'].'">';
 $menu = isset($_COOKIE['menu']) ? $_COOKIE['menu'] : '0';
 $audio = isset($_COOKIE['audio']) ? $_COOKIE['audio'] : 0;
 $date = isset($_COOKIE['date']) ? $_COOKIE['date'] : 0;

@@ -66,7 +66,7 @@ if(isset($_GET['mod'])) {
 		<select id="f1_stylejs"><option value="Blue Sky">Blue Sky</option><option value="Metal Kiwi">Metal Kiwi</option><option value="Light Pacific">Light Pacific</option><option value="Water Melon">Water Melon</option><option value="Breizh Gradient">Breizh Gradient</option></select>
 		<input type="button" value="Appliquer le style" onclick="setstyle('f1_')"><br>
 		<form action="?mod2=<?php echo $data['id']; ?>" method="post">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 			<label for="f1_lang">Langue&nbsp;:</label>
 			<select id="f1_lang" name="lang" autocomplete="off"><?php echo langs_html_opts($data['lang']); ?></select><br>
 			<label for="f1_todo">État&nbsp;:</label>
@@ -92,7 +92,7 @@ if(isset($_GET['mod'])) {
 		<select id="f_stylejs"><option value="Blue Sky">Blue Sky</option><option value="Metal Kiwi">Metal Kiwi</option><option value="Light Pacific">Light Pacific</option><option value="Water Melon">Water Melon</option><option value="Breizh Gradient">Breizh Gradient</option></select>
 		<input type="button" value="Appliquer le style" onclick="setstyle('f_')"><br>
 		<form action="?add" method="post">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 			<label for="f_lang">Langue&nbsp;:</label>
 			<select id="f_lang" name="lang" autocomplete="off"><?php echo langs_html_opts($lang); ?></select><br>
 			<label for="f_todo">État&nbsp;:</label>

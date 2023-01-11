@@ -190,7 +190,7 @@ while($data = $req->fetch()) {
 	
 	<h3 id="settings"><?php echo tr($tr,'settings'); ?></h3>
 	<form action="?settings" method="post">
-		<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+		<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 		<fieldset><legend><?php echo tr($tr,'settings_account'); ?></legend>
 			<table>
 				<tr><td class="formlabel"><label for="f1_username"><?php echo tr($tr,'settings_name'); ?></label></td>
@@ -212,7 +212,7 @@ while($data = $req->fetch()) {
 		</fieldset>
 	</form>
 	<form action="?chpsw" method="post">
-		<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+		<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 		<fieldset><legend><?php echo tr($tr,'chpsw'); ?></legend>
 			<table>
 				<tr><td class="formlabel"><label for="f2_oldpsw"><?php echo tr($tr,'chpsw_old'); ?></label></td>
@@ -234,7 +234,7 @@ if(isset($login['forum_id']) and $login['forum_id'] !== NULL) {
 		$forum_username = $data['forum_username'];
 ?>
 	<form action="?chforum" method="post">
-		<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+		<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 		<fieldset><legend><?php echo tr($tr,'chforum'); ?></legend>
 			<p><?php echo tr($tr,'chforum_username_info'); ?></p>
 			<table>
@@ -258,7 +258,7 @@ if(isset($login['forum_id']) and $login['forum_id'] !== NULL) {
 }
 ?>
 	<form action="?rm" method="post">
-		<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+		<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 		<fieldset><legend><?php echo tr($tr,'remove_account'); ?></legend>
 			<table>
 				<tr><td colspan="2"><?php echo tr($tr,'remove_account_warn'); ?></td></tr>

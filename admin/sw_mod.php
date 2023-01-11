@@ -353,8 +353,8 @@ if(isset($_GET['listfiles'])) {
 		<p>Liste des fichiers de&nbsp;: <a href="?id=<?php echo $data1['id']; ?>"><?php echo $data1['name']; ?></a></p>
 		<ul><li><a href="?addfile=<?php echo $data1['id']; ?>">Ajouter un fichier<?php if(DEV)echo ' (Zone dev&nbsp;: lien à l\'usage des développeurs, pour le test uniquement)'; ?></a></li><li><a href="?list=<?php echo $data1['category']; ?>"><?php echo $cat[$data1['category']]; ?></a></li><li><a href="translate.php?type=article&id=<?php echo $data1['id']; ?>">Traductions</a></li><?php if($data1['website'] != '') echo '<li><a target="_blank" rel="noopener" href="'.$data1['website'].'">Site officiel</a></li>'; ?></ul>
 		<form action="#" method="get">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
-			<input type="hidden" name="rfiles" value="<?php echo $data1['id']; ?>" autocomplete="off">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
+			<input type="hidden" name="rfiles" value="<?php echo $data1['id']; ?>">
 			<table border="1">
 				<thead><tr><th>Nom</th><th>Titre</th><th>Label</th><th>Type</th><th>Modifié le</th><th>Taille</th><th>Supprimer</th></tr></thead>
 				<tbody>
@@ -388,7 +388,7 @@ if(isset($_GET['id'])) {
 		<a href="?listfiles=<?php echo $data['id']; ?>">Lister les fichiers</a><br>
 		<a href="translate.php?type=article&id=<?php echo $data['id']; ?>">Traductions</a><br><br>
 		<form action="?mod=<?php echo $_GET['id']; ?>" method="post">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 			<label for="f_mod_name">Nom&nbsp;:</label><input type="text" name="name" value="<?php echo $data['name']; ?>" id="f_mod_name" maxlength="255" required><br>
 			<label for="f_mod_category">Catégorie&nbsp;:</label><select name="category" id="f_mod_category"><?php
 $rq2 = $bdd->query('SELECT * FROM softwares_categories ORDER BY name ASC');
@@ -413,7 +413,7 @@ if(isset($_GET['addfile'])) {
 	if($data = $req->fetch()) { ?>
 		<p>Ajouter un fichier pour <a href="?listfiles=<?php echo $_GET['addfile']; ?>"><?php echo $data['name']; ?></a></p>
 		<form action="?upload=<?php echo $_GET['addfile']; ?>" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 		
 			<fieldset><legend>Ajouter un fichier</legend>
 				<label for="f_addfile_title">Titre du fichier&nbsp;:</label>
@@ -484,7 +484,7 @@ f_addfile_group_method();
 			</fieldset>
 		</form>
 		<form action="?addmirror=<?php echo $_GET['addfile']; ?>" method="post">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 			<fieldset><legend>Ajouter un miroir</legend>
 				<label for="f_addmirror_title">Titre du fichier&nbsp;:</label>
 				<input type="text" name="title" id="f_addmirror_title"><br>
@@ -504,7 +504,7 @@ if(isset($_GET['modf'])) {
 	if($data = $req->fetch()) { ?>
 		<a href="?listfiles=<?php echo $data['sw_id']; ?>">Liste des fichiers de l'article</a>
 		<form action="?modf2=<?php echo $data['id']; ?>" method="post" enctype="multipart/form-data" onsubmit="f_modf_submit(event)">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 			<h2>Modifier un fichier</h2>
 			<fieldset>
 				<legend>Métadonnées</legend>
@@ -586,7 +586,7 @@ if(isset($_GET['modm'])) {
 	$req->execute(array($_GET['modm']));
 	if($data = $req->fetch()) { ?>
 		<form action="?modm2=<?php echo $data['id']; ?>" method="post">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 			<h2>Modifier un miroir</h2>
 			<label for="f_modf_title">Titre du fichier&nbsp;:</label>
 			<input type="text" name="title" id="f_modm_title" value="<?php echo $data['title']; ?>"><br>

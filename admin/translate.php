@@ -126,8 +126,8 @@ WHERE `softwares`.`id`=? LIMIT 1');
 				} ?>
 		<h2>Nouvelle traduction</h2>
 		<form method="post" action="?type=article&id=<?php echo $data['id']; ?>&a=new2">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
-			<?php if(isset($_GET['ref'])) echo '<input type="hidden" name="ref" value="1" autocomplete="off">'; ?>
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
+			<?php if(isset($_GET['ref'])) echo '<input type="hidden" name="ref" value="1">'; ?>
 			<label for="tr_sw_new_lang">Langue&nbsp;:</label>
 			<select id="tr_sw_new_lang" name="lang" autocomplete="off"><?php echo $langs_html_opts; ?></select>
 			<table class="trtable">
@@ -185,7 +185,7 @@ WHERE `softwares`.`id`=? LIMIT 1');
 				} ?>
 		<h2>Modifier une traduction</h2>
 		<form method="post" action="?type=article&id=<?php echo $data['id']; ?>&a=edit2&tr=<?php echo $tr_mod['id']; ?>">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 			<label for="tr_sw_edit_lang">Langue&nbsp;:</label>
 			<select id="tr_sw_edit_lang" name="lang" autocomplete="off"><?php echo langs_html_opts($tr_mod['lang']); ?></select>
 			<table class="trtable">
@@ -233,9 +233,9 @@ WHERE `softwares`.`id`=? LIMIT 1');
 			} ?>
 		<h2>Traductions</h2>
 		<form action="translate.php" method="get">
-			<input type="hidden" name="type" value="article" autocomplete="off">
-			<input type="hidden" name="id" value="<?php echo $data['id']; ?>" autocomplete="off">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<input type="hidden" name="type" value="article">
+			<input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 			<table border="1">
 				<thead><tr><th></th><th>Langue</th><th>Dernier auteur</th><th>Dernière modif</th><th>État</th><th>Publiée</th><th>Actions</th></tr></thead>
 				<tbody><?php
@@ -318,7 +318,7 @@ WHERE `sw_id`=?');
 			?>
 		<h2>Modifier une traduction</h2>
 		<form method="post" action="?type=trsfiles&trsfiles=<?php echo $_GET['trsfiles']; ?>&a=edit2">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 			<label for="tr_trsfiles_edit_lang">Langue&nbsp;:</label>
 			<select id="tr_trsfiles_edit_lang" name="lang" autocomplete="off"><?php echo langs_html_opts($_GET['edit']); ?></select><br>
 			<label for="tr_trsfiles_edit_todo">État&nbsp;:</label>
@@ -381,9 +381,9 @@ WHERE `sw_id`=?');
 		<h2>Traductions</h2>
 		<p>Fichier&nbsp;: <strong><?php echo htmlentities($_GET['trsfiles']); ?></strong></p>
 		<form action="translate.php" method="get">
-			<input type="hidden" name="type" value="trsfiles" autocomplete="off">
-			<input type="hidden" name="trsfiles" value="<?php echo htmlentities($_GET['trsfiles']); ?>" autocomplete="off">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<input type="hidden" name="type" value="trsfiles">
+			<input type="hidden" name="trsfiles" value="<?php echo htmlentities($_GET['trsfiles']); ?>">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 			<table border="1">
 				<thead><tr><th></th><th>Langue</th><th>Dernier auteur</th><th>Dernière modif</th><th>État</th><th>Actions</th></tr></thead>
 				<tbody><?php

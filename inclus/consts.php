@@ -24,7 +24,7 @@ function zeros($n, $d=3) {
 function args_html_form($args) {
 	$r = '';
 	foreach($args as $name => $value) {
-		$r .= '<input type="hidden" name="'.$name.'" value="'.$value.'" autocomplete="off">';
+		$r .= '<input type="hidden" name="'.$name.'" value="'.$value.'">';
 	}
 	return $r;
 }
