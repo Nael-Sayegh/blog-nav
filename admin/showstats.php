@@ -19,21 +19,21 @@ if(isset($_GET['domain']) and in_array($_GET['domain'], array('pa33','pa33_dev',
 <!doctype html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Visionnage des statistiques de <?php print $nomdusite; ?></title>
 <?php print $cssadmin; ?>
-		<link rel="stylesheet" href="css/showstats.css" />
+		<link rel="stylesheet" href="css/showstats.css">
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
 <h1>Statistiques - <a href="/"><?php print $nomdusite; ?></a></h1>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 		<form action="showstats.php" method="get">
-			<label for="f1_from">Depuis le (AAAA-MM-JJ)&nbsp;:</label><input type="text" id="f1_from" name="from" value="<?php echo $from; ?>" maxlength="10" /><br />
-			<label for="f1_to">Jusqu'au (AAAA-MM-JJ)&nbsp;:</label><input type="text" id="f1_to" name="to" value="<?php echo $to; ?>" maxlength="10" /><br />
-			<label for="f1_dom">Domaine&nbsp;:</label><select id="f1_dom" name="domain"><option value="" selected>Tout<option value="pa33">httpdocs</option><option value="pa33_dev">dev</option><option value="pa33_onion">onion</option><option value="pa33_onion_dev">onion dev</option></select><br />
-			<input type="submit" value="rechercher" />
-		</form><br />
+			<label for="f1_from">Depuis le (AAAA-MM-JJ)&nbsp;:</label><input type="text" id="f1_from" name="from" value="<?php echo $from; ?>" maxlength="10"><br>
+			<label for="f1_to">Jusqu'au (AAAA-MM-JJ)&nbsp;:</label><input type="text" id="f1_to" name="to" value="<?php echo $to; ?>" maxlength="10"><br>
+			<label for="f1_dom">Domaine&nbsp;:</label><select id="f1_dom" name="domain"><option value="" selected>Tout<option value="pa33">httpdocs</option><option value="pa33_dev">dev</option><option value="pa33_onion">onion</option><option value="pa33_onion_dev">onion dev</option></select><br>
+			<input type="submit" value="rechercher">
+		</form><br>
 		<p>Domaine&nbsp;: <?php echo $domain; ?></p>
 		<table class="tstats">
 <?php

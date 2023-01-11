@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Liste des abonnés à la lettre d'informations</title>
 <?php print $cssadmin; ?>
 <script type="text/javascript" src="/scripts/default.js"></script>

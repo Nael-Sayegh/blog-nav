@@ -1,6 +1,8 @@
 var activeslide = 1;
 var slideint;
 var slidepause = false;
+document.getElementById("slidershow").addEventListener("focusin", focuspause(true));
+document.getElementById("slidershow").addEventListener("focusout", focuspause(false));
 
 function slide(k=1) {
 	$("#slide"+activeslide).attr("class", "slide noslide");

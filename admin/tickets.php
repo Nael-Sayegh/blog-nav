@@ -26,7 +26,7 @@ if(isset($_GET['send']) and isset($_POST['msg'])) {
 	$req->execute(array($_GET['send']));
 	if($data = $req->fetch()) {
 		$msg = str_replace("\n\n", '</p><p>', $_POST['msg']);
-		$msg = '<p>'.str_replace("\n", '<br />', $msg).'</p>';
+		$msg = '<p>'.str_replace("\n", '<br>', $msg).'</p>';
 		$msg2= strip_tags(html_entity_decode($msg));
 		$msgs = json_decode($data['messages'], true);
 		$time = time();
@@ -37,7 +37,7 @@ if(isset($_GET['send']) and isset($_POST['msg'])) {
 		$body = '<!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Re: "'.htmlspecialchars($data['subject']).'" '.$nomdusite.'</title>
 		<style type="text/css">#response{border-left:1px solid #0080FF;margin-left:8px;padding: 8px;}</style>
 	</head>
@@ -45,8 +45,8 @@ if(isset($_GET['send']) and isset($_POST['msg'])) {
 <h1>'.$nomdusite.'</h1>
 		<p>Vous avez reçu une réponse pour votre message&nbsp;: <i>'.htmlspecialchars($data['subject']).'</i>.</p>
 		<div id="response">'.$msg.'</div>
-		<hr />
-		<p>Merci de ne pas répondre à cet e-mail. Pour nous envoyer votre réponse, veuillez utiliser le lien ci-dessous.<br />
+		<hr>
+		<p>Merci de ne pas répondre à cet e-mail. Pour nous envoyer votre réponse, veuillez utiliser le lien ci-dessous.<br>
 			<a href="https://www.progaccess.net/contacter.php?reply='.$data['id'].'&h='.$data['hash'].'">https://www.progaccess.net/contacter.php?reply='.$data['id'].'&h='.$data['hash'].'</a></p>
 	</body>
 </html>';
@@ -72,10 +72,10 @@ if(isset($_GET['send']) and isset($_POST['msg'])) {
 <!doctype html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Tickets <?php print $nomdusite; ?></title>
 <?php print $cssadmin; ?>
-		<link rel="stylesheet" href="/admin/css/tickets.css" />
+		<link rel="stylesheet" href="/admin/css/tickets.css">
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
@@ -91,7 +91,7 @@ if(isset($_GET['ticket'])) {
 	$req = $bdd->prepare('SELECT * FROM `tickets` WHERE `id`=? LIMIT 1');
 	$req->execute(array($_GET['ticket']));
 	if($data = $req->fetch()) {
-		echo '<p>Sujet&nbsp;: <b>'.htmlspecialchars($data['subject']).'</b><br />Expéditeur&nbsp: <b>'.htmlspecialchars($data['expeditor_name']).'</b><!-- (<b>'.htmlspecialchars($data['expeditor_email']).'</b>)--><br />Dernière activité&nbsp;: '.$data['lastadmreply'].' (le '.date('d/m/Y H:i', $data['date']).')<br />Statut&nbsp: <b style="color: #';
+		echo '<p>Sujet&nbsp;: <b>'.htmlspecialchars($data['subject']).'</b><br>Expéditeur&nbsp: <b>'.htmlspecialchars($data['expeditor_name']).'</b><!-- (<b>'.htmlspecialchars($data['expeditor_email']).'</b>)--><br>Dernière activité&nbsp;: '.$data['lastadmreply'].' (le '.date('d/m/Y H:i', $data['date']).')<br>Statut&nbsp: <b style="color: #';
 		switch($data['status']) {
 			case 0: echo 'C00000;">Nouveau'; break;
 			case 1: echo '606000;">Non lu'; break;
@@ -105,7 +105,7 @@ if(isset($_GET['ticket'])) {
 			echo '<tr class="ticket_msg'.strval($msg['m']).'"><td rowspan="2" class="ticket_msgtd"></td>';
 			echo '<td class="ticket_msginfo">';
 			if($msg['m'] == 1)
-				echo '<img alt="L\'administration '.$nomdusite.'" src="/image/logo16.png" /> ';
+				echo '<img alt="L\'administration '.$nomdusite.'" src="/image/logo16.png"> ';
 			echo '<b>'.htmlspecialchars($msg['e']).'</b> '.date('d/m/Y H:i', $msg['d']).'</td></tr><tr><td>'.$msg['t'].'</td></tr>';
 		}
 		unset($msg);
@@ -117,16 +117,16 @@ if(isset($_GET['ticket'])) {
 ?>
 		<form action="?send=<?php echo $data['id']; ?>" method="post">
 			<fieldset><legend>Répondre</legend>
-				<label for="f1_msg">Message&nbsp;:</label><br />
-				<textarea id="f1_msg" name="msg" required rows="20" cols="500"><?php echo "\n\n".$nom.' (Administration '.$nomdusite.')'; ?></textarea><br />
-				<input type="submit" value="Répondre" />
+				<label for="f1_msg">Message&nbsp;:</label><br>
+				<textarea id="f1_msg" name="msg" required rows="20" cols="500"><?php echo "\n\n".$nom.' (Administration '.$nomdusite.')'; ?></textarea><br>
+				<input type="submit" value="Répondre">
 			</fieldset>
 		</form>
 		<form action="?delete=<?php echo $data['id']; ?>" method="post">
 			<fieldset><legend>Supprimer</legend>
-				<label for="f2_del">Écrire SUPPRIMER en majuscules pour supprimer le ticket.</label><br />
-				<input type="text" id="f2_del" name="del" required /><br />
-				<input type="submit" value="Supprimer" />
+				<label for="f2_del">Écrire SUPPRIMER en majuscules pour supprimer le ticket.</label><br>
+				<input type="text" id="f2_del" name="del" required><br>
+				<input type="submit" value="Supprimer">
 			</fieldset>
 		</form>
 <?php

@@ -98,7 +98,7 @@ $subject = '📰 L\'actu '.$nomdusite.' du '.$datejour;
 $message1 = '<!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>'.$subject.'</title>
 		<style type="text/css">
 @font-face {font-family: Cantarell;src: url(https://progaccess.net/css/Cantarell-Regular.otf);}
@@ -112,15 +112,15 @@ html, body {margin: 0;padding: 0;font-family: Cantarell;}
 	<body>
 		<div id="header">
 					<h1>'.$subject.'</h1>
-			<img id="logo" alt="Logo de '.$nomdusite.'" src="https://www.nvda-fr.org/images/nvda_logo.png" />
+			<img id="logo" alt="Logo de '.$nomdusite.'" src="https://www.nvda-fr.org/images/nvda_logo.png">
 		</div>
 		<div id="content">
 		<h2>Bonjour {{mail_user}},</h2>';
-$message2 = '<hr /><p role="contentinfo" aria-label="Informations sur l\'abonnement">Votre abonnement expire le ';
+$message2 = '<hr><p role="contentinfo" aria-label="Informations sur l\'abonnement">Votre abonnement expire le ';
 $message3 = ', <a id="link" href="https://www.progaccess.net/nlmod.php?id=';
 $message4 = '">cliquez ici pour le renouveler avant cette date</a>.</p>
 			<p>Veuillez ne pas répondre, ce mail a été envoyé automatiquement, vous pouvez <a href="https://www.nvda-fr.org/inf.php">nous contacter ici</a></p>
-			<p>Cordialement.<br />'.$nomdusite.'</p>
+			<p>Cordialement.<br>'.$nomdusite.'</p>
 		</div>
 	</body>
 </html>';
@@ -153,7 +153,7 @@ while($data = $req->fetch()) {
 	foreach($sft as $sw_id => $software) {
 		if($software['date'] > $data['lastmail_n']) {
 			$nbs ++;
-			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.nvda-fr.org/article.php?id='.$sw_id.'">'.$software['name'].'</a> (<a href="https://www.nvda-fr.org/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['description']).'<br /><span class="software_date">Mis à jour à '.date('H:i', $software['date']).' le '.date('d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
+			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.nvda-fr.org/article.php?id='.$sw_id.'">'.$software['name'].'</a> (<a href="https://www.nvda-fr.org/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['description']).'<br><span class="software_date">Mis à jour à '.date('H:i', $software['date']).' le '.date('d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
 			$msgtxt .= ' * '.$software['name'].' ('.$cat[$software['category']].") :\n".$software['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).")\n";
 			foreach($files as $file) {
 				if($file['sw_id'] == $sw_id and $file['date'] > $data['lastmail_n']) {

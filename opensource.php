@@ -1,22 +1,16 @@
 <?php set_include_path($_SERVER['DOCUMENT_ROOT']);
-include_once 'inclus/log.php';
-require_once 'inclus/consts.php';
+require_once('inclus/log.php');
+require_once('inclus/consts.php');
 $titre='Open-source';
 $cheminaudio='/audio/sons_des_pages/harp_notif.mp3';
 $stats_page='open-source'; ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<?php require_once 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<div id="hautpage" role="banner">
-<h1><a href="/" title="Retour à l'accueil"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/searchtool.php';
-include 'inclus/loginbox.php'; ?>
-</div>
-<?php include('inclus/son.php');
-include 'inclus/menu.php'; ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+<main id="container">
 <h1 id="contenu"><?php print $titre; ?></h1>
 	<p>Nous avons développé durant des années le site en source fermée, et avons décidé durant l'été 2018 de le libérer. Le code source est donc désormais disponible librement <a href="https://gitlab.com/ProgAccess/ProgAccess">sur GitLab</a> sous licence GNU AGPL.</p>
 	<p>L'équipe compte deux développeurs aux manières assez différentes voire contradictoires en certains points et le code n'est pas organisé pour être compris facilement (l'essentiel consiste en des ajouts et réparations les uns sur les autres, et au final personne n'y comprend plus rien). La libération du code peut donc avoir peu de sens pour le moment, mais nous travaillons beaucoup à la réorganisation, pour avoir un design plus solide, logique, pratique, léger, sécurisé... enfin bref meilleur.</p>
@@ -58,8 +52,8 @@ include 'inclus/menu.php'; ?>
 	<p>Ce site contient beaucoup d'éléments dans la base de données, y compris des morceaux de code. Le contenu de la base de données n'est pas publié dans le code source. Nous allons éventuellement refaire l'interface d'administration pour la rendre plus intuitive pour ceux qui ne la connaissent pas, voire faire un assistant d'installation (il n'est pas encore possible d'installer le site sans toucher manuellement à la bdd). N'hésitez pas à nous contacter en cas de problème.</p>
 	
 	<h3>Licence</h3>
-	<p>ProgAccess is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br />
-	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<br />
+	<p>ProgAccess is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br>
+	This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<br>
 	See the <a href="https://www.gnu.org/licenses/licenses.html#AGPL">GNU Affero General Public License</a> for more details.</p>
 	<p>Vous avez le droit d'utiliser, d'étudier, de partager et de modifier le code. Mais si vous le publiez, vous devez citer les auteurs (l'équipe ProgAccess) et publier le code source sous la même licence ou une autre compatible. Il est également obligatoire de publier le code source modifié si vous l'exécutez publiquement sur un serveur. Évidemment, le simple fait d'ajouter ses identifiants MySQL ou de générer des fichiers de cache via l'interface d'administration ne déclanche pas cette obligation.</p>
 	<p>Le texte du site (fichiers dans /locales/) est sous licence CC BY-SA. Plus d'informations concernant la licence des traductions, voir dans l'archive locales.zip disponible ci-dessous.</p>
@@ -75,7 +69,7 @@ include 'inclus/menu.php'; ?>
 		<li>Traductions&nbsp;: <a href="/source/locales.zip">locales.zip</a> (<?php echo strftime(tr($tr0,'fndatetime'), filemtime($_SERVER['DOCUMENT_ROOT'].'/source/locales.zip')); ?>) <?php echo numberlocale(human_filesize(filesize($_SERVER['DOCUMENT_ROOT'].'/source/locales.zip'))).tr($tr0,'byte_letter'); ?></li>
 		<?php } ?>
 	</ul>
-</div>
-<?php include 'inclus/footer.php'; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 </body>
 </html>

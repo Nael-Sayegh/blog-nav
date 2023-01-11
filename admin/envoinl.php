@@ -18,7 +18,7 @@ if(isset($_GET['act']) and $_GET['act'] == 'form') {
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Administration - <?php print $nomdusite; ?></title>
 <?php print $cssadmin; ?>
 <script type="text/javascript" src="/scripts/default.js"></script>
@@ -28,10 +28,10 @@ if(isset($_GET['act']) and $_GET['act'] == 'form') {
 <?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 <form action="?act=form" method="post">
 	<label for="maildebug">Debuguer pour&nbsp;:</label>
-	<input type="email" name="mail" id="maildebug" /><br />
+	<input type="email" name="mail" id="maildebug"><br>
 	<label for="mailsimulate">Simulation (n'envoie aucun mail, ne modifie pas la bdd)&nbsp;:</label>
-	<input type="checkbox" name="simulate" id="mailsimulate" /><br />
-	<input type="submit" value="Envoyer" />
+	<input type="checkbox" name="simulate" id="mailsimulate"><br>
+	<input type="submit" value="Envoyer">
 </form>
 </body>
 </html>

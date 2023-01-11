@@ -96,7 +96,7 @@ if($data = $req->fetch()) {
 $message1 = '<!DOCTYPE html>
 <html lang="{{lang}}">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Lettre d\'informations '.$nomdusite.'</title>
 		<style type="text/css">
 @font-face {font-family: Cantarell;src: url(https://progaccess.net/css/Cantarell-Regular.otf);}
@@ -110,7 +110,7 @@ html, body {margin: 0;padding: 0;font-family: Cantarell;}
 	<body>
 		<div id="header">
 					<h1>Lettre d\'informations '.$nomdusite.'</h1>
-			<img id="logo" alt="Logo" src="https://www.progaccess.net/image/logo128.png" />
+			<img id="logo" alt="Logo" src="https://www.progaccess.net/image/logo128.png">
 		</div>
 		<div id="content">
 		<h2>Bonjour {{mail}},</h2>
@@ -120,7 +120,7 @@ $message3 = '">Cliquez ici pour modifier votre abonnement, le renouveler ou vous
 			<p>Votre abonnement expire le ';
 $message4 = '.</p>
 			<p>Merci de ne pas répondre, ceci est un mail automatique.</p>
-			<p>Cordialement.<br />L\'Administration '.$nomdusite.'</p>
+			<p>Cordialement.<br>L\'Administration '.$nomdusite.'</p>
 		</div>
 	</body>
 </html>';
@@ -153,7 +153,7 @@ while($data = $req->fetch()) {
 	$msgtxt = $msgtxt1;
 	foreach($sft as $software) {
 		if($software['date'] > $data['lastmail']) {
-			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/article.php?id='.$software['id'].'">'.$software['name'].'</a> (<a href="https://www.progaccess.net/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['description']).'<br /><span class="software_hits">'.$software['hits'].' visites</span><span class="software_date"> (mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).')</span></p><ul>';
+			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/article.php?id='.$software['id'].'">'.$software['name'].'</a> (<a href="https://www.progaccess.net/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['description']).'<br><span class="software_hits">'.$software['hits'].' visites</span><span class="software_date"> (mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).')</span></p><ul>';
 			$msgtxt .= ' * '.$software['name'].' ('.$cat[$software['category']].') :\n'.$software['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['category'].' le '.date('d/m/Y à H:i', $software['date']).")\n";
 			foreach($files as $file) {
 				if($file['sw_id'] == $software['id'] and $file['date'] > $data['lastmail']) {

@@ -9,7 +9,7 @@
   'hello' => 'Hello {{name}},',
   'confirm' => 'Confirm your {{site}} account by clicking on this link (expires after 24h):',
   'click' => 'Click here',
-  'signature' => 'Best regards,<br />Team {{site}}',
+  'signature' => 'Best regards,<br>Team {{site}}',
   'admin' => 'administrators {{site}}',
   'team' => 'team {{site}}',
 ); ?>

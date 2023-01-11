@@ -18,8 +18,8 @@ include 'inclus/loginbox.php'; ?>
 include 'inclus/menu.php'; ?>
 <div id="container" role="main">
 <h1 id="contenu"><?php print $titre; ?></h1>
-<p>Vous avez bien été redirigé vers notre détecteur d'ip.<BR />
-Note :<br />
+<p>Vous avez bien été redirigé vers notre détecteur d'ip.<BR>
+Note :<br>
 si vous êtes caché derrière un VPN ou un proxy ce détecteur affichera l'IP via laquelle vous êtes connecté et non votre vraie IP.</p>
 <?php
 function get_ip() {
@@ -35,7 +35,7 @@ return (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '');
 }
 echo "Vous disposez de l'adresse IP publique suivante : ".get_ip();
 ?>
-<br />
+<br>
 <a href="/gadgets.php">Retour à la liste des gadgets.</a>
 </div>
 <?php require_once "inclus/footer.php"; ?>

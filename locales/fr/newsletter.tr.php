@@ -18,5 +18,5 @@ L\'administration {{site}}',
   'mail_hello' => 'Bonjour {{mail}}',
   'mail_editlink' => 'Cliquez ici pour modifier votre abonnement, le renouveler ou vous désinscrire.',
   'mail_noreply' => 'Merci de ne pas répondre, ceci est un mail automatique.',
-  'mail_signature' => 'Cordialement.<br />L\'administration {{site}}',
+  'mail_signature' => 'Cordialement.<br>L\'administration {{site}}',
 ); ?>

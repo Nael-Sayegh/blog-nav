@@ -285,7 +285,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title><?php
 if($sw_id != null and $sw_mode != null) {
 	$req = $bdd->prepare('SELECT `name` FROM `softwares` WHERE `id`=? LIMIT 1');
@@ -318,10 +318,10 @@ if(empty($_GET)) {
 	$req2->closeCursor();
 	echo '</ul>';
 } else {
-	echo '<br /><a href="sw_mod.php">Retourner au listage des catégories</a>';
+	echo '<br><a href="sw_mod.php">Retourner au listage des catégories</a>';
 }
 if($addfile_hash != '' and $addfile_path != '') {
-	echo '<p>L\'ajout du fichier n\'est pas terminé.<br />Veuillez envoyer le fichier à cet emplacement&nbsp;:<br /><strong>'.$addfile_path.'</strong><br />Son nom doit être <br /><em>'.$addfile_hash.'</em><br /> sans extension.<br />Une fois ceci fait, suivez ce lien&nbsp;:<br /><a href="?vfile='.$addfile_hash.(($addfile_so==true)?'&social=on':'').'">Vérifier le fichier</a></p>';
+	echo '<p>L\'ajout du fichier n\'est pas terminé.<br>Veuillez envoyer le fichier à cet emplacement&nbsp;:<br><strong>'.$addfile_path.'</strong><br>Son nom doit être <br><em>'.$addfile_hash.'</em><br> sans extension.<br>Une fois ceci fait, suivez ce lien&nbsp;:<br><a href="?vfile='.$addfile_hash.(($addfile_so==true)?'&social=on':'').'">Vérifier le fichier</a></p>';
 }
 
 if(isset($_GET['list'])) { ?><table border="1">
@@ -353,15 +353,15 @@ if(isset($_GET['listfiles'])) {
 		<p>Liste des fichiers de&nbsp;: <a href="?id=<?php echo $data1['id']; ?>"><?php echo $data1['name']; ?></a></p>
 		<ul><li><a href="?addfile=<?php echo $data1['id']; ?>">Ajouter un fichier<?php if(DEV)echo ' (Zone dev&nbsp;: lien à l\'usage des développeurs, pour le test uniquement)'; ?></a></li><li><a href="?list=<?php echo $data1['category']; ?>"><?php echo $cat[$data1['category']]; ?></a></li><li><a href="translate.php?type=article&id=<?php echo $data1['id']; ?>">Traductions</a></li><?php if($data1['website'] != '') echo '<li><a target="_blank" rel="noopener" href="'.$data1['website'].'">Site officiel</a></li>'; ?></ul>
 		<form action="#" method="get">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
-			<input type="hidden" name="rfiles" value="<?php echo $data1['id']; ?>" autocomplete="off" />
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<input type="hidden" name="rfiles" value="<?php echo $data1['id']; ?>" autocomplete="off">
 			<table border="1">
 				<thead><tr><th>Nom</th><th>Titre</th><th>Label</th><th>Type</th><th>Modifié le</th><th>Taille</th><th>Supprimer</th></tr></thead>
 				<tbody>
 	<?php	$req2 = $bdd->prepare('SELECT * FROM softwares_files WHERE sw_id=? ORDER BY date ASC');
 			$req2->execute(array($_GET['listfiles']));
 			while($data2 = $req2->fetch()) {
-				echo '<tr><td><a href="?modf='.$data2['id'].'">'.$data2['name'].'</a></td><td>'.$data2['title'].'</td><td><a href="/r.php?p='.$data2['label'].'">'.$data2['label'].'</a></td><td>'.$data2['filetype'].'</td><td>'.date('d/m/Y H:i',$data2['date']).'</td><td>'.human_filesize($data2['filesize']).'o</td><td><input type="checkbox" name="rfile'.$data2['id'].'" autocomplete="off" /></td></tr>';
+				echo '<tr><td><a href="?modf='.$data2['id'].'">'.$data2['name'].'</a></td><td>'.$data2['title'].'</td><td><a href="/r.php?p='.$data2['label'].'">'.$data2['label'].'</a></td><td>'.$data2['filetype'].'</td><td>'.date('d/m/Y H:i',$data2['date']).'</td><td>'.human_filesize($data2['filesize']).'o</td><td><input type="checkbox" name="rfile'.$data2['id'].'" autocomplete="off"></td></tr>';
 			} $req2->closeCursor(); ?></tbody>
 			</table>
 			<table border="1">
@@ -370,10 +370,10 @@ if(isset($_GET['listfiles'])) {
 	<?php	$req2 = $bdd->prepare('SELECT * FROM `softwares_mirrors` WHERE `sw_id`=? ORDER BY `date` ASC');
 			$req2->execute(array($_GET['listfiles']));
 			while($data2 = $req2->fetch()) {
-				echo '<tr><td><a href="?modm='.$data2['id'].'">'.$data2['title'].'</a></td><td><textarea name="lmir'.$data2['id'].'" readonly>'.htmlentities($data2['links']).'</textarea></td><td><a href="/r.php?m&p='.$data2['label'].'">'.$data2['label'].'</a></td><td>'.date('d/m/Y H:i',$data2['date']).'</td><td><input type="checkbox" name="rmir'.$data2['id'].'" autocomplete="off" /></td></tr>';
+				echo '<tr><td><a href="?modm='.$data2['id'].'">'.$data2['title'].'</a></td><td><textarea name="lmir'.$data2['id'].'" readonly>'.htmlentities($data2['links']).'</textarea></td><td><a href="/r.php?m&p='.$data2['label'].'">'.$data2['label'].'</a></td><td>'.date('d/m/Y H:i',$data2['date']).'</td><td><input type="checkbox" name="rmir'.$data2['id'].'" autocomplete="off"></td></tr>';
 			} $req2->closeCursor(); ?></tbody>
 			</table>
-			<input type="submit" value="Supprimer" />
+			<input type="submit" value="Supprimer">
 		</form>
 		<?php }
 	$req1->closeCursor();
@@ -384,12 +384,12 @@ if(isset($_GET['id'])) {
 	$req->execute(array($_GET['id']));
 	if($data = $req->fetch()) {
 ?>
-		<a href="?list=<?php echo $data['category']; ?>"><?php echo $cat[$data['category']]; ?></a><br />
-		<a href="?listfiles=<?php echo $data['id']; ?>">Lister les fichiers</a><br />
-		<a href="translate.php?type=article&id=<?php echo $data['id']; ?>">Traductions</a><br /><br />
+		<a href="?list=<?php echo $data['category']; ?>"><?php echo $cat[$data['category']]; ?></a><br>
+		<a href="?listfiles=<?php echo $data['id']; ?>">Lister les fichiers</a><br>
+		<a href="translate.php?type=article&id=<?php echo $data['id']; ?>">Traductions</a><br><br>
 		<form action="?mod=<?php echo $_GET['id']; ?>" method="post">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
-			<label for="f_mod_name">Nom&nbsp;:</label><input type="text" name="name" value="<?php echo $data['name']; ?>" id="f_mod_name" maxlength="255" required /><br />
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
+			<label for="f_mod_name">Nom&nbsp;:</label><input type="text" name="name" value="<?php echo $data['name']; ?>" id="f_mod_name" maxlength="255" required><br>
 			<label for="f_mod_category">Catégorie&nbsp;:</label><select name="category" id="f_mod_category"><?php
 $rq2 = $bdd->query('SELECT * FROM softwares_categories ORDER BY name ASC');
 while($dat2 = $rq2->fetch()) {
@@ -398,13 +398,13 @@ while($dat2 = $rq2->fetch()) {
 	echo '>'.$dat2['name'].'</option>';
 }
 $rq2->closeCursor()
-?></select><br />
-			<label for="f_mod_keywords">Mots clés&nbsp;:</label><input type="text" name="keywords" value="<?php echo $data['keywords']; ?>" id="f_mod_keywords" maxlength="255" /><br />
-			<label for="f_mod_description">Description courte&nbsp;:</label><input type="text" name="description" value="<?php echo $data['description']; ?>" id="f_mod_description" maxlength="1024" /><br />
-			<label for="f_website">Adresse du site officiel (facultatif)&nbsp;:</label><input type="url" name="website" value="<?php echo $data['website']; ?>" id="f_website" maxlength="255" /><br />
-			<label for="f_mod_text">Texte long (HTML)&nbsp;:</label><br />
-			<textarea name="text" id="f_mod_text" maxlength="20000" rows="20" cols="500" onkeyup="close_confirm=true"><?php echo $data['text']; ?></textarea><br />
-			<input type="submit" value="Modifier" />
+?></select><br>
+			<label for="f_mod_keywords">Mots clés&nbsp;:</label><input type="text" name="keywords" value="<?php echo $data['keywords']; ?>" id="f_mod_keywords" maxlength="255"><br>
+			<label for="f_mod_description">Description courte&nbsp;:</label><input type="text" name="description" value="<?php echo $data['description']; ?>" id="f_mod_description" maxlength="1024"><br>
+			<label for="f_website">Adresse du site officiel (facultatif)&nbsp;:</label><input type="url" name="website" value="<?php echo $data['website']; ?>" id="f_website" maxlength="255"><br>
+			<label for="f_mod_text">Texte long (HTML)&nbsp;:</label><br>
+			<textarea name="text" id="f_mod_text" maxlength="20000" rows="20" cols="500" onkeyup="close_confirm=true"><?php echo $data['text']; ?></textarea><br>
+			<input type="submit" value="Modifier">
 		</form>
 		<script type="text/javascript">init_close_confirm();</script><?php }$req->closeCursor();}
 if(isset($_GET['addfile'])) {
@@ -413,11 +413,11 @@ if(isset($_GET['addfile'])) {
 	if($data = $req->fetch()) { ?>
 		<p>Ajouter un fichier pour <a href="?listfiles=<?php echo $_GET['addfile']; ?>"><?php echo $data['name']; ?></a></p>
 		<form action="?upload=<?php echo $_GET['addfile']; ?>" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
 		
 			<fieldset><legend>Ajouter un fichier</legend>
 				<label for="f_addfile_title">Titre du fichier&nbsp;:</label>
-				<input type="text" name="title" id="f_addfile_title" placeholder="Toto Installateur Windows" required /><br />
+				<input type="text" name="title" id="f_addfile_title" placeholder="Toto Installateur Windows" required><br>
 				
 				<p>Si le fichier fait plus de 2Go ou si votre connexion est très lente, utilisez la méthode <em>Hors formulaire</em>. Vous nécessiterez généralement un accès FTP. Si le fichier est directement accessible via une URL, vous pouvez essayer la méthode <em>URL</em>. Dans ce dernier cas, utiliser un miroir doit être considéré.</p>
 				
@@ -426,31 +426,31 @@ if(isset($_GET['addfile'])) {
 					<option value="form" selected>Simple (&lt; 2Go)</option>
 					<option value="ext">Hors formulaire</option>
 					<option value="url">URL</option>
-				</select><br />
+				</select><br>
 				
 				<div id="f_addfile_group_method_form">
 					<label for="f_addfile_file">Fichier&nbsp;:</label>
-					<input type="file" name="file" id="f_addfile_file" />
+					<input type="file" name="file" id="f_addfile_file">
 					<noscript>Ne choisir un fichier que si la méthode <em>Simple</em> est choisie.</noscript>
 					<p>Si le nom souhaité est différent du nom actuel du fichier, remplissez le champ suivant. Sinon, laissez vide.</p>
 				</div>
 				
 				<div id="f_addfile_group_method_url">
 					<label for="f_addfile_url">URL&nbsp;:</label>
-					<input type="text" name="url" id="f_addfile_url" />
+					<input type="text" name="url" id="f_addfile_url">
 					<noscript>Ne choisir une URL que si la méthode <em>URL</em> est choisie.</noscript>
 				</div>
 				
 				<label for="f_addfile_name">Nom du fichier&nbsp;:</label>
-				<input type="text" name="name" id="f_addfile_name" placeholder="toto-v1.2.3.installer.exe" /><br />
+				<input type="text" name="name" id="f_addfile_name" placeholder="toto-v1.2.3.installer.exe"><br>
 				
 				<label for="f_addfile_label">Label&nbsp;:</label>
-				<input type="text" name="label" id="f_addfile_label" placeholder="toto-win-install" /><br />
+				<input type="text" name="label" id="f_addfile_label" placeholder="toto-win-install"><br>
 				
 				<label for="f_addfile_social">Annoncer sur les médias sociaux&nbsp;:</label>
-				<input type="checkbox" name="social" id="f_addfile_social"<?php if(!DEV) echo ' checked'; ?> /><br />
+				<input type="checkbox" name="social" id="f_addfile_social"<?php if(!DEV) echo ' checked'; ?>><br>
 				
-				<input type="submit" value="Ajouter" />
+				<input type="submit" value="Ajouter">
 				
 				<script type="text/javascript">
 function f_addfile_group_method() {
@@ -484,16 +484,16 @@ f_addfile_group_method();
 			</fieldset>
 		</form>
 		<form action="?addmirror=<?php echo $_GET['addfile']; ?>" method="post">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
 			<fieldset><legend>Ajouter un miroir</legend>
 				<label for="f_addmirror_title">Titre du fichier&nbsp;:</label>
-				<input type="text" name="title" id="f_addmirror_title" /><br />
-				<label for="f_addmirror_urls">URLs des miroirs&nbsp;:</label><br />
+				<input type="text" name="title" id="f_addmirror_title"><br>
+				<label for="f_addmirror_urls">URLs des miroirs&nbsp;:</label><br>
 				<textarea name="urls" id="f_addmirror_urls" style="width: 100%;" onkeyup="close_confirm=true"></textarea>
 				<p>Exemple&nbsp;: [["ZettaScript","https://zettascript.org/fichier.tar.gz"],["CommentÇaMarche","https://commentcamarche.net/download/fichier"]]</p>
 				<label for="f_addmirror_label">Label&nbsp;:</label>
-				<input type="text" name="label" id="f_addmirror_label" /><br />
-				<input type="submit" value="Ajouter" />
+				<input type="text" name="label" id="f_addmirror_label"><br>
+				<input type="submit" value="Ajouter">
 			</fieldset>
 		</form>
 		<script type="text/javascript">init_close_confirm();</script>
@@ -504,16 +504,16 @@ if(isset($_GET['modf'])) {
 	if($data = $req->fetch()) { ?>
 		<a href="?listfiles=<?php echo $data['sw_id']; ?>">Liste des fichiers de l'article</a>
 		<form action="?modf2=<?php echo $data['id']; ?>" method="post" enctype="multipart/form-data" onsubmit="f_modf_submit(event)">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
 			<h2>Modifier un fichier</h2>
 			<fieldset>
 				<legend>Métadonnées</legend>
 				<label for="f_modf_title">Titre du fichier&nbsp;:</label>
-				<input type="text" name="title" id="f_modf_title" value="<?php echo $data['title']; ?>" required /><br />
+				<input type="text" name="title" id="f_modf_title" value="<?php echo $data['title']; ?>" required><br>
 				<label for="f_modf_name">Nom du fichier&nbsp;:</label>
-				<input type="text" name="name" id="f_modf_name" value="<?php echo $data['name']; ?>" required /><br />
+				<input type="text" name="name" id="f_modf_name" value="<?php echo $data['name']; ?>" required><br>
 				<label for="f_modf_label">Label&nbsp;:</label>
-				<input type="text" name="label" id="f_modf_label" value="<?php echo $data['label']; ?>" />
+				<input type="text" name="label" id="f_modf_label" value="<?php echo $data['label']; ?>">
 			</fieldset>
 			<fieldset>
 				<legend>Remplacer le fichier</legend>
@@ -523,29 +523,29 @@ if(isset($_GET['modf'])) {
 					<option value="">Ne pas remplacer</option>
 					<option value="form" selected>Simple (&lt; 2Go)</option>
 					<option value="url">URL</option>
-				</select><br />
+				</select><br>
 				
 				<noscript>Laissez vides les champs suivants si <em>Ne pas remplacer</em> est choisi.</noscript>
 				
 				<div id="f_modf_group_method_form">
 					<label for="f_modf_file">Fichier&nbsp;:</label>
-					<input type="file" name="file" id="f_modf_file" />
-					<noscript>Ne choisir un fichier que si la méthode <em>Simple</em> est choisie.</noscript><br />
+					<input type="file" name="file" id="f_modf_file">
+					<noscript>Ne choisir un fichier que si la méthode <em>Simple</em> est choisie.</noscript><br>
 					<label for="f_modf_overwrite_name">Utiliser le nom du nouveau fichier envoyé&nbsp;:</label>
-					<input type="checkbox" name="overwrite_name" id="f_modf_overwrite_name" checked />
+					<input type="checkbox" name="overwrite_name" id="f_modf_overwrite_name" checked>
 				</div>
 				
 				<div id="f_modf_group_method_url">
 					<label for="f_modf_url">URL&nbsp;:</label>
-					<input type="text" name="url" id="f_modf_url" />
+					<input type="text" name="url" id="f_modf_url">
 					<noscript>Ne choisir une URL que si la méthode <em>URL</em> est choisie.</noscript>
 				</div>
 			</fieldset>
 			
 			<label for="f_modf_social">Annoncer sur les médias sociaux&nbsp;:</label>
-			<input type="checkbox" name="social" id="f_modf_social"<?php if(!DEV) echo ' checked'; ?> /><br />
+			<input type="checkbox" name="social" id="f_modf_social"<?php if(!DEV) echo ' checked'; ?>><br>
 			
-			<input type="submit" value="Modifier" />
+			<input type="submit" value="Modifier">
 				
 				<script type="text/javascript">
 function f_modf_group_method() {
@@ -586,15 +586,15 @@ if(isset($_GET['modm'])) {
 	$req->execute(array($_GET['modm']));
 	if($data = $req->fetch()) { ?>
 		<form action="?modm2=<?php echo $data['id']; ?>" method="post">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
 			<h2>Modifier un miroir</h2>
 			<label for="f_modf_title">Titre du fichier&nbsp;:</label>
-			<input type="text" name="title" id="f_modm_title" value="<?php echo $data['title']; ?>" /><br />
-			<label for="f_modm_urls">URLs des miroirs&nbsp;:</label><br />
-			<textarea name="urls" id="f_modm_urls"><?php echo htmlentities($data['links']); ?></textarea><br />
+			<input type="text" name="title" id="f_modm_title" value="<?php echo $data['title']; ?>"><br>
+			<label for="f_modm_urls">URLs des miroirs&nbsp;:</label><br>
+			<textarea name="urls" id="f_modm_urls"><?php echo htmlentities($data['links']); ?></textarea><br>
 			<label for="f_modf_label">Label&nbsp;:</label>
-			<input type="text" name="label" id="f_modm_label" value="<?php echo $data['label']; ?>" /><br />
-			<input type="submit" value="Modifier" />
+			<input type="text" name="label" id="f_modm_label" value="<?php echo $data['label']; ?>"><br>
+			<input type="submit" value="Modifier">
 		</form>
 <?php }$req->closeCursor();} ?>
 	</body>

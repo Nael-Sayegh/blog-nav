@@ -4,7 +4,7 @@
   '_last_author' => 'Corentin',
   '_last_modif' => 1618906113,
   'title' => 'Paramètres',
-  'maintext' => '<p>Cette page vous donne accès à quelques paramètres pour personnaliser le site à votre guise.<br />
+  'maintext' => '<p>Cette page vous donne accès à quelques paramètres pour personnaliser le site à votre guise.<br>
 Si vous n\'êtes pas identifié en tant que membre, les paramètres seront sauvegardés grâce à des cookies, sinon, ils seront enregistrés dans notre base de données et vous les retrouverez dès lors que vous vous identifierez sur le site (peu importe l\'appareil utilisé).</p>',
   'gui' => 'Interface',
   'combomenu' => 'Menu déroulant (défaut=non)&nbsp;:',

@@ -1,24 +1,18 @@
 <?php $logonly = true;
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require 'inclus/log.php';
-require_once 'inclus/consts.php';
+require_once('inclus/log.php');
+require_once('inclus/consts.php');
 $tr = load_tr($lang, 'redirlogin');
 $titre = tr($tr,'title');
 $cheminaudio = '/audio/sons_des_pages/membre.mp3';
 $stats_page = 'redirlogin'; ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-<?php require_once 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<div id="hautpage" role="banner">
-<h1><a href="/" title="<?php echo tr($tr0,'banner_homelink'); ?>"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/loginbox.php';
-include 'inclus/searchtool.php'; ?>
-</div>
-<?php include('inclus/son.php');
-include 'inclus/menu.php'; ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+<main id="container">
 <h1 id="contenu"><?php print $titre; ?></h1>
 <?php
 echo str_replace('{{membername}}', $login['username'], tr($tr,'maintext'));
@@ -44,7 +38,7 @@ if(isset($login['forum_id']) and $login['forum_id'] !== NULL) { ?>
 	<li><a href="/alist.php"><?php echo tr($tr,'memberlistlink'); ?></a></li>
 	<li><a href="/logout.php?token=<?php echo $login['token']; ?>"><?php echo tr($tr,'logoutlink'); ?></a></li>
 </ul>
-</div>
-<?php include 'inclus/footer.php'; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 </body>
 </html>

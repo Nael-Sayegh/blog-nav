@@ -1,9 +1,9 @@
 <?php
 $nolog = true;
-require_once 'inclus/log.php';
+require_once('inclus/log.php');
 $stats_page='signup';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once 'inclus/consts.php';
+require_once('inclus/consts.php');
 $cheminaudio='/audio/sons_des_pages/membre.mp3';
 $titre = 'Se créer un compte '.$nomdusite;
 
@@ -78,44 +78,38 @@ if(isset($_GET['a']) and $_GET['a'] == 'form' and isset($_POST['username']) and 
 	}
 }
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<?php include 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<div id="hautpage" role="banner">
-<h1><a href="/" title="<?php echo tr($tr0,'banner_homelink'); ?>"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/loginbox.php';
-include 'inclus/searchtool.php'; ?>
-</div>
-<?php include('inclus/son.php');
-include('inclus/menu.php'); ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+<main id="container">
 	<h1 id="contenu"><?php print $titre; ?></h1>
 	<?php if(!empty($log)) echo '<ul id="log">'.$log.'</ul>'; ?>
 	<form action="?a=form" method="post">
 		<table>
 			<tr><td class="formlabel"><label for="f_username">Nom d'utilisateur&nbsp;:</label></td>
-				<td><input type="text" id="f_username" name="username" maxlength="32" required /></td></tr>
+				<td><input type="text" id="f_username" name="username" maxlength="32" required></td></tr>
 			<tr><td class="formlabel"><label for="f_mail">Adresse e-mail&nbsp;:</label></td>
-				<td><input type="email" id="f_mail" name="mail" maxlength="255" required /></td></tr>
+				<td><input type="email" id="f_mail" name="mail" maxlength="255" required></td></tr>
 			<tr><td class="formlabel"><label for="f_psw">Mot de passe&nbsp;:</label></td>
-				<td><input type="password" id="f_psw" name="psw" maxlength="64" required /></td></tr>
+				<td><input type="password" id="f_psw" name="psw" maxlength="64" required></td></tr>
 			<tr><td class="formlabel"><label for="f_rpsw">Mot de passe (vérification)&nbsp;:</label></td>
-				<td><input type="password" id="f_rpsw" name="rpsw" maxlength="64" required /></td></tr>
+				<td><input type="password" id="f_rpsw" name="rpsw" maxlength="64" required></td></tr>
 			<tr><td class="formlabel"><label for="f_nl">S'inscrire à la lettre d'information&nbsp;:</label></td>
-				<td><input type="checkbox" id="f_nl" name="nl" /> <span>(mail hebdomadaire pour rester informer des mises à jours)</span></td></tr>
+				<td><input type="checkbox" id="f_nl" name="nl"> <span>(mail hebdomadaire pour rester informer des mises à jours)</span></td></tr>
 			<tr><td class="formlabel"><label for="f_forum">S'inscrire au <a href="https://forum.progaccess.net">forum ProgAccess</a>&nbsp;:</label></td>
-				<td><input type="checkbox" id="f_forum" name="forum" checked /></td></tr>
+				<td><input type="checkbox" id="f_forum" name="forum" checked></td></tr>
 			<tr><td class="formlabel"><label for="f_box1">Cochez cette case&nbsp;:</label></td>
-				<td><input type="checkbox" id="f_box1" name="box1" /></td></tr>
+				<td><input type="checkbox" id="f_box1" name="box1"></td></tr>
 			<tr><td class="formlabel"><label for="f_box2">Ne cochez pas cette case&nbsp;:</label></td>
-				<td><input type="checkbox" id="f_box2" name="box2" /></td></tr>
+				<td><input type="checkbox" id="f_box2" name="box2"></td></tr>
 		</table>
-		<p>L'usage des cookies est nécessaire pour utiliser l'espace membres. Vous créer un compte <?php echo $nomdusite; ?> confirme que vous acceptez les cookies en vous identifiant.<br />Nous ne partagerons pas votre adresse e-mail avec des tiers. Vous pourrez modifier les paramètres de votre compte ou le supprimer à tout moment.</p>
-		<input type="submit" value="S'inscrire" />
+		<p>L'usage des cookies est nécessaire pour utiliser l'espace membres. Vous créer un compte <?php echo $nomdusite; ?> confirme que vous acceptez les cookies en vous identifiant.<br>Nous ne partagerons pas votre adresse e-mail avec des tiers. Vous pourrez modifier les paramètres de votre compte ou le supprimer à tout moment.</p>
+		<input type="submit" value="S'inscrire">
 	</form>
-</div>
-<?php include 'inclus/footer.php'; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 </body>
 </html>

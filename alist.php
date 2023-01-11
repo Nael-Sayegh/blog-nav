@@ -1,32 +1,26 @@
 <?php
 $logonly = true;
 $adminonly = true;
-include_once 'inclus/log.php';
+require_once('inclus/log.php');
 $stats_page='liste_comptes';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once 'inclus/consts.php';
+require_once('inclus/consts.php');
 $cheminaudio='/audio/sons_des_pages/membre.mp3';
 $chemincss .= '<style>.tr2{background-color:#E0E0E0;}</style>';
 $titre = 'Liste des membres '.$nomdusite;
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<?php include 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<div id="hautpage" role="banner">
-<h1><a href="/" title="Retour à l'accueil"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/loginbox.php';
-include 'inclus/searchtool.php'; ?>
-</div>
-<?php include('inclus/son.php');
-include('inclus/menu.php'); ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+<main id="container">
 	<h1 id="contenu"><?php print $titre; ?></h1>
 	<form action="/alist.php" method="get">
 		<label for="f1_sort">Trier par&nbsp;:</label>
 		<select name="sort" id="f1_sort"><option value="date" selected>Date d'inscription</option><option value="username">Ordre alphabétique</option></select>
-		<input type="submit" value="Trier" style="cursor:pointer;" />
+		<input type="submit" value="Trier" style="cursor:pointer;">
 	</form>
 	<table style="width:100%;">
 		<thead><tr><th>Numéro de membre</th><th>Nom</th><th>Inscription</th><th>Rang</th><?php /*<th>Actions</th>*/ ?></tr></thead>
@@ -61,7 +55,7 @@ while($data = $req->fetch()) {
 	// Check birthday
 	if(isset($sets['bd_m']) and isset($sets['bd_d']) and (($sets['bd_m']==$date['mon'] and $sets['bd_d']==$date['mday']) or ($sets['bd_m']==2 and $date['mon']==3 and $sets['bd_d']==29 and $date['mday']==1 and $date['year']%4==0))) echo ' &#127874;';
 	
-	echo '</td><td>'.date('d/m/Y',$data['account_signup_date']).'</td><td>'.urank($data['account_rank']).'</td>';/*<td><a href="/sendpm.php?id='.$data['id64'].'" title="Envoyer un message privé"><img alt="Envoyer un message privé" src="/image/message.png" /></a></td>*/
+	echo '</td><td>'.date('d/m/Y',$data['account_signup_date']).'</td><td>'.urank($data['account_rank']).'</td>';/*<td><a href="/sendpm.php?id='.$data['id64'].'" title="Envoyer un message privé"><img alt="Envoyer un message privé" src="/image/message.png"></a></td>*/
 	echo '</tr>';
 	$tr2 = !$tr2;
 	$n ++;
@@ -70,7 +64,7 @@ while($data = $req->fetch()) {
 		</tbody>
 	</table>
 	<p><b><?php echo $n; ?></b> membres trouvés</p>
-</div>
-<?php include 'inclus/footer.php'; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 </body>
 </html>

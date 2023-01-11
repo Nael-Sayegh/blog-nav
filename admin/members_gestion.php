@@ -22,7 +22,7 @@ if(isset($_GET['mod2']) and isset($_POST['username']) and isset($_POST['email'])
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Gestion des membres <?php print $nomdusite; ?></title>
 		<?php print $cssadmin; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
@@ -51,11 +51,11 @@ if(isset($_GET['mod'])) {
 		<h3 id="mod">Modifier</h3>
 		<form action="?mod2=<?php echo $data['id']; ?>" method="post">
 			<label for="f2_username">Nom d'utilisateur&nbsp;:</label>
-			<input type="text" name="username" id="f2_username" maxlength="32" value="<?php echo $data['username']; ?>" required /><br />
+			<input type="text" name="username" id="f2_username" maxlength="32" value="<?php echo $data['username']; ?>" required><br>
 			<label for="f2_email">Adresse mail&nbsp;:</label>
-			<input type="email" name="email" id="f2_email" maxlength="255" value="<?php echo $data['email']; ?>" required /><br />
+			<input type="email" name="email" id="f2_email" maxlength="255" value="<?php echo $data['email']; ?>" required><br>
 			<label for="f2_psw">Mot de passe&nbsp;:</label>
-			<input type="password" name="password" id="f2_psw" maxlength="64" /><br />
+			<input type="password" name="password" id="f2_psw" maxlength="64"><br>
 			<label for="f2_rank">Rang&nbsp;:</label>
 			<select id="f2_rank" name="rank">
 				<option value="0" <?php if($data['rank']=='0')echo'selected'; ?>>Nouveau</option>
@@ -64,8 +64,8 @@ if(isset($_GET['mod'])) {
 				<option value="m" <?php if($data['rank']=='m')echo'selected'; ?>>Modérateur</option>
 				<option value="i" <?php if($data['rank']=='i')echo'selected'; ?>>Anonyme</option>
 				<option value="b" <?php if($data['rank']=='b')echo'selected'; ?>>Banni</option>
-			</select><br />
-			<input type="submit" value="Modifier" />
+			</select><br>
+			<input type="submit" value="Modifier">
 		</form>
 <?php
 	}

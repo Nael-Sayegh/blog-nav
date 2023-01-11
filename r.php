@@ -1,6 +1,6 @@
 <?php
-require 'inclus/log.php';
-require_once 'inclus/consts.php';
+require_once('inclus/log.php');
+require_once('inclus/consts.php');
 if(!empty($_SERVER['HTTP_REFERER']) and substr_count('commentcamarche.net', $_SERVER['HTTP_REFERER']) > 0) {
 	header('Location: /');
 	exit();

@@ -97,7 +97,7 @@ print $nb_visiteurs. " visiteurs depuis le 01/01/20";
 print $year." dont ";
 print $nb_aujourdhui. " aujourd'hui, ";
 if ($nb_requetes < '2') {
-print $nb_requetes. " page chargée.<br />";
+print $nb_requetes. " page chargée.<br>";
 }
 else {
 print $nb_requetes. " pages chargées ";

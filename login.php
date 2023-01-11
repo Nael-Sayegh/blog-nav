@@ -1,9 +1,9 @@
 <?php
 $nolog = true;
-require 'inclus/log.php';
+require_once('inclus/log.php');
 $stats_page='login';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once 'inclus/consts.php';
+require_once('inclus/consts.php');
 $tr = load_tr($lang, 'login');
 $cheminaudio='/audio/sons_des_pages/membre.mp3';
 $titre = tr($tr,'title');
@@ -50,30 +50,24 @@ elseif(isset($_GET['confirm_err']))
 elseif(isset($_GET['logonly']))
 	$log = tr($tr,'logonly');
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-<?php include 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<div id="hautpage" role="banner">
-<h1><a href="/" title="<?php echo tr($tr0,'banner_homelink'); ?>"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/loginbox.php';
-include 'inclus/searchtool.php'; ?>
-</div>
-<?php include('inclus/son.php');
-include('inclus/menu.php'); ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+<main id="container">
 	<h1 id="contenu"><?php print $titre; ?></h1>
 <?php if(!empty($log)) echo '<div id="divlog" role="complementary" aria-live="assertive"><p id="log"><b>'.$log.'</b></p></div>'; ?>
 	<form action="?a=form<?php if(isset($_GET['forum'])) echo '&forum'; ?>#log" method="post">
-		<input type="text" id="f1_username" name="username" placeholder="<?php echo tr($tr,'username'); ?>" maxlength="32" aria-label="<?php echo tr($tr,'username'); ?>" autofocus /><br />
-		<input type="password" id="f1_psw" name="psw" placeholder="<?php echo tr($tr,'password'); ?>" maxlength="64" aria-label="<?php echo tr($tr,'password'); ?>" /><br />
-		<input type="submit" id="f1_submit" value="<?php echo tr($tr,'bt_login'); ?>" />
+		<input type="text" id="f1_username" name="username" placeholder="<?php echo tr($tr,'username'); ?>" maxlength="32" aria-label="<?php echo tr($tr,'username'); ?>" autofocus><br>
+		<input type="password" id="f1_psw" name="psw" placeholder="<?php echo tr($tr,'password'); ?>" maxlength="64" aria-label="<?php echo tr($tr,'password'); ?>"><br>
+		<input type="submit" id="f1_submit" value="<?php echo tr($tr,'bt_login'); ?>">
 	</form>
-	<a href="/mdp_demande.php"><?php echo tr($tr,'forgot_psw'); ?></a><br />
+	<a href="/mdp_demande.php"><?php echo tr($tr,'forgot_psw'); ?></a><br>
 	<a href="/signup.php"><?php echo tr($tr,'signup'); ?></a>
 	<p><?php echo tr($tr,'cookies'); ?></p>
-</div>
-<?php include 'inclus/footer.php'; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 </body>
 </html>

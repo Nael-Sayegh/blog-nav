@@ -19,10 +19,10 @@ include 'inclus/menu.php'; ?>
 <div id="container" role="main">
 <h1 id="contenu"><?php print $titre; ?></h1>
 <noscript>
-<p>Vous avez bien été redirigé vers notre horloge.<br />
-Remarque :<br /> 
-Nous avons détecté que JavaScript est bloqué sur votre navigateur, nous respectons ce choix et nous allons donc vous communiquer une horloge en php.<br />
-L'horloge affichera donc l'heure française, si vous ne résidez pas en France il est possible que l'heure affichée ici ne corresponde pas à l'heure exacte de votre pays.<br />
+<p>Vous avez bien été redirigé vers notre horloge.<br>
+Remarque :<br> 
+Nous avons détecté que JavaScript est bloqué sur votre navigateur, nous respectons ce choix et nous allons donc vous communiquer une horloge en php.<br>
+L'horloge affichera donc l'heure française, si vous ne résidez pas en France il est possible que l'heure affichée ici ne corresponde pas à l'heure exacte de votre pays.<br>
 Notez également que cette horloge sera incapable de s'actualiser automatiquement, elle affichera donc l'heure qu'il était au moment où la page a été chargée.</p>
 </noscript>
 <div style="display:none" id="xyz">
@@ -35,7 +35,7 @@ setlocale(LC_TIME,"fr_FR.UTF8");
 echo "Quand cette page a été chargée nous étions le ".strftime("%A %e %B %Y");
 echo ", il était ".strftime("%k:%M:%S");
 ?>
-<br />
+<br>
 </noscript>
 <div style="display:none" id="ag003030">
 <script type="text/javascript" src="/scripts/horloge.js"></script>

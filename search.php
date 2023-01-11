@@ -1,12 +1,12 @@
 <?php
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require 'inclus/log.php';
-require_once 'inclus/consts.php';
+require_once('inclus/log.php');
+require_once('inclus/consts.php');
 $tr = load_tr($lang, 'search');
 $titre=tr($tr,'title');
 $cheminaudio="/audio/sons_des_pages/recherche.mp3";
 $stats_page='recherche';
-$chemincss .= '<link rel="stylesheet" href="/css/search.css" />';
+$chemincss .= '<link rel="stylesheet" href="/css/search.css">';
 $searchterms = '';
 if(isset($_GET['q']) and $_GET['q'] != '' and strlen($_GET['q']) <= 255) {
 	$searchterms = $_GET['q'];
@@ -22,19 +22,13 @@ if(isset($_GET['q']) and $_GET['q'] != '' and strlen($_GET['q']) <= 255) {
 	}
 }
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-<?php include 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<div id="hautpage" role="banner">
-<h1><a href="/" title="<?php echo tr($tr0,'banner_homelink'); ?>"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/loginbox.php';
-include 'inclus/searchtool.php'; ?>
-</div>
-<?php include('inclus/son.php');
-include 'inclus/menu.php'; ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+<main id="container">
 <h1 id="contenu"><?php
 if(!empty($searchterms))
 	echo tr($tr,'title2',array('terms'=>htmlspecialchars($_GET['q'])));
@@ -147,7 +141,7 @@ if(!empty($searchterms)) {
 	}
 }
 ?>
-</div>
-<?php include 'inclus/footer.php'; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 </body>
 </html>

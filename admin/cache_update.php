@@ -10,14 +10,16 @@ if(isset($_GET['cache'])) {
 	
 	ob_start();
 	if($_GET['cache'] == 'all' or $_GET['cache'] == 'menu') {
-		$file1 = fopen($cachedir.'menu_ulli.html', 'w');
-		$file2 = fopen($cachedir.'menu_select.html', 'w');
-		$file3 = fopen($cachedir.'menu_search.html', 'w');
+		$file1 = fopen($cachedir.'menu_ulli_js.html', 'w');
+		$file2 = fopen($cachedir.'menu_ulli_njs.html', 'w');
+		$file3 = fopen($cachedir.'menu_select.html', 'w');
+		$file4 = fopen($cachedir.'menu_search.html', 'w');
 		$req = $bdd->query('SELECT * FROM `softwares_categories` ORDER BY name ASC');
 		while($data = $req->fetch()) {
-			fwrite($file1, '<li><a id="ulli_linkcat_'.$data['id'].'" href="/c?id='.$data['id'].'">'.$data['name'].'</a></li>');
-			fwrite($file2, '<option id="sel_linkcat_'.$data['id'].'" value="/c?id='.$data['id'].'">'.$data['name'].'</option>');
-			fwrite($file3, '<option value="'.$data['id'].'">'.$data['name'].'</option>');
+			fwrite($file1, '<li><a id="ulli_js_linkcat_'.$data['id'].'" href="/c?id='.$data['id'].'">'.$data['name'].'</a></li>');
+			fwrite($file2, '<li><a id="ulli_njs_linkcat_'.$data['id'].'" href="/c?id='.$data['id'].'">'.$data['name'].'</a></li>');
+			fwrite($file3, '<option id="sel_linkcat_'.$data['id'].'" value="/c?id='.$data['id'].'">'.$data['name'].'</option>');
+			fwrite($file4, '<option value="'.$data['id'].'">'.$data['name'].'</option>');
 		}
 		fclose($file1);
 		fclose($file2);
@@ -46,7 +48,7 @@ if(isset($_GET['cache'])) {
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Gestionnaire des caches &#8211; <?php print $nomdusite; ?></title>
 		<?php print $cssadmin; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
@@ -56,7 +58,7 @@ if(isset($_GET['cache'])) {
 		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
 <?php
 if(!empty($obcache))
-	echo '<fieldset><legend>Cachers\' stdout</legend>'.$obcache.'</fieldset><br />';
+	echo '<fieldset><legend>Cachers\' stdout</legend>'.$obcache.'</fieldset><br>';
 ?>
 		<a href="?cache=all">Mettre à jour tous les caches</a>
 		<ul>

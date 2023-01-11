@@ -1,7 +1,7 @@
 <?php
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-include_once 'inclus/log.php';
-require_once 'inclus/consts.php';
+require_once('inclus/log.php');
+require_once('inclus/consts.php');
 $titre='Liste des articles';
 $stats_page = 'art-list';
 $cheminaudio='/audio/sons_des_pages/hihi6.mp3';
@@ -11,19 +11,13 @@ while($data = $req->fetch()) {
 $cat[$data['id']] = $data['name'];
 }
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<?php require_once 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<div id="hautpage" role="banner">
-<h1><a href="/" title="Retour à l'accueil"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/loginbox.php';
-include 'inclus/searchtool.php'; ?>
-</div>
-<?php include('inclus/son.php');
-include('inclus/menu.php'); ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+<main id="container">
 <h1 id="contenu"><?php print $titre; ?></h1>
 <form action="/art_list.php" method="get">
 <label for="f1_sort">Trier par&nbsp;:</label>
@@ -32,7 +26,7 @@ include('inclus/menu.php'); ?>
 <option value="nom">Ordre alphabétique</option>
 <option value="date">Date de mise à jour</option>
 </select>
-<input type="submit" value="Trier" style="cursor:pointer;" />
+<input type="submit" value="Trier" style="cursor:pointer;">
 </form>
 <ul>
 <?php
@@ -79,7 +73,7 @@ $req->closeCursor();
 ?>
 </ul>
 <p><b><?php echo count($entries); ?></b> articles trouvés</p>
-</div>
-<?php include 'inclus/footer.php'; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 </body>
 </html>

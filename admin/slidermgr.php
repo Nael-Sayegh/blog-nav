@@ -26,10 +26,10 @@ if((isset($_POST['token']) and $_POST['token'] == $login['token']) or (isset($_G
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Gestion des slides de <?php print $nomdusite; ?></title>
 		<?php print $cssadmin; ?>
-		<link rel="stylesheet" href="css/translate.css" />
+		<link rel="stylesheet" href="css/translate.css">
 		<script type="text/javascript" src="js/sliderstyles.js"></script>
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
@@ -64,24 +64,24 @@ if(isset($_GET['mod'])) {
 		<h3>Modification de la slide</h3>
 		<label for="f1_stylejs">Design prédéfini&nbsp;: </label>
 		<select id="f1_stylejs"><option value="Blue Sky">Blue Sky</option><option value="Metal Kiwi">Metal Kiwi</option><option value="Light Pacific">Light Pacific</option><option value="Water Melon">Water Melon</option><option value="Breizh Gradient">Breizh Gradient</option></select>
-		<input type="button" value="Appliquer le style" onclick="setstyle('f1_')" /><br />
+		<input type="button" value="Appliquer le style" onclick="setstyle('f1_')"><br>
 		<form action="?mod2=<?php echo $data['id']; ?>" method="post">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
 			<label for="f1_lang">Langue&nbsp;:</label>
-			<select id="f1_lang" name="lang" autocomplete="off"><?php echo langs_html_opts($data['lang']); ?></select><br />
+			<select id="f1_lang" name="lang" autocomplete="off"><?php echo langs_html_opts($data['lang']); ?></select><br>
 			<label for="f1_todo">État&nbsp;:</label>
-			<select id="f1_todo" name="todo" autocomplete="off"><?php foreach($tr_todo as $key => $val) {echo '<option value="'.$key.'"'.($data['todo_level']==$key? ' selected':'').'>'.$val.'</option>';} ?></select><br />
-			<label for="f1_label">Label&nbsp;:</label><input type="text" name="label" id="f1_label" value="<?php echo $data['label']; ?>" maxlength="255" required /><br />
-			<label for="f1_style">Style CSS de la slide&nbsp;:</label><br />
-			<textarea name="style" id="f1_style" maxlength="1024"><?php echo $data['style']; ?></textarea><br />
-			<label for="f1_title">Titre&nbsp;:</label><input type="text" name="title" id="f1_title" value="<?php echo $data['title']; ?>" maxlength="512" required /><br />
-			<label for="f1_title_style">Style CSS du titre&nbsp;:</label><br />
-			<textarea name="title_style" id="f1_title_style" maxlength="1024"><?php echo $data['title_style']; ?></textarea><br />
-			<label for="f1_contain">Contenu&nbsp;:</label><br />
-			<textarea name="contain" id="f1_contain" maxlength="8192" rows="20" cols="500"><?php echo $data['contain']; ?></textarea><br />
-			<label for="f1_contain_style">Style CSS du contenu&nbsp;:</label><br />
-			<textarea name="contain_style" id="f1_contain_style" maxlength="1024"><?php echo $data['contain_style']; ?></textarea><br />
-			<input type="submit" value="Modifier" />
+			<select id="f1_todo" name="todo" autocomplete="off"><?php foreach($tr_todo as $key => $val) {echo '<option value="'.$key.'"'.($data['todo_level']==$key? ' selected':'').'>'.$val.'</option>';} ?></select><br>
+			<label for="f1_label">Label&nbsp;:</label><input type="text" name="label" id="f1_label" value="<?php echo $data['label']; ?>" maxlength="255" required><br>
+			<label for="f1_style">Style CSS de la slide&nbsp;:</label><br>
+			<textarea name="style" id="f1_style" maxlength="1024"><?php echo $data['style']; ?></textarea><br>
+			<label for="f1_title">Titre&nbsp;:</label><input type="text" name="title" id="f1_title" value="<?php echo $data['title']; ?>" maxlength="512" required><br>
+			<label for="f1_title_style">Style CSS du titre&nbsp;:</label><br>
+			<textarea name="title_style" id="f1_title_style" maxlength="1024"><?php echo $data['title_style']; ?></textarea><br>
+			<label for="f1_contain">Contenu&nbsp;:</label><br>
+			<textarea name="contain" id="f1_contain" maxlength="8192" rows="20" cols="500"><?php echo $data['contain']; ?></textarea><br>
+			<label for="f1_contain_style">Style CSS du contenu&nbsp;:</label><br>
+			<textarea name="contain_style" id="f1_contain_style" maxlength="1024"><?php echo $data['contain_style']; ?></textarea><br>
+			<input type="submit" value="Modifier">
 		</form>
 <?php	}
 }
@@ -90,24 +90,24 @@ if(isset($_GET['mod'])) {
 		<h2>Ajout d'une slide</h2>
 		<label for="f_stylejs">Design prédéfini&nbsp;: </label>
 		<select id="f_stylejs"><option value="Blue Sky">Blue Sky</option><option value="Metal Kiwi">Metal Kiwi</option><option value="Light Pacific">Light Pacific</option><option value="Water Melon">Water Melon</option><option value="Breizh Gradient">Breizh Gradient</option></select>
-		<input type="button" value="Appliquer le style" onclick="setstyle('f_')" /><br />
+		<input type="button" value="Appliquer le style" onclick="setstyle('f_')"><br>
 		<form action="?add" method="post">
-			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off" />
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>" autocomplete="off">
 			<label for="f_lang">Langue&nbsp;:</label>
-			<select id="f_lang" name="lang" autocomplete="off"><?php echo langs_html_opts($lang); ?></select><br />
+			<select id="f_lang" name="lang" autocomplete="off"><?php echo langs_html_opts($lang); ?></select><br>
 			<label for="f_todo">État&nbsp;:</label>
-			<select id="f_todo" name="todo" autocomplete="off"><?php foreach($tr_todo as $key => $val) {echo '<option value="'.$key.'">'.$val.'</option>';} ?></select><br />
-			<label for="f_label">Label&nbsp;:</label><input type="text" name="label" id="f_label" maxlength="255" required /><br />
-			<label for="f_style">Style CSS de la slide&nbsp;:</label><br />
-			<textarea name="style" id="f_style" maxlength="1024"></textarea><br />
-			<label for="f_title">Titre&nbsp;:</label><input type="text" name="title" id="f_title" maxlength="512" required /><br />
-			<label for="f_title_style">Style CSS du titre&nbsp;:</label><br />
-			<textarea name="title_style" id="f_title_style" maxlength="1024"></textarea><br />
-			<label for="f_contain">Contenu&nbsp;:</label><br />
-			<textarea name="contain" id="f_contain" class="ta" maxlength="8192"></textarea><br />
-			<label for="f_contain_style">Style CSS du contenu&nbsp;:</label><br />
-			<textarea name="contain_style" id="f_contain_style" maxlength="1024"></textarea><br />
-			<input type="submit" value="Ajouter" />
+			<select id="f_todo" name="todo" autocomplete="off"><?php foreach($tr_todo as $key => $val) {echo '<option value="'.$key.'">'.$val.'</option>';} ?></select><br>
+			<label for="f_label">Label&nbsp;:</label><input type="text" name="label" id="f_label" maxlength="255" required><br>
+			<label for="f_style">Style CSS de la slide&nbsp;:</label><br>
+			<textarea name="style" id="f_style" maxlength="1024"></textarea><br>
+			<label for="f_title">Titre&nbsp;:</label><input type="text" name="title" id="f_title" maxlength="512" required><br>
+			<label for="f_title_style">Style CSS du titre&nbsp;:</label><br>
+			<textarea name="title_style" id="f_title_style" maxlength="1024"></textarea><br>
+			<label for="f_contain">Contenu&nbsp;:</label><br>
+			<textarea name="contain" id="f_contain" class="ta" maxlength="8192"></textarea><br>
+			<label for="f_contain_style">Style CSS du contenu&nbsp;:</label><br>
+			<textarea name="contain_style" id="f_contain_style" maxlength="1024"></textarea><br>
+			<input type="submit" value="Ajouter">
 		</form>
 	</body>
 </html>

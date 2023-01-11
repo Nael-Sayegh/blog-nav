@@ -19,7 +19,7 @@ if(isset($_GET['mod2']) and isset($_POST['name'])) {
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Gestion des catégories de <?php print $nomdusite; ?></title>
 <?php print $cssadmin; ?>
 <script type="text/javascript" src="/scripts/default.js"></script>
@@ -46,10 +46,10 @@ if(isset($_GET['mod'])) {
 	if($data = $req->fetch()) { ?>
 		<h3>Modification de la catégorie</h3>
 		<form action="?mod2=<?php echo $data['id']; ?>" method="post">
-			<label for="f2_name">Nom&nbsp;:</label><input type="text" name="name" id="f2_name" maxlength="255" value="<?php echo $data['name']; ?>" required /><br />
-			<label for="f2_text">Texte d'introduction HTML&nbsp;:</label><br />
-			<textarea name="text" id="f2_text" maxlength="2047" rows="20" cols="500"><?php echo $data['text']; ?></textarea><br />
-			<input type="submit" value="Modifier" />
+			<label for="f2_name">Nom&nbsp;:</label><input type="text" name="name" id="f2_name" maxlength="255" value="<?php echo $data['name']; ?>" required><br>
+			<label for="f2_text">Texte d'introduction HTML&nbsp;:</label><br>
+			<textarea name="text" id="f2_text" maxlength="2047" rows="20" cols="500"><?php echo $data['text']; ?></textarea><br>
+			<input type="submit" value="Modifier">
 		</form>
 <?php	}
 }
@@ -57,10 +57,10 @@ if(isset($_GET['mod'])) {
 		
 		<h2>Ajout d'une catégorie</h2>
 		<form action="?add" method="post">
-			<label for="f_name">Nom&nbsp;:</label><input type="text" name="name" id="f_name" maxlength="255" required /><br />
-			<label for="f_text">Texte d'introduction HTML&nbsp;:</label><br />
-			<textarea name="text" id="f_text" maxlength="2047" rows="20" cols="500"></textarea><br />
-			<input type="submit" value="Ajouter" />
+			<label for="f_name">Nom&nbsp;:</label><input type="text" name="name" id="f_name" maxlength="255" required><br>
+			<label for="f_text">Texte d'introduction HTML&nbsp;:</label><br>
+			<textarea name="text" id="f_text" maxlength="2047" rows="20" cols="500"></textarea><br>
+			<input type="submit" value="Ajouter">
 		</form>
 	</body>
 </html>

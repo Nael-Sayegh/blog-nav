@@ -200,7 +200,7 @@ function print_pods_list($pods) {
     <section id="podinput">
       <h3><?php echo $tr->message("introduce_your_pod_URL"); ?></h3>
       <form onsubmit="share(document.getElementById('podurl').value); return false;">
-        https://<input type="text" id="podurl" placeholder="<?php echo $tr->message("input_example").$pods[array_rand($pods)]; ?>" value="" list="podslist" />/&nbsp;&nbsp;&nbsp;<input type="submit" id="podurlsm" value="<?php echo $tr->message("button_go"); ?>" />
+        https://<input type="text" id="podurl" placeholder="<?php echo $tr->message("input_example").$pods[array_rand($pods)]; ?>" value="" list="podslist">/&nbsp;&nbsp;&nbsp;<input type="submit" id="podurlsm" value="<?php echo $tr->message("button_go"); ?>">
       </form>
       <?php echo print_pods_list($pods); ?>
     </section>

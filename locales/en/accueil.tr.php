@@ -14,13 +14,13 @@ Internet (or generally computing) is a common good, which has to be accessible f
 <p>Accessibility of a software or a hardware is determined by price, but especially by technical choices at all levels. We must make the right choices, develop suitable tools (softwares, studies, norms), and force editors and manufacturers to do the same.</p>
 
 <h3>Open</h3>
-<p>When we say something that is open, it means that this thing is not a poor deposit box which the user could only press the external buttons, decided by someone else we do not know the intentions. These boxes are mainly the artwork of web giants, GAFAM and company (Google, Apple, Facebook, Amazon, Microsoft), who keep developing their technologies in parallel in the greatest secrecy.<br />
+<p>When we say something that is open, it means that this thing is not a poor deposit box which the user could only press the external buttons, decided by someone else we do not know the intentions. These boxes are mainly the artwork of web giants, GAFAM and company (Google, Apple, Facebook, Amazon, Microsoft), who keep developing their technologies in parallel in the greatest secrecy.<br>
 However, we have a great solution: Open-Source is a guarantee for the user to know exactly what a program can do on their computer. This practice consists of publishing the source code (the recipe) of a computer program. Everyone is then free to study how it works, to modify it and to improve it. These freedoms &#8211; to use, study, share, and modify &#8211; are guaranteed by free (libre) licenses. (<a href="https://gnu.org">More info here</a>)</p>
 <p>You want a good news? Well, by contributing to make the open web, we can help making it accessible, because if the code of a project is public and free, anyone can improve it, even with the accessibility level.</p>
 
 <h3>{{site}}\' goals</h3>
-<p>At its initial launch in 2015, this site struggled for accessibility with this only way: listing softwares under Windows that are used by visually impaired people.<br />
-At the time we\'re in, the active community of the site has changed, the team has grown, and we are aware that this way is not enough to do the whole job.<br />
+<p>At its initial launch in 2015, this site struggled for accessibility with this only way: listing softwares under Windows that are used by visually impaired people.<br>
+At the time we\'re in, the active community of the site has changed, the team has grown, and we are aware that this way is not enough to do the whole job.<br>
 So we kept the initial work, but expanded our field of action:</p>
 <ul>
 	<li>List in an intuitive and organized way the software that can be used by everybody under Windows, Android or GNU / Linux;</li>
@@ -30,7 +30,7 @@ So we kept the initial work, but expanded our field of action:</p>
 	<li>Increase the attitudes and raise awareness of the extreme importance of accessibility in all areas (computing, health, trade, leisure and more);</li>
 	<li>Propose tests of more or less specialized equipment.</li>
 </ul>
-<p>To achieve this, a team of mostly young people work to code and maintain the site, you can <a href="/contact.php">see it here</a>.<br />
+<p>To achieve this, a team of mostly young people work to code and maintain the site, you can <a href="/contact.php">see it here</a>.<br>
 We also rely on all of you, without whom the site wouldn\'t exist today.</p>
 <p>Did you find a bug or do you want to message the administration of the site? <a href="/contacter.php">Don\'t hesitate to contact us.</a></p>
 

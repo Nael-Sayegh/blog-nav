@@ -38,7 +38,7 @@ function get_facebook($page, $httplang) {
 	foreach($nodes as $node) {
 		$msghtml = $dom->saveHTML($node);
 		$msgdom = new DOMDocument();
-		$msgdom->loadHTML('<meta charset="utf-8" />'.$msghtml);
+		$msgdom->loadHTML('<meta charset="utf-8">'.$msghtml);
 		$msgtimenode = $msgdom->getElementsByTagName('abbr');
 		$msgid = '';
 		$msgtime = '';
@@ -84,7 +84,7 @@ function get_twitter($page, $httplang) {
 		$msgid = $node->parentNode->attributes->getNamedItem('data-item-id')->value;
 		$msghtml = $dom->saveHTML($node);
 		$msgdom = new DOMDocument();
-		$msgdom->loadHTML('<meta charset="utf-8" />'.$msghtml);
+		$msgdom->loadHTML('<meta charset="utf-8">'.$msghtml);
 		$msgtime = '';
 		$msgtimenode = $msgdom->getElementsByTagName('small');
 		if(isset($msgtimenode[0])) {

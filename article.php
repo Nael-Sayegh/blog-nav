@@ -2,9 +2,9 @@
 $stats_page='article';
 if(!isset($_GET['id'])) {header('Location: /');die();}
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once 'inclus/log.php';
-require_once 'inclus/consts.php';
-require_once 'inclus/isbot.php';
+require_once('inclus/log.php');
+require_once('inclus/consts.php');
+require_once('inclus/isbot.php');
 	if(isset($logged) && $logged == 'true' AND $login['rank'] == 'a') {
 		$req2 = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 		$req2->execute(array($login['id']));
@@ -111,19 +111,13 @@ while($data = $req->fetch()) {
 	$cat[$data['id']] = $data['name'];
 }
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-	<?php include 'inclus/header.php'; ?>
+	<?php require_once('inclus/header.php'); ?>
 	<body>
-		<div id="hautpage" role="banner">
-			<h1><a href="/" title="<?php echo tr($tr0,'banner_homelink'); ?>"><?php print $nomdusite; ?></a></h1>
-			<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/loginbox.php';
-include 'inclus/searchtool.php'; ?>
-		</div>
-		<?php include('inclus/son.php');
-include('inclus/menu.php'); ?>
-		<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+		<main id="container">
 			<h1 id="contenu"><?php print $titre; ?></h1>
 			<p><a href="/art_list.php"><?php echo tr($tr,'categories_link'); ?></a></p>
 			<?php
@@ -164,7 +158,7 @@ $req = $bdd->prepare('SELECT * FROM softwares_files WHERE sw_id=? ORDER BY date 
 $req->execute(array($sw['id']));
 while($data = $req->fetch()) {
 	if($first) {
-		echo '<table id="sw_files"><caption role="heading" aria-level="2"><strong>'.tr($tr,'files_title',array('title'=>$titre)).'</strong></caption><thead><tr><th>'.tr($tr,'files_size').'</th><th>'.tr($tr,'files_date').'</th><th>'.tr($tr,'files_hits').'</th><th>MD5, SHA1</th></tr></thead><tbody>';
+		echo '<span style="position:absolute; top:-999px; left:-9999px;" role="heading" aria-level="2">'.tr($tr,'files_title',array('title'=>$titre)).'</span><table id="sw_files"><caption><strong>'.tr($tr,'files_title',array('title'=>$titre)).'</strong></caption><thead><tr><th>'.tr($tr,'files_size').'</th><th>'.tr($tr,'files_date').'</th><th>'.tr($tr,'files_hits').'</th><th>MD5, SHA1</th></tr></thead><tbody>';
 		$fichiersexistants = true;
 		$first = false;
 	}
@@ -175,7 +169,7 @@ while($data = $req->fetch()) {
 		echo 'id='.$data['id'];
 	else
 		echo 'p='.$data['label'];
-	echo '">'.str_replace('{{site}}', $nomdusite, $data['title']).'</a> <span class="sw_file_size">('.numberlocale(human_filesize($data['filesize'])).tr($tr0,'byte_letter').')</span></td><td class="sw_file_date">'.strftime(tr($tr0,'fndatetime'),$data['date']).'</td><td class="sw_file_hits">'.$data['hits'].'</td><td><details aria-label="'.tr($tr,'files_sums').'" title="'.tr($tr,'files_sums').'"><summary class="sw_file_sum">'.$data['name'].'</summary>md5: '.$data['md5'].'<br />sha1: '.$data['sha1'].'</details></tr>';
+	echo '">'.str_replace('{{site}}', $nomdusite, $data['title']).'</a> <span class="sw_file_size">('.numberlocale(human_filesize($data['filesize'])).tr($tr0,'byte_letter').')</span></td><td class="sw_file_date">'.strftime(tr($tr0,'fndatetime'),$data['date']).'</td><td class="sw_file_hits">'.$data['hits'].'</td><td><details aria-label="'.tr($tr,'files_sums').'" title="'.tr($tr,'files_sums').'"><summary class="sw_file_sum">'.$data['name'].'</summary>md5: '.$data['md5'].'<br>sha1: '.$data['sha1'].'</details></tr>';
 	$altc = !$altc;
 }
 if(!$first)
@@ -247,7 +241,7 @@ while($data = $req->fetch()) {
 	echo '</div>';
 	echo '<p class="comment_p">'.str_replace("\n",'<br/>',htmlentities($data['text'])).'</p></div>';
 		if(($data['ip'] == sha1($_SERVER['REMOTE_ADDR']) and $data['date'] > time()-86400) OR (isset($logged) && $logged == 'true' AND $login['rank'] == 'a' AND $workn == '0' or $workn == '2')) {
-		echo '<a href="?id='.$sw['id'].'&cedit='.$data['id'].'#cedit"><img alt="'.tr($tr,'comments_mod').'" src="https://zettascript.org/images/mod16.png" /></a><a href="?id='.$sw['id'].'&cdel='.$data['id'].'"><img alt="'.tr($tr,'comments_rm').'" src="https://zettascript.org/images/trash16.png" /></a>';
+		echo '<a href="?id='.$sw['id'].'&cedit='.$data['id'].'#cedit"><img alt="'.tr($tr,'comments_mod').'" src="https://zettascript.org/images/mod16.png"></a><a href="?id='.$sw['id'].'&cdel='.$data['id'].'"><img alt="'.tr($tr,'comments_rm').'" src="https://zettascript.org/images/trash16.png"></a>';
 	}
 }
 $req->closeCursor();
@@ -264,9 +258,9 @@ if(isset($_GET['cedit'])) {
 ?>
 				<form action="?id=<?php echo $sw['id'].'&cedit2='.$data['id'] ?>" method="post" id="cedit">
 					<fieldset><legend><?php echo tr($tr,'comments_mod'); ?></legend>
-						<label for="fc_text"><?php echo tr($tr,'comments_text'); ?></label><br />
-						<textarea id="fc_text" class="ta" name="text" maxlength="1023"><?php echo htmlentities($data['text']); ?></textarea><br />
-						<input type="submit" value="<?php echo tr($tr,'comments_ok'); ?>" />
+						<label for="fc_text"><?php echo tr($tr,'comments_text'); ?></label><br>
+						<textarea id="fc_text" class="ta" name="text" maxlength="1023"><?php echo htmlentities($data['text']); ?></textarea><br>
+						<input type="submit" value="<?php echo tr($tr,'comments_ok'); ?>">
 					</fieldset>
 				</form>
 <?php }$req->closeCursor();}
@@ -276,16 +270,16 @@ if(isset($logged) && $logged == 'true') { ?>
 					<fieldset><legend><?php echo tr($tr,'comments_send'); ?></legend>
 						<p><?php echo tr($tr,'comments_warn'); ?></p>
 						<label for="fc_pseudo"><?php echo tr($tr,'comments_pseudo'); ?></label>
-						<input type="text" id="fc_pseudo" name="pseudo" maxlength="31"<?php echo ' value="'.$login['username'].'"'; ?> readonly /><br />
-						<label for="fc_text"><?php echo tr($tr,'comments_text'); ?></label><br />
-						<textarea id="fc_text" class="ta" name="text" maxlength="1023"><?php if(isset($_POST['text']) and strlen($_POST['text']) <= 1023) echo htmlentities($_POST['text']); ?></textarea><br />
-						<input type="submit" value="<?php echo tr($tr,'comments_ok'); ?>" />
+						<input type="text" id="fc_pseudo" name="pseudo" maxlength="31"<?php echo ' value="'.$login['username'].'"'; ?> readonly><br>
+						<label for="fc_text"><?php echo tr($tr,'comments_text'); ?></label><br>
+						<textarea id="fc_text" class="ta" name="text" maxlength="1023"><?php if(isset($_POST['text']) and strlen($_POST['text']) <= 1023) echo htmlentities($_POST['text']); ?></textarea><br>
+						<input type="submit" value="<?php echo tr($tr,'comments_ok'); ?>">
 					</fieldset>
 				</form>
 <?php } else { echo tr($tr,'limitcommentext'); } ?>
 			</div>
-		</div>
-		<?php include 'inclus/footer.php';
+		</main>
+		<?php require_once('inclus/footer.php');
 
 if(isset($logged) and $logged) { ?>
 		

@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8" />
+<meta charset="utf-8">
 <title>Administration - <?php print $nomdusite; ?></title>
 <?php print $cssadmin; ?>
 <script src="/scripts/default.js"></script>

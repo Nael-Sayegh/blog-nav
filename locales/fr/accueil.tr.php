@@ -17,8 +17,8 @@ Internet (ou l\'informatique en général) est un bien commun, œuvre intellectu
 <p>Vous voulez une bonne nouvelle&#8239;? Eh bien en contribuant à rendre le Web ouvert, on peut contribuer à le rendre accessible, car si le code d\'un projet est public et libre alors n\'importe qui peut l\'améliorer, même au niveau accessibilité.</p>
 
 <h3>Les objectifs de {{site}}</h3>
-<p>Lors de son lancement initial en 2015, ce site luttait pour l\'accessibilité avec ce seul moyen&nbsp;: répertorier les logiciels sous Windows utilisables par les déficients visuels.<br />
-Aujourd\'hui, la communauté active du site a changé, l\'équipe s\'est agrandie, et nous sommes conscients que ce seul moyen n\'est pas suffisant.<br />
+<p>Lors de son lancement initial en 2015, ce site luttait pour l\'accessibilité avec ce seul moyen&nbsp;: répertorier les logiciels sous Windows utilisables par les déficients visuels.<br>
+Aujourd\'hui, la communauté active du site a changé, l\'équipe s\'est agrandie, et nous sommes conscients que ce seul moyen n\'est pas suffisant.<br>
 Nous avons donc conservé l\'activité initiale, mais avons agrandi notre champ d\'action&nbsp;:</p>
 <ul>
 <li>Répertorier de manière intuitive et organisée les logiciels utilisables par tous sous Windows, Android ou GNU/Linux&#8239;;</li>
@@ -28,7 +28,7 @@ Nous avons donc conservé l\'activité initiale, mais avons agrandi notre champ 
 <li>Faire évoluer les mentalités et faire prendre conscience de l\'extrême importance de l\'accessibilité dans tous les domaines (informatique, santé, commerce, loisirs et bien d\'autre)&#8239;;</li>
 <li>Proposer des tests de matériel plus ou moins spécialisé.</li>
 </ul>
-<p>Pour réaliser tout cela, une équipe essentiellement composée de jeunes travaille pour coder et maintenir le site, vous pouvez <a href="/contact.php">la découvrir ici</a>.<br />
+<p>Pour réaliser tout cela, une équipe essentiellement composée de jeunes travaille pour coder et maintenir le site, vous pouvez <a href="/contact.php">la découvrir ici</a>.<br>
 Nous nous appuyons également sur vous tous sans qui le site n\'existerait pas aujourd\'hui.</p>
 <p>Un bug à remonter, un message à faire passer à l\'administration du site&#8239;? <a href="/contacter.php">Contactez-nous</a>.</p>
 

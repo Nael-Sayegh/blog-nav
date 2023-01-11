@@ -22,8 +22,8 @@
 </ul>
 
 <h2>Website's history</h2>
-<p>This website was born on 2015-05-25 named <q>Accessibilité Programmes</q>.<br />
-It has been renamed <q>ProgAccess33</q> on 2016-09-19, and finally, its name has been shortened again to became <q>ProgAccess</q> with the V15.0 on 2017-09-09.<br />
+<p>This website was born on 2015-05-25 named <q>Accessibilité Programmes</q>.<br>
+It has been renamed <q>ProgAccess33</q> on 2016-09-19, and finally, its name has been shortened again to became <q>ProgAccess</q> with the V15.0 on 2017-09-09.<br>
 This website comes from the Corentin's desire (a blind high school student) to share his passion and to gather in one place the softwares accessible by blind people and by everybody.</p>
 <p>During summer 2018, many changes came: in August, <a href="opensource.php">the source code</a> has been published under <a href="https://gnu.org">GNU AGPL</a> license, so the website is a free (libre) software. Later in the same month, the team start translating the site, beginning with Italian, Esperanto, English and Spanish. Michel Such gave the website <a href="https://nvda-fr.org">NVDA-FR</a> to us, and a dedicated website is created for <a href="https://accessikey.nvda-fr.org">the AccessiKey</a>.</p>
 

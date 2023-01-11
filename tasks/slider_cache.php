@@ -6,7 +6,7 @@ foreach($langs_prio as &$lang_i) {
 	$tr = load_tr($lang_i, 'slider');
 	
 	$file = fopen($document_root.'/cache/slider_'.$lang_i.'.html', 'w');
-	fwrite($file, '<div id="debutslide" role="complementary" aria-label="'.tr($tr,'label').'"><div id="slider" style="display:none;"><div id="slidershow" aria-live="assertive" onfocusin="focuspause(true);" onfocusout="focuspause(false);">');
+	fwrite($file, '<div id="debutslide" role="complementary" aria-label="'.tr($tr,'label').'"><div id="slider" style="display:none;"><div id="slidershow" aria-live="assertive">');
 
 	$slides = 0;
 
@@ -47,7 +47,7 @@ foreach($langs_prio as &$lang_i) {
 	$req->execute();
 	while($data = $req->fetch()) {
 		fwrite($file, '<p>'.tr($tr,'last_site_update_text', array('version'=>substr($data['name'],1), 'id'=>$data['id'], 'date'=>strftime(tr($tr0,'fndatetime'),$data['date']), 'link1'=>'<a href="/update.php?id='.$data['id'].'">', 'link2'=>'</a>')).'</p>');
-		//fwrite($file, '<p>La version '.substr($data['name'],1).' (V'.$data['id'].') du site est sortie le '.date('d/m/Y',$data['date']).' à '.date('H:i',$data['date']).'&nbsp;:<br /><a href="/update.php?id='.$data['id'].'">consultez ses changements</a>.</p>');
+		//fwrite($file, '<p>La version '.substr($data['name'],1).' (V'.$data['id'].') du site est sortie le '.date('d/m/Y',$data['date']).' à '.date('H:i',$data['date']).'&nbsp;:<br><a href="/update.php?id='.$data['id'].'">consultez ses changements</a>.</p>');
 	}
 	fwrite($file, '</div></div>');
 
@@ -76,7 +76,7 @@ foreach($langs_prio as &$lang_i) {
 	fwrite($file, '</ul></div></div>');
 
 	# ---
-	fwrite($file, '<a onclick="clickprev()" id="slideprev" class="slidebt" title="'.tr($tr,'previous').'"><img alt="'.tr($tr,'previous').'" src="/image/slide_left_arrow.png" /></a><a onclick="clickpause()" id="slidepause" class="slidebt" title="'.tr($tr,'stop').'"><img alt="'.tr($tr,'stop').'" src="/image/slide_pause.png" /></a><a onclick="clicknext()" id="slidenext" class="slidebt" title="'.tr($tr,'next').'"><img alt="'.tr($tr,'next').'" src="/image/slide_right_arrow.png" /></a></div></div><script>var slides = '.strval($slides).';</script></div>');
+	fwrite($file, '<a onclick="clickprev()" id="slideprev" class="slidebt" title="'.tr($tr,'previous').'"><img alt="'.tr($tr,'previous').'" src="/image/slide_left_arrow.png"></a><a onclick="clickpause()" id="slidepause" class="slidebt" title="'.tr($tr,'stop').'"><img alt="'.tr($tr,'stop').'" src="/image/slide_pause.png"></a><a onclick="clicknext()" id="slidenext" class="slidebt" title="'.tr($tr,'next').'"><img alt="'.tr($tr,'next').'" src="/image/slide_right_arrow.png"></a></div></div><script>var slides = '.strval($slides).';</script></div>');
 	fclose($file);
 }
 ?>
