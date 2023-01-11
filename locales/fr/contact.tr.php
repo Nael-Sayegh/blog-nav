@@ -50,7 +50,7 @@ Ce site vient de l'envie de Corentin (un étudiant non-voyant) de partager sa pa
 <h2>Nous soutenir</h2>
 <a href="https://liberapay.com/ProgAccess/donate" style="border: 2px solid #f6c915; border-radius: 5px; color: #1a171b; background: white; display: inline-block; font-family: Helvetica Neue,Helvetica,sans-serif; font-size: 14px; max-width: 150px; min-width: 110px; position: relative; text-align: center; text-decoration: none;">
 	<span style="background-color: #f6c915; display: block; font-family: Ubuntu,Arial,sans-serif; font-style: italic; font-weight: 700; padding: 3px 7px 5px;">
-		<img src="https://liberapay.com/assets/liberapay/icon-v2_black.svg" height="20" width="20" style="vertical-align: middle;" alt="Logo Liberapay"/>
+		<img src="https://liberapay.com/assets/liberapay/icon-v2_black.svg" height="20" width="20" style="vertical-align: middle;" alt="Logo Liberapay">
 		<span style="vertical-align: middle;">LiberaPay</span>
 	</span>
 	<span style="display: block; padding: 5px 15px 2px;"><span style="color: #f6c915; position: absolute; left: -2px;">&#10132;</span>Nous recevons <br><span style="font-size: 125%">0,00&#8239;€</span><br> par semaine</span>
