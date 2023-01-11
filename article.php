@@ -239,7 +239,7 @@ while($data = $req->fetch()) {
 	echo htmlentities($data['pseudo']);
 	echo ' ('.date('d/m/Y, H:i', $data['date']).')</h3>';
 	echo '</div>';
-	echo '<p class="comment_p">'.str_replace("\n",'<br/>',htmlentities($data['text'])).'</p></div>';
+	echo '<p class="comment_p">'.str_replace("\n",'<br>',htmlentities($data['text'])).'</p></div>';
 		if(($data['ip'] == sha1($_SERVER['REMOTE_ADDR']) and $data['date'] > time()-86400) OR (isset($logged) && $logged == 'true' AND $login['rank'] == 'a' AND $workn == '0' or $workn == '2')) {
 		echo '<a href="?id='.$sw['id'].'&cedit='.$data['id'].'#cedit"><img alt="'.tr($tr,'comments_mod').'" src="https://zettascript.org/images/mod16.png"></a><a href="?id='.$sw['id'].'&cdel='.$data['id'].'"><img alt="'.tr($tr,'comments_rm').'" src="https://zettascript.org/images/trash16.png"></a>';
 	}
