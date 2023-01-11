@@ -57,7 +57,7 @@ while($curtime >= $ltime) {
 # Open files
 $file_html = fopen($cachedir.'journal.html', 'w');
 $file_rss = fopen($document_root.'/journal_modif.xml', 'w');
-fwrite($file_rss, '<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>'.$nomdusite.'.net</title><link>https://www.progaccess.net</link><atom:link href="https://www.progaccess.net/journal_modif.xml" rel="self" type="application/rss+xml"><description>Journal des modifications sur '.$nomdusite.'.</description><copyright>2016-'.date('Y').' L\'administration '.$nomdusite.'</copyright><language>fr</language>');
+fwrite($file_rss, '<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>'.$nomdusite.'.net</title><link>https://www.progaccess.net</link><atom:link href="https://www.progaccess.net/journal_modif.xml" rel="self" type="application/rss+xml" /><description>Journal des modifications sur '.$nomdusite.'.</description><copyright>2016-'.date('Y').' L\'administration '.$nomdusite.'</copyright><language>fr</language>');
 
 foreach($days as &$day) {
 	$html = '';
