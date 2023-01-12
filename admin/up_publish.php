@@ -1,40 +1,41 @@
 <?php $logonly = true;
 $adminonly=true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Versions du site';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['text'])) {
-	require_once $_SERVER['DOCUMENT_ROOT'].'/tasks/codestat.php';
+	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/codestat.php');
 	$codestat_n_files = -1;
 	$codestat_n_lines = -1;
 	$codestat_n_chars = -1;
-	include $_SERVER['DOCUMENT_ROOT'].'/cache/codestatc.php';
+	require_once($_SERVER['DOCUMENT_ROOT'].'/cache/codestatc.php');
 	
 	$req = $bdd->prepare('INSERT INTO `site_updates`(`name`, `text`,`date`,`authors`,`codestat`) VALUES(?,?,?,?,?)');
 	$req->execute(array(htmlspecialchars($_POST['name']), $_POST['text'], time(), $nom, json_encode(array($codestat_n_files, $codestat_n_lines, $codestat_n_chars))));
 	
-	include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
 	
 	$req = $bdd->prepare('SELECT `id`,`name` FROM `site_updates` ORDER BY `id` DESC LIMIT 1');
 	$req->execute();
 	if($data = $req->fetch()) {
-		include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 		send_facebook($nomdusite.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
-		include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
 		send_twitter($nomdusite.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
-		include('Discord/DiscordBot2.php');
-include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
+		require_once('Discord/DiscordBot2.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 	}
 }
 if(isset($_GET['delete'])) {
 	$req = $bdd->prepare('DELETE FROM site_updates WHERE id=?');
 	$req->execute(array($_GET['delete']));
-	include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
 }
 if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['text'])) {
 	$req = $bdd->prepare('UPDATE site_updates SET name=?, text=?, authors=? WHERE id=?');
 	$req->execute(array(htmlspecialchars($_POST['name']), $_POST['text'], $nom, $_GET['mod2']));
-	include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
 }
 ?>
 <!DOCTYPE html>
@@ -46,8 +47,7 @@ if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['text'])) {
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Versions - <a href="/"><?php print $nomdusite; ?></a></h1>
-<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
+<?php require_once('inclus/banner.php'); ?>
 		<table border="1">
 			<thead><tr><th>ID</th><th>Numéro de version</th><th>Date</th><th>Actions</th></tr></thead>
 			<tbody>

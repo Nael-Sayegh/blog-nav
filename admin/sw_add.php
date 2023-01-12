@@ -2,33 +2,14 @@
 $logonly = true;
 $adminonly = true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Ajout d\'un article';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 
 $categories = array();
 $req = $bdd->query('SELECT * FROM `softwares_categories` ORDER BY `name` ASC');
 while($data = $req->fetch()) {$categories[$data['id']] = $data['name'];}
 
-/*if(isset($_GET['form']) and isset($_POST['name']) and isset($_POST['category']) and isset($_POST['keywords']) and isset($_POST['description']) and isset($_POST['website']) and isset($_POST['text'])) {
-	$time = time();
-	$req = $bdd->prepare('INSERT INTO softwares(name,category,text,date,description,keywords,website,author) VALUES(?,?,?,?,?,?,?,?)');
-	$req->execute(array(htmlspecialchars($_POST['name']), $_POST['category'], $_POST['text'], $time, $_POST['description'], $_POST['keywords'], $_POST['website'], htmlspecialchars($nom)));
-	$req = $bdd->prepare('SELECT id FROM softwares WHERE name=? AND category=? AND date=? AND description=? AND keywords=?');
-	$req->execute(array(htmlspecialchars($_POST['name']), $_POST['category'], $time, $_POST['description'], $_POST['keywords']));
-	if($data = $req->fetch()) {
-		header('Location: sw_mod.php?addfile='.$data['id']);
-if(isset($_POST['publier'])) {
-$messagesocial = 'Nouvel article : '.$_POST['name'].' (A'.$data['id'].').'."\n\n".'https://www.progaccess.net/article.php?id='.$data['id']."\n\n".$nom.', Administration';
-			include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
-			send_facebook($messagesocial);
-			include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
-			send_twitter($messagesocial);
-		}
-		include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
-		include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
-	}
-	$req->closeCursor();
-}*/
 if(isset($_GET['form']) and isset($_POST['sname']) and isset($_POST['category'])) {
 	$sname = '';
 	if(strlen($_POST['sname']) < 256 and !empty($_POST['sname']))
@@ -86,13 +67,13 @@ if(isset($_GET['form']) and isset($_POST['sname']) and isset($_POST['category'])
 		
 			if($social) {
 				$somsg = 'Nouvel article : '.$name.' (A'.$lastid.').'."\n".'https://www.progaccess.net/article.php?id='.$lastid."\n".$nom;
-				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
+				require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 				send_facebook($somsg);
-				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+				require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
 				send_twitter($somsg);
 			}
-			include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
-			include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
+			require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+			require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 		}
 		
 		header('Location: sw_mod.php?listfiles='.$lastid);
@@ -109,8 +90,7 @@ if(isset($_GET['form']) and isset($_POST['sname']) and isset($_POST['category'])
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<h1>Ajout logiciel &#8211; <a href="/"><?php print $nomdusite; ?></a></h1>
-				<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php';
+	<?php require_once('inclus/banner.php');
 if(!empty($log)) echo '<ul>'.$log.'</ul>';
 		?>
 		<form action="?form" method="post">

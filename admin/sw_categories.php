@@ -1,8 +1,9 @@
 <?php $logonly = true;
 $adminonly=true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Catégories';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 if(isset($_GET['add']) and isset($_POST['name'])) {
 	$req = $bdd->prepare('INSERT INTO softwares_categories(name,text) VALUES(?,?)');
 	$req->execute(array(htmlspecialchars($_POST['name']), $_POST['text']));
@@ -25,8 +26,7 @@ if(isset($_GET['mod2']) and isset($_POST['name'])) {
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Catégories - <a href="/"><?php print $nomdusite; ?></a></h1>
-<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
+<?php require_once('inclus/banner.php'); ?>
 		<table border="1">
 			<thead><tr><th>Numéro de catégorie</th><th>Nom</th><th>Actions</th></tr></thead>
 			<tbody>

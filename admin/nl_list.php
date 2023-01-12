@@ -1,8 +1,9 @@
 <?php $logonly = true;
 $adminonly=true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Liste des abonnés à l\'actu';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,8 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Inscrits à la NL - <a href="/"><?php print $nomdusite; ?></a></h1>
-<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
+<?php require_once('inclus/banner.php'); ?>
 		<table>
 			<thead>
 				<tr><th>Adresse e-mail</th><th>Hash</th><th>Fréquence</th><th>Dernier mail</th><th>Expiration</th></tr>

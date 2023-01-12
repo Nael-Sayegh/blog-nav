@@ -2,8 +2,9 @@
 $logonly = true;
 $adminonly = true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Gestion des comptes membres';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 if(isset($_GET['delete'])) {
 	$req = $bdd->prepare('DELETE FROM `accounts` WHERE `id`=? LIMIT 1');
 	$req->execute(array($_GET['delete']));
@@ -28,8 +29,7 @@ if(isset($_GET['mod2']) and isset($_POST['username']) and isset($_POST['email'])
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<h1>Membres - <a href="/"><?php print $nomdusite; ?></a></h1>
-		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
+<?php require_once('inclus/banner.php'); ?>
 		<table border="1">
 			<thead><tr><th>Nom d'utilisateur</th><th>Adresse mail</th><th>Rang</th><th>Actions</th></tr></thead>
 			<tbody>

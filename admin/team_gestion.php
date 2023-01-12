@@ -2,8 +2,9 @@
 $logonly = true;
 $adminonly=true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Gestion de l\'équipe';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 
 if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['status']) and isset($_POST['age']) and isset($_POST['short_name']) and isset($_POST['bio']) and isset($_POST['works']) and isset($_POST['twitter'])) {
 	$account_id = NULL;
@@ -19,9 +20,9 @@ if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['status']) and
 		case '1': $worksswi = $nomdusite; break;
 		case '2': $worksswi = 'NVDA-FR & '.$nomdusite; break;
 	}
-		include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 		send_facebook('Nouvel arrivant dans l\'équipe : '.$data['short_name'].' (E'.$data['id'].') : travaille pour '.$worksswi.'.'."\n".'Consulter https://www.progaccess.net/contact.php pour en savoir plus.'."\n".'L\'administration');
-		include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
 		send_twitter('Nouvel arrivant dans l\'équipe : '.$data['short_name'].' (E'.$data['id'].') : travaille pour '.$worksswi.'.'."\n".'Consulter https://www.progaccess.net/contact.php pour en savoir plus.'."\n".'L\'administration');
 	}*/
 }
@@ -43,8 +44,7 @@ if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['status']) an
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<h1>Équipe - <a href="/"><?php print $nomdusite; ?></a></h1>
-		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
+<?php require_once('inclus/banner.php'); ?>
 		<table border="1">
 			<thead><tr><th>Numéro d'équipier</th><th>Nom</th><th>Nom court</th><th>Statut(s)</th><th>Date</th><th>Âge</th><th>Twitter</th><th>Actions</th></tr></thead>
 			<tbody>

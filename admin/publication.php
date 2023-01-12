@@ -1,8 +1,10 @@
 <?php $logonly = true;
 $adminonly = true;
 $justpa = true;
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+
+$titlePAdm='Publier sur les réseaux sociaux';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 $log = '';
 
 if(isset($_GET['form']) and isset($_POST['pf']) and isset($_POST['msg'])) {
@@ -53,7 +55,7 @@ if(isset($_GET['swfb'])) {
 	if(isset($_GET['debug']))
 		$debug = true;
 	header('Content-type: text/plain');
-	include($_SERVER['DOCUMENT_ROOT'].'/tasks/facebook_publisher.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/facebook_publisher.php');
 	exit();
 }
 ?>
@@ -66,8 +68,7 @@ if(isset($_GET['swfb'])) {
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<h1>Messages sociaux - <a href="/"><?php print $nomdusite; ?></a></h1>
-<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php';
+<?php require_once('inclus/banner.php');
 if(!empty($log)) print '<p><b>'.$log.'</b></p>'; ?>
 		<form action="?form" method="post">
 			<label for="f_platform">Publier&nbsp;:</label>

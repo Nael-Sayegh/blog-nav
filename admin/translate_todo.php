@@ -2,8 +2,9 @@
 $logonly = true;
 $adminonly = true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Traductions';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,8 +16,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<h1>Traduction&nbsp;: à faire &#8211; <a href="/"><?php print $nomdusite; ?></a></h1>
-		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
+<?php require_once('inclus/banner.php'); ?>
 		<!--<a href="#trs-files">Traductions du site</a><br>-->
 		<h2 id="tr-articles">Articles</h2>
 		<form action="translate_todo.php#tr-articles" method="get">
