@@ -75,7 +75,7 @@ if(isset($_COOKIE['menu']) && $_COOKIE['menu'] == '1') { ?>
 </div>
 </div>
 <script>document.getElementById("boutonjs").style.display="block";
-if(820 >= window.innerWidth) rdisp("ulli_menu");</script>
+if(820 >= window.innerWidth) rdisp("ulli_menu","popup_ulli_menu");</script>
 <noscript>
 <details open>
 <summary><?php echo tr($tr0,'menu_switchmenu'); ?></summary>
