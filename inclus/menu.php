@@ -3,20 +3,20 @@ $ulmenu_js = function() {
 	global $lang, $args, $tr0; ?>
 <ul class="ulmenu_js" role="menu">
 	<li><form method="get"><?php echo args_html_form($args); ?><select aria-label="<?php echo tr($tr0,'menu_changelang'); ?>" title="<?php echo tr($tr0,'menu_changelang'); ?>" name="lang" autocomplete="off"><?php echo langs_html_opts($lang); ?></select><input type="submit" value="OK"></form></li>
-	<li><a href="/" <?php if($_SERVER['DOCUMENT_URI'] == '/accueil.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_homepage'); ?></a></li>
-	<li><a href="https://forum.progaccess.net"><?php echo tr($tr0,'menu_forum'); ?></a></li>
+	<li><a href="/" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/accueil.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_homepage'); ?></a></li>
+	<li><a href="https://forum.progaccess.net" role="menuitem"><?php echo tr($tr0,'menu_forum'); ?></a></li>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_articles'); ?></li>
 	<?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_ulli_js.html'); ?>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_news'); ?></li>
-	<li><a href="/newsletter.php" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl'); ?></a></li>
-	<li><a type="application/rss+xml" href="/journal_modif.xml"><?php echo tr($tr0,'menu_rss'); ?></a></li>
-	<li><a href="/journal_modif.php" <?php if($_SERVER['DOCUMENT_URI'] == '/journal_modif.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_journal'); ?></a></li>
+	<li><a href="/newsletter.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl'); ?></a></li>
+	<li><a type="application/rss+xml" href="/journal_modif.xml" role="menuitem"><?php echo tr($tr0,'menu_rss'); ?></a></li>
+	<li><a href="/journal_modif.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/journal_modif.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_journal'); ?></a></li>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_usefull'); ?></li>
-	<li><a href="/param.php" <?php if($_SERVER['DOCUMENT_URI'] == '/param.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_sets'); ?></a></li>
-	<li><a href="/gadgets.php" <?php if($_SERVER['DOCUMENT_URI'] == '/gadgets.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_gadgets'); ?></a></li>
-	<li><a href="/contact.php" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_infos'); ?></a></li>
-	<li><a href="/contacter.php" <?php if($_SERVER['DOCUMENT_URI'] == '/contacter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_contact'); ?></a></li>
-	<li><a href="/confidentialite.php" <?php if($_SERVER['DOCUMENT_URI'] == '/confidentialite.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_privacy'); ?></a></li>
+	<li><a href="/param.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/param.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_sets'); ?></a></li>
+	<li><a href="/gadgets.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/gadgets.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_gadgets'); ?></a></li>
+	<li><a href="/contact.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_infos'); ?></a></li>
+	<li><a href="/contacter.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contacter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_contact'); ?></a></li>
+	<li><a href="/confidentialite.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/confidentialite.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_privacy'); ?></a></li>
 	<li class="menusep" aria-hidden="true">&nbsp;</li>
 </ul>
 <?php };
@@ -24,20 +24,20 @@ $ulmenu_njs = function() {
 	global $lang, $args, $tr0; ?>
 <ul class="ulmenu_njs" role="menu">
 	<li><form method="get"><?php echo args_html_form($args); ?><select aria-label="<?php echo tr($tr0,'menu_changelang'); ?>" title="<?php echo tr($tr0,'menu_changelang'); ?>" name="lang" autocomplete="off"><?php echo langs_html_opts($lang); ?></select><input type="submit" value="OK"></form></li>
-	<li><a href="/" <?php if($_SERVER['DOCUMENT_URI'] == '/accueil.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_homepage'); ?></a></li>
-	<li><a href="https://forum.progaccess.net"><?php echo tr($tr0,'menu_forum'); ?></a></li>
+	<li><a href="/" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/accueil.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_homepage'); ?></a></li>
+	<li><a href="https://forum.progaccess.net" role="menuitem"><?php echo tr($tr0,'menu_forum'); ?></a></li>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_articles'); ?></li>
 	<?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_ulli_njs.html'); ?>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_news'); ?></li>
-	<li><a href="/newsletter.php" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl'); ?></a></li>
-	<li><a type="application/rss+xml" href="/journal_modif.xml"><?php echo tr($tr0,'menu_rss'); ?></a></li>
-	<li><a href="/journal_modif.php" <?php if($_SERVER['DOCUMENT_URI'] == '/journal_modif.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_journal'); ?></a></li>
+	<li><a href="/newsletter.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl'); ?></a></li>
+	<li><a type="application/rss+xml" href="/journal_modif.xml" role="menuitem"><?php echo tr($tr0,'menu_rss'); ?></a></li>
+	<li><a href="/journal_modif.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/journal_modif.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_journal'); ?></a></li>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_usefull'); ?></li>
-	<li><a href="/param.php" <?php if($_SERVER['DOCUMENT_URI'] == '/param.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_sets'); ?></a></li>
-	<li><a href="/gadgets.php" <?php if($_SERVER['DOCUMENT_URI'] == '/gadgets.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_gadgets'); ?></a></li>
-	<li><a href="/contact.php" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_infos'); ?></a></li>
-	<li><a href="/contacter.php" <?php if($_SERVER['DOCUMENT_URI'] == '/contacter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_contact'); ?></a></li>
-	<li><a href="/confidentialite.php" <?php if($_SERVER['DOCUMENT_URI'] == '/confidentialite.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_privacy'); ?></a></li>
+	<li><a href="/param.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/param.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_sets'); ?></a></li>
+	<li><a href="/gadgets.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/gadgets.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_gadgets'); ?></a></li>
+	<li><a href="/contact.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_infos'); ?></a></li>
+	<li><a href="/contacter.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contacter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_contact'); ?></a></li>
+	<li><a href="/confidentialite.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/confidentialite.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_privacy'); ?></a></li>
 	<li class="menusep" aria-hidden="true">&nbsp;</li>
 </ul>
 <?php }; ?>
