@@ -1,8 +1,9 @@
 <?php $logonly = true;
 $adminonly=true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Caches';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 
 $obcache = '';
 if(isset($_GET['cache'])) {
@@ -54,8 +55,7 @@ if(isset($_GET['cache'])) {
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<h1>Gestionnaire des caches &#8211; <a href="/"><?php print $nomdusite; ?></a></h1>
-		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
+		<?php require_once('inclus/banner.php'); ?>
 <?php
 if(!empty($obcache))
 	echo '<fieldset><legend>Cachers\' stdout</legend>'.$obcache.'</fieldset><br>';

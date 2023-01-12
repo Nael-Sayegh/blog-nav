@@ -1,8 +1,9 @@
 <?php $logonly = true;
 $adminonly=true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Tickets';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
@@ -69,7 +70,7 @@ if(isset($_GET['send']) and isset($_POST['msg'])) {
 	}
 }
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
@@ -79,8 +80,7 @@ if(isset($_GET['send']) and isset($_POST['msg'])) {
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Tickets - <a href="/"><?php print $nomdusite; ?></a></h1>
-<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
+<?php require_once('inclus/banner.php'); ?>
 <ul>
 <?php if(isset($_GET['ticket'])) { ?>
 <li><a href="tickets.php">Liste des tickets</a></li>

@@ -2,8 +2,9 @@
 $logonly = true;
 $adminonly = true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Traductions';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 $tr_todo = array(0=>'Référence', 1=>'OK', 2=>'À vérifier', 3=>'À modifier', 4=>'À terminer');
 
 ?>
@@ -19,8 +20,7 @@ $tr_todo = array(0=>'Référence', 1=>'OK', 2=>'À vérifier', 3=>'À modifier',
 		<script type="text/javascript" src="js/translate.js"></script>
 	</head>
 	<body>
-		<h1>Outil de traduction &#8211; <a href="/"><?php print $nomdusite; ?></a></h1>
-		<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
+<?php require_once('inclus/banner.php'); ?>
 		<a href="translate_todo.php">Toutes les traductions</a><br>
 		
 <?php

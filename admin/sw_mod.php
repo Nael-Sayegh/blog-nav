@@ -1,8 +1,9 @@
 <?php $logonly = true;
 $adminonly=true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Modification d\'un article';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 $time = time();
 $addfile_hash = '';
 $addfile_path = '';
@@ -290,13 +291,17 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 if($sw_id != null and $sw_mode != null) {
 	$req = $bdd->prepare('SELECT `name` FROM `softwares` WHERE `id`=? LIMIT 1');
 	$req->execute(array($sw_id));
-	if($sw_mode == 1) echo 'Modifier ';
-	if($sw_mode == 2) echo 'Fichiers de ';
-	if($sw_mode == 3) echo 'Nouveau fichier à ';
-	if($data = $req->fetch())
+	if($sw_mode == 1) { echo 'Modifier '; $titlePAdm='Modifier '; }
+	if($sw_mode == 2) { echo 'Fichiers de '; $titlePAdm='Fichiers de '; }
+	if($sw_mode == 3) { echo 'Nouveau fichier à '; $titlePAdm='Nouveau fichier à '; }
+	if($data = $req->fetch()) {
 		echo $data['name'];
-	else
+		$titlePAdm.=$data['name'];
+	}
+	else {
 		echo 'un article';
+		$titlePAdm.='un article';
+	}
 }
 else
 	echo 'Modifier un article';
@@ -305,10 +310,7 @@ else
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<h1>Modifier les logiciels - <a href="/"><?php print $nomdusite; ?></a></h1>
-<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
-<a href="sw_add.php">Ajouter un article</a>
-<?php
+<?php require_once('inclus/banner.php');
 if(empty($_GET)) {
 	echo '<ul title="Lister les articles de&nbsp;:">';
 	$req2 = $bdd->query('SELECT * FROM softwares_categories ORDER BY name ASC');
@@ -318,7 +320,7 @@ if(empty($_GET)) {
 	$req2->closeCursor();
 	echo '</ul>';
 } else {
-	echo '<br><a href="sw_mod.php">Retourner au listage des catégories</a>';
+	echo '<a href="sw_mod.php">Retourner à la liste des catégories</a>';
 }
 if($addfile_hash != '' and $addfile_path != '') {
 	echo '<p>L\'ajout du fichier n\'est pas terminé.<br>Veuillez envoyer le fichier à cet emplacement&nbsp;:<br><strong>'.$addfile_path.'</strong><br>Son nom doit être <br><em>'.$addfile_hash.'</em><br> sans extension.<br>Une fois ceci fait, suivez ce lien&nbsp;:<br><a href="?vfile='.$addfile_hash.(($addfile_so==true)?'&social=on':'').'">Vérifier le fichier</a></p>';

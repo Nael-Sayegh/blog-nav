@@ -1,25 +1,26 @@
 <?php $logonly = true;
 $adminonly=true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Slider';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 
 if((isset($_POST['token']) and $_POST['token'] == $login['token']) or (isset($_GET['token']) and $_GET['token'] == $login['token'])) {
 	if(isset($_GET['add']) and isset($_POST['label']) and isset($_POST['style']) and isset($_POST['title']) and isset($_POST['title_style']) and isset($_POST['contain']) and isset($_POST['contain_style']) and isset($_POST['lang']) and isset($_POST['todo'])) {
 		echo 'OK';
 		$req = $bdd->prepare('INSERT INTO slides(lang,label,style,title,title_style,contain,contain_style,date,todo_level) VALUES(?,?,?,?,?,?,?,?,?)');
 		$req->execute(array($_POST['lang'], htmlspecialchars($_POST['label']), $_POST['style'], $_POST['title'], $_POST['title_style'], $_POST['contain'], $_POST['contain_style'], time(), $_POST['todo']));
-		include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 	}
 	if(isset($_GET['delete'])) {
 		$req = $bdd->prepare('DELETE FROM `slides` WHERE `id`=?');
 		$req->execute(array($_GET['delete']));
-		include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 	}
 	if(isset($_GET['mod2']) and isset($_POST['label']) and isset($_POST['style']) and isset($_POST['title']) and isset($_POST['title_style']) and isset($_POST['contain']) and isset($_POST['contain_style']) and isset($_POST['lang']) and isset($_POST['todo'])) {
 		$req = $bdd->prepare('UPDATE `slides` SET `lang`=?, `label`=?, `style`=?, `title`=?, `title_style`=?, `contain`=?, `contain_style`=?, `date`=?, `todo_level`=? WHERE `id`=? LIMIT 1');
 		$req->execute(array($_POST['lang'], htmlspecialchars($_POST['label']), $_POST['style'], $_POST['title'], $_POST['title_style'], $_POST['contain'], $_POST['contain_style'], time(), $_POST['todo'], $_GET['mod2']));
-		include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 	}
 }
 ?>
@@ -34,8 +35,7 @@ if((isset($_POST['token']) and $_POST['token'] == $login['token']) or (isset($_G
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Slider - <a href="/"><?php print $nomdusite; ?></a></h1>
-<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
+<?php require_once('inclus/banner.php'); ?>
 		<table border="1">
 			<thead><tr><th>Label</th><th>Langue</th><th>Titre</th><th>Actions</th><th>Modification</th><th>État</th><th>Publié</th></tr></thead>
 			<tbody>

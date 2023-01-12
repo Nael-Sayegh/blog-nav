@@ -1,8 +1,9 @@
 <?php $logonly = true;
 $adminonly=true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Statistiques';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 $from = date('Y-m-d', time()-604800);# à partir de quand (en format date SQL) (1 semaine dans le passé par défaut)
 $to = date('Y-m-d', time());# jusqu'à quand (en format date SQL) (aujourd'hui par défaut)
 
@@ -16,7 +17,7 @@ $domain = '';
 if(isset($_GET['domain']) and in_array($_GET['domain'], array('pa33','pa33_dev','pa33_onion','pa33_onion_dev')))
 	$domain = $_GET['domain'];
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
@@ -26,8 +27,7 @@ if(isset($_GET['domain']) and in_array($_GET['domain'], array('pa33','pa33_dev',
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Statistiques - <a href="/"><?php print $nomdusite; ?></a></h1>
-<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
+<?php require_once('inclus/banner.php'); ?>
 		<form action="showstats.php" method="get">
 			<label for="f1_from">Depuis le (AAAA-MM-JJ)&nbsp;:</label><input type="text" id="f1_from" name="from" value="<?php echo $from; ?>" maxlength="10"><br>
 			<label for="f1_to">Jusqu'au (AAAA-MM-JJ)&nbsp;:</label><input type="text" id="f1_to" name="to" value="<?php echo $to; ?>" maxlength="10"><br>

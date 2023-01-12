@@ -1,8 +1,9 @@
 <?php $logonly=true;
 $adminonly=true;
 $justpa = true;
-require $_SERVER['DOCUMENT_ROOT'].'/inclus/log.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php';
+$titlePAdm='Envoyer l\'actu';
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
 
 if(isset($_GET['act']) and $_GET['act'] == 'form') {
 	if(isset($_POST['mail']) and !empty($_POST['mail']))
@@ -11,7 +12,7 @@ if(isset($_GET['act']) and $_GET['act'] == 'form') {
 		$simulate = true;
 	header('Content-type: text/plain');
 	header('Content-disposition: inline');
-	include $_SERVER['DOCUMENT_ROOT'].'/tasks/nl_manager.php';
+	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/nl_manager.php');
 	exit();
 }
 ?>
@@ -24,8 +25,7 @@ if(isset($_GET['act']) and $_GET['act'] == 'form') {
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<h1>Envoi de la NL - <a href="/"><?php print $nomdusite; ?></a></h1>
-<?php include $_SERVER['DOCUMENT_ROOT'].'/inclus/loginbox.php'; ?>
+<?php require_once('inclus/banner.php'); ?>
 <form action="?act=form" method="post">
 	<label for="maildebug">Debuguer pour&nbsp;:</label>
 	<input type="email" name="mail" id="maildebug"><br>
