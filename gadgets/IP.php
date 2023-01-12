@@ -1,22 +1,16 @@
 <?php set_include_path($_SERVER['DOCUMENT_ROOT']);
-include_once 'inclus/log.php';
-require_once "inclus/consts.php";
+require_once('inclus/log.php');
+require_once('inclus/consts.php');
 $titre=("Détecteur d'IP "."$nomdusite");
 $cheminaudio="/audio/sons_des_pages/gadget.mp3";
 $stats_page = 'ip'; ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<?php include 'inclus/header.php'; ?>
+<?php require_once('inclus/header.php'); ?>
 <body>
-<div id="hautpage" role="banner">
-<h1><a href="/" title="Retour à l'accueil"><?php print $nomdusite; ?></a></h1>
-<?php if(isset($_SERVER['HTTP_USER_AGENT']) and strpos($_SERVER['HTTP_USER_AGENT'], 'Trident') !== FALSE) include 'inclus/trident.php';
-include 'inclus/searchtool.php';
-include 'inclus/loginbox.php'; ?>
-</div>
-<?php include('inclus/son.php');
-include 'inclus/menu.php'; ?>
-<div id="container" role="main">
+<?php require_once('inclus/banner.php');
+require_once('inclus/son.php'); ?>
+<main id="container">
 <h1 id="contenu"><?php print $titre; ?></h1>
 <p>Vous avez bien été redirigé vers notre détecteur d'ip.<BR>
 Note :<br>
@@ -37,7 +31,7 @@ echo "Vous disposez de l'adresse IP publique suivante : ".get_ip();
 ?>
 <br>
 <a href="/gadgets.php">Retour à la liste des gadgets.</a>
-</div>
-<?php require_once "inclus/footer.php"; ?>
+</main>
+<?php require_once('inclus/footer.php'); ?>
 </body>
 </html>
