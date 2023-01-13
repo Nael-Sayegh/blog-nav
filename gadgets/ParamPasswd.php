@@ -15,10 +15,10 @@ require_once('inclus/son.php'); ?>
 <p>Vous avez bien été redirigé vers notre générateur de mots de passe.</p>
 <form action="ParamPasswd.php" method="post">
 <label for="nombre">Nombre de mots de passe a générer :</label>
-<input id="nombre" name="nbrPasswd" type="number" required>
+<input id="nombre" name="nbrPasswd" type="number" min="1" value="1" required>
 <br>
 <label for="taille">Nombre de caractères :</label>
-<input id="taille" name="nbrChr" type="number" required>
+<input id="taille" name="nbrChr" type="number" min="1" value="12" required>
 <br>
 <label for="type">Type de mot de passe :</label>
 <select id="type" name="typePasswd" onchange="showother()">
