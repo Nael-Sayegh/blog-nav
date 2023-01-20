@@ -4,6 +4,7 @@ require_once($document_root.'/inclus/config.local.php');
 require_once($document_root.'/inclus/consts.php');
 require_once($document_root.'/inclus/lib/twitter/twitter.php');
 require_once($document_root.'/inclus/lib/facebook/envoyer.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
 $req = $bdd->prepare('SELECT * FROM `team` ORDER BY `age` DESC');
 $req->execute();
 while($data = $req->fetch()) {
@@ -16,6 +17,7 @@ while($data = $req->fetch()) {
 		$messagef = '🎂 L\'équipe '.$nomdusite.' souhaite un joyeux anniversaire à '.$data['short_name'].' qui souffle aujourd\'hui ses '.intval((time()-$data['age'])/31557600).' 🕯️ !';
 		send_twitter($messaget);
 		send_facebook($messagef);
+		send_mastodon($messaget);
 	}
 }
 if(date('d/m') == '24/12') {
@@ -29,6 +31,7 @@ if(date('d/m') == '24/12') {
 	$message='L\'équipe '.$nomdusite.' souhaite d\'excellentes fêtes de fin d\'année à l\'ensemble de sa communauté 🎉🎄🎅🤶🎁🎁🎁 !!!!'."\n".substr($noms,0,-2);
 	send_twitter($message);
 	send_facebook($message);
+	send_mastodon($message);
 } else if(date('d/m') == '01/01') {
 	$req = $bdd->prepare('SELECT * FROM `team` ORDER BY `age` DESC');
 	$req->execute();
@@ -40,5 +43,6 @@ if(date('d/m') == '24/12') {
 	$message='L\'équipe '.$nomdusite.' souhaite une bonne année '.date('Y').' à l\'ensemble de sa communauté !!!!'."\n".substr($noms,0,-2);
 	send_twitter($message);
 	send_facebook($message);
+	send_mastodon($message);
 }
 ?>

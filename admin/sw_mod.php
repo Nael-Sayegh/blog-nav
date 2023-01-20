@@ -108,6 +108,8 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				send_twitter($somsg);
 				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 				send_facebook($somsg);
+				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
+				send_mastodon($somsg);
 				}
 			}
 			exit();
@@ -137,6 +139,8 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 					send_twitter($somsg);
 					include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 					send_facebook($somsg);
+					include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
+					send_mastodon($somsg);
 				}
 				include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
 				include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
@@ -246,6 +250,8 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 						send_twitter($somsg);
 						include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 						send_facebook($somsg);
+						include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
+						send_mastodon($somsg);
 					}
 					
 					header('Location: sw_mod.php?listfiles='.$_GET['upload']);
