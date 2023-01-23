@@ -10,3 +10,6 @@
 [submodule "inclus/lib/twitteroauth"]
 	path = inclus/lib/twitteroauth
 	url = https://github.com/abraham/twitteroauth
+[submodule "inclus/lib/ca-bundle"]
+	path = inclus/lib/ca-bundle
+	url = https://github.com/composer/ca-bundle
