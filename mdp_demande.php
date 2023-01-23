@@ -9,9 +9,9 @@ $cheminaudio='/audio/sons_des_pages/membre.mp3';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once('inclus/lib/PHPMailer/src/PHPMailer.php');
-require_once('inclus/lib/PHPMailer/src/Exception.php');
-require_once('inclus/lib/PHPMailer/src/SMTP.php');
+require_once('inclus/lib/phpmailer/src/PHPMailer.php');
+require_once('inclus/lib/phpmailer/src/Exception.php');
+require_once('inclus/lib/phpmailer/src/SMTP.php');
 if(isset($_GET['act']) && $_GET['act'] == 'form' && isset($_POST['username']) and isset($_POST['email']) and isset($_POST['nummember']) and isset($_POST['signup']))
 {
 	$req=$bdd->prepare('SELECT * FROM `accounts` WHERE `id`=? LIMIT 1');

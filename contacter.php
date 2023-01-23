@@ -2,9 +2,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once('inclus/lib/PHPMailer/src/PHPMailer.php');
-require_once('inclus/lib/PHPMailer/src/Exception.php');
-require_once('inclus/lib/PHPMailer/src/SMTP.php');
+require_once('inclus/lib/phpmailer/src/PHPMailer.php');
+require_once('inclus/lib/phpmailer/src/Exception.php');
+require_once('inclus/lib/phpmailer/src/SMTP.php');
 include_once('inclus/log.php');
 require_once('inclus/consts.php');
 $tr = load_tr($lang, 'contacter');

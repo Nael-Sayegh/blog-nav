@@ -3,9 +3,9 @@ require_once 'consts.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once 'lib/PHPMailer/src/PHPMailer.php';
-require_once 'lib/PHPMailer/src/Exception.php';
-require_once 'lib/PHPMailer/src/SMTP.php';
+require_once 'lib/phpmailer/src/PHPMailer.php';
+require_once 'lib/phpmailer/src/Exception.php';
+require_once 'lib/phpmailer/src/SMTP.php';
 
 function send_confirm($account, $email, $mhash, $username) {
 	global $lang;

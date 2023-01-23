@@ -11,10 +11,9 @@ $document_root = __DIR__.'/../..';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once($document_root.'/inclus/lib/PHPMailer/src/PHPMailer.php');
-
-require_once($document_root.'/inclus/lib/PHPMailer/src/Exception.php');
-require_once($document_root.'/inclus/lib/PHPMailer/src/SMTP.php');
+require_once($document_root.'/inclus/lib/phpmailer/src/PHPMailer.php');
+require_once($document_root.'/inclus/lib/phpmailer/src/Exception.php');
+require_once($document_root.'/inclus/lib/phpmailer/src/SMTP.php');
 require_once('consts.php');
 require_once('smtp.php');
 
