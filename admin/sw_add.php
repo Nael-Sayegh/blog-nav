@@ -69,10 +69,10 @@ if(isset($_GET['form']) and isset($_POST['sname']) and isset($_POST['category'])
 				$somsg = 'Nouvel article : '.$name.' (A'.$lastid.').'."\n".'https://www.progaccess.net/article.php?id='.$lastid."\n".$nom;
 				require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 				send_facebook($somsg);
-				require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
-				send_twitter($somsg);
 				require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
 				send_mastodon($somsg);
+				require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+				send_twitter($somsg);
 			}
 			require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
 			require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');

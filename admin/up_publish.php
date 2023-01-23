@@ -21,10 +21,10 @@ if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['text'])) {
 	if($data = $req->fetch()) {
 		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 		send_facebook($nomdusite.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
-		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
-		send_twitter($nomdusite.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
 		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
 		send_mastodon($nomdusite.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
+		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+		send_twitter($nomdusite.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
 		require_once('Discord/DiscordBot2.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 	}

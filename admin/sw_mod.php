@@ -104,12 +104,12 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$reqf->execute();
 				if($data=$reqf->fetch()) {
 				$somsg = $_POST['title'].' : https://www.progaccess.net/r?'.(!empty($_POST['label']) ? ('p='.$_POST['label']):('id='.$data['id'])).' https://www.progaccess.net/a?id='.$data['sw_id'].' '.$nom;
-				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
-				send_twitter($somsg);
 				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 				send_facebook($somsg);
 				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
 				send_mastodon($somsg);
+				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+				send_twitter($somsg);
 				}
 			}
 			exit();
@@ -135,12 +135,12 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				finfo_close($finfo);
 				if(isset($_GET['social']) and $_GET['social'] == 'on') {
 					$somsg = $data['title'].' : https://www.progaccess.net/r?'.(!empty($data['label']) ? ('p='.$data['label']):('id='.$data['id'])).' https://www.progaccess.net/a?id='.$data['sw_id'].' '.$nom;
-					include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
-					send_twitter($somsg);
 					include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 					send_facebook($somsg);
 					include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
 					send_mastodon($somsg);
+					include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+					send_twitter($somsg);
 				}
 				include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
 				include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
@@ -246,12 +246,12 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 						if(!empty($label))
 							$somsg .= ' https://www.progaccess.net/r?p='.$label;
 						$somsg .= ' https://www.progaccess.net/a?id='.$_GET['upload'].' '.$nom;
-						include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
-						send_twitter($somsg);
 						include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
 						send_facebook($somsg);
 						include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
 						send_mastodon($somsg);
+						include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+						send_twitter($somsg);
 					}
 					
 					header('Location: sw_mod.php?listfiles='.$_GET['upload']);
