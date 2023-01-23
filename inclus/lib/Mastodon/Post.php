@@ -1,7 +1,7 @@
 <?php
 $document_root = __DIR__.'/../../..';
 require_once($document_root.'/inclus/config.local.php');
-require_once('../MastodonBotPHP/Mastodon.php');
+require_once($document_root.'/inclus/lib/MastodonBotPHP/Mastodon.php');
 
 function send_mastodon($message) {
 	$token = MASTODON_TOKEN;
