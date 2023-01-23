@@ -4,3 +4,6 @@
 [submodule "inclus/lib/parsedown"]
 	path = inclus/lib/parsedown
 	url = https://github.com/erusev/parsedown
+[submodule "inclus/lib/MastodonBotPHP"]
+	path = inclus/lib/MastodonBotPHP
+	url = https://github.com/Eleirbag89/MastodonBotPHP
