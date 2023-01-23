@@ -1,3 +1,6 @@
 [submodule "inclus/lib/phpmailer"]
 	path = inclus/lib/phpmailer
 	url = https://github.com/phpmailer/phpmailer
+[submodule "inclus/lib/parsedown"]
+	path = inclus/lib/parsedown
+	url = https://github.com/erusev/parsedown
