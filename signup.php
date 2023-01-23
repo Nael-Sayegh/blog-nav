@@ -15,7 +15,6 @@ if(isset($_GET['a']) and $_GET['a'] == 'form' and isset($_POST['username']) and 
 	if(strlen($_POST['psw']) > 128 or strlen($_POST['psw']) < 8) $log .= '<li>Votre mot de passe doit comporter entre 8 et 64 caractères.</li>';
 	if(!(isset($_POST['box1']) and $_POST['box1']=='on') or (isset($_POST['box2']) and $_POST['box2']=='on')) $log .= '<li>Veuillez cocher l\'avant-dernière case, mais pas la dernière.</li>';
 	if(empty($log)) {
-		require_once('inclus/lib/random/random.php');
 		$username = $_POST['username'];
 		$req = $bdd->prepare('SELECT `username`,`email` FROM `accounts` WHERE `username`=? OR `email`=? LIMIT 1');
 		$req->execute(array($username, $_POST['mail']));

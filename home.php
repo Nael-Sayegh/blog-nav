@@ -41,7 +41,6 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 			$settings['bd_d'] = $bd_d;
 			$settings['notif_mail'] = $notif_mail;
 			if($_POST['mail'] != $login['email']) {
-				require_once('inclus/lib/random/random.php');
 				$settings['mhash'] = hash('sha512',strval(time()+random_int(100000,9999999)).$login['password'].strval(random_int(100000,9999999)));
 				$req = $bdd->prepare('UPDATE `accounts` SET `username`=?, `email`=?, `confirmed`=0, `settings`=?, `subscribed_comments`=? WHERE `id`=? LIMIT 1');
 				$req->execute(array($username, $_POST['mail'], json_encode($settings), $comments_sub, $login['id']));

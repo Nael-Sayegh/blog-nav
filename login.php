@@ -10,7 +10,6 @@ $titre = tr($tr,'title');
 
 $log = '';
 if(isset($_POST['username']) and isset($_POST['psw'])) {
-	require_once('inclus/lib/random/random.php');
 	
 	$req = $bdd->prepare('SELECT * FROM `accounts` WHERE `username`=? OR `email`=? LIMIT 2');
 	$req->execute(array($_POST['username'], $_POST['username']));
