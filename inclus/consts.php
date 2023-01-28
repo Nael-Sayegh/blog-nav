@@ -132,7 +132,7 @@ setlocale(LC_NUMERIC, 'en');
 
 // MISC CONSTS/VARS
 $tr0 = load_tr($lang, 'default');
-$nomdusite = (isDev()?tr($tr0,'sitename').'-Dev':tr($tr0,'sitename');
+$nomdusite = (isDev()?tr($tr0,'sitename').'-Dev':tr($tr0,'sitename'));
 $chemincss = '<link rel="stylesheet" href="/css/default.css">';
 $cssadmin = '<link rel="stylesheet" href="/admin/css/admin.css">';
 $slogan = tr($tr0,'slogan');
