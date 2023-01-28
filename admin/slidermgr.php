@@ -49,7 +49,7 @@ while($data = $req->fetch()) {
 			<td>'.date('d/m/Y H:i', $data['date']).'</td>
 			<td class="tr_todo'.$data['todo_level'].'">'.$tr_todo[$data['todo_level']].'</td>
 			<td class="tr_published'.$data['published'].'">'.($data['published']?'Public':'Privé').'</td>
-			<td><a href="?delete='.$data['id'].'&token='.$login['token'].'" onclick="return confirm(\"Faut-il vraiment supprimer la slide '.$data['title'].'&nbsp;?\")">Supprimer</a> | <a href="?mod='.$data['id'].'">Modifier</a></td>
+			<td><a href="?delete='.$data['id'].'&token='.$login['token'].'" onclick="return confirm(\'Faut-il vraiment supprimer la slide '.$data['title'].'&nbsp;?\')">Supprimer</a> | <a href="?mod='.$data['id'].'">Modifier</a></td>
 		</tr>';
 }
 ?>
