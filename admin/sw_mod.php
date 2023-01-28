@@ -315,7 +315,7 @@ else
 <?php print $cssadmin; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
-	<body>
+	<body onbeforeunload="return init_close_confirm();">
 <?php require_once('inclus/banner.php');
 if(empty($_GET)) {
 	echo '<ul title="Lister les articles de&nbsp;:">';
@@ -414,7 +414,7 @@ $rq2->closeCursor()
 			<textarea name="text" id="f_mod_text" maxlength="20000" rows="20" cols="500" onkeyup="close_confirm=true"><?php echo $data['text']; ?></textarea><br>
 			<input type="submit" value="Modifier">
 		</form>
-		<script type="text/javascript">init_close_confirm();</script><?php }$req->closeCursor();}
+<?php }$req->closeCursor();}
 if(isset($_GET['addfile'])) {
 	$req = $bdd->prepare('SELECT * FROM softwares WHERE id=? ORDER BY name ASC');
 	$req->execute(array($_GET['addfile']));
@@ -504,7 +504,6 @@ f_addfile_group_method();
 				<input type="submit" value="Ajouter">
 			</fieldset>
 		</form>
-		<script type="text/javascript">init_close_confirm();</script>
 <?php }$req->closeCursor();}
 if(isset($_GET['modf'])) {
 	$req = $bdd->prepare('SELECT * FROM softwares_files WHERE id=?');

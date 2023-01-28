@@ -3,7 +3,7 @@
   '_todo_level' => 4,
   '_last_author' => 'Pascal',
   '_last_modif' => 1621417479,
-  'title' => '{{site}}: {{slogan}}',
+  'title' => '{{slogan}}',
   'happynewyear' => 'La tuta teamo {{site}} deziras al vi la bonan novjaron {{year}}!',
   'texttitle' => '{{slogan}}!',
   'maintext' => '<p>Por eviti ke Interreto estu resurso ekskluziva kaj privata, ni batalu por malfermi kaj alirebligi ĝin.</p>

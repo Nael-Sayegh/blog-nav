@@ -3,7 +3,7 @@
   '_todo_level' => 0,
   '_last_author' => 'Pascal',
   '_last_modif' => 1621417424,
-  'title' => '{{site}}&nbsp;: {{slogan}}',
+  'title' => '{{slogan}}',
   'happynewyear' => 'Toute l\'équipe {{site}} vous souhaite une excellente année {{year}}&#8239;!',
   'texttitle' => '{{slogan}}&#8239;!',
   'maintext' => '<p>Pour empêcher qu\'Internet soit une ressource exclusive et privée, luttons pour le rendre plus ouvert et accessible.</p>
