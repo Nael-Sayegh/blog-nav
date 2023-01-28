@@ -3,7 +3,7 @@
   '_todo_level' => 4,
   '_last_author' => 'Pascal',
   '_last_modif' => 1621417452,
-  'title' => '{{site}}: {{slogan}}',
+  'title' => '{{slogan}}',
   'happynewyear' => 'The hole team {{site}} wishes you an happy new year {{year}}!',
   'texttitle' => '{{slogan}}!',
   'maintext' => '<p>In order to prevent Internet from being an exclusive and private resource, let\'s make it more open and accessible.</p>
