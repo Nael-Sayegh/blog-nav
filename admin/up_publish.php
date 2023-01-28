@@ -57,7 +57,7 @@ if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['text'])) {
 $req = $bdd->query('SELECT * FROM site_updates ORDER BY date ASC');
 while($data = $req->fetch()) {
 $versionxx = substr($data['name'],1);
-echo '<tr><td>V'.$data['id'].'</td><td>'.$versionxx.'</td><td>'.date('d/m/Y H:i',$data['date']).'</td><td><a href="?delete='.$data['id'].'">Supprimer</a> | <a href="?mod='.$data['id'].'#mod">Modifier</a></td></tr>';
+echo '<tr><td>V'.$data['id'].'</td><td>'.$versionxx.'</td><td>'.date('d/m/Y H:i',$data['date']).'</td><td><a href="?delete='.$data['id'].'" onclick="return confirm(\'Faut-il vraiment supprimer la version '.$versionxx.'&nbsp;?\')">Supprimer</a> | <a href="?mod='.$data['id'].'#mod">Modifier</a></td></tr>';
 }
 ?>
 			</tbody>
