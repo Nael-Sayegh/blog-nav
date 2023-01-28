@@ -93,6 +93,14 @@ function getLastGitCommit()
 echo tr($tr0,'footer_lastcommit',array('date'=>$commitDate,'url'=>$commitURL,'site'=>$nomdusite));
 }
 
+function isDev()
+{
+if(strstr($_SERVER['HTTP_HOST'], 'dev.'))
+return true;
+else
+return false;
+}
+
 date_default_timezone_set('Europe/Paris'); 
 //setlocale(LC_TIME,'fr_FR.UTF8');
 if(!(isset($noct) and $noct))
@@ -124,7 +132,7 @@ setlocale(LC_NUMERIC, 'en');
 
 // MISC CONSTS/VARS
 $tr0 = load_tr($lang, 'default');
-$nomdusite = tr($tr0,'sitename');
+$nomdusite = (isDev()?tr($tr0,'sitename').'-Dev':tr($tr0,'sitename');
 $chemincss = '<link rel="stylesheet" href="/css/default.css">';
 $cssadmin = '<link rel="stylesheet" href="/admin/css/admin.css">';
 $slogan = tr($tr0,'slogan');
