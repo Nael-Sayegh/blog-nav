@@ -40,4 +40,5 @@
   'comments_unsubscribe_long' => 'Ne plus être notifié des commentaires sur cet article',
   'limitcommentext' => '<p>Le dépôt de commentaires sur {{site}} est réservé aux membres. Merci de <a href="/login.php">vous connecter</a>, ou de <a href="/signup.php">vous inscrire</a>.</p>',
   'detailskw' => 'Mots clés',
+  'confirm_del_com' => 'Faut-il vraiment supprimer le commentaire&nbsp;?',
 ); ?>
