@@ -20,7 +20,7 @@ include('inclus/stats.php'); ?>
 <summary><?php echo tr($tr0,'footer_sociallinks'); ?></summary>
 <a target="_blank" href="https://demo.cesium.app/#/app/wot/EEGevmgQcgzXou2ucaf1S9pCMvwKfu56ukRRLPn4D3y9/" title="<?php echo tr($tr0,'footer_link_g1'); ?>"><img id="g1" alt="<?php echo tr($tr0,'footer_link_g1'); ?>" src="/image/gbreve-simple.svg" style="width:32px;height:32px;"></a>
 <a target="_blank" href="https://www.facebook.com/ProgAccess" title="<?php echo tr($tr0,'footer_link_fb'); ?>"><img id="facebook" alt="<?php echo tr($tr0,'footer_link_fb'); ?>" src="/image/facebook.png"></a>
-<a target="_blank" rel="me" href="https://toot.aquilenet.fr/@ProgAccess" title="<?php echo tr($tr0,'footer_link_masto'); ?>"><img id="mastodon" alt="<?php echo tr($tr0,'footer_link_masto'); ?>" src="/image/mastodon-purple.svg" style="width:32px;height:32px;"/></a>
+<a target="_blank" rel="me" href="https://toot.aquilenet.fr/@ProgAccess" title="<?php echo tr($tr0,'footer_link_masto'); ?>"><img id="mastodon" alt="<?php echo tr($tr0,'footer_link_masto'); ?>" src="/image/mastodon-purple.svg" style="width:32px;height:32px;"></a>
 <a target="_blank" href="https://twitter.com/ProgAccess" title="<?php echo tr($tr0,'footer_link_tw'); ?>"><img id="twitter" alt="<?php echo tr($tr0,'footer_link_tw'); ?>" src="/image/twitter.png"></a>
 </details>
 Copyright &copy; 2015-<?php print date('Y'); ?> <?php echo tr($tr0,'footer_copyright',array('site'=>$nomdusite)); ?><br>
