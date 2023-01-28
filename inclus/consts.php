@@ -87,10 +87,10 @@ function get_article_prefered_tr($article_id, $lang) {
 function getLastGitCommit()
 {
 	global $tr0;
-	$hash = shell_exec('git --git-dir=".git" rev-parse --verify HEAD');
-	$commitDate = strftime(tr($tr0,'fndatetime'), shell_exec('git --git-dir=".git" show -s --format=%ct '.$hash));
-	$commitURL = '<a href="https://gitlab.com/ProgAccess/ProgAccess/-/commit/'.$hash.'">Commit '.shell_exec('git --git-dir=".git" show -s --format="%h - %s"').'</a>';
-echo tr($tr0,'footer_lastcommit',array('date'=>$commitDate,'url'=>$commitURL));
+	$hash = shell_exec('git --git-dir="'.GIT_DIR.'" rev-parse --verify HEAD');
+	$commitDate = strftime(tr($tr0,'fndatetime'), shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%ct '.$hash));
+	$commitURL = '<a href="'.GIT_COMMIT_BASE_URL.$hash.'">Commit '.shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%h').'</a>';
+echo tr($tr0,'footer_lastcommit',array('date'=>$commitDate,'url'=>$commitURL,'site'=>$nomdusite));
 }
 
 date_default_timezone_set('Europe/Paris'); 
