@@ -105,7 +105,7 @@ if(isset($_GET['ticket'])) {
 			echo '<tr class="ticket_msg'.strval($msg['m']).'"><td rowspan="2" class="ticket_msgtd"></td>';
 			echo '<td class="ticket_msginfo">';
 			if($msg['m'] == 1)
-				echo '<img alt="L\'administration '.$nomdusite.'" src="/image/logo16.png"> ';
+				echo '<img alt="'.$nomdusite.'" src="/image/logo16.png"> ';
 			echo '<b>'.htmlspecialchars($msg['e']).'</b> '.date('d/m/Y H:i', $msg['d']).'</td></tr><tr><td>'.$msg['t'].'</td></tr>';
 		}
 		unset($msg);
@@ -126,7 +126,7 @@ if(isset($_GET['ticket'])) {
 			<fieldset><legend>Supprimer</legend>
 				<label for="f2_del">Écrire SUPPRIMER en majuscules pour supprimer le ticket.</label><br>
 				<input type="text" id="f2_del" name="del" required><br>
-				<input type="submit" value="Supprimer">
+				<input type="submit" onclick="return confirm('Faut-il vraiment supprimer le ticket <?php echo htmlspecialchars($data['subject']); ?>&nbsp;?')" value="Supprimer">
 			</fieldset>
 		</form>
 <?php

@@ -348,7 +348,7 @@ while($data = $req->fetch()) {
 		<td><a href="?id='.$data['id'].'" role="heading" aria-level="6">'.$data['name'].'</a></td>
 		<td>'.$cat[$data['category']].'</td>
 		<td>'.date('d/m/Y H:i',$data['date']).' par '.$data['author'].'</td>
-		<td><a href="?listfiles='.$data['id'].'">Afficher les fichiers</a> | <a href="translate.php?type=article&id='.$data['id'].'">Traductions</a>'.(($nom == $data['author']) ? ' | <a href="?rsw='.$data['id'].'">supprimer</a>':'').'</td>
+		<td><a href="?listfiles='.$data['id'].'">Afficher les fichiers</a> | <a href="translate.php?type=article&id='.$data['id'].'">Traductions</a>'.(($nom == $data['author']) ? ' | <a href="?rsw='.$data['id'].'" onclick="return confirm(\'Faut-il vraiment supprimer l\'article '.$data['name'].'&nbsp;?\')">Supprimer</a>':'').'</td>
 	</tr>';
 }
 ?>
@@ -381,7 +381,7 @@ if(isset($_GET['listfiles'])) {
 				echo '<tr><td><a href="?modm='.$data2['id'].'">'.$data2['title'].'</a></td><td><textarea name="lmir'.$data2['id'].'" readonly>'.htmlentities($data2['links']).'</textarea></td><td><a href="/r.php?m&p='.$data2['label'].'">'.$data2['label'].'</a></td><td>'.date('d/m/Y H:i',$data2['date']).'</td><td><input type="checkbox" name="rmir'.$data2['id'].'" autocomplete="off"></td></tr>';
 			} $req2->closeCursor(); ?></tbody>
 			</table>
-			<input type="submit" value="Supprimer">
+			<input type="submit" onclick="return confirm('Faut-il vraiment supprimer les fichiers sélectionnés&nbsp;?')" value="Supprimer">
 		</form>
 		<?php }
 	$req1->closeCursor();
