@@ -33,7 +33,7 @@ if(isset($_GET['mod2']) and isset($_POST['name'])) {
 <?php
 $req = $bdd->query('SELECT * FROM softwares_categories ORDER BY name ASC');
 while($data = $req->fetch()) {
-	echo '<tr><td>C'.$data['id'].'</td><td>'.$data['name'].'</td><td><a href="?delete='.$data['id'].'">Supprimer</a> | <a href="?mod='.$data['id'].'">Modifier</a></td></tr>';
+	echo '<tr><td>C'.$data['id'].'</td><td>'.$data['name'].'</td><td><a href="?delete='.$data['id'].'" onclick="return confirm(\'Faut-il vraiment supprimer la catégorie '.$data['name'].'&nbsp;?\')">Supprimer</a> | <a href="?mod='.$data['id'].'">Modifier</a></td></tr>';
 }
 ?>
 			</tbody>

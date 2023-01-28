@@ -37,7 +37,7 @@ if(isset($_GET['mod2']) and isset($_POST['username']) and isset($_POST['email'])
 include_once $_SERVER['DOCUMENT_ROOT'].'/inclus/user_rank.php';
 $req = $bdd->query("SELECT * FROM `accounts`");
 while($data = $req->fetch()) {
-	echo '<tr><td>'.$data['username'].'</td><td>'.$data['email'].'</td><td>'.urank($data['rank']).'</td><td><a href="?mod='.$data['id'].'#mod">Modifier</a> | <a href="?delete='.$data['id'].'">Supprimer</a></td></tr>';
+	echo '<tr><td>'.$data['username'].'</td><td>'.$data['email'].'</td><td>'.urank($data['rank']).'</td><td><a href="?mod='.$data['id'].'#mod">Modifier</a> | <a href="?delete='.$data['id'].'" onclick="return confirm(\'Faut-il vraiment supprimer le membre '.$data['username'].'&nbsp;?\')">Supprimer</a></td></tr>';
 }
 ?>
 			</tbody>
