@@ -1,11 +1,6 @@
 <head>
 <meta charset="utf-8">
-<title><?php
-if(strstr($_SERVER['HTTP_HOST'], 'dev.'))
-echo $titre.' – (dev '.$nomdusite.')';
-else
-echo $titre.' – '.$nomdusite;
-?></title>
+<title><?php echo $titre.' – '.$nomdusite; ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link title="<?php echo $nomdusite; ?>" type="application/opensearchdescription+xml" rel="search" href="/opensearch.xml.php">
