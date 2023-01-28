@@ -37,7 +37,7 @@ if((isset($_POST['token']) and $_POST['token'] == $login['token']) or (isset($_G
 	<body>
 <?php require_once('inclus/banner.php'); ?>
 		<table border="1">
-			<thead><tr><th>Label</th><th>Langue</th><th>Titre</th><th>Actions</th><th>Modification</th><th>État</th><th>Publié</th></tr></thead>
+			<thead><tr><th>Label</th><th>Langue</th><th>Titre</th><th>Modification</th><th>État</th><th>Publié</th><th>Actions</th></tr></thead>
 			<tbody>
 <?php
 $req = $bdd->query('SELECT * FROM `slides`');
@@ -46,10 +46,10 @@ while($data = $req->fetch()) {
 			<td>'.$data['label'].'</td>
 			<td title="'.$data['lang'].'">'.$langs[$data['lang']].'</td>
 			<td>'.$data['title'].'</td>
-			<td><a href="?delete='.$data['id'].'&token='.$login['token'].'">Supprimer</a> | <a href="?mod='.$data['id'].'">Modifier</a></td>
 			<td>'.date('d/m/Y H:i', $data['date']).'</td>
 			<td class="tr_todo'.$data['todo_level'].'">'.$tr_todo[$data['todo_level']].'</td>
 			<td class="tr_published'.$data['published'].'">'.($data['published']?'Public':'Privé').'</td>
+			<td><a href="?delete='.$data['id'].'&token='.$login['token'].'">Supprimer</a> | <a href="?mod='.$data['id'].'">Modifier</a></td>
 		</tr>';
 }
 ?>
