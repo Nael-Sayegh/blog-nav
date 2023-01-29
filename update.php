@@ -37,7 +37,7 @@ echo '<p>Par '.$data['authors'].' ('.strftime(tr($tr0,'fndatetime'),$data['date'
 		}
 	} 
 } else {
-	if($dev == true) {include('ChangeLog_Dev.html');}
+	if(isDev() == true) {include('ChangeLog_Dev.html');}
 	$req = $bdd->prepare('SELECT * FROM `site_updates` ORDER BY `date` DESC');
 	$req->execute();
 	echo '<ul><li>Numéro de version [identifiant de version] (date)&nbsp;:</li>';
