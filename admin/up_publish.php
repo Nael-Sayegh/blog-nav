@@ -25,7 +25,8 @@ if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['text'])) {
 		send_mastodon($site_name.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
 		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
 		send_twitter($site_name.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
-		require_once('Discord/DiscordBot2.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/discord_publisher.php');
+		send_discord($nom." vient de publier ".$site_name." version ".substr($data['name'],1).". Retrouvez tous les détails sur : https://www.progaccess.net/u?id=".$data['id']");
 require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 	}
 }
