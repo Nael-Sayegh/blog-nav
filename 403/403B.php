@@ -8,7 +8,7 @@
 <body>
 <h1>Erreur 403&nbsp;: accès refusé</h1>
 <p>Votre compte membre <?php echo $login['username']; ?> est banni du site.<br>
-Pour faire une réclamation, <a href="/contacter.php">contactez-nous</a>, sinon <a href="/">retournez à l'accueil</a>.<br>
+Pour faire une réclamation, <a href="/contact_form.php">contactez-nous</a>, sinon <a href="/">retournez à l'accueil</a>.<br>
 L'Administration</p>
 </body>
 </html>

@@ -1,17 +1,17 @@
 <?php
 $logonly = true;
-require_once('inclus/log.php');
+require_once('include/log.php');
 $stats_page='home';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('inclus/consts.php');
+require_once('include/consts.php');
 $tr = load_tr($lang, 'home');
-$cheminaudio='/audio/sons_des_pages/membre.mp3';
-$titre = tr($tr,'title');
+$sound_path='/audio/page_sounds/membre.mp3';
+$title = tr($tr,'title');
 
 $log = '';
 if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POST['token']) and $_POST['token'] == $login['token'])) {
 	if(isset($_GET['sendmail'])) {
-		require_once('inclus/sendconfirm.php');
+		require_once('include/sendconfirm.php');
 		send_confirm($login['id'], $login['email'], $settings['mhash'], $login['username']);
 	}
 	if(isset($_GET['settings']) and isset($_POST['username']) and isset($_POST['mail'])) {
@@ -45,7 +45,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$req = $bdd->prepare('UPDATE `accounts` SET `username`=?, `email`=?, `confirmed`=0, `settings`=?, `subscribed_comments`=? WHERE `id`=? LIMIT 1');
 				$req->execute(array($username, $_POST['mail'], json_encode($settings), $comments_sub, $login['id']));
 				header('Location: /home.php?settings_ok&mail_sent');
-				require_once('inclus/sendconfirm.php');
+				require_once('include/sendconfirm.php');
 				send_confirm($login['id'], $_POST['mail'], $settings['mhash'], $username);
 			}
 			else {
@@ -82,12 +82,12 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 		}
 	}
 	if(isset($_GET['chforum']) and isset($_POST['username']) and isset($login['forum_id']) and $login['forum_id'] !== NULL) {
-		require_once('inclus/flarum.php');
+		require_once('include/flarum.php');
 		update_forum_account($login, $_POST['username']);
 		$log .= '<li>'.tr($tr,'log_forum_updated_ok').'</li>';
 	}
 	if(isset($_GET['newforum']) and (!isset($login['forum_id']) or $login['forum_id'] === NULL)) {
-		require_once('inclus/flarum.php');
+		require_once('include/flarum.php');
 		$newforum_result = create_forum_account($login['id'], $login['username'], $login['email']);
 		$login['forum_id'] = $newforum_result['id'];
 		$login['forum_psw'] = $newforum_result['psw'];
@@ -112,7 +112,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 		$req->execute(array(time()-1, $login['id'], $_GET['rm_ses'], time()));
 	}
 }
-require_once('inclus/user_rank.php');
+require_once('include/user_rank.php');
 if(isset($_GET['settings_ok']))
 	$log .= '<li>'.tr($tr,'log_settings_ok').'</li>';
 if(isset($_GET['psw_ok']))
@@ -122,12 +122,12 @@ if(isset($_GET['mail_sent']))
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-<?php require_once('inclus/header.php'); ?>
+<?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('inclus/banner.php');
-require_once('inclus/son.php'); ?>
+<?php require_once('include/banner.php');
+require_once('include/load_sound.php'); ?>
 <main id="container">
-	<h1 id="contenu"><?php print $titre; ?></h1>
+	<h1 id="contenu"><?php print $title; ?></h1>
 <?php if(!empty($log)) echo '<ul class="log">'.$log.'</ul>';
 if($login['confirmed'] == 0)
 	echo '<p>'.tr($tr,'confirm_mail').'<br><a href="/home.php?sendmail&mail_sent&token='.$login['token'].'">'.tr($tr,'send_mail').'</a></p>';
@@ -271,7 +271,7 @@ if(isset($login['forum_id']) and $login['forum_id'] !== NULL) {
 		</fieldset>
 	</form>
 </main>
-<?php require_once('inclus/footer.php'); ?>
+<?php require_once('include/footer.php'); ?>
 
 <script type="text/javascript" src="/scripts/jquery.js"></script>
 <script type="text/javascript" src="/scripts/pa_api.js"></script>

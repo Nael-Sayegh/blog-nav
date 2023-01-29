@@ -2,8 +2,8 @@
 $adminonly=true;
 $justpa = true;
 $titlePAdm='Versions du site';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['text'])) {
 	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/codestat.php');
 	$codestat_n_files = -1;
@@ -14,17 +14,17 @@ if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['text'])) {
 	$req = $bdd->prepare('INSERT INTO `site_updates`(`name`, `text`,`date`,`authors`,`codestat`) VALUES(?,?,?,?,?)');
 	$req->execute(array(htmlspecialchars($_POST['name']), $_POST['text'], time(), $nom, json_encode(array($codestat_n_files, $codestat_n_lines, $codestat_n_chars))));
 	
-	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 	
 	$req = $bdd->prepare('SELECT `id`,`name` FROM `site_updates` ORDER BY `id` DESC LIMIT 1');
 	$req->execute();
 	if($data = $req->fetch()) {
-		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
-		send_facebook($nomdusite.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
-		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
-		send_mastodon($nomdusite.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
-		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
-		send_twitter($nomdusite.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
+		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
+		send_facebook($site_name.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
+		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
+		send_mastodon($site_name.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
+		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
+		send_twitter($site_name.' version '.substr($data['name'],1).' publié, changements sur https://www.progaccess.net/u?id='.$data['id'].' '.$nom);
 		require_once('Discord/DiscordBot2.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 	}
@@ -32,24 +32,24 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 if(isset($_GET['delete'])) {
 	$req = $bdd->prepare('DELETE FROM site_updates WHERE id=?');
 	$req->execute(array($_GET['delete']));
-	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 }
 if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['text'])) {
 	$req = $bdd->prepare('UPDATE site_updates SET name=?, text=?, authors=? WHERE id=?');
 	$req->execute(array(htmlspecialchars($_POST['name']), $_POST['text'], $nom, $_GET['mod2']));
-	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Gestion des versions de <?php print $nomdusite; ?></title>
-<?php print $cssadmin; ?>
+		<title>Gestion des versions de <?php print $site_name; ?></title>
+<?php print $admin_css_path; ?>
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php'); ?>
+<?php require_once('include/banner.php'); ?>
 		<table border="1">
 			<thead><tr><th>ID</th><th>Numéro de version</th><th>Date</th><th>Actions</th></tr></thead>
 			<tbody>

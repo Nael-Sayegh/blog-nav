@@ -3,8 +3,8 @@ $logonly = true;
 $adminonly = true;
 $justpa = true;
 $titlePAdm='Ajout d\'un article';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 
 $categories = array();
 $req = $bdd->query('SELECT * FROM `softwares_categories` ORDER BY `name` ASC');
@@ -67,14 +67,14 @@ if(isset($_GET['form']) and isset($_POST['sname']) and isset($_POST['category'])
 		
 			if($social) {
 				$somsg = 'Nouvel article : '.$name.' (A'.$lastid.').'."\n".'https://www.progaccess.net/article.php?id='.$lastid."\n".$nom;
-				require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
+				require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 				send_facebook($somsg);
-				require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
+				require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 				send_mastodon($somsg);
-				require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+				require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
 				send_twitter($somsg);
 			}
-			require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+			require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 			require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 		}
 		
@@ -87,12 +87,12 @@ if(isset($_GET['form']) and isset($_POST['sname']) and isset($_POST['category'])
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Ajout d'un logiciel sur <?php print $nomdusite; ?></title>
-		<?php print $cssadmin; ?>
+		<title>Ajout d'un logiciel sur <?php print $site_name; ?></title>
+		<?php print $admin_css_path; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-	<?php require_once('inclus/banner.php');
+	<?php require_once('include/banner.php');
 if(!empty($log)) echo '<ul>'.$log.'</ul>';
 		?>
 		<form action="?form" method="post">

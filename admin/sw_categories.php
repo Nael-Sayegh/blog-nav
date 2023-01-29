@@ -2,8 +2,8 @@
 $adminonly=true;
 $justpa = true;
 $titlePAdm='Catégories';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 if(isset($_GET['add']) and isset($_POST['name'])) {
 	$req = $bdd->prepare('INSERT INTO softwares_categories(name,text) VALUES(?,?)');
 	$req->execute(array(htmlspecialchars($_POST['name']), $_POST['text']));
@@ -21,12 +21,12 @@ if(isset($_GET['mod2']) and isset($_POST['name'])) {
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Gestion des catégories de <?php print $nomdusite; ?></title>
-<?php print $cssadmin; ?>
+		<title>Gestion des catégories de <?php print $site_name; ?></title>
+<?php print $admin_css_path; ?>
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php'); ?>
+<?php require_once('include/banner.php'); ?>
 		<table border="1">
 			<thead><tr><th>Numéro de catégorie</th><th>Nom</th><th>Actions</th></tr></thead>
 			<tbody>

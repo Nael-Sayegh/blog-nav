@@ -12,19 +12,19 @@ $ip = (getenv(HTTP_X_FORWARDED_FOR))
 return $ip;
 }
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('inclus/log.php');
-require_once('inclus/consts.php');
-$titre=("Infos vous concernant");
-$cheminaudio="/audio/sons_des_pages/gadget.mp3";
+require_once('include/log.php');
+require_once('include/consts.php');
+$title=("Infos vous concernant");
+$sound_path="/audio/page_sounds/gadget.mp3";
 $stats_page = 'ip'; ?>
 <!DOCTYPE html>
 <html lang="fr">
-<?php require_once('inclus/header.php'); ?>
+<?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('inclus/banner.php');
-require_once('inclus/son.php'); ?>
+<?php require_once('include/banner.php');
+require_once('include/load_sound.php'); ?>
 <main id="container">
-<h1 id="contenu"><?php print $titre; ?></h1>
+<h1 id="contenu"><?php print $title; ?></h1>
 <p>Cette page va afficher plusieurs infos sur vous, tel que votre IP, votre localisation et bien plus encore...</p>
 <h2>Note importante</h2>
 <p>Avec certains opérateurs (Free surtout) certaines infos ne sont pas renvoyées et ne seront donc pas affichées.</p>
@@ -47,6 +47,6 @@ require_once('inclus/son.php'); ?>
 </ul>
 <a href="/gadgets.php">Retour à la liste des gadgets.</a>
 </main>
-<?php require_once('inclus/footer.php'); ?>
+<?php require_once('include/footer.php'); ?>
 </body>
 </html>

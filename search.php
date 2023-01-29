@@ -1,12 +1,12 @@
 <?php
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('inclus/log.php');
-require_once('inclus/consts.php');
+require_once('include/log.php');
+require_once('include/consts.php');
 $tr = load_tr($lang, 'search');
-$titre=tr($tr,'title');
-$cheminaudio="/audio/sons_des_pages/recherche.mp3";
+$title=tr($tr,'title');
+$sound_path="/audio/page_sounds/recherche.mp3";
 $stats_page='recherche';
-$chemincss .= '<link rel="stylesheet" href="/css/search.css">';
+$css_path .= '<link rel="stylesheet" href="/css/search.css">';
 $searchterms = '';
 if(isset($_GET['q']) and $_GET['q'] != '' and strlen($_GET['q']) <= 255) {
 	$searchterms = $_GET['q'];
@@ -24,10 +24,10 @@ if(isset($_GET['q']) and $_GET['q'] != '' and strlen($_GET['q']) <= 255) {
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-<?php require_once('inclus/header.php'); ?>
+<?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('inclus/banner.php');
-require_once('inclus/son.php'); ?>
+<?php require_once('include/banner.php');
+require_once('include/load_sound.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php
 if(!empty($searchterms))
@@ -142,6 +142,6 @@ if(!empty($searchterms)) {
 }
 ?>
 </main>
-<?php require_once('inclus/footer.php'); ?>
+<?php require_once('include/footer.php'); ?>
 </body>
 </html>

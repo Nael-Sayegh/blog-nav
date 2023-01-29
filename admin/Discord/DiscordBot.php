@@ -8,7 +8,7 @@ $data = array(
 array(
 'title' => "cette page", // Intitulé du lien
 'url' => "https://www.progaccess.net/u?id=".$data['id'], // Adresse du lien
-'description' => "Liste des changements de ".$nomdusite." ".substr($data['name'],1), // Texte affiché après le titre
+'description' => "Liste des changements de ".$site_name." ".substr($data['name'],1), // Texte affiché après le titre
 'image' => array(
 'url' => '', // (jaune) Adresse de l'image
 'width' => 0, // Largeur de l'image

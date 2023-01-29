@@ -1,12 +1,12 @@
 <?php
 $nolog = true;
-require_once('inclus/log.php');
+require_once('include/log.php');
 $stats_page='login';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('inclus/consts.php');
+require_once('include/consts.php');
 $tr = load_tr($lang, 'login');
-$cheminaudio='/audio/sons_des_pages/membre.mp3';
-$titre = tr($tr,'title');
+$sound_path='/audio/page_sounds/membre.mp3';
+$title = tr($tr,'title');
 
 $log = '';
 if(isset($_POST['username']) and isset($_POST['psw'])) {
@@ -28,7 +28,7 @@ if(isset($_POST['username']) and isset($_POST['psw'])) {
 			if(isset($_GET['forum']))
 				header('Location: /auth_forum.php?token='.$token);
 			else
-				header('Location: /redirlogin.php');
+				header('Location: /login_redirect.php');
 			exit();
 		}
 		else $log = tr($tr,'wrong');
@@ -51,22 +51,22 @@ elseif(isset($_GET['logonly']))
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-<?php require_once('inclus/header.php'); ?>
+<?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('inclus/banner.php');
-require_once('inclus/son.php'); ?>
+<?php require_once('include/banner.php');
+require_once('include/load_sound.php'); ?>
 <main id="container">
-	<h1 id="contenu"><?php print $titre; ?></h1>
+	<h1 id="contenu"><?php print $title; ?></h1>
 <?php if(!empty($log)) echo '<div id="divlog" role="complementary" aria-live="assertive"><p id="log"><b>'.$log.'</b></p></div>'; ?>
 	<form action="?a=form<?php if(isset($_GET['forum'])) echo '&forum'; ?>#log" method="post">
 		<input type="text" id="f1_username" name="username" placeholder="<?php echo tr($tr,'username'); ?>" maxlength="32" aria-label="<?php echo tr($tr,'username'); ?>" autofocus><br>
 		<input type="password" id="f1_psw" name="psw" placeholder="<?php echo tr($tr,'password'); ?>" maxlength="64" aria-label="<?php echo tr($tr,'password'); ?>"><br>
 		<input type="submit" id="f1_submit" value="<?php echo tr($tr,'bt_login'); ?>">
 	</form>
-	<a href="/mdp_demande.php"><?php echo tr($tr,'forgot_psw'); ?></a><br>
+	<a href="/fg_password.php"><?php echo tr($tr,'forgot_psw'); ?></a><br>
 	<a href="/signup.php"><?php echo tr($tr,'signup'); ?></a>
 	<p><?php echo tr($tr,'cookies'); ?></p>
 </main>
-<?php require_once('inclus/footer.php'); ?>
+<?php require_once('include/footer.php'); ?>
 </body>
 </html>

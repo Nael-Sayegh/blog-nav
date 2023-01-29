@@ -1,14 +1,14 @@
 <?php
 $url = 'https://discordapp.com/api/webhooks/713798453959852152/9cLXkapSBG5S6US_gysIZwZjjvDlZqBfISRnWA-wVJcSKWESlKoMtf5kfLyM6Sh-D0rV';
 $data = array(
-'content' => $nom." vient de publier ".$nomdusite." version ".substr($data['name'],1).". Retrouvez tous les détails sur : https://www.progaccess.net/u?id=".$data['id']",
+'content' => $nom." vient de publier ".$site_name." version ".substr($data['name'],1).". Retrouvez tous les détails sur : https://www.progaccess.net/u?id=".$data['id']",
 'username' => 'ProgAccess',
 /* 'avatar_url' => '',
 'embeds' => array(
 array(
 'title' => "cette page", // Intitulé du lien
 'url' => "https://www.progaccess.net/u?id=".$data['id'], // Adresse du lien
-'description' => "Liste des changements de ".$nomdusite." ".substr($data['name'],1), // Texte affiché après le titre*/
+'description' => "Liste des changements de ".$site_name." ".substr($data['name'],1), // Texte affiché après le titre*/
 /*'image' => array(
 'url' => '', // (jaune) Adresse de l'image
 'width' => 0, // Largeur de l'image

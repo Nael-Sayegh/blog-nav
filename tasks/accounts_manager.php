@@ -1,6 +1,6 @@
 <?php
 $document_root = __DIR__.'/..';
-require_once($document_root.'/inclus/consts.php');
+require_once($document_root.'/include/consts.php');
 
 $SESSION_EXPIRE = 8640000; // time after expiration to delete session (100 days)
 
