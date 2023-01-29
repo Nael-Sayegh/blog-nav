@@ -16,7 +16,7 @@ $files = array('Slider.php', 'index.php', 'browser_homepage.php', 'members_list.
 	'include/lib/facebook/fb_publisher.php', 'include/lib/twitter/twitter_publisher.php',
 	'res/phpsocialclient/facebook.php', 'res/phpsocialclient/twitter.php', 'res/phpsocialclient/locales/en.php', 'res/phpsocialclient/locales/fr.php', 'res/phpsocialclient/templates/getdata.php', 'res/phpsocialclient/templates/locales.php',
 	'r/index.php',
-	'scripts/default.js', 'scripts/clock.js', 'scripts/menu.js', 'scripts/menu2.js', 'scripts/pa_api.js', 'scripts/script1.js', 'scripts/slider.js',
+	'scripts/default.js', 'scripts/clock.js', 'scripts/pa_api.js', 'scripts/slider.js',
 	'tasks/accounts_manager.php', 'tasks/birthday.php', 'tasks/codestat.php', 'tasks/comments_tasker.php', 'tasks/facebook_publisher.php', 'tasks/history_cache.php', 'tasks/langs_cache.php', 'tasks/nl_manager.php', 'tasks/notif_tasker.php', 'tasks/slider_cache.php', 'tasks/stats_daily.php',
 	'u/index.php');
 
