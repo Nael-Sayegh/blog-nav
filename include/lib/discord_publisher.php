@@ -1,10 +1,12 @@
 <?php
-$url = 'https://discordapp.com/api/webhooks/713798453959852152/9cLXkapSBG5S6US_gysIZwZjjvDlZqBfISRnWA-wVJcSKWESlKoMtf5kfLyM6Sh-D0rV';
+$document_root = __DIR__.'/../..';
+require_once $document_root.'/include/config.local.php';
+$url = DISCORD_WEBHOOK_URL;
+function send_discord($message)
+{
 $data = array(
-'content' => $nom." vient de publier ".$site_name." version ".substr($data['name'],1).". Retrouvez tous les détails sur : https://www.progaccess.net/u?id=".$data['id']",
+'content' => $message,
 'username' => 'ProgAccess',
-)
-),
 );
 $context = array(
 'http' => array(
@@ -19,4 +21,5 @@ if($result === false) {
 return false;
 }
 return true;
+}
 ?>
