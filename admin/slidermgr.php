@@ -2,8 +2,8 @@
 $adminonly=true;
 $justpa = true;
 $titlePAdm='Slider';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 
 if((isset($_POST['token']) and $_POST['token'] == $login['token']) or (isset($_GET['token']) and $_GET['token'] == $login['token'])) {
 	if(isset($_GET['add']) and isset($_POST['label']) and isset($_POST['style']) and isset($_POST['title']) and isset($_POST['title_style']) and isset($_POST['contain']) and isset($_POST['contain_style']) and isset($_POST['lang']) and isset($_POST['todo'])) {
@@ -28,14 +28,14 @@ if((isset($_POST['token']) and $_POST['token'] == $login['token']) or (isset($_G
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Gestion des slides de <?php print $nomdusite; ?></title>
-		<?php print $cssadmin; ?>
+		<title>Gestion des slides de <?php print $site_name; ?></title>
+		<?php print $admin_css_path; ?>
 		<link rel="stylesheet" href="css/translate.css">
 		<script type="text/javascript" src="js/sliderstyles.js"></script>
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php'); ?>
+<?php require_once('include/banner.php'); ?>
 		<table border="1">
 			<thead><tr><th>Label</th><th>Langue</th><th>Titre</th><th>Modification</th><th>État</th><th>Publié</th><th>Actions</th></tr></thead>
 			<tbody>

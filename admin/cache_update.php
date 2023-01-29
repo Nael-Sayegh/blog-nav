@@ -2,8 +2,8 @@
 $adminonly=true;
 $justpa = true;
 $titlePAdm='Caches';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 
 $obcache = '';
 if(isset($_GET['cache'])) {
@@ -28,7 +28,7 @@ if(isset($_GET['cache'])) {
 		$req->closeCursor();
 	}
 	if($_GET['cache'] == 'all' or $_GET['cache'] == 'journal')
-		include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+		include($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 	if($_GET['cache'] == 'all' or $_GET['cache'] == 'slider')
 		include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 	if($_GET['cache'] == 'all' or $_GET['cache'] == 'codestat')
@@ -50,12 +50,12 @@ if(isset($_GET['cache'])) {
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Gestionnaire des caches &#8211; <?php print $nomdusite; ?></title>
-		<?php print $cssadmin; ?>
+		<title>Gestionnaire des caches &#8211; <?php print $site_name; ?></title>
+		<?php print $admin_css_path; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-		<?php require_once('inclus/banner.php'); ?>
+		<?php require_once('include/banner.php'); ?>
 <?php
 if(!empty($obcache))
 	echo '<fieldset><legend>Cachers\' stdout</legend>'.$obcache.'</fieldset><br>';

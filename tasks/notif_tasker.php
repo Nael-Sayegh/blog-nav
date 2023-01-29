@@ -4,13 +4,13 @@ $atime = microtime(true);
 $noct = true;
 
 $document_root = __DIR__.'/..';
-require_once($document_root.'/inclus/consts.php');
+require_once($document_root.'/include/consts.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once($document_root.'/inclus/lib/phpmailer/src/PHPMailer.php');
-require_once($document_root.'/inclus/lib/phpmailer/src/Exception.php');
-require_once($document_root.'/inclus/lib/phpmailer/src/SMTP.php');
+require_once($document_root.'/include/lib/phpmailer/src/PHPMailer.php');
+require_once($document_root.'/include/lib/phpmailer/src/Exception.php');
+require_once($document_root.'/include/lib/phpmailer/src/SMTP.php');
 
 $datejour = strftime('%d/%m/%Y');
 
@@ -38,13 +38,13 @@ while($data = $req->fetch()) {
 	$mail->SMTPAuth = true;
 	$mail->Username = SMTP_USERNAME;
 	$mail->Password = SMTP_PSW;
-	$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
-	$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
+	$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$site_name);
+	$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$site_name);
 	$mail->addAddress($data['mail']);
-	$mail->Subject = $nomdusite.' : votre abonnement à la lettre d\'informations expire bientôt';
+	$mail->Subject = $site_name.' : votre abonnement à la lettre d\'informations expire bientôt';
 	$mail->CharSet = 'UTF-8';
 	$mail->IsHTML(false);
-	$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à la lettre d'informations de ProgAccess expire le ".date('d/m/Y à H:i').".\nCliquez sur le lien suivant pour renouveler votre abonnement :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\nAdministration ".$nomdusite;
+	$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à la lettre d'informations de ProgAccess expire le ".date('d/m/Y à H:i').".\nCliquez sur le lien suivant pour renouveler votre abonnement :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\nAdministration ".$site_name;
 	$mail->send();
 	echo $data['mail'];
 }
@@ -97,7 +97,7 @@ $message1 = '<!DOCTYPE html>
 <html lang="{{lang}}">
 	<head>
 		<meta charset="utf-8">
-		<title>Lettre d\'informations '.$nomdusite.'</title>
+		<title>Lettre d\'informations '.$site_name.'</title>
 		<style type="text/css">
 @font-face {font-family: Cantarell;src: url(https://progaccess.net/css/Cantarell-Regular.otf);}
 html, body {margin: 0;padding: 0;font-family: Cantarell;}
@@ -109,7 +109,7 @@ html, body {margin: 0;padding: 0;font-family: Cantarell;}
 	</head>
 	<body>
 		<div id="header">
-					<h1>Lettre d\'informations '.$nomdusite.'</h1>
+					<h1>Lettre d\'informations '.$site_name.'</h1>
 			<img id="logo" alt="Logo" src="https://www.progaccess.net/image/logo128.png">
 		</div>
 		<div id="content">
@@ -120,16 +120,16 @@ $message3 = '">Cliquez ici pour modifier votre abonnement, le renouveler ou vous
 			<p>Votre abonnement expire le ';
 $message4 = '.</p>
 			<p>Merci de ne pas répondre, ceci est un mail automatique.</p>
-			<p>Cordialement.<br>L\'Administration '.$nomdusite.'</p>
+			<p>Cordialement.<br>L\'Administration '.$site_name.'</p>
 		</div>
 	</body>
 </html>';
-$msgtxt1 = 'Lettre d\'informations '.$nomdusite." (version texte)\nBonjour {{mail}},\nRetrouvez l'historique des mises à jour sur https://www.progaccess.net/journal_modif.php\n\nDepuis le dernier mail ...\n\n";
+$msgtxt1 = 'Lettre d\'informations '.$site_name." (version texte)\nBonjour {{mail}},\nRetrouvez l'historique des mises à jour sur https://www.progaccess.net/history.php\n\nDepuis le dernier mail ...\n\n";
 $msgtxt2 = 'Allez à l\'adresse ci-dessous pour modifier votre abonnement, le renouveler ou vous désinscrire. Vous serez automatiquement désinscrit le ';
 $msgtxt3 = ".\nhttps://www.progaccess.net/nlmod.php?id=";
-$msgtxt4 = "\n\nMerci de ne pas répondre, ceci est un mail automatique.\n\nCordialement.\nL'Administration ".$nomdusite;
+$msgtxt4 = "\n\nMerci de ne pas répondre, ceci est un mail automatique.\n\nCordialement.\nL'Administration ".$site_name;
 
-$subject = $nomdusite.' : lettre d\'informations du '.$datejour;
+$subject = $site_name.' : lettre d\'informations du '.$datejour;
 
 # Envoi des mails
 if(isset($debug)) {
@@ -153,7 +153,7 @@ while($data = $req->fetch()) {
 	$msgtxt = $msgtxt1;
 	foreach($sft as $software) {
 		if($software['date'] > $data['lastmail']) {
-			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/article.php?id='.$software['id'].'">'.$software['name'].'</a> (<a href="https://www.progaccess.net/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['description']).'<br><span class="software_hits">'.$software['hits'].' visites</span><span class="software_date"> (mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).')</span></p><ul>';
+			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/article.php?id='.$software['id'].'">'.$software['name'].'</a> (<a href="https://www.progaccess.net/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $site_name, $software['description']).'<br><span class="software_hits">'.$software['hits'].' visites</span><span class="software_date"> (mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).')</span></p><ul>';
 			$msgtxt .= ' * '.$software['name'].' ('.$cat[$software['category']].') :\n'.$software['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['category'].' le '.date('d/m/Y à H:i', $software['date']).")\n";
 			foreach($files as $file) {
 				if($file['sw_id'] == $software['id'] and $file['date'] > $data['lastmail']) {
@@ -169,8 +169,8 @@ while($data = $req->fetch()) {
 	if($message != $message1) {
 		echo ' send';
 		if($data['notif_site'] and $data['lastmail'] < $maj_date) {
-			$message .= '<h2>Mise à jour du site&nbsp;: '.$nomdusite.' '.$maj_name.' ('.$maj_id.')</h2><p>'.$maj_text.'</p>';
-			$msgtxt .= 'Mise à jour du site : '.$nomdusite.' '.$maj_name.' ('.$maj_id.')'."\n".strip_tags(html_entity_decode($maj_text))."\n\n"; 
+			$message .= '<h2>Mise à jour du site&nbsp;: '.$site_name.' '.$maj_name.' ('.$maj_id.')</h2><p>'.$maj_text.'</p>';
+			$msgtxt .= 'Mise à jour du site : '.$site_name.' '.$maj_name.' ('.$maj_id.')'."\n".strip_tags(html_entity_decode($maj_text))."\n\n"; 
 		}
 		$message .= $message2.$data['hash'].$message3.date('d/m/Y à H:i', $data['expire']).$message4;
 		$msgtxt .= $msgtxt2.date('d/m/Y à H:i', $data['expire']).$msgtxt3.$data['hash'].$msgtxt4;
@@ -178,8 +178,8 @@ while($data = $req->fetch()) {
 		$message = str_replace('{{lang}}', $data['lang'], $message
 		$message = str_replace('{{mail}}', $data['mail'], $message);
 		$msgtxt = str_replace('{{mail}}', $data['mail'], $msgtxt);
-		$message = str_replace('{{site}}', $nomdusite, $message);
-		$msgtxt = str_replace('{{site}}', $nomdusite, $msgtxt);
+		$message = str_replace('{{site}}', $site_name, $message);
+		$msgtxt = str_replace('{{site}}', $site_name, $msgtxt);
 		
 		$mail = new PHPMailer;
 		$mail->isSMTP();
@@ -188,8 +188,8 @@ while($data = $req->fetch()) {
 		$mail->SMTPAuth = true;
 		$mail->Username = SMTP_USERNAME;
 		$mail->Password = SMTP_PSW;
-		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
-		$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
+		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$site_name);
+		$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$site_name);
 		$mail->addAddress($data['mail']);
 		$mail->Subject = $subject;
 		$mail->CharSet = 'UTF-8';

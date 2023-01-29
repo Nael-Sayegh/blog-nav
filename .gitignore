@@ -2,9 +2,9 @@ cache
 !cache/.htaccess
 files
 !files/.htaccess
-inclus/config.local.php
+include/config.local.php
 stats
 source
 .well-known
 Diaspora/podslist.php
-journal_modif.xml
+rss_feed.xml

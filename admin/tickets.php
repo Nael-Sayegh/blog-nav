@@ -2,14 +2,14 @@
 $adminonly=true;
 $justpa = true;
 $titlePAdm='Tickets';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/phpmailer/src/PHPMailer.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/phpmailer/src/Exception.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/phpmailer/src/SMTP.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/phpmailer/src/PHPMailer.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/phpmailer/src/Exception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/phpmailer/src/SMTP.php');
 if(isset($_GET['archive'])) {
 	$req = $bdd->prepare('UPDATE `tickets` SET `status`=3 WHERE `id`=? LIMIT 1');
 	$req->execute(array($_GET['archive']));
@@ -39,16 +39,16 @@ if(isset($_GET['send']) and isset($_POST['msg'])) {
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Re: "'.htmlspecialchars($data['subject']).'" '.$nomdusite.'</title>
+		<title>Re: "'.htmlspecialchars($data['subject']).'" '.$site_name.'</title>
 		<style type="text/css">#response{border-left:1px solid #0080FF;margin-left:8px;padding: 8px;}</style>
 	</head>
 	<body>
-<h1>'.$nomdusite.'</h1>
+<h1>'.$site_name.'</h1>
 		<p>Vous avez reçu une réponse pour votre message&nbsp;: <i>'.htmlspecialchars($data['subject']).'</i>.</p>
 		<div id="response">'.$msg.'</div>
 		<hr>
 		<p>Merci de ne pas répondre à cet e-mail. Pour nous envoyer votre réponse, veuillez utiliser le lien ci-dessous.<br>
-			<a href="https://www.progaccess.net/contacter.php?reply='.$data['id'].'&h='.$data['hash'].'">https://www.progaccess.net/contacter.php?reply='.$data['id'].'&h='.$data['hash'].'</a></p>
+			<a href="https://www.progaccess.net/contact_form.php?reply='.$data['id'].'&h='.$data['hash'].'">https://www.progaccess.net/contact_form.php?reply='.$data['id'].'&h='.$data['hash'].'</a></p>
 	</body>
 </html>';
 		$mail = new PHPMailer;
@@ -58,14 +58,14 @@ if(isset($_GET['send']) and isset($_POST['msg'])) {
 		$mail->SMTPAuth = true;
 		$mail->Username = SMTP_USERNAME;
 		$mail->Password = SMTP_PSW;
-		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
+		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$site_name);
 		$mail->addReplyTo('no_reply@progaccess.net', 'no_reply');
 		$mail->addAddress($data['expeditor_email']);
-		$mail->Subject = 'Re: "'.htmlspecialchars($data['subject']).'" '.$nomdusite;
+		$mail->Subject = 'Re: "'.htmlspecialchars($data['subject']).'" '.$site_name;
 		$mail->CharSet = 'UTF-8';
 		$mail->isHTML(TRUE);
 		$mail->Body = $body;
-		$mail->AltBody = $nomdusite."\r\nVous avez reçu une réponse pour votre message: \"".$data['subject']."\".\r\n\r\n$msg2\r\n________________\r\nMerci de ne pas répondre à cet e-mail. Pour envoyer votre réponse, veuillez utiliser le lien ci-dessous.\r\nhttps://www.progaccess.net/contacter.php?reply=".$data['id'].'&h='.$data['hash'];
+		$mail->AltBody = $site_name."\r\nVous avez reçu une réponse pour votre message: \"".$data['subject']."\".\r\n\r\n$msg2\r\n________________\r\nMerci de ne pas répondre à cet e-mail. Pour envoyer votre réponse, veuillez utiliser le lien ci-dessous.\r\nhttps://www.progaccess.net/contact_form.php?reply=".$data['id'].'&h='.$data['hash'];
 		$mail->send();
 	}
 }
@@ -74,13 +74,13 @@ if(isset($_GET['send']) and isset($_POST['msg'])) {
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Tickets <?php print $nomdusite; ?></title>
-<?php print $cssadmin; ?>
+		<title>Tickets <?php print $site_name; ?></title>
+<?php print $admin_css_path; ?>
 		<link rel="stylesheet" href="/admin/css/tickets.css">
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <ul>
 <?php if(isset($_GET['ticket'])) { ?>
 <li><a href="tickets.php">Liste des tickets</a></li>
@@ -105,7 +105,7 @@ if(isset($_GET['ticket'])) {
 			echo '<tr class="ticket_msg'.strval($msg['m']).'"><td rowspan="2" class="ticket_msgtd"></td>';
 			echo '<td class="ticket_msginfo">';
 			if($msg['m'] == 1)
-				echo '<img alt="'.$nomdusite.'" src="/image/logo16.png"> ';
+				echo '<img alt="'.$site_name.'" src="/image/logo16.png"> ';
 			echo '<b>'.htmlspecialchars($msg['e']).'</b> '.date('d/m/Y H:i', $msg['d']).'</td></tr><tr><td>'.$msg['t'].'</td></tr>';
 		}
 		unset($msg);
@@ -118,7 +118,7 @@ if(isset($_GET['ticket'])) {
 		<form action="?send=<?php echo $data['id']; ?>" method="post">
 			<fieldset><legend>Répondre</legend>
 				<label for="f1_msg">Message&nbsp;:</label><br>
-				<textarea id="f1_msg" name="msg" required rows="20" cols="500"><?php echo "\n\n".$nom.' (Administration '.$nomdusite.')'; ?></textarea><br>
+				<textarea id="f1_msg" name="msg" required rows="20" cols="500"><?php echo "\n\n".$nom.' (Administration '.$site_name.')'; ?></textarea><br>
 				<input type="submit" value="Répondre">
 			</fieldset>
 		</form>

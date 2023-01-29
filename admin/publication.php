@@ -3,8 +3,8 @@ $adminonly = true;
 $justpa = true;
 
 $titlePAdm='Publier sur les réseaux sociaux';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 $log = '';
 
 if(isset($_GET['form']) and isset($_POST['pf']) and isset($_POST['msg'])) {
@@ -23,12 +23,12 @@ if(isset($_GET['form']) and isset($_POST['pf']) and isset($_POST['msg'])) {
 
 /*if(isset($_GET['form']) and isset($_POST['platform']) and isset($_POST['msg']) and strlen($_POST['msg']) <= '280') {
 	if($_POST['platform'] == '1' or $_POST['platform'] == '2' or $_POST['platform'] == '5' or $_POST['platform'] == '6') {
-		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 		send_facebook($_POST['msg']);
 		$log .= 'Publication postée ! ';
 	}
 	if($_POST['platform'] == '1' or $_POST['platform'] == '3' or $_POST['platform'] == '5' or $_POST['platform'] == '7') {
-		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
 		send_twitter($_POST['msg']);
 		$log .= 'Tweet posté ! ';
 	}
@@ -41,12 +41,12 @@ if(isset($_GET['form']) and isset($_POST['pf']) and isset($_POST['msg'])) {
 if(isset($_GET['nl'])) {
 	$message = 'La lettre d\'infos du '.$datejour.' est envoyée à '.date('H:i').'!'."\n\n".$nom;
 	if($_POST['nl'] == 'fb' or $_POST['nl'] == 'all') {
-		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 		send_facebook($message);
 		$log .= 'Publication lettre d\'infos postée ';
 	}
 	if($_POST['nl'] == 'tw' or $_POST['nl'] == 'all') {
-		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
 		send_twitter($message);
 		$log .= 'Tweet lettre d\infos posté ';
 	}
@@ -63,12 +63,12 @@ if(isset($_GET['swfb'])) {
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Publication sur les réseaux - <?php print $nomdusite; ?></title>
-<?php print $cssadmin; ?>
+		<title>Publication sur les réseaux - <?php print $site_name; ?></title>
+<?php print $admin_css_path; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php');
+<?php require_once('include/banner.php');
 if(!empty($log)) print '<p><b>'.$log.'</b></p>'; ?>
 		<form action="?form" method="post">
 			<label for="f_platform">Publier&nbsp;:</label>

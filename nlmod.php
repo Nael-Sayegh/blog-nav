@@ -4,11 +4,11 @@ set_include_path($_SERVER['DOCUMENT_ROOT']);
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once('inclus/lib/phpmailer/src/PHPMailer.php');
-require_once('inclus/lib/phpmailer/src/Exception.php');
-require_once('inclus/lib/phpmailer/src/SMTP.php');
-require_once('inclus/consts.php');
-require_once('inclus/log.php');
+require_once('include/lib/phpmailer/src/PHPMailer.php');
+require_once('include/lib/phpmailer/src/Exception.php');
+require_once('include/lib/phpmailer/src/SMTP.php');
+require_once('include/consts.php');
+require_once('include/log.php');
 $log = '';
 
 if(!isset($_GET['id'])) {
@@ -31,39 +31,39 @@ if($nldata = $req->fetch()) {
 		$mail->SMTPAuth = true;
 		$mail->Username = SMTP_USERNAME;
 		$mail->Password = SMTP_PSW;
-		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
-		$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$nomdusite);
+		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$site_name);
+		$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$site_name);
 		$mail->addAddress($nldata['mail']);
-		$mail->Subject = 'Désinscription de l\'actu '.$nomdusite;
+		$mail->Subject = 'Désinscription de l\'actu '.$site_name;
 		$mail->CharSet = 'UTF-8';
 		$mail->IsHTML(TRUE);
 		$mail->Body = '<!DOCTYPE html>
 <html lang="'.$nldata['lang'].'">
 	<head>
 		<meta charset="utf-8">
-		<title>Confirmation du désabonnement de l\'actu '.$nomdusite.'</title>
+		<title>Confirmation du désabonnement de l\'actu '.$site_name.'</title>
 	</head>
 	<body>
 		<div id="header">
 <img src="https://www.progaccess.net/image/logo128.png" alt="Logo">
-			<h1>L\'actu '.$nomdusite.'</h1>
+			<h1>L\'actu '.$site_name.'</h1>
 		</div>
 		<div id="content">
 			<h2>Bonjour '.$nldata['mail'].',</h2>
-			<p>Vous avez bien été désabonné de l\'actu '.$nomdusite.'.</p>
-<p>Ceci sera notre dernier mail, nous sommes tristes de vous voir partir et nous espérons vous revoir bientôt sur <a href="https://www.progaccess.net">'.$nomdusite.'</a>.</p>
+			<p>Vous avez bien été désabonné de l\'actu '.$site_name.'.</p>
+<p>Ceci sera notre dernier mail, nous sommes tristes de vous voir partir et nous espérons vous revoir bientôt sur <a href="https://www.progaccess.net">'.$site_name.'</a>.</p>
 			<p>Ce mail a été envoyé automatiquement, merci de ne pas répondre.</p>
-			<p>Cordialement,<br>l\'administration '.$nomdusite.'</p>
+			<p>Cordialement,<br>l\'administration '.$site_name.'</p>
 		</div>
 	</body>
 </html>';
-		$mail->AltBody = 'L\'actu '.$nomdusite.'
+		$mail->AltBody = 'L\'actu '.$site_name.'
 Bonjour '.$nldata['mail'].',
-Vous avez bien été désabonné de l\'actu '.$nomdusite.'.
+Vous avez bien été désabonné de l\'actu '.$site_name.'.
 Ceci sera notre dernier mail, nous sommes tristes de vous voir partir et nous espérons vous revoir bientôt sur https://www.progaccess.net/
 Ce mail a été envoyé automatiquement, merci de ne pas répondre.
 Cordialement,
-l\'administration '.$nomdusite;
+l\'administration '.$site_name;
 		$mail->send();
 		
 		header('Location: /newsletter.php?stop');
@@ -72,7 +72,7 @@ l\'administration '.$nomdusite;
 	if(!$nldata['confirm']) {
 		$req2 = $bdd->prepare('UPDATE `newsletter_mails` SET `confirm`=1 , `lastmail`=?, `lastmail_n`=? WHERE `id`=?');
 		$req2->execute(array(time(), time(), $nldata['id']));
-		$log .= 'Votre inscription à la l\'actu '.$nomdusite.' a bien été confirmée.<br>';
+		$log .= 'Votre inscription à la l\'actu '.$site_name.' a bien été confirmée.<br>';
 	}
 	if(isset($_GET['mod'])) {
 		$freq = $nldata['freq'];
@@ -104,21 +104,21 @@ else {
 	exit();
 }
 
-$titre='L\'actu '.$nomdusite;
-$cheminaudio='/audio/sons_des_pages/nl.mp3';
+$title='L\'actu '.$site_name;
+$sound_path='/audio/page_sounds/nl.mp3';
 $stats_page = 'nlmod'; ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-<?php require_once('inclus/header.php'); ?>
+<?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('inclus/banner.php');
-require_once('inclus/son.php'); ?>
+<?php require_once('include/banner.php');
+require_once('include/load_sound.php'); ?>
 <main id="container">
-<h1 id="contenu"><?php print $titre; ?></h1>
+<h1 id="contenu"><?php print $title; ?></h1>
 <?php if(!empty($log)) echo '<p><b>'.$log.'</b></p>'; ?>
-<p>Sur cette page vous pouvez modifier les paramètres de votre abonnement aux lettres d'informations de <?php print $nomdusite; ?>.</p>
+<p>Sur cette page vous pouvez modifier les paramètres de votre abonnement aux lettres d'informations de <?php print $site_name; ?>.</p>
 <form action="?mod&id=<?php echo $nldata['hash']; ?>" method="post">
-<fieldset><legend>Actu <?php print $nomdusite; ?></legend>
+<fieldset><legend>Actu <?php print $site_name; ?></legend>
 	<label for="f_lang">Langue préférée&nbsp;:</label>
 	<select id="f_lang" name="lang" autocomplete="off"><?php echo langs_html_opts($nldata['lang']); ?></select><br>
 	<label for="f_freq">Recevoir un mail&nbsp;:</label>
@@ -138,6 +138,6 @@ require_once('inclus/son.php'); ?>
 </form>
 	<p>Ne plus recevoir de lettres d'information&nbsp;: <a href="?stop&id=<?php echo $nldata['hash']; ?>">Se désabonner</a></p>
 </main>
-<?php require_once('inclus/footer.php'); ?> 
+<?php require_once('include/footer.php'); ?> 
 </body>
 </html>

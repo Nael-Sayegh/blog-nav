@@ -1,15 +1,15 @@
 [submodule "inclus/lib/phpmailer"]
-	path = inclus/lib/phpmailer
+	path = include/lib/phpmailer
 	url = https://github.com/phpmailer/phpmailer
 [submodule "inclus/lib/parsedown"]
-	path = inclus/lib/parsedown
+	path = include/lib/parsedown
 	url = https://github.com/erusev/parsedown
 [submodule "inclus/lib/MastodonBotPHP"]
-	path = inclus/lib/MastodonBotPHP
+	path = include/lib/MastodonBotPHP
 	url = https://github.com/Eleirbag89/MastodonBotPHP
 [submodule "inclus/lib/twitteroauth"]
-	path = inclus/lib/twitteroauth
+	path = include/lib/twitteroauth
 	url = https://github.com/abraham/twitteroauth
 [submodule "inclus/lib/ca-bundle"]
-	path = inclus/lib/ca-bundle
+	path = include/lib/ca-bundle
 	url = https://github.com/composer/ca-bundle

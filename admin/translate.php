@@ -3,8 +3,8 @@ $logonly = true;
 $adminonly = true;
 $justpa = true;
 $titlePAdm='Traductions';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 $tr_todo = array(0=>'Référence', 1=>'OK', 2=>'À vérifier', 3=>'À modifier', 4=>'À terminer');
 
 ?>
@@ -12,15 +12,15 @@ $tr_todo = array(0=>'Référence', 1=>'OK', 2=>'À vérifier', 3=>'À modifier',
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Traductions &#8211; <?php print $nomdusite; ?></title>
-		<?php print $cssadmin; ?>
+		<title>Traductions &#8211; <?php print $site_name; ?></title>
+		<?php print $admin_css_path; ?>
 		<link rel="stylesheet" href="css/translate.css">
 		<script type="text/javascript" src="/scripts/default.js"></script>
 		<script type="text/javascript" src="/scripts/jquery.js"></script>
 		<script type="text/javascript" src="js/translate.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php'); ?>
+<?php require_once('include/banner.php'); ?>
 		<a href="translate_todo.php">Toutes les traductions</a><br>
 		
 <?php
@@ -427,6 +427,6 @@ WHERE `sw_id`=?');
 ?>
 		<hr>
 		<h3>Licence</h3>
-		<p>Les données de traduction envoyées et gérées par cette page sont sous licence <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> au nom de "L'équipe <?php echo $nomdusite; ?>". Le contenu du site et ses traductions sont une œuvre collaborative et libre.</p>
+		<p>Les données de traduction envoyées et gérées par cette page sont sous licence <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> au nom de "L'équipe <?php echo $site_name; ?>". Le contenu du site et ses traductions sont une œuvre collaborative et libre.</p>
 	</body>
 </html>

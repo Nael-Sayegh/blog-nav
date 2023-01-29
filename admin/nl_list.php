@@ -2,19 +2,19 @@
 $adminonly=true;
 $justpa = true;
 $titlePAdm='Liste des abonnés à l\'actu';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
 		<title>Liste des abonnés à la lettre d'informations</title>
-<?php print $cssadmin; ?>
+<?php print $admin_css_path; ?>
 <script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php'); ?>
+<?php require_once('include/banner.php'); ?>
 		<table>
 			<thead>
 				<tr><th>Adresse e-mail</th><th>Hash</th><th>Fréquence</th><th>Dernier mail</th><th>Expiration</th></tr>

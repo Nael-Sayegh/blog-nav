@@ -11,9 +11,9 @@ $document_root = __DIR__.'/../..';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once($document_root.'/inclus/lib/phpmailer/src/PHPMailer.php');
-require_once($document_root.'/inclus/lib/phpmailer/src/Exception.php');
-require_once($document_root.'/inclus/lib/phpmailer/src/SMTP.php');
+require_once($document_root.'/include/lib/phpmailer/src/PHPMailer.php');
+require_once($document_root.'/include/lib/phpmailer/src/Exception.php');
+require_once($document_root.'/include/lib/phpmailer/src/SMTP.php');
 require_once('consts.php');
 require_once('smtp.php');
 
@@ -48,13 +48,13 @@ while($data = $req->fetch()) {
 		$mail->SMTPAuth = true;
 		$mail->Username = $smtp_username;
 		$mail->Password = $smtp_psw;
-		$mail->setFrom('no_reply@nvda-fr.org', $nomdusite);
-		$mail->addReplyTo('no_reply@nvda-fr.org', $nomdusite);
+		$mail->setFrom('no_reply@nvda-fr.org', $site_name);
+		$mail->addReplyTo('no_reply@nvda-fr.org', $site_name);
 		$mail->addAddress($data['mail']);
-		$mail->Subject = $nomdusite.' : votre abonnement à l\'actu '.$nomdusite.' expire bientôt';
+		$mail->Subject = $site_name.' : votre abonnement à l\'actu '.$site_name.' expire bientôt';
 		$mail->CharSet = 'UTF-8';
 		$mail->IsHTML(false);
-		$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à l'actu ".$nomdusite." expire le ".date('d/m/Y à H:i', $data['expire']).".\nCliquez sur le lien suivant pour le renouveler :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\n".$nomdusite;
+		$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à l'actu ".$site_name." expire le ".date('d/m/Y à H:i', $data['expire']).".\nCliquez sur le lien suivant pour le renouveler :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\n".$site_name;
 		$mail->send();
 	}
 	echo $data['mail'];
@@ -93,7 +93,7 @@ while($data = $req->fetch()) {
 	$files[] = $data;
 }
 
-$subject = '📰 L\'actu '.$nomdusite.' du '.$datejour;
+$subject = '📰 L\'actu '.$site_name.' du '.$datejour;
 $message1 = '<!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -111,7 +111,7 @@ html, body {margin: 0;padding: 0;font-family: Cantarell;}
 	<body>
 		<div id="header">
 					<h1>'.$subject.'</h1>
-			<img id="logo" alt="Logo de '.$nomdusite.'" src="https://www.nvda-fr.org/images/nvda_logo.png">
+			<img id="logo" alt="Logo de '.$site_name.'" src="https://www.nvda-fr.org/images/nvda_logo.png">
 		</div>
 		<div id="content">
 		<h2>Bonjour {{mail_user}},</h2>';
@@ -119,14 +119,14 @@ $message2 = '<hr><p role="contentinfo" aria-label="Informations sur l\'abonnemen
 $message3 = ', <a id="link" href="https://www.progaccess.net/nlmod.php?id=';
 $message4 = '">cliquez ici pour le renouveler avant cette date</a>.</p>
 			<p>Veuillez ne pas répondre, ce mail a été envoyé automatiquement, vous pouvez <a href="https://www.nvda-fr.org/inf.php">nous contacter ici</a></p>
-			<p>Cordialement.<br>'.$nomdusite.'</p>
+			<p>Cordialement.<br>'.$site_name.'</p>
 		</div>
 	</body>
 </html>';
-$msgtxt1 = 'L\'actu '.$nomdusite.' du '.$datejour." (version texte)\nBonjour {{mail_user}},\n\n";
+$msgtxt1 = 'L\'actu '.$site_name.' du '.$datejour." (version texte)\nBonjour {{mail_user}},\n\n";
 $msgtxt2 = 'Allez à l\'adresse ci-dessous pour gérer votre abonnement (à toute fin utile votre numéro d\'abonné est N{{idabonne}}). Vous serez automatiquement désinscrit de l\'actu le ';
 $msgtxt3 = ".\nhttps://www.progaccess.net/nlmod.php?id=";
-$msgtxt4 = "\n\nVeuillez ne pas répondre, ce mail a été envoyé automatiquement, cependant, vous pouvez nous contacter via notre formulaire de contact.\n\nCordialement.\n".$nomdusite;
+$msgtxt4 = "\n\nVeuillez ne pas répondre, ce mail a été envoyé automatiquement, cependant, vous pouvez nous contacter via notre formulaire de contact.\n\nCordialement.\n".$site_name;
 
 # Envoi des mails
 if(isset($debug)) {
@@ -152,7 +152,7 @@ while($data = $req->fetch()) {
 	foreach($sft as $sw_id => $software) {
 		if($software['date'] > $data['lastmail_n']) {
 			$nbs ++;
-			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.nvda-fr.org/article.php?id='.$sw_id.'">'.$software['name'].'</a> (<a href="https://www.nvda-fr.org/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $nomdusite, $software['description']).'<br><span class="software_date">Mis à jour à '.date('H:i', $software['date']).' le '.date('d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
+			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.nvda-fr.org/article.php?id='.$sw_id.'">'.$software['name'].'</a> (<a href="https://www.nvda-fr.org/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $site_name, $software['description']).'<br><span class="software_date">Mis à jour à '.date('H:i', $software['date']).' le '.date('d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
 			$msgtxt .= ' * '.$software['name'].' ('.$cat[$software['category']].") :\n".$software['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).")\n";
 			foreach($files as $file) {
 				if($file['sw_id'] == $sw_id and $file['date'] > $data['lastmail_n']) {
@@ -177,8 +177,8 @@ while($data = $req->fetch()) {
 		
 		$message = str_replace('{{mail}}', $data['mail'], str_replace('{{mail_user}}', ucfirst(explode('@', $data['mail'])[0]), str_replace('{{idabonne}}', $data['id'], $message)));
 		$msgtxt = str_replace('{{mail}}', $data['mail'], str_replace('{{mail_user}}', ucfirst(explode('@', $data['mail'])[0]), str_replace('{{idabonne}}', $data['id'], $msgtxt)));
-		$message = str_replace('{{site}}', $nomdusite, $message);
-		$msgtxt = str_replace('{{site}}', $nomdusite, $msgtxt);
+		$message = str_replace('{{site}}', $site_name, $message);
+		$msgtxt = str_replace('{{site}}', $site_name, $msgtxt);
 		
 		if(isset($debug)) {
 			print('<p>'.$msgtxt.'</p>');
@@ -192,8 +192,8 @@ while($data = $req->fetch()) {
 			$mail->SMTPAuth = true;
 			$mail->Username = $smtp_username;
 			$mail->Password = $smtp_psw;
-			$mail->setFrom('no_reply@nvda-fr.org', $nomdusite);
-			$mail->addReplyTo('no_reply@nvda-fr.org', $nomdusite);
+			$mail->setFrom('no_reply@nvda-fr.org', $site_name);
+			$mail->addReplyTo('no_reply@nvda-fr.org', $site_name);
 			$mail->addAddress($data['mail']);
 			$mail->Subject = $subject;
 			$mail->CharSet = 'UTF-8';

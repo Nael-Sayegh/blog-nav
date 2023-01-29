@@ -1,6 +1,6 @@
 <?php
 $document_root = __DIR__.'/..';
-require_once($document_root.'/inclus/consts.php');
+require_once($document_root.'/include/consts.php');
 
 $req = $bdd->prepare('SELECT * FROM `softwares_files` WHERE `date`>=? ORDER BY `date` DESC');
 $req->execute(array(time()-86400));# modifiés aujourd'hui
@@ -23,11 +23,11 @@ while($data = $req->fetch()) {
 }
 
 if(!empty($files)) {
-	$message = 'Mises à jour d\'aujourd\'hui :'.$files."\n".'Administration '.$nomdusite;
+	$message = 'Mises à jour d\'aujourd\'hui :'.$files."\n".'Administration '.$site_name;
 	if(isset($debug))
 	   echo $message;
 	else {
-		require_once($document_root.'/inclus/lib/facebook/envoyer.php');
+		require_once($document_root.'/include/lib/facebook/fb_publisher.php');
 		send_facebook($message);
 	}
 }

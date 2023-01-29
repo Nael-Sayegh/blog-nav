@@ -10,7 +10,7 @@ function urlsafe_b64decode($data) {
 		$data .= substr('====', $mod4);
 	return base64_decode($data);
 }
-$nomdusite='NVDA-FR';
-$cssadmin='<link rel="stylesheet" href="/admin/css/admin.css">';
+$site_name='NVDA-FR';
+$admin_css_path='<link rel="stylesheet" href="/admin/css/admin.css">';
 require_once('dbconnect.php');
 ?>

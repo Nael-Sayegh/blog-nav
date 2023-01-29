@@ -2,8 +2,8 @@
 $adminonly=true;
 $justpa = true;
 $titlePAdm='Statistiques';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 $from = date('Y-m-d', time()-604800);# à partir de quand (en format date SQL) (1 semaine dans le passé par défaut)
 $to = date('Y-m-d', time());# jusqu'à quand (en format date SQL) (aujourd'hui par défaut)
 
@@ -21,13 +21,13 @@ if(isset($_GET['domain']) and in_array($_GET['domain'], array('pa33','pa33_dev',
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Visionnage des statistiques de <?php print $nomdusite; ?></title>
-<?php print $cssadmin; ?>
+		<title>Visionnage des statistiques de <?php print $site_name; ?></title>
+<?php print $admin_css_path; ?>
 		<link rel="stylesheet" href="css/showstats.css">
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php'); ?>
+<?php require_once('include/banner.php'); ?>
 		<form action="showstats.php" method="get">
 			<label for="f1_from">Depuis le (AAAA-MM-JJ)&nbsp;:</label><input type="text" id="f1_from" name="from" value="<?php echo $from; ?>" maxlength="10"><br>
 			<label for="f1_to">Jusqu'au (AAAA-MM-JJ)&nbsp;:</label><input type="text" id="f1_to" name="to" value="<?php echo $to; ?>" maxlength="10"><br>
