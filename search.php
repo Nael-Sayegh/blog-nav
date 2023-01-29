@@ -136,7 +136,7 @@ if(!empty($searchterms)) {
 		}
 		unset($rs);
 		$results = array_remove($results, $max);
-		echo '<div class="result"><a href="/article.php?id='.$max['id'].'"><h2 class="rs_title">'.$max['title'].'</h2></a><span class="rs_cat">('.$cats[$max['cat']].')</span>'. ($dev?'<span class="rs_pts">'.$max['pts'].'</span>':'') .'<p class="rs_text">'.$max['desc'].'</p><span class="rs_meta">';
+		echo '<div class="result"><a href="/article.php?id='.$max['id'].'"><h2 class="rs_title">'.$max['title'].'</h2></a><span class="rs_cat">('.$cats[$max['cat']].')</span>'. (isDev()?'<span class="rs_pts">'.$max['pts'].'</span>':'') .'<p class="rs_text">'.$max['desc'].'</p><span class="rs_meta">';
 		echo tr($tr,'result_hits',array('hits'=>$max['hits'],'dl'=>$max['dl'])).'</span></div>';
 	}
 }
