@@ -14,7 +14,7 @@
 </ul>
 <ul>
 	<li>The drawer of our logos: <a href="https://facebook.com/crayongra">David Engélibert</a>.</li>
-	<li><a href="/contacter.php">Contact us</a>.</li>
+	<li><a href="/contact_form.php">Contact us</a>.</li>
 </ul>
 <ul>
 	<li><a href="skype:live:miklhcos?chat">Discuss on Skype (needs a Skype client to be installed)</a></li>
@@ -37,8 +37,8 @@ This website comes from the Corentin's desire (a blind high school student) to s
 <h3>Directly on the site</h3>
 <ul>
 	<li><a href="/newsletter.php">Subscribe to the newsletter (sent each night bitween 20:12 and 20:21)</a></li>
-	<li><a href="/journal_modif.php">Modifications journal (real-time)</a></li>
-	<li><a href="/journal_modif.xml">RSS stream (real-time)</a></li>
+	<li><a href="/history.php">Modifications journal (real-time)</a></li>
+	<li><a href="/rss_feed.xml">RSS stream (real-time)</a></li>
 	<li><a href="/api">For developpers: open-data via our API</a></li>
 </ul>
 

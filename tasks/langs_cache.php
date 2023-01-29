@@ -1,6 +1,6 @@
 <?php
 $document_root = __DIR__.'/..';
-require_once($document_root.'/inclus/dbconnect.php');
+require_once($document_root.'/include/dbconnect.php');
 
 // Make PHP languages cache
 $req = $bdd->query('SELECT `lang`,`name` FROM `languages` ORDER BY `name`ASC');

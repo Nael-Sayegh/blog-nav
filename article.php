@@ -2,9 +2,9 @@
 $stats_page='article';
 if(!isset($_GET['id'])) {header('Location: /');die();}
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('inclus/log.php');
-require_once('inclus/consts.php');
-require_once('inclus/isbot.php');
+require_once('include/log.php');
+require_once('include/consts.php');
+require_once('include/isbot.php');
 	if(isset($logged) && $logged == 'true' AND $login['rank'] == 'a') {
 		$req2 = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 		$req2->execute(array($login['id']));
@@ -40,7 +40,7 @@ if(!$sw_tr = $req->fetch()) {
 
 $tr = load_tr($lang, 'article');
 $args['id'] = $sw['id'];
-$titre = str_replace('{{site}}', $nomdusite, $sw_tr['name']);
+$title = str_replace('{{site}}', $site_name, $sw_tr['name']);
 $comlog = '';
 
 if(isset($_GET['comment']) and isset($_POST['pseudo']) and isset($_POST['text'])) {
@@ -104,7 +104,7 @@ elseif(isset($_GET['unsubscribe-comments']) and isset($_GET['token']) and isset(
 	$req->execute(array($login['id'], $sw['id']));
 }
 
-$cheminaudio='/audio/sons_des_pages/hihi6.mp3';
+$sound_path='/audio/page_sounds/hihi6.mp3';
 $cat = array();
 $req = $bdd->query('SELECT * FROM `softwares_categories`');
 while($data = $req->fetch()) {
@@ -113,12 +113,12 @@ while($data = $req->fetch()) {
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-	<?php require_once('inclus/header.php'); ?>
+	<?php require_once('include/header.php'); ?>
 	<body>
-<?php require_once('inclus/banner.php');
-require_once('inclus/son.php'); ?>
+<?php require_once('include/banner.php');
+require_once('include/load_sound.php'); ?>
 		<main id="container">
-			<h1 id="contenu"><?php print $titre; ?></h1>
+			<h1 id="contenu"><?php print $title; ?></h1>
 			<p><a href="/art_list.php"><?php echo tr($tr,'categories_link'); ?></a></p>
 			<?php
 if(isset($logged) and $logged) {
@@ -130,9 +130,9 @@ $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 				}
 				if($worksnum == '1' or $worksnum == '2') { ?>
 			<ul>
-				<li><a href="/admin/sw_mod.php?id=<?php echo $sw['id']; ?>"><?php echo str_replace('{{title}}', $titre, tr($tr,'adminlink_article').' '.$sw['name']); ?></a></li>
-				<li><a href="/admin/sw_mod.php?listfiles=<?php echo $sw['id']; ?>"><?php echo str_replace('{{title}}', $titre, tr($tr,'adminlink_listfiles').' '.$sw['name']); ?></a></li>
-				<li><a href="/admin/translate.php?type=article&id=<?php echo $sw['id']; ?>"><?php echo str_replace('{{title}}', $titre, tr($tr,'adminlink_trs').' '.$sw['name']); ?></a></li>
+				<li><a href="/admin/sw_mod.php?id=<?php echo $sw['id']; ?>"><?php echo str_replace('{{title}}', $title, tr($tr,'adminlink_article').' '.$sw['name']); ?></a></li>
+				<li><a href="/admin/sw_mod.php?listfiles=<?php echo $sw['id']; ?>"><?php echo str_replace('{{title}}', $title, tr($tr,'adminlink_listfiles').' '.$sw['name']); ?></a></li>
+				<li><a href="/admin/translate.php?type=article&id=<?php echo $sw['id']; ?>"><?php echo str_replace('{{title}}', $title, tr($tr,'adminlink_trs').' '.$sw['name']); ?></a></li>
 			</ul>
 <?php
 	} } ?>
@@ -150,7 +150,7 @@ $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 	echo '<a id="btsub1" class="comments_btsubscription" href="?id='.$sw['id'].'&subscribe-comments&token='.$login['token'].'" title="'.tr($tr,'comments_subscribe_long').'" onclick="subscribe_comments(event, true)" style="display:'.($sub?'none':'initial').'">'.tr($tr,'comments_subscribe').'</a>';
 }
 
-echo '<div id="descart" role="article">'.str_replace('{{site}}', $nomdusite, $sw_tr['text']).'</div>';
+echo '<div id="descart" role="article">'.str_replace('{{site}}', $site_name, $sw_tr['text']).'</div>';
 $fichiersexistants = false;
 $first = true;
 $altc = true;
@@ -158,7 +158,7 @@ $req = $bdd->prepare('SELECT * FROM softwares_files WHERE sw_id=? ORDER BY date 
 $req->execute(array($sw['id']));
 while($data = $req->fetch()) {
 	if($first) {
-		echo '<span style="position:absolute; top:-999px; left:-9999px;" role="heading" aria-level="2">'.tr($tr,'files_title',array('title'=>$titre)).'</span><table id="sw_files"><caption><strong>'.tr($tr,'files_title',array('title'=>$titre)).'</strong></caption><thead><tr><th>'.tr($tr,'files_size').'</th><th>'.tr($tr,'files_date').'</th><th>'.tr($tr,'files_hits').'</th><th>MD5, SHA1</th></tr></thead><tbody>';
+		echo '<span style="position:absolute; top:-999px; left:-9999px;" role="heading" aria-level="2">'.tr($tr,'files_title',array('title'=>$title)).'</span><table id="sw_files"><caption><strong>'.tr($tr,'files_title',array('title'=>$title)).'</strong></caption><thead><tr><th>'.tr($tr,'files_size').'</th><th>'.tr($tr,'files_date').'</th><th>'.tr($tr,'files_hits').'</th><th>MD5, SHA1</th></tr></thead><tbody>';
 		$fichiersexistants = true;
 		$first = false;
 	}
@@ -169,7 +169,7 @@ while($data = $req->fetch()) {
 		echo 'id='.$data['id'];
 	else
 		echo 'p='.$data['label'];
-	echo '">'.str_replace('{{site}}', $nomdusite, $data['title']).'</a> <span class="sw_file_size">('.numberlocale(human_filesize($data['filesize'])).tr($tr0,'byte_letter').')</span></td><td class="sw_file_date">'.strftime(tr($tr0,'fndatetime'),$data['date']).'</td><td class="sw_file_hits">'.$data['hits'].'</td><td><details aria-label="'.tr($tr,'files_sums').'" title="'.tr($tr,'files_sums').'"><summary class="sw_file_sum">'.$data['name'].'</summary>md5: '.$data['md5'].'<br>sha1: '.$data['sha1'].'</details></tr>';
+	echo '">'.str_replace('{{site}}', $site_name, $data['title']).'</a> <span class="sw_file_size">('.numberlocale(human_filesize($data['filesize'])).tr($tr0,'byte_letter').')</span></td><td class="sw_file_date">'.strftime(tr($tr0,'fndatetime'),$data['date']).'</td><td class="sw_file_hits">'.$data['hits'].'</td><td><details aria-label="'.tr($tr,'files_sums').'" title="'.tr($tr,'files_sums').'"><summary class="sw_file_sum">'.$data['name'].'</summary>md5: '.$data['md5'].'<br>sha1: '.$data['sha1'].'</details></tr>';
 	$altc = !$altc;
 }
 if(!$first)
@@ -181,7 +181,7 @@ $req = $bdd->prepare('SELECT * FROM softwares_mirrors WHERE sw_id=? ORDER BY hit
 $req->execute(array($sw['id']));
 while($data = $req->fetch()) {
 	if($first) {
-		echo '<table id="sw_mirrors"><caption role="heading" aria-level="2"><strong>'.tr($tr,'mirrors_title',array('title'=>$titre)).'</strong></caption><thead><tr><th>'.tr($tr,'mirrors_filetitle').'</th><th>'.tr($tr,'mirrors_mirrors').'</th><th>'.tr($tr,'files_date').'</th><th>'.tr($tr,'files_hits').'</th></tr></thead><tbody>';
+		echo '<table id="sw_mirrors"><caption role="heading" aria-level="2"><strong>'.tr($tr,'mirrors_title',array('title'=>$title)).'</strong></caption><thead><tr><th>'.tr($tr,'mirrors_filetitle').'</th><th>'.tr($tr,'mirrors_mirrors').'</th><th>'.tr($tr,'files_date').'</th><th>'.tr($tr,'files_hits').'</th></tr></thead><tbody>';
 		$first = false;
 	}
 	echo '<tr class="sw_file';
@@ -191,7 +191,7 @@ while($data = $req->fetch()) {
 		echo 'id='.$data['id'];
 	else
 		echo 'p='.$data['label'];
-	echo '">'.str_replace('{{site}}', $nomdusite, $data['title']).'</a></td><td class="sw_file_ltd">';
+	echo '">'.str_replace('{{site}}', $site_name, $data['title']).'</a></td><td class="sw_file_ltd">';
 	$i = 0;
 	$links = json_decode($data['links'], true);
 	foreach($links as $link) {
@@ -279,7 +279,7 @@ if(isset($logged) && $logged == 'true') { ?>
 <?php } else { echo tr($tr,'limitcommentext'); } ?>
 			</div>
 		</main>
-		<?php require_once('inclus/footer.php');
+		<?php require_once('include/footer.php');
 
 if(isset($logged) and $logged) { ?>
 		

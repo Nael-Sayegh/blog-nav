@@ -1,13 +1,13 @@
 <?php
-require_once('inclus/log.php');
-require_once('inclus/consts.php');
+require_once('include/log.php');
+require_once('include/consts.php');
 if(!empty($_SERVER['HTTP_REFERER']) and substr_count('commentcamarche.net', $_SERVER['HTTP_REFERER']) > 0) {
 	header('Location: /');
 	exit();
 }
 if(isset($_GET['id']) and $_GET['id'] != '')
 {
-	require_once('inclus/dbconnect.php');
+	require_once('include/dbconnect.php');
 	
 	if(isset($_GET['m'])) {
 		$req = $bdd->prepare('SELECT * FROM softwares_mirrors WHERE id=?');
@@ -18,7 +18,7 @@ if(isset($_GET['id']) and $_GET['id'] != '')
 				header('Location: '.$links[rand(0,count($links)-1)][1]);
 			else
 				header('Location: '.$links[intval($_GET['m'])][1]);
-			require_once('inclus/isbot.php');
+			require_once('include/isbot.php');
 			if(!(isset($_COOKIE['admincookie_nostats']) and $_COOKIE['admincookie_nostats'] == 'f537856b32e9e5e0418b224167576240') and !$isbot) {
 				$req2 = $bdd->prepare('UPDATE softwares_mirrors SET hits=hits+1 WHERE id=? LIMIT 1');
 				$req2->execute(array($_GET['id']));
@@ -44,7 +44,7 @@ if(isset($_GET['id']) and $_GET['id'] != '')
 				echo fread($file, 8192);
 			}
 			fclose($file);
-			require_once('inclus/isbot.php');
+			require_once('include/isbot.php');
 			if(!(isset($_COOKIE['admincookie_nostats']) and $_COOKIE['admincookie_nostats'] == 'f537856b32e9e5e0418b224167576240') and !$isbot) {
 				$req2 = $bdd->prepare('UPDATE softwares_files SET hits=hits+1 WHERE id=? LIMIT 1');
 				$req2->execute(array($_GET['id']));
@@ -59,7 +59,7 @@ if(isset($_GET['id']) and $_GET['id'] != '')
 }
 else if(isset($_GET['p']) and $_GET['p'] != '')
 {
-	require_once('inclus/dbconnect.php');
+	require_once('include/dbconnect.php');
 	
 	if(isset($_GET['m'])) {
 		$req = $bdd->prepare('SELECT * FROM softwares_mirrors WHERE label=?');
@@ -70,7 +70,7 @@ else if(isset($_GET['p']) and $_GET['p'] != '')
 				header('Location: '.$links[rand(0,count($links)-1)][1]);
 			else
 				header('Location: '.$links[intval($_GET['m'])][1]);
-			require_once('inclus/isbot.php');
+			require_once('include/isbot.php');
 			if(!(isset($_COOKIE['admincookie_nostats']) and $_COOKIE['admincookie_nostats'] == 'f537856b32e9e5e0418b224167576240') and !$isbot) {
 				$req2 = $bdd->prepare('UPDATE softwares_mirrors SET hits=hits+1 WHERE id=? LIMIT 1');
 				$req2->execute(array($data['id']));
@@ -96,7 +96,7 @@ else if(isset($_GET['p']) and $_GET['p'] != '')
 				echo fread($file, 8192);
 			}
 			fclose($file);
-			require_once('inclus/isbot.php');
+			require_once('include/isbot.php');
 			if(!(isset($_COOKIE['admincookie_nostats']) and $_COOKIE['admincookie_nostats'] == 'f537856b32e9e5e0418b224167576240') and !$isbot) {
 				$req2 = $bdd->prepare('UPDATE softwares_files SET hits=hits+1 WHERE id=? LIMIT 1');
 				$req2->execute(array($data['id']));

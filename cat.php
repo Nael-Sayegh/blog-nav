@@ -1,30 +1,30 @@
 <?php
 if(!isset($_GET['id'])) {header('Location: /');die();}
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('inclus/log.php');
-require_once('inclus/consts.php');
+require_once('include/log.php');
+require_once('include/consts.php');
 $req = $bdd->prepare('SELECT * FROM softwares_categories WHERE id=?');
 $req->execute(array($_GET['id']));
 $data = $req->fetch();
 if(!$data){header('Location: /');die();}
 $tr = load_tr($lang, 'cat');
 $cat_id = $data['id'];
-$titre = str_replace('{{site}}', $nomdusite, $data['name']);
+$title = str_replace('{{site}}', $site_name, $data['name']);
 $cat_text = $data['text'];
 
 $args['id'] = $cat_id;
-$cheminaudio='/audio/categories/'.$cat_id.'.mp3';
+$sound_path='/audio/categories/'.$cat_id.'.mp3';
 $stats_page='cat'; ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-<?php require_once('inclus/header.php'); ?>
+<?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('inclus/banner.php');
-require_once('inclus/son.php'); ?>
+<?php require_once('include/banner.php');
+require_once('include/load_sound.php'); ?>
 <main id="container">
-<h1 id="contenu"><?php print $titre; ?></h1>
+<h1 id="contenu"><?php print $title; ?></h1>
 <?php
-echo str_replace('{{site}}', $nomdusite, $cat_text);
+echo str_replace('{{site}}', $site_name, $cat_text);
 #$req = $bdd->prepare('SELECT * FROM softwares WHERE category=? ORDER BY date DESC');
 #$req->execute(array($cat_id));
 
@@ -58,8 +58,8 @@ foreach($entries as $sw_id => $entry) {
 	if(empty($entry_tr))// Error: sw has no translations
 		continue;
 	
-	echo '<div class="software"><a href="a?id='.$sw_id.'" class="software_title" role="heading" aria-level="2">'.str_replace('{{site}}', $nomdusite, $entry['trs'][$entry_tr]['title']).'</a>';
-	echo '<p>'.str_replace('{{site}}', $nomdusite, $entry['trs'][$entry_tr]['desc']).'<br><span class="software_hits">'.tr($tr,'hits',array('hits'=>$entry['hits'])).'</span> <span class="software_date">('.tr($tr,'date',array('date'=>strftime(tr($tr0,'fndatetime'),$entry['date']))).')</span></p></div>';
+	echo '<div class="software"><a href="a?id='.$sw_id.'" class="software_title" role="heading" aria-level="2">'.str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']).'</a>';
+	echo '<p>'.str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['desc']).'<br><span class="software_hits">'.tr($tr,'hits',array('hits'=>$entry['hits'])).'</span> <span class="software_date">('.tr($tr,'date',array('date'=>strftime(tr($tr0,'fndatetime'),$entry['date']))).')</span></p></div>';
 }
 ?>
 </main>
@@ -72,6 +72,6 @@ foreach($entries as $sw_id => $entry) {
 	if(document.getElementById(sel_id))
 		document.getElementById(sel_id).setAttribute("aria-current", "page");
 </script>
-<?php require_once('inclus/footer.php'); ?>
+<?php require_once('include/footer.php'); ?>
 </body>
 </html>

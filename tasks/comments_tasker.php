@@ -1,6 +1,6 @@
 <?php
 $document_root = __DIR__.'/..';
-require_once($document_root.'/inclus/consts.php');
+require_once($document_root.'/include/consts.php');
 
 // supprimer les IPs de plus de 28 jours
 $req = $bdd->prepare('UPDATE `softwares_comments` SET `ip`="rm" WHERE `date` < ?');
@@ -22,9 +22,9 @@ if($n > 0) {
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
 	use PHPMailer\PHPMailer\SMTP;
-	require_once($document_root.'/inclus/lib/phpmailer/src/PHPMailer.php');
-	require_once($document_root.'/inclus/lib/phpmailer/src/Exception.php');
-	require_once($document_root.'/inclus/lib/phpmailer/src/SMTP.php');
+	require_once($document_root.'/include/lib/phpmailer/src/PHPMailer.php');
+	require_once($document_root.'/include/lib/phpmailer/src/Exception.php');
+	require_once($document_root.'/include/lib/phpmailer/src/SMTP.php');
 	$mail = new PHPMailer;
 	$mail->isSMTP();
 	$mail->Host = SMTP_HOST;

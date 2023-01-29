@@ -3,8 +3,8 @@ $logonly = true;
 $adminonly=true;
 $justpa = true;
 $titlePAdm='Gestion de l\'équipe';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 
 if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['status']) and isset($_POST['age']) and isset($_POST['short_name']) and isset($_POST['bio']) and isset($_POST['works']) and isset($_POST['twitter'])) {
 	$account_id = NULL;
@@ -17,12 +17,12 @@ if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['status']) and
 	if($data = $req->fetch()) {
 		switch($data['works']) {
 		case '0': $worksswi = 'NVDA-FR'; break;
-		case '1': $worksswi = $nomdusite; break;
-		case '2': $worksswi = 'NVDA-FR & '.$nomdusite; break;
+		case '1': $worksswi = $site_name; break;
+		case '2': $worksswi = 'NVDA-FR & '.$site_name; break;
 	}
-		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 		send_facebook('Nouvel arrivant dans l\'équipe : '.$data['short_name'].' (E'.$data['id'].') : travaille pour '.$worksswi.'.'."\n".'Consulter https://www.progaccess.net/contact.php pour en savoir plus.'."\n".'L\'administration');
-		require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
 		send_twitter('Nouvel arrivant dans l\'équipe : '.$data['short_name'].' (E'.$data['id'].') : travaille pour '.$worksswi.'.'."\n".'Consulter https://www.progaccess.net/contact.php pour en savoir plus.'."\n".'L\'administration');
 	}*/
 }
@@ -39,12 +39,12 @@ if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['status']) an
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Gestion de l'équipe de <?php print $nomdusite; ?></title>
-		<?php print $cssadmin; ?>
+		<title>Gestion de l'équipe de <?php print $site_name; ?></title>
+		<?php print $admin_css_path; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php'); ?>
+<?php require_once('include/banner.php'); ?>
 		<table border="1">
 			<thead><tr><th>Numéro d'équipier</th><th>Nom</th><th>Nom court</th><th>Statut(s)</th><th>Date</th><th>Âge</th><th>Twitter</th><th>Actions</th></tr></thead>
 			<tbody>
@@ -84,8 +84,8 @@ if(isset($_GET['mod'])) {
 <label for="f2_works">Travaille pour&nbsp;:</label>
 <select id="f2_works" name="works">
 <option value="0" <?php if($data['works'] == '0') { echo 'selected'; } ?>>NVDA-FR</option>
-<option value="1" <?php if($data['works'] == '1') { echo 'selected'; } ?>><?php print $nomdusite; ?></option>
-<option value="2" <?php if($data['works'] == '2') { echo 'selected'; } ?>>NVDA-FR et <?php print $nomdusite; ?></option>
+<option value="1" <?php if($data['works'] == '1') { echo 'selected'; } ?>><?php print $site_name; ?></option>
+<option value="2" <?php if($data['works'] == '2') { echo 'selected'; } ?>>NVDA-FR et <?php print $site_name; ?></option>
 </select><br>
 			<label for="f2_twitter">Pseudo Twitter (sans le @)&nbsp;:</label><input type="text" name="twitter" id="f2_twitter" maxlength="255" value="<?php echo $data['twitter']; ?>"><br>
 			<input type="submit" value="Modifier">
@@ -118,8 +118,8 @@ while($data = $req->fetch()) {
 <label for="f_works">Travaille pour&nbsp;:</label>
 <select id="f_works" name="works">
 <option value="0">NVDA-FR</option>
-<option value="1"><?php print $nomdusite; ?></option>
-<option value="2">NVDA-FR et <?php print $nomdusite; ?></option>
+<option value="1"><?php print $site_name; ?></option>
+<option value="2">NVDA-FR et <?php print $site_name; ?></option>
 </select><br>
 			<label for="f_twitter">Pseudo Twitter (sans le @)&nbsp;:</label><input type="text" name="twitter" id="f_twitter" maxlength="255"><br>
 			<input type="submit" value="Ajouter">

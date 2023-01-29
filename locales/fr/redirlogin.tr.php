@@ -6,7 +6,7 @@
   'title' => 'Connexion réussie !',
   'maintext' => '<p>Bonjour {{membername}}, votre identification est réussie !<br>
 Que souhaitez-vous faire ensuite ?</p>',
-  'homelink' => 'Aller à l\'accueil',
+  'homelink' => 'Aller à l\'index',
   'memberlink' => 'Consulter mon profil',
   'adminlink' => 'Aller à l\'administration',
   'memberlistlink' => 'Consulter la liste de tous les membres',
