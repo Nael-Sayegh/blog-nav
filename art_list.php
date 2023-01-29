@@ -4,7 +4,7 @@ require_once('include/log.php');
 require_once('include/consts.php');
 $title='Liste des articles';
 $stats_page = 'art-list';
-$sound_path='/audio/page_sounds/hihi6.mp3';
+$sound_path='/audio/page_sounds/article.mp3';
 $cat = array();
 $req = $bdd->query('SELECT * FROM `softwares_categories`');
 while($data = $req->fetch()) {

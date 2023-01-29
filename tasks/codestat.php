@@ -11,7 +11,7 @@ $files = array('Slider.php', 'index.php', 'browser_homepage.php', 'members_list.
 	'api/account.php', 'api/index.php', 'api/api_inc.php', 'api/get.php',
 	'c/index.php',
 	'css/default.css', 'css/search.css', 'css/slider.css',
-	'gadgets/IP.php', 'gadgets/clock.php', 'GEOIP/infos.php', 'gadgets/password_gen.php', 'gadgets/pof.php',
+	'gadgets/IP.php', 'gadgets/clock.php', 'GEOIP/infos.php', 'gadgets/password_gen.php', 'gadgets/flipping_coin.php',
 	'include/403.php', 'include/OS.php', 'include/compteur.php', 'include/config.php', 'include/consts.php', 'include/dbconnect.php', 'include/flarum.php', 'include/footer.php', 'include/header.php', 'include/isbot.php', 'include/log.php', 'include/loginbox.php', 'include/maintenance_mode.php', 'include/maintenancemode.html', 'include/menu.php', 'include/searchtool.php', 'include/sendconfirm.php', 'include/load_sound.php', 'include/sontrident.php', 'include/stats.php', 'include/trident.php', 'include/user_rank.php',
 	'include/lib/facebook/fb_publisher.php', 'include/lib/twitter/twitter_publisher.php',
 	'res/phpsocialclient/facebook.php', 'res/phpsocialclient/twitter.php', 'res/phpsocialclient/locales/en.php', 'res/phpsocialclient/locales/fr.php', 'res/phpsocialclient/templates/getdata.php', 'res/phpsocialclient/templates/locales.php',

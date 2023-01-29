@@ -4,7 +4,7 @@ require_once('include/log.php');
 require_once('include/consts.php');
 $title='Mise à jour du site';
 $stats_page = 'update';
-$sound_path='/audio/page_sounds/V.mp3'; ?>
+$sound_path='/audio/page_sounds/update.mp3'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php require_once('include/header.php'); ?>

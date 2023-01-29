@@ -5,7 +5,7 @@ $stats_page = 'mdpforget';
 require_once('include/log.php');
 require_once('include/consts.php');
 $title='Mot de passe oublié';
-$sound_path='/audio/page_sounds/membre.mp3';
+$sound_path='/audio/page_sounds/member.mp3';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;

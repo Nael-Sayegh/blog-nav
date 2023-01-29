@@ -5,7 +5,7 @@ require_once('include/log.php');
 require_once('include/consts.php');
 $tr = load_tr($lang, 'index');
 $title = tr($tr,'title');
-$sound_path='/audio/page_sounds/accueil.mp3'; ?>
+$sound_path='/audio/page_sounds/homepage.mp3'; ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
 <?php $css_path .= '<link rel="stylesheet" href="/css/slider.css">';

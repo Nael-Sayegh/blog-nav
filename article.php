@@ -104,7 +104,7 @@ elseif(isset($_GET['unsubscribe-comments']) and isset($_GET['token']) and isset(
 	$req->execute(array($login['id'], $sw['id']));
 }
 
-$sound_path='/audio/page_sounds/hihi6.mp3';
+$sound_path='/audio/page_sounds/article.mp3';
 $cat = array();
 $req = $bdd->query('SELECT * FROM `softwares_categories`');
 while($data = $req->fetch()) {
