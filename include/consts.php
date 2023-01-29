@@ -95,7 +95,7 @@ echo tr($tr0,'footer_lastcommit',array('date'=>$commitDate,'url'=>$commitURL,'si
 
 function isDev()
 {
-if(strstr($_SERVER['HTTP_HOST'], 'dev.'))
+if(strstr($_SERVER['HTTP_HOST'], 'dev.') || DEV == true)
 return true;
 else
 return false;
