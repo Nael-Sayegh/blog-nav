@@ -43,7 +43,7 @@ if(isset($_GET['g'])) {
 	}
 	
 	$rdata['general'] = array(
-		'name'=>$nomdusite,
+		'name'=>$site_name,
 		'slogan'=>$slogan,
 		'lang'=>$lang,
 		'version_id'=>$derniereversion,
@@ -64,7 +64,7 @@ if(isset($_GET['slides'])) {
 	$req = $bdd->prepare('SELECT * FROM `slides` WHERE `published`=1');
 	$req->execute();
 	while($data = $req->fetch()) {
-		$slides[] = array($data['id'], $data['lang'], $data['label'], $data['style'], str_replace('{{site}}', $nomdusite, $data['title']), $data['title_style'], str_replace('{{site}}', $nomdusite, $data['contain']), $data['contain_style'], $data['date']);
+		$slides[] = array($data['id'], $data['lang'], $data['label'], $data['style'], str_replace('{{site}}', $site_name, $data['title']), $data['title_style'], str_replace('{{site}}', $site_name, $data['contain']), $data['contain_style'], $data['date']);
 	}
 	$rdata['slides'] = $slides;
 }

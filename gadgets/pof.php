@@ -1,17 +1,17 @@
 <?php set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('inclus/log.php');
-require_once('inclus/consts.php');
-$titre="Pile ou face";
-$cheminaudio="/audio/sons_des_pages/piece.mp3";
+require_once('include/log.php');
+require_once('include/consts.php');
+$title="Pile ou face";
+$sound_path="/audio/page_sounds/piece.mp3";
 $stats_page = 'pof'; ?>
 <!DOCTYPE html>
 <html lang="fr">
-<?php require_once('inclus/header.php'); ?>
+<?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('inclus/banner.php');
-require_once('inclus/son.php'); ?>
+<?php require_once('include/banner.php');
+require_once('include/load_sound.php'); ?>
 <main id="container">
-<h1 id="contenu"><?php print $titre; ?></h1>
+<h1 id="contenu"><?php print $title; ?></h1>
 <p>Vous avez bien été redirigé vers notre gadget pile ou face.</p>
 <?php
 $i =rand(1,2);
@@ -26,6 +26,6 @@ echo 'C\'est face <br>';
 ?>
 <a href="/gadgets.php">Retour à la liste des gadgets.</a>
 </main>
-<?php require_once('inclus/footer.php'); ?>
+<?php require_once('include/footer.php'); ?>
 </body>
 </html>

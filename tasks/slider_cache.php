@@ -1,6 +1,6 @@
 <?php
 $document_root = __DIR__.'/..';
-require_once($document_root.'/inclus/consts.php');
+require_once($document_root.'/include/consts.php');
 
 foreach($langs_prio as &$lang_i) {
 	$tr = load_tr($lang_i, 'slider');
@@ -20,7 +20,7 @@ foreach($langs_prio as &$lang_i) {
 			fwrite($file, ' activeslide');
 		else
 			fwrite($file, ' noslide');
-		fwrite($file, '" style="'.$data['style'].'"><h2 style="'.$data['title_style'].'">'.str_replace('{{site}}', $nomdusite, $data['title']).'</h2><div class="slidec" style="'.$data['contain_style'].'">'.str_replace('{{site}}', $nomdusite, $data['contain']).'</div></div>');
+		fwrite($file, '" style="'.$data['style'].'"><h2 style="'.$data['title_style'].'">'.str_replace('{{site}}', $site_name, $data['title']).'</h2><div class="slidec" style="'.$data['contain_style'].'">'.str_replace('{{site}}', $site_name, $data['contain']).'</div></div>');
 	}
 	
 	# --- most visited
@@ -36,7 +36,7 @@ foreach($langs_prio as &$lang_i) {
 	while($data = $req->fetch()) {
 		$article_trs = get_article_prefered_tr($data['id'], $lang_i);
 		$article_tr = $article_trs['trs'][$article_trs['prefered_tr']];
-		fwrite($file, '<li><a href="/article.php?id='.$data['id'].'">'.str_replace('{{site}}', $nomdusite, $article_tr['title']).'</a> <span style="color:#04b404;">('.$data['hits'].')</span></li>');
+		fwrite($file, '<li><a href="/article.php?id='.$data['id'].'">'.str_replace('{{site}}', $site_name, $article_tr['title']).'</a> <span style="color:#04b404;">('.$data['hits'].')</span></li>');
 	}
 	fwrite($file, '</ul></div></div>');
 
@@ -59,7 +59,7 @@ foreach($langs_prio as &$lang_i) {
 	while($data = $req->fetch()) {
 		$article_trs = get_article_prefered_tr($data['id'], $lang_i);
 		$article_tr = $article_trs['trs'][$article_trs['prefered_tr']];
-		fwrite($file, '<li><a href="/article.php?id='.$data['id'].'">'.str_replace('{{site}}', $nomdusite, $article_tr['title']).'</a> ('.tr($tr,'last_updates_text',array('author'=>$data['author'], 'date'=>strftime(tr($tr0,'fndatetime'),$data['date']))).')</li>');
+		fwrite($file, '<li><a href="/article.php?id='.$data['id'].'">'.str_replace('{{site}}', $site_name, $article_tr['title']).'</a> ('.tr($tr,'last_updates_text',array('author'=>$data['author'], 'date'=>strftime(tr($tr0,'fndatetime'),$data['date']))).')</li>');
 	}
 	fwrite($file, '</ul></div></div>');
 
@@ -71,7 +71,7 @@ foreach($langs_prio as &$lang_i) {
 	while($data = $req->fetch()) {
 		$article_trs = get_article_prefered_tr($data['id'], $lang_i);
 		$article_tr = $article_trs['trs'][$article_trs['prefered_tr']];
-		fwrite($file, '<li><a href="/article.php?id='.$data['id'].'">'.str_replace('{{site}}', $nomdusite, $article_tr['title']).'</a> <span style="color:#04b404;">('.$data['downloads'].')</span></li>');
+		fwrite($file, '<li><a href="/article.php?id='.$data['id'].'">'.str_replace('{{site}}', $site_name, $article_tr['title']).'</a> <span style="color:#04b404;">('.$data['downloads'].')</span></li>');
 	}
 	fwrite($file, '</ul></div></div>');
 

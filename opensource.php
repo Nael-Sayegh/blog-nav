@@ -1,22 +1,22 @@
 <?php set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('inclus/log.php');
-require_once('inclus/consts.php');
-$titre='Open-source';
-$cheminaudio='/audio/sons_des_pages/harp_notif.mp3';
+require_once('include/log.php');
+require_once('include/consts.php');
+$title='Open-source';
+$sound_path='/audio/page_sounds/harp_notif.mp3';
 $stats_page='open-source'; ?>
 <!DOCTYPE html>
 <html lang="fr">
-<?php require_once('inclus/header.php'); ?>
+<?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('inclus/banner.php');
-require_once('inclus/son.php'); ?>
+<?php require_once('include/banner.php');
+require_once('include/load_sound.php'); ?>
 <main id="container">
-<h1 id="contenu"><?php print $titre; ?></h1>
+<h1 id="contenu"><?php print $title; ?></h1>
 	<p>Nous avons développé durant des années le site en source fermée, et avons décidé durant l'été 2018 de le libérer. Le code source est donc désormais disponible librement <a href="https://gitlab.com/ProgAccess/ProgAccess">sur GitLab</a> sous licence GNU AGPL.</p>
 	<p>L'équipe compte deux développeurs aux manières assez différentes voire contradictoires en certains points et le code n'est pas organisé pour être compris facilement (l'essentiel consiste en des ajouts et réparations les uns sur les autres, et au final personne n'y comprend plus rien). La libération du code peut donc avoir peu de sens pour le moment, mais nous travaillons beaucoup à la réorganisation, pour avoir un design plus solide, logique, pratique, léger, sécurisé... enfin bref meilleur.</p>
 	
 	<h3>Organisation du code</h3>
-	<p>Nous utilisons PHP et MySQL. Les fichiers d'index par défaut (lus par le serveur si l'adresse est celle d'un dossier) sont accueil.php et accueil.html.</p>
+	<p>Nous utilisons PHP et MySQL. Les fichiers d'index par défaut (lus par le serveur si l'adresse est celle d'un dossier) sont index.php et index.html.</p>
 	<p>À la racine se trouvent les pages publiques en PHP ainsi que les fichiers utiles (comme l'icône ou quelques XML). Voici une liste des dossiers et de leur contenu&nbsp;:</p>
 	<ul>
 		<li><span class="dir">403</span>&nbsp;: Fichiers utilisés pour la page d'accès interdit.</li>
@@ -31,7 +31,7 @@ require_once('inclus/son.php'); ?>
 		<li><span class="dir">files</span>&nbsp;: Fichiers téléchargeables (gestion automatique).</li>
 		<li><span class="dir">gadgets</span>&nbsp;: Pages et ressources des gadgets.</li>
 		<li><span class="dir">image</span>&nbsp;: Images.</li>
-		<li><span class="dir">inclus</span>&nbsp;: Fichiers de ressources et bibliothèques pour tout le site.</li>
+		<li><span class="dir">include</span>&nbsp;: Fichiers de ressources et bibliothèques pour tout le site.</li>
 		<li><span class="dir">locales</span>&nbsp;: Fichiers de traduction</li>
 		<li><span class="dir">r</span>&nbsp;: Permet de fournir une URL plus courte pour les fichiers téléchargeables.</li>
 		<li><span class="dir">res</span>&nbsp;: Outils additionnels.</li>
@@ -43,7 +43,7 @@ require_once('inclus/son.php'); ?>
 	<h3>Installation</h3>
 	<ol>
 	<li>Créez la base de données&nbsp;: apfr.sql contient les requêtes de création des tables de la base de données. Vous pouvez le supprimer après l'avoir importé.</li>
-	<li>Renommez le fichier inclus/config.php en inclus/config.local.php et complétez le avec vos informations.</li>
+	<li>Renommez le fichier include/config.php en include/config.local.php et complétez le avec vos informations.</li>
 	</ol>
 	<p>La configuration du serveur doit interdire l'accès aux dossiers suivants&nbsp;: inclus, cache, tasks, files, locales.</p>
 	<p>Les traductions ne sont pas incluses dans l'archive du code source car elles peuvent être modifiées via le site lui-même et car elles sont sous licence CC BY-SA. Vous pourrez bientôt les récupérer via l'API.</p>
@@ -61,7 +61,7 @@ require_once('inclus/son.php'); ?>
 	<h3>Participer</h3>
 	<a href="https://gitlab.com/ProgAccess/ProgAccess">Dépôt GitLab de ProgAccess</a>
 	<p>Si vous avez le courage de lire et de décrypter notre code, nous serions très heureux que vous puissiez nous aider à intégrer de nouvelles fonctionnalités, chasser et réparer les bugs, organiser le code...</p>
-	<p>Pour rapporter un bug ou suggérer une fonctionnalité, vous pouvez <a href="https://gitlab.com/ProgAccess/ProgAccess/-/issues">ouvrir un ticket sur le GitLab</a>, utiliser le <a href="/contacter.php">formulaire de contact</a> ou encore utiliser le <a href="https://forum.progaccess.net">forum</a>.</p>
+	<p>Pour rapporter un bug ou suggérer une fonctionnalité, vous pouvez <a href="https://gitlab.com/ProgAccess/ProgAccess/-/issues">ouvrir un ticket sur le GitLab</a>, utiliser le <a href="/contact_form.php">formulaire de contact</a> ou encore utiliser le <a href="https://forum.progaccess.net">forum</a>.</p>
 	
 	<h3>Traductions</h3>
 	<ul>
@@ -70,6 +70,6 @@ require_once('inclus/son.php'); ?>
 		<?php } ?>
 	</ul>
 </main>
-<?php require_once('inclus/footer.php'); ?>
+<?php require_once('include/footer.php'); ?>
 </body>
 </html>

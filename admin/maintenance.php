@@ -2,8 +2,8 @@
 $adminonly=true;
 $justpa = true;
 $titlePAdm='Mode maintenance';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 
 if(isset($_GET['codestat']))
 	require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/codestat.php');
@@ -13,13 +13,13 @@ $codestat_n_chars = -1;
 require_once($_SERVER['DOCUMENT_ROOT'].'/cache/codestatc.php');
 
 if(isset($_GET['mm0'])) {
-	$maintenance = fopen($_SERVER['DOCUMENT_ROOT'].'/inclus/maintenance_mode.php', 'w');
+	$maintenance = fopen($_SERVER['DOCUMENT_ROOT'].'/include/maintenance_mode.php', 'w');
 	fputs($maintenance, '<?php $modemaintenance=false; ?>');
 	fclose($maintenance);
 	$modemaintenance = false;
 }
 elseif(isset($_GET['mm1'])) {
-	$maintenance = fopen($_SERVER['DOCUMENT_ROOT'].'/inclus/maintenance_mode.php', 'w');
+	$maintenance = fopen($_SERVER['DOCUMENT_ROOT'].'/include/maintenance_mode.php', 'w');
 	fputs($maintenance, '<?php $modemaintenance=true; ?>');
 	fclose($maintenance);
 	$modemaintenance = true;
@@ -29,12 +29,12 @@ elseif(isset($_GET['mm1'])) {
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Maintenance - Administration - <?php print $nomdusite; ?></title>
-		<?php print $cssadmin; ?>
+		<title>Maintenance - Administration - <?php print $site_name; ?></title>
+		<?php print $admin_css_path; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php');
+<?php require_once('include/banner.php');
 if(isset($modemaintenance) and $modemaintenance)
 	echo '<p>Mode maintenance activé</p><a href="?mm0">Désactiver le mode maintenance</a>';
 else

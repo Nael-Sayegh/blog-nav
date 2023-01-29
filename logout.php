@@ -1,7 +1,7 @@
 <?php
-require_once('inclus/dbconnect.php');
+require_once('include/dbconnect.php');
 $logonly = true;
-require_once('inclus/log.php');
+require_once('include/log.php');
 
 if(isset($_GET['token']) and $_GET['token'] == $login['token']) {
 	setcookie('session', '', 0, '/', NULL, false, true);

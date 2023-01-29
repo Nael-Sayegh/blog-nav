@@ -2,8 +2,8 @@
 $logonly = true;
 $adminonly = true;
 $justpa = true;
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 
 if(!isset($_GET['yes'])) {
 	echo 'Use GET param "yes" execute this program.';

@@ -14,7 +14,7 @@
 </ul>
 <ul>
 	<li>Dessinateur du logo du site&nbsp;: <a href="https://facebook.com/crayongra">David Engélibert</a>.</li>
-	<li><a href="/contacter.php">Contactez-nous</a>.</li>
+	<li><a href="/contact_form.php">Contactez-nous</a>.</li>
 </ul>
 <ul>
 <li><a href="https://discord.gg/nd45eqN">Rejoignez-nous sur Discord</a></li>
@@ -36,8 +36,8 @@ Ce site vient de l'envie de Corentin (un étudiant non-voyant) de partager sa pa
 <h3>En interne sur le site</h3>
 <ul>
 	<li><a href="/newsletter.php">S'inscrire à la lettre d'infos (envoi chaque soir entre 20:12 et 20:21)</a></li>
-	<li><a href="/journal_modif.php">Journal des modifs (actualisation en temps réel)</a></li>
-	<li><a href="/journal_modif.xml">Flux RSS (actualisation en temps réel)</a></li>
+	<li><a href="/history.php">Journal des modifs (actualisation en temps réel)</a></li>
+	<li><a href="/rss_feed.xml">Flux RSS (actualisation en temps réel)</a></li>
 	<li><a href="/api">Pour les développeurs&nbsp;: les données ouvertes via notre API</a></li>
 </ul>
 

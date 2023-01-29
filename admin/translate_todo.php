@@ -3,20 +3,20 @@ $logonly = true;
 $adminonly = true;
 $justpa = true;
 $titlePAdm='Traductions';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Traductions &#8211; <?php print $nomdusite; ?></title>
-		<?php print $cssadmin; ?>
+		<title>Traductions &#8211; <?php print $site_name; ?></title>
+		<?php print $admin_css_path; ?>
 		<link rel="stylesheet" href="css/translate.css">
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php'); ?>
+<?php require_once('include/banner.php'); ?>
 		<!--<a href="#trs-files">Traductions du site</a><br>-->
 		<h2 id="tr-articles">Articles</h2>
 		<form action="translate_todo.php#tr-articles" method="get">

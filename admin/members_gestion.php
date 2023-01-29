@@ -3,8 +3,8 @@ $logonly = true;
 $adminonly = true;
 $justpa = true;
 $titlePAdm='Gestion des comptes membres';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 if(isset($_GET['delete'])) {
 	$req = $bdd->prepare('DELETE FROM `accounts` WHERE `id`=? LIMIT 1');
 	$req->execute(array($_GET['delete']));
@@ -24,17 +24,17 @@ if(isset($_GET['mod2']) and isset($_POST['username']) and isset($_POST['email'])
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<title>Gestion des membres <?php print $nomdusite; ?></title>
-		<?php print $cssadmin; ?>
+		<title>Gestion des membres <?php print $site_name; ?></title>
+		<?php print $admin_css_path; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php'); ?>
+<?php require_once('include/banner.php'); ?>
 		<table border="1">
 			<thead><tr><th>Nom d'utilisateur</th><th>Adresse mail</th><th>Rang</th><th>Actions</th></tr></thead>
 			<tbody>
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/inclus/user_rank.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/include/user_rank.php';
 $req = $bdd->query("SELECT * FROM `accounts`");
 while($data = $req->fetch()) {
 	echo '<tr><td>'.$data['username'].'</td><td>'.$data['email'].'</td><td>'.urank($data['rank']).'</td><td><a href="?mod='.$data['id'].'#mod">Modifier</a> | <a href="?delete='.$data['id'].'" onclick="return confirm(\'Faut-il vraiment supprimer le membre '.$data['username'].'&nbsp;?\')">Supprimer</a></td></tr>';

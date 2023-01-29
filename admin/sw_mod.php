@@ -2,8 +2,8 @@
 $adminonly=true;
 $justpa = true;
 $titlePAdm='Modification d\'un article';
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/log.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/inclus/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 $time = time();
 $addfile_hash = '';
 $addfile_path = '';
@@ -28,14 +28,14 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 		$req = $bdd->prepare('UPDATE softwares SET name=?, category=?, date=?, description=?, text=?, keywords=?, website=?, author=? WHERE id=?');
 		$req->execute(array($_POST['name'], $_POST['category'], $time, $mod_description, $mod_text, $mod_keywords, $mod_website, $nom, $_GET['mod']));
 		header('Location: sw_mod.php?list='.$_POST['category']);
-		include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+		include($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 		include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 		exit();
 	}
 	if(isset($_GET['rsw'])) {
 		$req = $bdd->prepare('DELETE FROM `softwares` WHERE `id`=? LIMIT 1');
 		$req->execute(array($_GET['rsw']));
-		include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+		include($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 		include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 	}
 	if(isset($_GET['modf2'])) {
@@ -96,7 +96,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 			header('Location: sw_mod.php?listfiles='.$data['sw_id']);
 			$req = $bdd->prepare('UPDATE `softwares` SET `date`=?, `author`=? WHERE `id`=? LIMIT 1');
 			$req->execute(array(time(), $nom, $data['sw_id']));
-			include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+			include($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 			include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 			
 			if(isset($_POST['social']) and $_POST['social'] == 'on') {
@@ -104,11 +104,11 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$reqf->execute();
 				if($data=$reqf->fetch()) {
 				$somsg = $_POST['title'].' : https://www.progaccess.net/r?'.(!empty($_POST['label']) ? ('p='.$_POST['label']):('id='.$data['id'])).' https://www.progaccess.net/a?id='.$data['sw_id'].' '.$nom;
-				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
+				include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 				send_facebook($somsg);
-				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
+				include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 				send_mastodon($somsg);
-				include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+				include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
 				send_twitter($somsg);
 				}
 			}
@@ -119,7 +119,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 		$req = $bdd->prepare('UPDATE `softwares_mirrors` SET `title`=? , `links`=? , `label`=?, `date`=? WHERE `id`=? LIMIT 1');
 		$req->execute(array($_POST['title'], $_POST['urls'], $_POST['label'], time(), $_GET['modm2']));
 		header('Location: sw_mod.php?listfiles='.$_GET['modm2']);
-		include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+		include($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 		include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 		exit();
 	}
@@ -135,14 +135,14 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				finfo_close($finfo);
 				if(isset($_GET['social']) and $_GET['social'] == 'on') {
 					$somsg = $data['title'].' : https://www.progaccess.net/r?'.(!empty($data['label']) ? ('p='.$data['label']):('id='.$data['id'])).' https://www.progaccess.net/a?id='.$data['sw_id'].' '.$nom;
-					include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
+					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 					send_facebook($somsg);
-					include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
+					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 					send_mastodon($somsg);
-					include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
 					send_twitter($somsg);
 				}
-				include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+				include($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 				include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 				header('Location: sw_mod.php?listfiles='.$data['sw_id']);
 				exit();
@@ -238,7 +238,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				if($complete) {
 					$req = $bdd->prepare('INSERT INTO softwares_files(sw_id,name,hash,filetype,title,date,filesize,label,`md5`,`sha1`) VALUES(?,?,?,?,?,?,?,?,?,?)');
 					$req->execute(array($_GET['upload'], $filename, $hash, $filetype, $_POST['title'], time(), $filesize, $label, md5_file($file), sha1_file($file)));
-					include($_SERVER['DOCUMENT_ROOT'].'/tasks/journal_cache.php');
+					include($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 					include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 					
 					if(isset($_POST['social']) and $_POST['social'] == 'on') {
@@ -246,11 +246,11 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 						if(!empty($label))
 							$somsg .= ' https://www.progaccess.net/r?p='.$label;
 						$somsg .= ' https://www.progaccess.net/a?id='.$_GET['upload'].' '.$nom;
-						include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/facebook/envoyer.php');
+						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 						send_facebook($somsg);
-						include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/Mastodon/Post.php');
+						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 						send_mastodon($somsg);
-						include_once($_SERVER['DOCUMENT_ROOT'].'/inclus/lib/twitter/twitter.php');
+						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
 						send_twitter($somsg);
 					}
 					
@@ -311,12 +311,12 @@ if($sw_id != null and $sw_mode != null) {
 }
 else
 	echo 'Modifier un article';
-?> &#8211; admin <?php print $nomdusite; ?></title>
-<?php print $cssadmin; ?>
+?> &#8211; admin <?php print $site_name; ?></title>
+<?php print $admin_css_path; ?>
 		<script type="text/javascript" src="/scripts/default.js"></script>
 	</head>
 	<body>
-<?php require_once('inclus/banner.php');
+<?php require_once('include/banner.php');
 if(empty($_GET)) {
 	echo '<ul title="Lister les articles de&nbsp;:">';
 	$req2 = $bdd->query('SELECT * FROM softwares_categories ORDER BY name ASC');

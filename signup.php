@@ -1,11 +1,11 @@
 <?php
 $nolog = true;
-require_once('inclus/log.php');
+require_once('include/log.php');
 $stats_page='signup';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('inclus/consts.php');
-$cheminaudio='/audio/sons_des_pages/membre.mp3';
-$titre = 'Se créer un compte '.$nomdusite;
+require_once('include/consts.php');
+$sound_path='/audio/page_sounds/membre.mp3';
+$title = 'Se créer un compte '.$site_name;
 
 $log = '';
 if(isset($_GET['a']) and $_GET['a'] == 'form' and isset($_POST['username']) and isset($_POST['mail']) and isset($_POST['psw']) and isset($_POST['rpsw'])) {
@@ -56,11 +56,11 @@ if(isset($_GET['a']) and $_GET['a'] == 'form' and isset($_POST['username']) and 
 			$id = $bdd->lastInsertId();
 			
 			if(isset($_POST['forum']) and $_POST['forum'] == 'on') {
-				require_once('inclus/flarum.php');
+				require_once('include/flarum.php');
 				create_forum_account($id, $username, $email);
 			}
 			
-			include('inclus/sendconfirm.php');
+			include('include/sendconfirm.php');
 			send_confirm($id, $email, $mhash, $username);
 			header('Location: /login.php?signed='.$id.'&mail='.sha1($email));
 			
@@ -79,12 +79,12 @@ if(isset($_GET['a']) and $_GET['a'] == 'form' and isset($_POST['username']) and 
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-<?php require_once('inclus/header.php'); ?>
+<?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('inclus/banner.php');
-require_once('inclus/son.php'); ?>
+<?php require_once('include/banner.php');
+require_once('include/load_sound.php'); ?>
 <main id="container">
-	<h1 id="contenu"><?php print $titre; ?></h1>
+	<h1 id="contenu"><?php print $title; ?></h1>
 	<?php if(!empty($log)) echo '<ul id="log">'.$log.'</ul>'; ?>
 	<form action="?a=form" method="post">
 		<table>
@@ -105,10 +105,10 @@ require_once('inclus/son.php'); ?>
 			<tr><td class="formlabel"><label for="f_box2">Ne cochez pas cette case&nbsp;:</label></td>
 				<td><input type="checkbox" id="f_box2" name="box2"></td></tr>
 		</table>
-		<p>L'usage des cookies est nécessaire pour utiliser l'espace membres. Vous créer un compte <?php echo $nomdusite; ?> confirme que vous acceptez les cookies en vous identifiant.<br>Nous ne partagerons pas votre adresse e-mail avec des tiers. Vous pourrez modifier les paramètres de votre compte ou le supprimer à tout moment.</p>
+		<p>L'usage des cookies est nécessaire pour utiliser l'espace membres. Vous créer un compte <?php echo $site_name; ?> confirme que vous acceptez les cookies en vous identifiant.<br>Nous ne partagerons pas votre adresse e-mail avec des tiers. Vous pourrez modifier les paramètres de votre compte ou le supprimer à tout moment.</p>
 		<input type="submit" value="S'inscrire">
 	</form>
 </main>
-<?php require_once('inclus/footer.php'); ?>
+<?php require_once('include/footer.php'); ?>
 </body>
 </html>

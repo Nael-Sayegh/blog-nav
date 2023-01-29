@@ -1,12 +1,12 @@
 <?php
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('inclus/consts.php');
+require_once('include/consts.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once('inclus/lib/phpmailer/src/PHPMailer.php');
-require_once('inclus/lib/phpmailer/src/Exception.php');
-require_once('inclus/lib/phpmailer/src/SMTP.php');
+require_once('include/lib/phpmailer/src/PHPMailer.php');
+require_once('include/lib/phpmailer/src/Exception.php');
+require_once('include/lib/phpmailer/src/SMTP.php');
 
 if(isset($_GET['id']) and isset($_GET['h'])) {
 	$req = $bdd->prepare('SELECT `id`, `username`, `email`, `signup_date`, `settings` FROM `accounts` WHERE `id`=? AND `signup_date`<? AND `confirmed`=0');
@@ -23,23 +23,23 @@ if(isset($_GET['id']) and isset($_GET['h'])) {
 			$mail->SMTPAuth = true;
 			$mail->Username = SMTP_USERNAME;
 			$mail->Password = SMTP_PSW;
-			$mail->setFrom('no_reply@progaccess.net', 'l\'administration '.$nomdusite);
-			$mail->addReplyTo('no_reply@progaccess.net', 'l\'administration '.$nomdusite);
+			$mail->setFrom('no_reply@progaccess.net', 'l\'administration '.$site_name);
+			$mail->addReplyTo('no_reply@progaccess.net', 'l\'administration '.$site_name);
 			$mail->addAddress($data['email']);
-			$mail->Subject = $nomdusite.' : vos informations de membre';
+			$mail->Subject = $site_name.' : vos informations de membre';
 			$mail->CharSet = 'UTF-8';
 			$mail->IsHTML(TRUE);
 			$mail->Body = '<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Vos informations de membre '.$nomdusite.'</title>
+<title>Vos informations de membre '.$site_name.'</title>
 </head>
 <body>
-<h1>'.$nomdusite.'</h1>
+<h1>'.$site_name.'</h1>
 <img src="https://www.progaccess.net/image/logo128-170.png" alt="Logo">
-<h2>Bonjour '.htmlentities($data['username']).' et bienvenue dans la communauté '.$nomdusite.'</h2>
-<p>Veuillez conserver précieusement ce message, il contient vos informations de membre qui vous seront utiles en cas de perte de mot de passe afin d\'<a href="https://www.progaccess.net/mdp_demande.php">en demander un nouveau</a>.<br>
+<h2>Bonjour '.htmlentities($data['username']).' et bienvenue dans la communauté '.$site_name.'</h2>
+<p>Veuillez conserver précieusement ce message, il contient vos informations de membre qui vous seront utiles en cas de perte de mot de passe afin d\'<a href="https://www.progaccess.net/fg_password.php">en demander un nouveau</a>.<br>
 Si vous changez par la suite votre nom d\'utilisateur ou votre adresse mail, vos nouvelles informations ne vous seront pas réenvoyées (conservez donc vos changements en lieu sûr).<br>
 Vos informations sont les suivantes :</p>
 <ul>
@@ -50,7 +50,7 @@ Vos informations sont les suivantes :</p>
 </ul>
 <p>Ne répondez pas à ce mail, il vous a été envoyé automatiquement.<br>
 Cordialement.<br>
-L\'administration '.$nomdusite.'</p>
+L\'administration '.$site_name.'</p>
 </body>
 </html>';
 			$mail->AltBody = 'Ce mail est uniquement disponible en HTML, activer l\'affichage HTML dans votre messagerie';

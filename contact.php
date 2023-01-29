@@ -1,18 +1,18 @@
 <?php set_include_path($_SERVER['DOCUMENT_ROOT']);
-require('inclus/log.php');
-require_once('inclus/consts.php');
+require('include/log.php');
+require_once('include/consts.php');
 $tr = load_tr($lang, 'contact');
-$titre = tr($tr,'title');
-$cheminaudio = '/audio/sons_des_pages/harp_notif.mp3';
+$title = tr($tr,'title');
+$sound_path = '/audio/page_sounds/harp_notif.mp3';
 $stats_page = 'contact'; ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
-<?php require_once('inclus/header.php'); ?>
+<?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('inclus/banner.php');
-require_once('inclus/son.php'); ?>
+<?php require_once('include/banner.php');
+require_once('include/load_sound.php'); ?>
 <main id="container">
-<h1 id="contenu"><?php print $titre; ?></h1>
+<h1 id="contenu"><?php print $title; ?></h1>
 <?php
 $teamlist = '';
 $req = $bdd->query('SELECT * FROM `team` WHERE `works` = 1 OR `works` = 2');
@@ -23,6 +23,6 @@ while($data = $req->fetch()) {
 echo tr($tr,'maintext',array('teamlist'=>$teamlist,'lastv'=>$versionnom,'lastvdate'=>$versiondate,'lastvid'=>$derniereversion,'lastvopensource'=>$lastosv,'lastvu'=>$versionid));
 ?>
 </main>
-<?php require_once('inclus/footer.php'); ?>
+<?php require_once('include/footer.php'); ?>
 </body>
 </html>
