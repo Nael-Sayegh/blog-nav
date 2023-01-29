@@ -4,7 +4,7 @@ require_once('include/log.php');
 $stats_page='signup';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/consts.php');
-$sound_path='/audio/page_sounds/membre.mp3';
+$sound_path='/audio/page_sounds/member.mp3';
 $title = 'Se créer un compte '.$site_name;
 
 $log = '';

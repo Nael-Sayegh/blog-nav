@@ -2,7 +2,7 @@
 require_once('include/log.php');
 require_once('include/consts.php');
 $title='Journal des modifications '.$site_name;
-$sound_path='/audio/page_sounds/autremail.mp3';
+$sound_path='/audio/page_sounds/history.mp3';
 $stats_page='journal'; ?>
 <!DOCTYPE html>
 <html lang="fr">

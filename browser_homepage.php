@@ -3,7 +3,7 @@ require_once('include/log.php');
 require_once('include/consts.php');
 $tr = load_tr($lang, 'browser_homepage');
 $title = tr($tr,'title');
-$sound_path = '/audio/page_sounds/accueil.mp3';
+$sound_path = '/audio/page_sounds/homepage.mp3';
 $log = '';
 if(isset($_GET['act']) and $_GET['act'] == 'form') {
 	if(isset($_POST['moteur']) and in_array($_POST['moteur'], array('ddg','ecos','bing','qwant','ixquick','goog','ask','yahoo','aol','millionshort','pa'))) {

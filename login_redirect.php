@@ -4,7 +4,7 @@ require_once('include/log.php');
 require_once('include/consts.php');
 $tr = load_tr($lang, 'redirlogin');
 $title = tr($tr,'title');
-$sound_path = '/audio/page_sounds/membre.mp3';
+$sound_path = '/audio/page_sounds/member.mp3';
 $stats_page = 'redirlogin'; ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">

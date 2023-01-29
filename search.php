@@ -4,7 +4,7 @@ require_once('include/log.php');
 require_once('include/consts.php');
 $tr = load_tr($lang, 'search');
 $title=tr($tr,'title');
-$sound_path="/audio/page_sounds/recherche.mp3";
+$sound_path="/audio/page_sounds/search.mp3";
 $stats_page='recherche';
 $css_path .= '<link rel="stylesheet" href="/css/search.css">';
 $searchterms = '';

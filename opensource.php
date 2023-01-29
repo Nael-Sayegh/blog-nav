@@ -2,7 +2,7 @@
 require_once('include/log.php');
 require_once('include/consts.php');
 $title='Open-source';
-$sound_path='/audio/page_sounds/harp_notif.mp3';
+$sound_path='/audio/page_sounds/contact.mp3';
 $stats_page='open-source'; ?>
 <!DOCTYPE html>
 <html lang="fr">

@@ -2,7 +2,7 @@
 require_once('include/log.php');
 require_once('include/consts.php');
 $title="Pile ou face";
-$sound_path="/audio/page_sounds/piece.mp3";
+$sound_path="/audio/page_sounds/flipping_coin.mp3";
 $stats_page = 'pof'; ?>
 <!DOCTYPE html>
 <html lang="fr">
