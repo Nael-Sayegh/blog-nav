@@ -5,7 +5,7 @@ require_once('include/log.php');
 $stats_page='liste_comptes';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/consts.php');
-$sound_path='/audio/page_sounds/membre.mp3';
+$sound_path='/audio/page_sounds/member.mp3';
 $css_path .= '<style>.tr2{background-color:#E0E0E0;}</style>';
 $title = 'Liste des membres '.$site_name;
 ?>

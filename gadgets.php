@@ -18,7 +18,7 @@ require_once('include/load_sound.php'); ?>
 <li><a href="GEOIP/infos.php">Infos diverses vous concernant</a></li>
 <li><a href="gadgets/password_gen.php">Générateur de mots de passe</a></li>
 <li><a href="gadgets/clock.php">Horloge <?php print $site_name; ?></a></li>
-<li><a href="/gadgets/pof.php">Pile ou face</a></li>
+<li><a href="/gadgets/flipping_coin.php">Pile ou face</a></li>
 </ul>
 <h2 id="services">Les services <?php print $site_name; ?></h2>
 <ul>
