@@ -101,8 +101,13 @@ else
 return false;
 }
 
-date_default_timezone_set('Europe/Paris'); 
-//setlocale(LC_TIME,'fr_FR.UTF8');
+function setTimeZone()
+{
+	global $tr0;
+	date_default_timezone_set(tr($tr0,'timezone')); 
+	setlocale(LC_ALL, tr($tr0,'lc_code'));
+}
+
 if(!(isset($noct) and $noct))
 	header('Content-Type: text/html; charset=UTF-8');
 ini_set('default_charset', 'utf-8');
@@ -127,8 +132,7 @@ elseif(isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
 	$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 if(!in_array($lang, $langs_prio)) $lang = $langs_prio[0];
 putenv('LANG='.$lang);
-setlocale(LC_ALL, $lang);
-setlocale(LC_NUMERIC, 'en');
+setTimeZone()
 
 // MISC CONSTS/VARS
 $tr0 = load_tr($lang, 'default');
