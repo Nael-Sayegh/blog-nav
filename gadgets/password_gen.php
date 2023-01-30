@@ -13,7 +13,7 @@ require_once('include/load_sound.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <p>Vous avez bien été redirigé vers notre générateur de mots de passe.</p>
-<form action="ParamPasswd.php" method="post">
+<form action="" method="post">
 <label for="nombre">Nombre de mots de passe a générer :</label>
 <input id="nombre" name="nbrPasswd" type="number" min="1" value="1" required>
 <br>
