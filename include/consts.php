@@ -132,7 +132,7 @@ elseif(isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
 	$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 if(!in_array($lang, $langs_prio)) $lang = $langs_prio[0];
 putenv('LANG='.$lang);
-setTimeZone()
+setTimeZone();
 
 // MISC CONSTS/VARS
 $tr0 = load_tr($lang, 'default');
