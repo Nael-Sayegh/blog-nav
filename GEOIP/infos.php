@@ -35,8 +35,7 @@ require_once('include/load_sound.php'); ?>
 <li>Pays&nbsp;: <?php echo $record->country->name; ?></li>
 <li>Département&nbsp;: <?php echo $record->mostSpecificSubdivision->name; ?> (<?php echo $record->mostSpecificSubdivision->isoCode; ?>)</li>
 <li>Ville&nbsp;: <?php echo $record->city->name; ?> (<?php echo $record->postal->code; ?>)</li>
-<li>Latitude&nbsp;: <?php echo $record->location->latitude; ?></li>
-<li>Longitude&nbsp;: <?php echo $record->location->longitude; ?></li>
+<li>Coordonnées GPS&nbsp;: <?php echo $record->location->latitude; ?>, <?php echo $record->location->longitude; ?></li>
 </ul></li>
 <li>Réseau&nbsp;:
 <ul>
