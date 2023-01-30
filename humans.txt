@@ -1,6 +1,6 @@
 ﻿/* TEAM */
 	Administrator/Redactor: Corentin Bacqué-Cazenave
-	Contact: miklhcoz [at] zettascript [dot] org
+	Contact: corentin [at] progaccess [dot] net
 	Location: France
 
 	Administrator/Developper: Pascal Engélibert
