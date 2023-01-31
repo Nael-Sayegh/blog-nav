@@ -1,0 +1,17 @@
+<?php $tr=array (
+  '_' => 'fg_passwd',
+  '_todo_level' => 0,
+  '_last_author' => 'Corentin',
+  '_last_modif' => 1609230733,
+  'title' => 'Mot de passe oublié',
+  'log_success' => 'Votre mot de passe a été réinitialisé et vous a été envoyé par email',
+  'log_error' => 'Les informations fournies ne permettent pas de vous identifier. Veuillez <a href="/contact_form.php">nous contacter pour obtenir de l\'aide',
+  'intro_text' => 'Remplissez le formulaire ci-dessous pour réinitialiser votre mot de passe {{site}}',
+  'perso_inf' => 'Informations personnelles&nbsp;:',
+  'username' => 'Votre nom d\'utilisateur&nbsp;:',
+  'email' => 'Votre adresse mail&nbsp;:',
+  'member_id' => 'Votre numéro de membre&nbsp;:',
+  'idk' => 'Je ne sais pas',
+  'signup_date', => 'Votre date d\'inscription&nbsp;:',
+  'confirm_btn' => 'Confirmer',
+); ?>
