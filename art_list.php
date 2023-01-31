@@ -20,7 +20,7 @@ $cat[$data['id']] = $data['name'];
 require_once('include/load_sound.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
-<form action="" method="get">
+<form method="get">
 <label for="f1_sort"><?php echo tr($tr,'sort_label'); ?></label>
 <select name="sort" id="f1_sort">
 <option value="id"><?php echo tr($tr,'sort_article_id'); ?></option>
