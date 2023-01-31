@@ -2,7 +2,8 @@
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/log.php');
 require_once('include/consts.php');
-$title='Liste des articles';
+$tr = load_tr($lang, 'art_list');
+$title = tr($tr,'title');
 $stats_page = 'art-list';
 $sound_path='/audio/page_sounds/article.mp3';
 $cat = array();
@@ -19,14 +20,14 @@ $cat[$data['id']] = $data['name'];
 require_once('include/load_sound.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
-<form action="/art_list.php" method="get">
-<label for="f1_sort">Trier par&nbsp;:</label>
+<form action="" method="get">
+<label for="f1_sort"><?php echo tr($tr,'sort_label'); ?></label>
 <select name="sort" id="f1_sort">
-<option value="id">Numéro d'article</option>
-<option value="nom">Ordre alphabétique</option>
-<option value="date">Date de mise à jour</option>
+<option value="id"><?php echo tr($tr,'sort_article_id'); ?></option>
+<option value="nom"><?php echo tr($tr,'sort_alpha_order'); ?></option>
+<option value="date"><?php echo tr($tr,'sort_date'); ?></option>
 </select>
-<input type="submit" value="Trier" style="cursor:pointer;">
+<input type="submit" value="<?php echo tr($tr,'sort_btn'); ?>" style="cursor:pointer;">
 </form>
 <ul>
 <?php
@@ -72,7 +73,7 @@ foreach($entries as $sw_id => $entry) {
 $req->closeCursor();
 ?>
 </ul>
-<p><b><?php echo count($entries); ?></b> articles trouvés</p>
+<p><b><?php echo tr($tr,'nb_found',array('count'=>count($entries))); ?></p>
 </main>
 <?php require_once('include/footer.php'); ?>
 </body>
