@@ -33,6 +33,7 @@ function bparse($text, $vars) {
 	global $site_name, $slogan;
 	$vars['site'] = $site_name;
 	$vars['slogan'] = $slogan;
+	$vars['url'] = $site_url;
 	foreach($vars as $var1 => $var2) {
 		$text = str_replace('{{'.$var1.'}}', $var2, $text);
 	}
@@ -136,7 +137,8 @@ setTimeZone();
 
 // MISC CONSTS/VARS
 $tr0 = load_tr($lang, 'default');
-$site_name = (isDev()?tr($tr0,'sitename').'-Dev':tr($tr0,'sitename'));
+$site_name = (isDev()?SITE_NAME.'-Dev':SITE_NAME);
+$site_url = SITE_URL;
 $css_path = '<link rel="stylesheet" href="/css/default.css">';
 $admin_css_path = '<link rel="stylesheet" href="/admin/css/admin.css">';
 $slogan = tr($tr0,'slogan');
