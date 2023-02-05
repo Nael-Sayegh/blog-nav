@@ -3,8 +3,8 @@
 // `config.local.php` IS YOUR config file.
 // Copy `config.php` to `config.local.php` then fill it with your informations.
 
-define('DOCUMENT_ROOT', '/var/www/html');
-define('DEV', false);
+define('DOCUMENT_ROOT', 'DOCUMENT ROOT OF YOUR SITE (FOR EXAMPLE /var/www/html)');
+define('DEV', '(TRUE IF THE SITE IS ON DEV MODE AND FALSE OTHERWISE)');
 
 // MySQL
 define('DB_STRING', 'mysql:host=localhost;dbname=YOUR_DATABASE;charset=utf8mb4');
@@ -18,9 +18,9 @@ define('SMTP_USERNAME', 'YOUR SMTP USERNAME');
 define('SMTP_PSW', 'YOUR SMTP PASSWORD');
 
 // Flarum
-define('FLARUM_URL', 'https://forum.progaccess.net');
+define('FLARUM_URL', 'YOUR FLARUM URL');
 define('FLARUM_TOKEN', 'YOUR FLARUM TOKEN');
-define('FLARUM_USERID', '1');
+define('FLARUM_USERID', 'YOUR FLARUM ADMIN USERID');
 
 // Twitter
 define('CONSUMER_KEY', 'YOUR TWITTER CONSUMER KEY');
@@ -50,4 +50,10 @@ define('DISCORD_WEBHOOK_URL', 'URL OF DISCORD WEBHOOK TO POST ON YOUR SERVER');
 // Site
 define('SITE_NAME', 'NAME OF YOR WEBSITE');
 define('SITE_URL', 'BASE DOMAIN OF YOUR WEBSITE');
+
+// Specific to admin menu
+define('WEBMAIL_URL', 'URL OF YOUR WEBMAIL');
+define('WEBMAIL_NAME', 'NAME OF YOUR WEBMAIL');
+define('CONTROLPANEL_URL', 'URL OF YOUR SERVER CONTROL PANEL');
+define('CONTROLPANEL_NAME', 'NAME OF YOUR SERVER CONTROL PANEL');
 ?>
