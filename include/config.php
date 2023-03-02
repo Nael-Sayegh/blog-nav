@@ -3,6 +3,9 @@
 // `config.local.php` IS YOUR config file.
 // Copy `config.php` to `config.local.php` then fill it with your informations.
 
+// General
+define('SITE_NAME', 'NAME OF YOUR WEBSITE');
+define('SITE_URL', 'BASE DOMAIN OF YOUR WEBSITE');
 define('DOCUMENT_ROOT', 'DOCUMENT ROOT OF YOUR SITE (FOR EXAMPLE /var/www/html)');
 define('DEV', '(TRUE IF THE SITE IS ON DEV MODE AND FALSE OTHERWISE)');
 
@@ -49,10 +52,6 @@ define('GIT_WEBHOOK_TOKEN', 'GIT WEBHOOK TOKEN TO AUTHENTIFY REPO');
 
 // Discord
 define('DISCORD_WEBHOOK_URL', 'URL OF DISCORD WEBHOOK TO POST ON YOUR SERVER');
-
-// Site
-define('SITE_NAME', 'NAME OF YOUR WEBSITE');
-define('SITE_URL', 'BASE DOMAIN OF YOUR WEBSITE');
 
 // Specific to admin menu
 define('WEBMAIL_URL', 'URL OF YOUR WEBMAIL');
