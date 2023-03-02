@@ -4,7 +4,8 @@ set_include_path($_SERVER['DOCUMENT_ROOT']);
 $stats_page = 'mdpforget';
 require_once('include/log.php');
 require_once('include/consts.php');
-$title='Mot de passe oublié';
+$tr = load_tr($lang,'fg_passwd');
+$title=tr($tr,'title');
 $sound_path='/audio/page_sounds/member.mp3';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -59,12 +60,12 @@ $mail->CharSet = 'UTF-8';
 $mail->IsHTML(TRUE);
 $mail->Body = $msg;
 if($mail->send()) {
-$log='Votre mot de passe a été réinitialisé et vous a été envoyé par email';
+$log=tr($tr,'log_success');
 }
 		}
 		else
 		{
-			$log='Les informations fournies ne permettent pas de vous identifier. Veuillez <a href="/contact.php">nous contacter pour obtenir de l\'aide';
+			$log=tr($tr,'log_error');
 		}
 	}
 }
@@ -78,13 +79,13 @@ require_once('include/load_sound.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <?php if(!empty($log)) print $log; ?>
-<p>Remplissez le formulaire ci-dessous pour réinitialiser votre mot de passe <?php print $site_name; ?></p>
+<p><?php echo tr($tr,'intro_text',array('site'=>$site_name)); ?></p>
 <form action="?act=form" method="post" spellcheck="true">
 <fieldset>
-<legend>Informations personnelles :</legend>
-<label for="f_username">Votre nom d'utilisateur&nbsp;:</label><input type="text" name="username" id="f_username" autocomplete="off" maxlength="100" required><br>
-<label for="f_email">Votre adresse mail&nbsp;:</label><input type="email" name="email" id="f_email" autocomplete="off" maxlength="100" required><br>
-<label for="f_nummember">Votre numéro de membre&nbsp;:</label>
+<legend><?php echo tr($tr,'perso_inf'); ?></legend>
+<label for="f_username"><?php echo tr($tr,'username'); ?></label><input type="text" name="username" id="f_username" autocomplete="off" maxlength="100" required><br>
+<label for="f_email"><?php echo tr($tr,'email'); ?></label><input type="email" name="email" id="f_email" autocomplete="off" maxlength="100" required><br>
+<label for="f_nummember"><?php echo tr($tr,'member_id'); ?></label>
 <select name="nummember" id="f_nummember">
 <?php
 $req = $bdd->query('SELECT * FROM `accounts` ORDER BY id ASC');
@@ -92,19 +93,19 @@ while($data = $req->fetch()) {
 echo '<option value="'.$data['id'].'">M'.$data['id'].'</option>';
 }
 ?>
-<option value="non">Je ne sais pas</option>
+<option value="non"><?php echo tr($tr,'idk'); ?></option>
 </select><br>
-<label for="f_signup">Votre date d'inscription&nbsp;:</label>
+<label for="f_signup"><?php echo tr($tr,'signup_date'); ?></label>
 <select name="signup" id="f_signup">
 <?php
 $req2 = $bdd->query('SELECT * FROM `accounts` ORDER BY id ASC');
 while($data = $req2->fetch()) {
-echo '<option value="'.$data['signup_date'].'">'.date('d/m/Y à H:i',$data['signup_date']).'</option>';
+echo '<option value="'.$data['signup_date'].'">'.strftime(tr($tr0,'fndatetime'),$data['signup_date']).'</option>';
 }
 ?>
-<option value="non">Je ne sais pas</option>
+<option value="non"><?php echo tr($tr,'idk'); ?></option>
 </select><br>
-<input type="submit" value="Envoyer">
+<input type="submit" value="<?php echo tr($tr,'confirm_btn'); ?>">
 </fieldset>
 </form>
 </main>
