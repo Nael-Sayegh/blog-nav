@@ -153,7 +153,7 @@ function auth_forum($id) {
 				setcookie('flarum_remember', $resp->token, [
 					'expires' => time()+31536000,
 					'path' => '/',
-					'domain' => FLARUM_DOMAIN_SHORT,
+					'domain' => FLARUM_SHORT_DOMAIN,
 					'secure' => true,
 					'httponly' => true,
 					'samesite' => 'Lax'
@@ -161,7 +161,7 @@ function auth_forum($id) {
 				setcookie('flarum_token', $resp->token, [
 					'expires' => time()+31536000,
 					'path' => '/',
-					'domain' => FLARUM_DOMAIN_SHORT,
+					'domain' => FLARUM_SHORT_DOMAIN,
 					'secure' => true,
 					'httponly' => true,
 					'samesite' => 'Lax'
