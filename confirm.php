@@ -23,8 +23,8 @@ if(isset($_GET['id']) and isset($_GET['h'])) {
 			$mail->SMTPAuth = true;
 			$mail->Username = SMTP_USERNAME;
 			$mail->Password = SMTP_PSW;
-			$mail->setFrom('no_reply@progaccess.net', 'l\'administration '.$site_name);
-			$mail->addReplyTo('no_reply@progaccess.net', 'l\'administration '.$site_name);
+			$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+			$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
 			$mail->addAddress($data['email']);
 			$mail->Subject = $site_name.' : vos informations de membre';
 			$mail->CharSet = 'UTF-8';
@@ -37,9 +37,9 @@ if(isset($_GET['id']) and isset($_GET['h'])) {
 </head>
 <body>
 <h1>'.$site_name.'</h1>
-<img src="https://www.progaccess.net/image/logo128-170.png" alt="Logo">
+<img src="'.SITE_URL.'/image/logo128-170.png" alt="Logo">
 <h2>Bonjour '.htmlentities($data['username']).' et bienvenue dans la communauté '.$site_name.'</h2>
-<p>Veuillez conserver précieusement ce message, il contient vos informations de membre qui vous seront utiles en cas de perte de mot de passe afin d\'<a href="https://www.progaccess.net/fg_password.php">en demander un nouveau</a>.<br>
+<p>Veuillez conserver précieusement ce message, il contient vos informations de membre qui vous seront utiles en cas de perte de mot de passe afin d\'<a href="'.SITE_URL.'/fg_password.php">en demander un nouveau</a>.<br>
 Si vous changez par la suite votre nom d\'utilisateur ou votre adresse mail, vos nouvelles informations ne vous seront pas réenvoyées (conservez donc vos changements en lieu sûr).<br>
 Vos informations sont les suivantes :</p>
 <ul>

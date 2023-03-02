@@ -38,7 +38,7 @@ $stats_page = 'start';
 <?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
-<p><?php print tr($tr,'text_up'); ?><br><a href="https://www.progaccess.net/browser_homepage.php">https://www.progaccess.net/browser_homepage.php</a>.</p>
+<p><?php print tr($tr,'text_up'); ?><br><a href="<?php echo SITE_URL; ?>/browser_homepage.php"><?php echo SITE_URL; ?>/browser_homepage.php</a>.</p>
 <p><?php print tr($tr,'search_change'); ?></p>
 <ul>
 <li>ddg&nbsp;: Duckduckgo</li>

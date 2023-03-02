@@ -40,7 +40,7 @@ if(isset($_GET['act']) && $_GET['act'] == 'form' && isset($_POST['username']) an
 vous avez demandé la réinitialisation de votre mot de passe sur '.$site_name.', celle-ci a été réalisée avec succès.<br>
 Votre nouveau mot de passe est&nbsp;:<br>
 '.$pwd.'
-<br>par mesure de sécurité, nous vous invitons vivement à modifier ce mot de passe dans <a href="https://www.progaccess.net/home.php">votre profil</a>.<br>
+<br>par mesure de sécurité, nous vous invitons vivement à modifier ce mot de passe dans <a href="'.SITE_URL.'/home.php">votre profil</a>.<br>
 Cordialement.<br>
 '.$site_name.'</p>
 </body>
@@ -52,8 +52,8 @@ $mail->Port = SMTP_PORT;
 $mail->SMTPAuth = true;
 $mail->Username = SMTP_USERNAME;
 $mail->Password = SMTP_PSW;
-$mail->setFrom('no_reply@progaccess.net', $site_name);
-$mail->addReplyTo('no_reply@progaccess.net', $site_name);
+$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
 $mail->AddAddress($data['email']);
 $mail->Subject = 'Réinitialisation de mot de passe '.$site_name;
 $mail->CharSet = 'UTF-8';

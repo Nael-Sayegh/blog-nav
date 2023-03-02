@@ -7,7 +7,7 @@ require_once('include/flarum.php');
 if(isset($_GET['token']) and $_GET['token'] == $login['token']) {
 	if(isset($login['forum_id']) and $login['forum_id']) {
 		if(auth_forum($login['id'])) {
-			header('Location: https://forum.progaccess.net/');
+			header('Location: FLARUM_URL);
 			exit();
 		} else {
 			echo 'Error: Cannot authenticate (please retry a bit later)';

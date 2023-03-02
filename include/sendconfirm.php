@@ -11,7 +11,7 @@ function send_confirm($account, $email, $mhash, $username) {
 	global $lang;
 	$tr1 = load_tr($lang, 'sendconfirm');
 
-	$link = 'https://www.progaccess.net/confirm.php?id='.$account.'&h='.$mhash;
+	$link = SITE_URL.'/confirm.php?id='.$account.'&h='.$mhash;
 	$message = '<!DOCTYPE html>
 	<html>
 		<head>
@@ -20,7 +20,7 @@ function send_confirm($account, $email, $mhash, $username) {
 		</head>
 		<body>
 			<div id="header">
-	<img src="https://www.progaccess.net/image/logo128-170.png" alt="'.tr($tr1,'logo').'">
+	<img src="'.SITE_URL.'/image/logo128-170.png" alt="'.tr($tr1,'logo').'">
 				<h1>'.tr($tr1,'title2').'</h1>
 			</div>
 			<div id="content">
@@ -42,8 +42,8 @@ function send_confirm($account, $email, $mhash, $username) {
 	$mail->SMTPAuth = true;
 	$mail->Username = SMTP_USERNAME;
 	$mail->Password = SMTP_PSW;
-	$mail->setFrom('no_reply@progaccess.net', tr($tr1,'admin'));
-	$mail->addReplyTo('no_reply@progaccess.net', tr($tr1,'team'));
+	$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+	$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
 	$mail->addAddress($email);
 	$mail->Subject = tr($tr1,'subject');
 	$mail->CharSet = 'UTF-8';
