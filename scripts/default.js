@@ -57,13 +57,36 @@ function showjs(id) {
 	document.getElementById(id).style.display = "initial";
 }
 
-var close_confirm = false;
+var close_confirm = {};
+
 function init_close_confirm() {
-	window.onbeforeunload = function(e) {
-		if(close_confirm) {
-			e = e || window.event;
-			if(e) e.returnValue = "Sure?";
-			return "Sure?";
-		}
-	};
+  var forms = document.querySelectorAll('form');
+  for (var i = 0; i < forms.length; i++) {
+    var form = forms[i];
+    close_confirm[i] = false;
+
+    var fields = form.querySelectorAll('input, select, textarea');
+    for (var j = 0; j < fields.length; j++) {
+      var field = fields[j];
+      field.addEventListener('change', function(event) {
+        var formIndex = Array.prototype.indexOf.call(forms, event.target.form);
+        close_confirm[formIndex] = true;
+      });
+    }
+
+    form.addEventListener('submit', function(event) {
+      var formIndex = Array.prototype.indexOf.call(forms, event.target);
+      close_confirm[formIndex] = false;
+    });
+  }
+
+  window.onbeforeunload = function(e) {
+    for (var i = 0; i < forms.length; i++) {
+      if (close_confirm[i]) {
+        e = e || window.event;
+        if (e) e.returnValue = "Sure?";
+        return "Sure?";
+      }
+    }
+  };
 }
