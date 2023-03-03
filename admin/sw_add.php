@@ -66,7 +66,7 @@ if(isset($_GET['form']) and isset($_POST['sname']) and isset($_POST['category'])
 			$req->execute(array($lastid, $f_lang, time(), $name, $text, $keywords, $description, $website, $nom, $published));
 		
 			if($social) {
-				$somsg = 'Nouvel article : '.$name.' (A'.$lastid.').'."\n".'https://www.progaccess.net/article.php?id='.$lastid."\n".$nom;
+				$somsg = 'Nouvel article : '.$name.' (A'.$lastid.').'."\n".SITE_URL.'/article.php?id='.$lastid."\n".$nom;
 				require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 				send_facebook($somsg);
 				require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');

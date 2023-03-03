@@ -121,11 +121,11 @@ if(isset($_GET['act']) and ($_GET['act'] == 'contact' or $_GET['act'] == 'reply'
 		$body.='<p>'.nl2br($_POST['msg']).'</p>';
 		if($reply2)
 		{
-			$body.='<p><a href="https://www.progaccess.net/admin/tickets.php?ticket='.$rdata2['id'].'">Consulter le ticket pour continuer la discussion</a></p>';
+			$body.='<p><a href="'.SITE_URL.'/admin/tickets.php?ticket='.$rdata2['id'].'">Consulter le ticket pour continuer la discussion</a></p>';
 		}
 		else
 		{
-			$body.='<p><a href="https://www.progaccess.net/admin/tickets.php?ticket='.$tickid.'">Consulter le ticket pour y répondre</a></p>';
+			$body.='<p><a href="'.SITE_URL.'/admin/tickets.php?ticket='.$tickid.'">Consulter le ticket pour y répondre</a></p>';
 		}
 	$body.='</body>
 </html>';
@@ -136,8 +136,8 @@ if(isset($_GET['act']) and ($_GET['act'] == 'contact' or $_GET['act'] == 'reply'
 		$mail->SMTPAuth = true;
 		$mail->Username = SMTP_USERNAME;
 		$mail->Password = SMTP_PSW;
-		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$site_name);
-		$mail->addReplyTo('no_reply@progaccess.net', 'Formulaire '.$site_name);
+		$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+		$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
 		$req = $bdd->prepare('SELECT * FROM `team` WHERE `works`="1" OR `works`="2"');
 		$req->execute();
 while($data = $req->fetch()) {
@@ -157,7 +157,7 @@ else
 		$mail->CharSet = 'UTF-8';
 		$mail->isHTML(TRUE);
 		$mail->Body = $body;
-		$mail->AltBody = "Formulaire de contact $site_name \r\nUn message a été envoyé via le formulaire de contact de $site_name .\r\nConsulter les tickets à l'adresse suivante:\r\nhttps://www.progaccess.net/admin/tickets.php";
+		$mail->AltBody = "Formulaire de contact $site_name \r\nUn message a été envoyé via le formulaire de contact de $site_name .\r\nConsulter les tickets à l'adresse suivante:\r\n".SITE_URL."/admin/tickets.php";
 		$mail->send();
 		if(isset($_POST['copy']))
 		{
@@ -188,8 +188,8 @@ if($reply2)
 		$mail->SMTPAuth = true;
 		$mail->Username = SMTP_USERNAME;
 		$mail->Password = SMTP_PSW;
-		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$site_name);
-		$mail->addReplyTo('no_reply@progaccess.net', 'Formulaire '.$site_name);
+		$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+		$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
 if($reply2)
 {
 		$mail->addAddress($rdata2['expeditor_email']);

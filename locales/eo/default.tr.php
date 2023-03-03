@@ -3,7 +3,6 @@
   '_todo_level' => 4,
   '_last_author' => 'Pascal',
   '_last_modif' => 1562492882,
-  'sitename' => 'ProgAccess',
   'slogan' => 'Alirebleco ĉie, de ĉiuj, por ĉiuj',
   'banner_homelink' => 'Ĉefpaĝo',
   'fndate' => '%Y-%m-%d',

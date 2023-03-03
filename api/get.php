@@ -6,10 +6,10 @@ $rdata = array('api_version'=>$api_version);
 if(isset($_GET['g'])) {
 	$domain = '';
 	if(!isset($stats_page)) $stats_page = '';
-	if(strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'dev.progaccess.net')) $domain = 'pa33_dev';
-	else if(strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'progaccess.net')) $domain = 'pa33';
-	else if(strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'dev.paccessl2fmohkmdgh77xmfkgqfor2gtx52sr4plroewwix2y7dph5id.onion')) $domain = 'pa33_onion_dev';
-	else if(strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], 'paccessl2fmohkmdgh77xmfkgqfor2gtx52sr4plroewwix2y7dph5id.onion')) $domain = 'pa33_onion';
+	if(isDev()) $domain = 'dev';
+	else if(!isDev()) $domain = 'prod';
+	else if(isDev() && strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], ONION_DOMAIN)) $domain = 'onion_dev';
+	else if(!isDev() && strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], ONION_DOMAIN)) $domain = 'onion';
 	
 	$date = date('Y-m-d');
 	$xvisits = 0;

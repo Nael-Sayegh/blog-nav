@@ -14,6 +14,7 @@ use PHPMailer\PHPMailer\SMTP;
 require_once($document_root.'/include/lib/phpmailer/src/PHPMailer.php');
 require_once($document_root.'/include/lib/phpmailer/src/Exception.php');
 require_once($document_root.'/include/lib/phpmailer/src/SMTP.php');
+require_once($document_root.'/include/config.local.php');
 require_once('consts.php');
 require_once('smtp.php');
 
@@ -54,7 +55,7 @@ while($data = $req->fetch()) {
 		$mail->Subject = $site_name.' : votre abonnement à l\'actu '.$site_name.' expire bientôt';
 		$mail->CharSet = 'UTF-8';
 		$mail->IsHTML(false);
-		$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à l'actu ".$site_name." expire le ".date('d/m/Y à H:i', $data['expire']).".\nCliquez sur le lien suivant pour le renouveler :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\n".$site_name;
+		$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à l'actu ".$site_name." expire le ".date('d/m/Y à H:i', $data['expire']).".\nCliquez sur le lien suivant pour le renouveler :\n".SITE_URL."/nlmod.php?id=".$data['hash']."\n\nCordialement,\n".$site_name;
 		$mail->send();
 	}
 	echo $data['mail'];
@@ -100,7 +101,7 @@ $message1 = '<!DOCTYPE html>
 		<meta charset="utf-8">
 		<title>'.$subject.'</title>
 		<style type="text/css">
-@font-face {font-family: Cantarell;src: url(https://progaccess.net/css/Cantarell-Regular.otf);}
+@font-face {font-family: Cantarell;src: url('.SITE_URL.'/css/Cantarell-Regular.otf);}
 html, body {margin: 0;padding: 0;font-family: Cantarell;}
 .software {border-left: 2px dashed black;padding-left: 10px;}
 .software_title {margin-bottom: -8px;}
@@ -116,7 +117,7 @@ html, body {margin: 0;padding: 0;font-family: Cantarell;}
 		<div id="content">
 		<h2>Bonjour {{mail_user}},</h2>';
 $message2 = '<hr><p role="contentinfo" aria-label="Informations sur l\'abonnement">Votre abonnement expire le ';
-$message3 = ', <a id="link" href="https://www.progaccess.net/nlmod.php?id=';
+$message3 = ', <a id="link" href="'.SITE_URL.'/nlmod.php?id=';
 $message4 = '">cliquez ici pour le renouveler avant cette date</a>.</p>
 			<p>Veuillez ne pas répondre, ce mail a été envoyé automatiquement, vous pouvez <a href="https://www.nvda-fr.org/inf.php">nous contacter ici</a></p>
 			<p>Cordialement.<br>'.$site_name.'</p>
@@ -125,7 +126,7 @@ $message4 = '">cliquez ici pour le renouveler avant cette date</a>.</p>
 </html>';
 $msgtxt1 = 'L\'actu '.$site_name.' du '.$datejour." (version texte)\nBonjour {{mail_user}},\n\n";
 $msgtxt2 = 'Allez à l\'adresse ci-dessous pour gérer votre abonnement (à toute fin utile votre numéro d\'abonné est N{{idabonne}}). Vous serez automatiquement désinscrit de l\'actu le ';
-$msgtxt3 = ".\nhttps://www.progaccess.net/nlmod.php?id=";
+$msgtxt3 = ".\n".SITE_URL."/nlmod.php?id=";
 $msgtxt4 = "\n\nVeuillez ne pas répondre, ce mail a été envoyé automatiquement, cependant, vous pouvez nous contacter via notre formulaire de contact.\n\nCordialement.\n".$site_name;
 
 # Envoi des mails

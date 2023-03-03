@@ -6,7 +6,7 @@ $req = $bdd->prepare('SELECT * FROM `softwares_files` WHERE `date`>=? ORDER BY `
 $req->execute(array(time()-86400));# modifiés aujourd'hui
 $files = '';
 while($data = $req->fetch()) {
-	$files .= "\n".$data['title'].' https://www.progaccess.net/r?';
+	$files .= "\n".$data['title'].' '.SITE_URL.'/r?';
 	if(!empty($data['label']))
 		$files .= 'p='.$data['label'];
 	else
@@ -15,7 +15,7 @@ while($data = $req->fetch()) {
 $req = $bdd->prepare('SELECT * FROM `softwares_mirrors` WHERE `date`>=? ORDER BY `date` DESC');
 $req->execute(array(time()-86400));# modifiés aujourd'hui
 while($data = $req->fetch()) {
-	$files .= "\n".$data['title'].' https://www.progaccess.net/r?m&';
+	$files .= "\n".$data['title'].' '.SITE_URL.'/r?m&';
 	if(!empty($data['label']))
 		$files .= 'p='.$data['label'];
 	else

@@ -31,8 +31,8 @@ if($nldata = $req->fetch()) {
 		$mail->SMTPAuth = true;
 		$mail->Username = SMTP_USERNAME;
 		$mail->Password = SMTP_PSW;
-		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$site_name);
-		$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$site_name);
+		$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+		$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
 		$mail->addAddress($nldata['mail']);
 		$mail->Subject = 'Désinscription de l\'actu '.$site_name;
 		$mail->CharSet = 'UTF-8';
@@ -45,13 +45,13 @@ if($nldata = $req->fetch()) {
 	</head>
 	<body>
 		<div id="header">
-<img src="https://www.progaccess.net/image/logo128.png" alt="Logo">
+<img src="'.SITE_URL.'/image/logo128.png" alt="Logo">
 			<h1>L\'actu '.$site_name.'</h1>
 		</div>
 		<div id="content">
 			<h2>Bonjour '.$nldata['mail'].',</h2>
 			<p>Vous avez bien été désabonné de l\'actu '.$site_name.'.</p>
-<p>Ceci sera notre dernier mail, nous sommes tristes de vous voir partir et nous espérons vous revoir bientôt sur <a href="https://www.progaccess.net">'.$site_name.'</a>.</p>
+<p>Ceci sera notre dernier mail, nous sommes tristes de vous voir partir et nous espérons vous revoir bientôt sur <a href="'.SITE_URL.'">'.$site_name.'</a>.</p>
 			<p>Ce mail a été envoyé automatiquement, merci de ne pas répondre.</p>
 			<p>Cordialement,<br>l\'administration '.$site_name.'</p>
 		</div>
@@ -60,7 +60,7 @@ if($nldata = $req->fetch()) {
 		$mail->AltBody = 'L\'actu '.$site_name.'
 Bonjour '.$nldata['mail'].',
 Vous avez bien été désabonné de l\'actu '.$site_name.'.
-Ceci sera notre dernier mail, nous sommes tristes de vous voir partir et nous espérons vous revoir bientôt sur https://www.progaccess.net/
+Ceci sera notre dernier mail, nous sommes tristes de vous voir partir et nous espérons vous revoir bientôt sur '.SITE_URL.'
 Ce mail a été envoyé automatiquement, merci de ne pas répondre.
 Cordialement,
 l\'administration '.$site_name;

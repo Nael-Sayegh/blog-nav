@@ -103,7 +103,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$reqf=$bdd->prepare('SELECT * FROM `softwares_files` ORDER BY `date` DESC LIMIT 1');
 				$reqf->execute();
 				if($data=$reqf->fetch()) {
-				$somsg = $_POST['title'].' : https://www.progaccess.net/r?'.(!empty($_POST['label']) ? ('p='.$_POST['label']):('id='.$data['id'])).' https://www.progaccess.net/a?id='.$data['sw_id'].' '.$nom;
+				$somsg = $_POST['title'].' : '.SITE_URL.'/r?'.(!empty($_POST['label']) ? ('p='.$_POST['label']):('id='.$data['id'])).' '.SITE_URL.'/a?id='.$data['sw_id'].' '.$nom;
 				include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 				send_facebook($somsg);
 				include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
@@ -134,7 +134,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$req2->execute(array(finfo_file($finfo,$file), time(), filesize($file), md5_file($file), sha1_file($file), $data['id']));
 				finfo_close($finfo);
 				if(isset($_GET['social']) and $_GET['social'] == 'on') {
-					$somsg = $data['title'].' : https://www.progaccess.net/r?'.(!empty($data['label']) ? ('p='.$data['label']):('id='.$data['id'])).' https://www.progaccess.net/a?id='.$data['sw_id'].' '.$nom;
+					$somsg = $data['title'].' : '.SITE_URL.'/r?'.(!empty($data['label']) ? ('p='.$data['label']):('id='.$data['id'])).' '.SITE_URL.'/a?id='.$data['sw_id'].' '.$nom;
 					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 					send_facebook($somsg);
 					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
@@ -244,8 +244,8 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 					if(isset($_POST['social']) and $_POST['social'] == 'on') {
 						$somsg = $_POST['title'].' :';
 						if(!empty($label))
-							$somsg .= ' https://www.progaccess.net/r?p='.$label;
-						$somsg .= ' https://www.progaccess.net/a?id='.$_GET['upload'].' '.$nom;
+							$somsg .= ' '.SITE_URL.'/r?p='.$label;
+						$somsg .= ' '.SITE_URL.'/a?id='.$_GET['upload'].' '.$nom;
 						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 						send_facebook($somsg);
 						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');

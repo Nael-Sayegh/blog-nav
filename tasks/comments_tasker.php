@@ -32,9 +32,9 @@ if($n > 0) {
 	$mail->SMTPAuth = true;
 	$mail->Username = SMTP_USERNAME;
 	$mail->Password = SMTP_PSW;
-	$mail->setFrom('no_reply@progaccess.net', 'Robot ProgAccess');
-	$mail->addReplyTo('no_reply@progaccess.net', 'Robot ProgAccess');
-	$mail->addAddress('miklhcos@progaccess.net');
+	$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+	$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
+	$mail->addAddress('corentin@progaccess.net');
 	$mail->Subject = $n.' nouveaux commentaires sur ProgAccess';
 	$mail->CharSet = 'UTF-8';
 	$mail->IsHTML(false);

@@ -98,7 +98,7 @@ require_once('include/load_sound.php'); ?>
 				<td><input type="password" id="f_rpsw" name="rpsw" maxlength="64" required></td></tr>
 			<tr><td class="formlabel"><label for="f_nl">S'inscrire à la lettre d'information&nbsp;:</label></td>
 				<td><input type="checkbox" id="f_nl" name="nl"> <span>(mail hebdomadaire pour rester informer des mises à jours)</span></td></tr>
-			<tr><td class="formlabel"><label for="f_forum">S'inscrire au <a href="https://forum.progaccess.net">forum ProgAccess</a>&nbsp;:</label></td>
+			<tr><td class="formlabel"><label for="f_forum">S'inscrire au <a href="<?php echo FLARUM_URL; ?>">forum <?php echo $site_name; ?></a>&nbsp;:</label></td>
 				<td><input type="checkbox" id="f_forum" name="forum" checked></td></tr>
 			<tr><td class="formlabel"><label for="f_box1">Cochez cette case&nbsp;:</label></td>
 				<td><input type="checkbox" id="f_box1" name="box1"></td></tr>

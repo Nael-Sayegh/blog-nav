@@ -48,7 +48,7 @@ if(isset($_GET['send']) and isset($_POST['msg'])) {
 		<div id="response">'.$msg.'</div>
 		<hr>
 		<p>Merci de ne pas répondre à cet e-mail. Pour nous envoyer votre réponse, veuillez utiliser le lien ci-dessous.<br>
-			<a href="https://www.progaccess.net/contact_form.php?reply='.$data['id'].'&h='.$data['hash'].'">https://www.progaccess.net/contact_form.php?reply='.$data['id'].'&h='.$data['hash'].'</a></p>
+			<a href="'.SITE_URL.'contact_form.php?reply='.$data['id'].'&h='.$data['hash'].'">'.SITE_URL.'contact_form.php?reply='.$data['id'].'&h='.$data['hash'].'</a></p>
 	</body>
 </html>';
 		$mail = new PHPMailer;
@@ -58,14 +58,14 @@ if(isset($_GET['send']) and isset($_POST['msg'])) {
 		$mail->SMTPAuth = true;
 		$mail->Username = SMTP_USERNAME;
 		$mail->Password = SMTP_PSW;
-		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$site_name);
-		$mail->addReplyTo('no_reply@progaccess.net', 'no_reply');
+		$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+		$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
 		$mail->addAddress($data['expeditor_email']);
 		$mail->Subject = 'Re: "'.htmlspecialchars($data['subject']).'" '.$site_name;
 		$mail->CharSet = 'UTF-8';
 		$mail->isHTML(TRUE);
 		$mail->Body = $body;
-		$mail->AltBody = $site_name."\r\nVous avez reçu une réponse pour votre message: \"".$data['subject']."\".\r\n\r\n$msg2\r\n________________\r\nMerci de ne pas répondre à cet e-mail. Pour envoyer votre réponse, veuillez utiliser le lien ci-dessous.\r\nhttps://www.progaccess.net/contact_form.php?reply=".$data['id'].'&h='.$data['hash'];
+		$mail->AltBody = $site_name."\r\nVous avez reçu une réponse pour votre message: \"".$data['subject']."\".\r\n\r\n$msg2\r\n________________\r\nMerci de ne pas répondre à cet e-mail. Pour envoyer votre réponse, veuillez utiliser le lien ci-dessous.\r\n".SITE_URL."contact_form.php?reply=".$data['id'].'&h='.$data['hash'];
 		$mail->send();
 	}
 }

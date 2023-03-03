@@ -30,9 +30,10 @@ function args_html_form($args) {
 }
 
 function bparse($text, $vars) {
-	global $site_name, $slogan;
+	global $site_name, $slogan, $site_url;
 	$vars['site'] = $site_name;
 	$vars['slogan'] = $slogan;
+	$vars['url'] = $site_url;
 	foreach($vars as $var1 => $var2) {
 		$text = str_replace('{{'.$var1.'}}', $var2, $text);
 	}
@@ -90,7 +91,7 @@ function getLastGitCommit()
 	$hash = shell_exec('git --git-dir="'.GIT_DIR.'" rev-parse --verify HEAD');
 	$commitDate = strftime(tr($tr0,'fndatetime'), shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%ct '.$hash));
 	$commitURL = '<a href="'.GIT_COMMIT_BASE_URL.$hash.'">Commit '.shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%h').'</a>';
-echo tr($tr0,'footer_lastcommit',array('date'=>$commitDate,'url'=>$commitURL,'site'=>$site_name));
+echo tr($tr0,'footer_lastcommit',array('date'=>$commitDate,'commit_url'=>$commitURL,'site'=>$site_name));
 }
 
 function isDev()
@@ -136,7 +137,8 @@ setTimeZone();
 
 // MISC CONSTS/VARS
 $tr0 = load_tr($lang, 'default');
-$site_name = (isDev()?tr($tr0,'sitename').'-Dev':tr($tr0,'sitename'));
+$site_name = (isDev()?SITE_NAME.'-Dev':SITE_NAME);
+$site_url = SITE_URL;
 $css_path = '<link rel="stylesheet" href="/css/default.css">';
 $admin_css_path = '<link rel="stylesheet" href="/admin/css/admin.css">';
 $slogan = tr($tr0,'slogan');

@@ -38,13 +38,13 @@ while($data = $req->fetch()) {
 	$mail->SMTPAuth = true;
 	$mail->Username = SMTP_USERNAME;
 	$mail->Password = SMTP_PSW;
-	$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$site_name);
-	$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$site_name);
+	$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+	$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
 	$mail->addAddress($data['mail']);
 	$mail->Subject = $site_name.' : votre abonnement à la lettre d\'informations expire bientôt';
 	$mail->CharSet = 'UTF-8';
 	$mail->IsHTML(false);
-	$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à la lettre d'informations de ProgAccess expire le ".date('d/m/Y à H:i').".\nCliquez sur le lien suivant pour renouveler votre abonnement :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\nAdministration ".$site_name;
+	$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à la lettre d'informations de ProgAccess expire le ".date('d/m/Y à H:i').".\nCliquez sur le lien suivant pour renouveler votre abonnement :\n".SITE_URL."/nlmod.php?id=".$data['hash']."\n\nCordialement,\nAdministration ".$site_name;
 	$mail->send();
 	echo $data['mail'];
 }
@@ -99,7 +99,7 @@ $message1 = '<!DOCTYPE html>
 		<meta charset="utf-8">
 		<title>Lettre d\'informations '.$site_name.'</title>
 		<style type="text/css">
-@font-face {font-family: Cantarell;src: url(https://progaccess.net/css/Cantarell-Regular.otf);}
+@font-face {font-family: Cantarell;src: url('.SITE_URL.'/css/Cantarell-Regular.otf);}
 html, body {margin: 0;padding: 0;font-family: Cantarell;}
 .software {border-left: 2px dashed black;padding-left: 10px;}
 .software_title {margin-bottom: -8px;}
@@ -110,12 +110,12 @@ html, body {margin: 0;padding: 0;font-family: Cantarell;}
 	<body>
 		<div id="header">
 					<h1>Lettre d\'informations '.$site_name.'</h1>
-			<img id="logo" alt="Logo" src="https://www.progaccess.net/image/logo128.png">
+			<img id="logo" alt="Logo" src="'.SITE_URL.'/image/logo128.png">
 		</div>
 		<div id="content">
 		<h2>Bonjour {{mail}},</h2>
 			<h2>Depuis le dernier mail&nbsp;...</h2>';
-$message2 = '<a id="link" href="https://www.progaccess.net/nlmod.php?id=';
+$message2 = '<a id="link" href="'.SITE_URL.'/nlmod.php?id=';
 $message3 = '">Cliquez ici pour modifier votre abonnement, le renouveler ou vous désinscrire.</a>
 			<p>Votre abonnement expire le ';
 $message4 = '.</p>
@@ -124,9 +124,9 @@ $message4 = '.</p>
 		</div>
 	</body>
 </html>';
-$msgtxt1 = 'Lettre d\'informations '.$site_name." (version texte)\nBonjour {{mail}},\nRetrouvez l'historique des mises à jour sur https://www.progaccess.net/history.php\n\nDepuis le dernier mail ...\n\n";
+$msgtxt1 = 'Lettre d\'informations '.$site_name." (version texte)\nBonjour {{mail}},\nRetrouvez l'historique des mises à jour sur ".SITE_URL."/history.php\n\nDepuis le dernier mail ...\n\n";
 $msgtxt2 = 'Allez à l\'adresse ci-dessous pour modifier votre abonnement, le renouveler ou vous désinscrire. Vous serez automatiquement désinscrit le ';
-$msgtxt3 = ".\nhttps://www.progaccess.net/nlmod.php?id=";
+$msgtxt3 = ".\n".SITE_URL."/nlmod.php?id=";
 $msgtxt4 = "\n\nMerci de ne pas répondre, ceci est un mail automatique.\n\nCordialement.\nL'Administration ".$site_name;
 
 $subject = $site_name.' : lettre d\'informations du '.$datejour;
@@ -153,12 +153,12 @@ while($data = $req->fetch()) {
 	$msgtxt = $msgtxt1;
 	foreach($sft as $software) {
 		if($software['date'] > $data['lastmail']) {
-			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/article.php?id='.$software['id'].'">'.$software['name'].'</a> (<a href="https://www.progaccess.net/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $site_name, $software['description']).'<br><span class="software_hits">'.$software['hits'].' visites</span><span class="software_date"> (mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).')</span></p><ul>';
+			$message .= '<div class="software"><h3 class="software_title"><a href="'.SITE_URL.'/article.php?id='.$software['id'].'">'.$software['name'].'</a> (<a href="'.SITE_URL.'/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $site_name, $software['description']).'<br><span class="software_hits">'.$software['hits'].' visites</span><span class="software_date"> (mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).')</span></p><ul>';
 			$msgtxt .= ' * '.$software['name'].' ('.$cat[$software['category']].') :\n'.$software['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['category'].' le '.date('d/m/Y à H:i', $software['date']).")\n";
 			foreach($files as $file) {
 				if($file['sw_id'] == $software['id'] and $file['date'] > $data['lastmail']) {
-					$message .= '<li><a href="https://www.progaccess.net/r?id='.$file['id'].'">'.$file['title'].' ('.$file['hits'].' téléchargements)</a></li>';
-					$msgtxt .= ' - '.$file['title'].', https://www.progaccess.net/r?id='.$file['id'].' ('.$file['hits']." téléchargements)\n";
+					$message .= '<li><a href="'.SITE_URL.'/r?id='.$file['id'].'">'.$file['title'].' ('.$file['hits'].' téléchargements)</a></li>';
+					$msgtxt .= ' - '.$file['title'].', '.SITE_URL.'/r?id='.$file['id'].' ('.$file['hits']." téléchargements)\n";
 				}
 			}
 			$message .= '</ul></div>';
@@ -188,8 +188,8 @@ while($data = $req->fetch()) {
 		$mail->SMTPAuth = true;
 		$mail->Username = SMTP_USERNAME;
 		$mail->Password = SMTP_PSW;
-		$mail->setFrom('no_reply@progaccess.net', 'L\'administration '.$site_name);
-		$mail->addReplyTo('no_reply@progaccess.net', 'L\'administration '.$site_name);
+		$mail->setFrom(SMTP_MAIL', SMTP_NAME);
+		$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
 		$mail->addAddress($data['mail']);
 		$mail->Subject = $subject;
 		$mail->CharSet = 'UTF-8';

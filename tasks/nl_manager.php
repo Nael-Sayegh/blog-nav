@@ -48,13 +48,13 @@ while($data = $req->fetch()) {
 		$mail->SMTPAuth = true;
 		$mail->Username = SMTP_USERNAME;
 		$mail->Password = SMTP_PSW;
-		$mail->setFrom('no_reply@progaccess.net', $site_name);
-		$mail->addReplyTo('no_reply@progaccess.net', $site_name);
+		$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+		$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
 		$mail->addAddress($data['mail']);
 		$mail->Subject = $site_name.' : votre abonnement à l\'actu '.$site_name.' expire bientôt';
 		$mail->CharSet = 'UTF-8';
 		$mail->IsHTML(false);
-		$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à l'actu ProgAccess expire le ".date('d/m/Y à H:i', $data['expire']).".\nCliquez sur le lien suivant pour le renouveler :\nhttps://www.progaccess.net/nlmod.php?id=".$data['hash']."\n\nCordialement,\n".$site_name;
+		$mail->Body = 'Bonjour '.$data['mail'].",\n\nVotre abonnement à l'actu ProgAccess expire le ".date('d/m/Y à H:i', $data['expire']).".\nCliquez sur le lien suivant pour le renouveler :\n".SITE_URL."/nlmod.php?id=".$data['hash']."\n\nCordialement,\n".$site_name;
 		$mail->send();
 	}
 	echo $data['mail'];
@@ -132,7 +132,7 @@ $message1 = '<!DOCTYPE html>
 		<meta charset="utf-8">
 		<title>'.$subject.'</title>
 		<style type="text/css">
-@font-face {font-family: Cantarell;src: url(https://progaccess.net/css/Cantarell-Regular.otf);}
+@font-face {font-family: Cantarell;src: url('.SITE_URL.'/css/Cantarell-Regular.otf);}
 html, body {margin: 0;padding: 0;font-family: Cantarell;}
 .software {border-left: 2px dashed black;padding-left: 10px;}
 .software_title {margin-bottom: -8px;}
@@ -143,21 +143,21 @@ html, body {margin: 0;padding: 0;font-family: Cantarell;}
 	<body>
 		<div id="header">
 					<h1>'.$subject.'</h1>
-			<img id="logo" alt="Logo de '.$site_name.'" src="https://www.progaccess.net/image/logo128-170.png">
+			<img id="logo" alt="Logo de '.$site_name.'" src="'.SITE_URL.'/image/logo128-170.png">
 		</div>
 		<div id="content">
 		<h2>Bonjour {{mail_user}},</h2>';
 $message2 = '<hr><p role="contentinfo" aria-label="Informations sur l\'abonnement">Votre abonnement expire le ';
-$message3 = ', <a id="link" href="https://www.progaccess.net/nlmod.php?id=';
+$message3 = ', <a id="link" href="'.SITE_URL.'/nlmod.php?id=';
 $message4 = '">cliquez ici pour le renouveler avant cette date</a>.</p>
-			<p>Veuillez ne pas répondre, ce mail a été envoyé automatiquement, vous pouvez <a href="https://www.progaccess.net/contact.php">nous contacter ici</a></p>
+			<p>Veuillez ne pas répondre, ce mail a été envoyé automatiquement, vous pouvez <a href="'.SITE_URL.'/contact.php">nous contacter ici</a></p>
 			<p>Cordialement.<br>'.$site_name.'</p>
 		</div>
 	</body>
 </html>';
-$msgtxt1 = 'L\'actu '.$site_name.' du '.$datejour." (version texte)\nBonjour {{mail_user}},\nRetrouvez l'historique des mises à jour sur https://www.progaccess.net/history.php\n\n";
+$msgtxt1 = 'L\'actu '.$site_name.' du '.$datejour." (version texte)\nBonjour {{mail_user}},\nRetrouvez l'historique des mises à jour sur ".SITE_URL."/history.php\n\n";
 $msgtxt2 = 'Allez à l\'adresse ci-dessous pour gérer votre abonnement (à toute fin utile votre numéro d\'abonné est N{{idabonne}}). Vous serez automatiquement désinscrit de l\'actu le ';
-$msgtxt3 = ".\nhttps://www.progaccess.net/nlmod.php?id=";
+$msgtxt3 = ".\n".SITE_URL."/nlmod.php?id=";
 $msgtxt4 = "\n\nVeuillez ne pas répondre, ce mail a été envoyé automatiquement, cependant, vous pouvez nous contacter via notre formulaire de contact.\n\nCordialement.\n".$site_name;
 
 # Envoi des mails
@@ -199,13 +199,13 @@ while($data = $req->fetch()) {
 				continue;
 			
 			$nbs ++;
-			$message .= '<div class="software"><h3 class="software_title"><a href="https://www.progaccess.net/a?id='.$sw_id.'">'.$software['trs'][$entry_tr]['name'].'</a> (<a href="https://www.progaccess.net/c?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $site_name, $software['trs'][$entry_tr]['description']).'<br><span class="software_date">Mis à jour à '.date('H:i', $software['date']).' le '.date('d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
+			$message .= '<div class="software"><h3 class="software_title"><a href="'.SITE_URL.'/a?id='.$sw_id.'">'.$software['trs'][$entry_tr]['name'].'</a> (<a href="'.SITE_URL.'/c?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $site_name, $software['trs'][$entry_tr]['description']).'<br><span class="software_date">Mis à jour à '.date('H:i', $software['date']).' le '.date('d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
 			$msgtxt .= ' * '.$software['trs'][$entry_tr]['name'].' ('.$cat[$software['category']].") :\n".$software['trs'][$entry_tr]['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).")\n";
 			foreach($files as $file) {
 				if($file['sw_id'] == $sw_id and $file['date'] > $data['lastmail']) {
 					$nbf ++;
-					$message .= '<li><a href="https://www.progaccess.net/r?id='.$file['id'].'">'.$file['title'].' (téléchargé '.$file['hits'].' fois)</a></li>';
-					$msgtxt .= ' - '.$file['title'].', https://www.progaccess.net/r?id='.$file['id'].' ('.$file['hits']." téléchargements)\n";
+					$message .= '<li><a href="'.SITE_URL.'/r?id='.$file['id'].'">'.$file['title'].' (téléchargé '.$file['hits'].' fois)</a></li>';
+					$msgtxt .= ' - '.$file['title'].', '.SITE_URL.'/r?id='.$file['id'].' ('.$file['hits']." téléchargements)\n";
 				}
 			}
 			unset($file);
@@ -244,8 +244,8 @@ while($data = $req->fetch()) {
 			$mail->SMTPAuth = true;
 			$mail->Username = SMTP_USERNAME;
 			$mail->Password = SMTP_PSW;
-			$mail->setFrom('no_reply@progaccess.net', $site_name);
-			$mail->addReplyTo('no_reply@progaccess.net', $site_name);
+			$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+			$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
 			$mail->addAddress($data['mail']);
 			$mail->Subject = $subject;
 			$mail->CharSet = 'UTF-8';
