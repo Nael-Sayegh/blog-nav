@@ -42,7 +42,7 @@ if($data = $req->fetch()) {
 		$maj_id = $data['id'];
 	$maj_name = substr($data['name'],1);
 	$maj_date = date('Y-m-d', $data['date']);
-	$maj_link = 'https://www.progaccess.net/update.php?id='.$data['id'];
+	$maj_link = SITE_URL.'/update.php?id='.$data['id'];
 	$maj_time = $data['date'];
 }
 
@@ -57,7 +57,7 @@ while($curtime >= $ltime) {
 # Open files
 $file_html = fopen($cachedir.'journal.html', 'w');
 $file_rss = fopen($document_root.'/rss_feed.xml', 'w');
-fwrite($file_rss, '<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>'.$site_name.'.net</title><link>https://www.progaccess.net</link><atom:link href="https://www.progaccess.net/rss_feed.xml" rel="self" type="application/rss+xml" /><description>Journal des modifications sur '.$site_name.'.</description><copyright>2016-'.date('Y').' L\'administration '.$site_name.'</copyright><language>fr</language>');
+fwrite($file_rss, '<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>'.$site_name.'.net</title><link>'.SITE_URL.'</link><atom:link href="'.SITE_URL.'/rss_feed.xml" rel="self" type="application/rss+xml" /><description>Journal des modifications sur '.$site_name.'.</description><copyright>2016-'.date('Y').' L\'administration '.$site_name.'</copyright><language>fr</language>');
 
 foreach($days as &$day) {
 	$html = '';
@@ -89,11 +89,11 @@ foreach($days as &$day) {
 			foreach($cursft as &$curfile) {
 				if($curfile['label'] != '') {
 					$html .= '<li><a class="jrnl_r" href="/r.php?p='.$curfile['label'].'">'.$curfile['title'].'</a></li>';
-					$rss .= '<item><title>'.$curfile['title'].'</title><link>https://www.progaccess.net/r?p='.$curfile['label'].'</link><dc:creator>'.$c['author'].'</dc:creator><description>'.$c['description'].'</description><pubDate>'.date('r', $curfile['date']).'</pubDate></item>';
+					$rss .= '<item><title>'.$curfile['title'].'</title><link>'.SITE_URL.'/r?p='.$curfile['label'].'</link><dc:creator>'.$c['author'].'</dc:creator><description>'.$c['description'].'</description><pubDate>'.date('r', $curfile['date']).'</pubDate></item>';
 				}
 				else {
 					$html .= '<li><a class="jrnl_r" href="/r?id='.$curfile['id'].'">'.$curfile['title'].'</a></li>';
-					$rss .= '<item><title>'.$curfile['title'].'</title><link>https://www.progaccess.net/r?id='.$curfile['id'].'</link><description>'.$c['description'].'</description><pubDate>'.date('r', $curfile['date']).'</pubDate></item>';
+					$rss .= '<item><title>'.$curfile['title'].'</title><link>'.SITE_URL.'/r?id='.$curfile['id'].'</link><description>'.$c['description'].'</description><pubDate>'.date('r', $curfile['date']).'</pubDate></item>';
 				}
 			}
 			unset($curfile);
