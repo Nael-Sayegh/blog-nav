@@ -20,8 +20,8 @@
 		<tr><td rowspan="2" role="heading" aria-level="3">Communauté</td></tr><td><a href="team_gestion.php">Équipe</a></td></tr>
 <tr><td><a href="members_gestion.php">Membres</a></td></tr>
 		<tr><td rowspan="4" role="heading" aria-level="3">Autre</td><td><a href="adminer/adminer.php">Gestion BDD</a></td></tr>
-		<tr><td><a href="<?php echo CONTROLPANEL_URL; ?>"><?php echo CONTROLPANEL_NAME; ?></a></td></tr>
-		<tr><td><a href="<?php echo WEBMAIL_URL; ?>"><?php echo WEBMAIL_NAME; ?></a></td></tr>
+		<tr><td><a href="'.CONTROLPANEL_URL.'">'.CONTROLPANEL_NAME.'</a></td></tr>
+		<tr><td><a href="'.WEBMAIL_URL.'">'.WEBMAIL_NAME.'</a></td></tr>
 		<tr><td><a href="techniques.php">phpinfo()</a></td></tr>
 		</tbody>
 		</table>';
