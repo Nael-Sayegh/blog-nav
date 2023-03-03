@@ -30,7 +30,7 @@ function args_html_form($args) {
 }
 
 function bparse($text, $vars) {
-	global $site_name, $slogan;
+	global $site_name, $slogan, $site_url;
 	$vars['site'] = $site_name;
 	$vars['slogan'] = $slogan;
 	$vars['url'] = $site_url;
