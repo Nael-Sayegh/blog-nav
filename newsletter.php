@@ -43,7 +43,7 @@ if(isset($_GET['a']) and $_GET['a'] == 's') {
 			<h2>Bonjour</h2>
 			<p>Vous avez bien été abonné à l\'actu '.$site_name.'.</p>
 			<p>Confirmez votre inscription en cliquant sur ce lien (expire après 24h)&nbsp;:</p>
-			<a id="link" href="https://www.progaccess.net/nlmod.php?id='.$hash.'">Cliquez ici</a>
+			<a id="link" href="'.SITE_URL.'/nlmod.php?id='.$hash.'">Cliquez ici</a>
 			<p>Vous pouvez, avec ce même lien, modifier les paramètres de votre abonnement ou vous désinscrire. Vous serez automatiquement désinscrit un an après la dernière fois que vous visitez ce lien.</p>
 			<p>Ce mail a été envoyé automatiquement, merci de ne pas répondre.</p>
 			<p>Cordialement,<br>L\'équipe '.$site_name.'</p>
@@ -55,7 +55,7 @@ if(isset($_GET['a']) and $_GET['a'] == 's') {
 			Bonjour,
 Vous avez bien été abonné à l'actu $site_name.
 Confirmez votre inscription en cliquant sur ce lien (expire après 24h) :
-https://www.progaccess.net/nlmod.php?id=$hash
+".SITE_URL."/nlmod.php?id=$hash
 Vous pouvez, avec ce même lien, modifier les paramètres de votre abonnement ou vous désinscrire. Vous serez automatiquement désinscrit un an après la dernière fois que vous visitez ce lien.
 Ce mail a été envoyé automatiquement, merci de ne pas répondre.
 Cordialement,
@@ -68,8 +68,8 @@ L'équipe $site_name";
 			$mail->SMTPAuth = true;
 			$mail->Username = SMTP_USERNAME;
 			$mail->Password = SMTP_PSW;
-			$mail->setFrom('no_reply@progaccess.net', $site_name);
-			$mail->addReplyTo('no_reply@progaccess.net', $site_name);
+			$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+			$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
 			$mail->addAddress($_POST['mail']);
 			$mail->Subject = 'Confirmation de l\'inscription à l\'actu '.$site_name;
 			$mail->CharSet = 'UTF-8';
