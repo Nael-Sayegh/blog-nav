@@ -91,7 +91,7 @@ function getLastGitCommit()
 	$hash = shell_exec('git --git-dir="'.GIT_DIR.'" rev-parse --verify HEAD');
 	$commitDate = strftime(tr($tr0,'fndatetime'), shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%ct '.$hash));
 	$commitURL = '<a href="'.GIT_COMMIT_BASE_URL.$hash.'">Commit '.shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%h').'</a>';
-echo tr($tr0,'footer_lastcommit',array('date'=>$commitDate,'url'=>$commitURL,'site'=>$site_name));
+echo tr($tr0,'footer_lastcommit',array('date'=>$commitDate,'commit_url'=>$commitURL,'site'=>$site_name));
 }
 
 function isDev()
