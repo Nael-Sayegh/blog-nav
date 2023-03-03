@@ -14,7 +14,7 @@ if(isset($_GET['to']) and !empty($_GET['to']))
 	$to = $_GET['to'];
 
 $domain = '';
-if(isset($_GET['domain']) and in_array($_GET['domain'], array('pa33','pa33_dev','pa33_onion','pa33_onion_dev')))
+if(isset($_GET['domain']) and in_array($_GET['domain'], array('prod','dev','onion','onion_dev')))
 	$domain = $_GET['domain'];
 ?>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ if(isset($_GET['domain']) and in_array($_GET['domain'], array('pa33','pa33_dev',
 		<form action="showstats.php" method="get">
 			<label for="f1_from">Depuis le (AAAA-MM-JJ)&nbsp;:</label><input type="text" id="f1_from" name="from" value="<?php echo $from; ?>" maxlength="10"><br>
 			<label for="f1_to">Jusqu'au (AAAA-MM-JJ)&nbsp;:</label><input type="text" id="f1_to" name="to" value="<?php echo $to; ?>" maxlength="10"><br>
-			<label for="f1_dom">Domaine&nbsp;:</label><select id="f1_dom" name="domain"><option value="" selected>Tout<option value="pa33">httpdocs</option><option value="pa33_dev">dev</option><option value="pa33_onion">onion</option><option value="pa33_onion_dev">onion dev</option></select><br>
+			<label for="f1_dom">Domaine&nbsp;:</label><select id="f1_dom" name="domain"><option value="" selected>Tout<option value="prod">httpdocs</option><option value="dev">dev</option><option value="onion">onion</option><option value="onion_dev">onion dev</option></select><br>
 			<input type="submit" value="rechercher">
 		</form><br>
 		<p>Domaine&nbsp;: <?php echo $domain; ?></p>
