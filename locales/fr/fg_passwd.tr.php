@@ -12,6 +12,6 @@
   'email' => 'Votre adresse mail&nbsp;:',
   'member_id' => 'Votre numéro de membre&nbsp;:',
   'idk' => 'Je ne sais pas',
-  'signup_date', => 'Votre date d\'inscription&nbsp;:',
+  'signup_date' => 'Votre date d\'inscription&nbsp;:',
   'confirm_btn' => 'Confirmer',
 ); ?>
