@@ -72,27 +72,17 @@ if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['type
 <button id="BtnCopy" onclick="CopyToClipboard('result')">Copier le résultat</button><br>
 <script type="text/javascript">
 function CopyToClipboard(containerid) {
-  if (document.selection) {
-    var range = document.body.createTextRange();
-    range.moveToElementText(document.getElementById(containerid));
-    range.select().createTextRange();
-    document.execCommand("copy");
-  } else if (window.getSelection) {
-    var range = document.createRange();
-    range.selectNode(document.getElementById(containerid));
-    window.getSelection().addRange(range);
-    document.execCommand("copy");
-    document.querySelector('#BtnCopy').innerHTML = 'Résultat copié !';
-    document.querySelector('#BtnCopy').innerText = 'Résultat copié !';
-    document.querySelector('#BtnCopy').textContent = 'Résultat copié !';
-    var delayInMilliseconds = 3000;
-    setTimeout(function() {
-        document.querySelector('#BtnCopy').innerHTML = 'Copier le résultat';
-        document.querySelector('#BtnCopy').innerText = 'Copier le résultat';
-        document.querySelector('#BtnCopy').textContent = 'Copier le résultat';
-    }, delayInMilliseconds);
-  }
-}
+	var text = document.getElementById(containerid).innerText;
+	navigator.clipboard.writeText(text).then(() => {
+		document.querySelector('#BtnCopy').innerHTML = 'Résultat copié !';
+		var delayInMilliseconds = 3000;
+		setTimeout(function() {
+			document.querySelector('#BtnCopy').innerHTML = 'Copier le résultat';
+			},
+		delayInMilliseconds);
+		}).catch((error) => {
+			console.error('Erreur lors de la copie', error); });
+		}
 </script>
 <?php } ?>
 <a href="/gadgets.php">Retour à la liste des gadgets.</a>
