@@ -104,8 +104,6 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$reqf->execute();
 				if($data=$reqf->fetch()) {
 				$somsg = $_POST['title'].' : '.SITE_URL.'/r?'.(!empty($_POST['label']) ? ('p='.$_POST['label']):('id='.$data['id'])).' '.SITE_URL.'/a?id='.$data['sw_id'].' '.$nom;
-				include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
-				send_facebook($somsg);
 				include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 				send_mastodon($somsg);
 				include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
@@ -135,12 +133,12 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				finfo_close($finfo);
 				if(isset($_GET['social']) and $_GET['social'] == 'on') {
 					$somsg = $data['title'].' : '.SITE_URL.'/r?'.(!empty($data['label']) ? ('p='.$data['label']):('id='.$data['id'])).' '.SITE_URL.'/a?id='.$data['sw_id'].' '.$nom;
-					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
-					send_facebook($somsg);
 					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 					send_mastodon($somsg);
 					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
 					send_twitter($somsg);
+					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
+					send_facebook($somsg);
 				}
 				include($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 				include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
@@ -246,12 +244,12 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 						if(!empty($label))
 							$somsg .= ' '.SITE_URL.'/r?p='.$label;
 						$somsg .= ' '.SITE_URL.'/a?id='.$_GET['upload'].' '.$nom;
-						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
-						send_facebook($somsg);
 						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 						send_mastodon($somsg);
 						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
 						send_twitter($somsg);
+						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
+						send_facebook($somsg);
 					}
 					
 					header('Location: sw_mod.php?listfiles='.$_GET['upload']);
