@@ -25,11 +25,10 @@ include('include/stats.php'); ?>
 </details>
 Copyright &copy; 2015-<?php print date('Y'); ?> <?php echo tr($tr0,'footer_copyright',array('site'=>$site_name)); ?><br>
 <?php echo tr($tr0,'footer_license',array('{{site}}'=>$site_name,'license'=>'<a href="https://www.gnu.org/licenses/licenses.html#AGPL" title="GNU Affero General Public License v3">GNU AGPL v3</a>','trlicense'=>'<a href="http://creativecommons.org/licenses/by-sa/4.0/" title="Creative Commons Attribution-ShareAlike 4.0 International License">CC BY-SA 4.0</a>')); ?><br>
-<?php getLastGitCommit(); ?><br>
+<?php getLastGitCommit(); ?>
 <?php if((isset($_COOKIE['date']) and $_COOKIE['date'] == '1')) { ?>
 <noscript>
 <?php echo tr($tr0,'date',array('date'=>strftime('%A %e %B %Y'),'time'=>strftime('%k:%M:%S'))); ?>
-<br>
 </noscript>
 <div style="display:none;" id="ag003030">
 <span id="date_heure"></span>
