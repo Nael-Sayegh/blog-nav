@@ -1,5 +1,6 @@
 Some URL rewrites are needed to allow all links to work as expected. Without this rewrites, some majority of links will not work.
 For Nginx users, put the following rewrites in your config file:
-rewrite ^/(a|c|u)(\d+)$ /$1?id=$2 last;
-rewrite ^/dl/(\d+)$ /r?id=$1 last;
-rewrite ^/dl/(.*)$ /r?p=$1 last;
+rewrite ^/c(\d+)$ /cat.php?id=$1 last;
+rewrite ^/u(\d+)$ /update.php?id=$1 last;
+rewrite ^/dl/(\d+)$ /r.php?id=$1 last;
+rewrite ^/dl/(.*)$ /r.php?p=$1 last;
