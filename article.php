@@ -48,7 +48,7 @@ if(isset($_GET['comment']) and isset($_POST['pseudo']) and isset($_POST['text'])
 		$req = $bdd->prepare('INSERT INTO softwares_comments(sw_id,date,pseudo,text,ip) VALUES(?,?,?,?,?)');
 		$req->execute(array($sw['id'], time(), $_POST['pseudo'], $_POST['text'], sha1($_SERVER['REMOTE_ADDR'])));
 		$comlog = tr($tr,'comment_sent');
-		header('Location: /article.php?id='.$sw['id']);
+		header('Location: /a'.$sw['id']);
 		
 		# Add notification to subscribers
 		$notif = json_encode(array('type'=>'new_comment', 'article'=>$sw['id']));
@@ -85,7 +85,7 @@ if(isset($_GET['cedit2']) and isset($_POST['text'])) {
 		if(strlen($_POST['text']) <= 1023) {
 			$req2 = $bdd->prepare('UPDATE softwares_comments SET text=? WHERE id=? LIMIT 1');
 			$req2->execute(array($_POST['text'], $data['id']));
-			header('Location: /article.php?id='.$sw['id']);
+			header('Location: /a'.$sw['id']);
 		}
 		else $comlog = tr($tr,'commentmod_toolong');
 	} else $comlog = tr($tr,'commentmod_error');
@@ -164,11 +164,11 @@ while($data = $req->fetch()) {
 	}
 	echo '<tr class="sw_file';
 	if($altc) echo ' altc';
-	echo '"><td class="sw_file_ltd"><a class="sw_file_link" href="/r?';
+	echo '"><td class="sw_file_ltd"><a class="sw_file_link" href="/dl/';
 	if(empty($data['label']))
-		echo 'id='.$data['id'];
+		echo $data['id'];
 	else
-		echo 'p='.$data['label'];
+		echo $data['label'];
 	echo '">'.str_replace('{{site}}', $site_name, $data['title']).'</a> <span class="sw_file_size">('.numberlocale(human_filesize($data['filesize'])).tr($tr0,'byte_letter').')</span></td><td class="sw_file_date">'.strftime(tr($tr0,'fndatetime'),$data['date']).'</td><td class="sw_file_hits">'.$data['hits'].'</td><td><details aria-label="'.tr($tr,'files_sums').'" title="'.tr($tr,'files_sums').'"><summary class="sw_file_sum">'.$data['name'].'</summary>md5: '.$data['md5'].'<br>sha1: '.$data['sha1'].'</details></tr>';
 	$altc = !$altc;
 }
@@ -225,7 +225,7 @@ if(!$first)
 					</tr>
 					<tr>
 						<td><?php echo tr($tr,'id'); ?></td>
-						<td>A<?php echo $sw['id']; ?> (<?php echo '<a href="/cat.php?id='.$sw['category'].'">'.$cat[$sw['category']].'</a>'; ?>)</td>
+						<td>A<?php echo $sw['id']; ?> (<?php echo '<a href="/c'.$sw['category'].'">'.$cat[$sw['category']].'</a>'; ?>)</td>
 					</tr>
 				</tbody>
 			</table>

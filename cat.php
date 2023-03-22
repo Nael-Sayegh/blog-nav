@@ -58,7 +58,7 @@ foreach($entries as $sw_id => $entry) {
 	if(empty($entry_tr))// Error: sw has no translations
 		continue;
 	
-	echo '<div class="software"><a href="a?id='.$sw_id.'" class="software_title" role="heading" aria-level="2">'.str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']).'</a>';
+	echo '<div class="software"><a href="a'.$sw_id.'" class="software_title" role="heading" aria-level="2">'.str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']).'</a>';
 	echo '<p>'.str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['desc']).'<br><span class="software_hits">'.tr($tr,'hits',array('hits'=>$entry['hits'])).'</span> <span class="software_date">('.tr($tr,'date',array('date'=>strftime(tr($tr0,'fndatetime'),$entry['date']))).')</span></p></div>';
 }
 ?>

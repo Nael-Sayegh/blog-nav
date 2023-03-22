@@ -6,11 +6,11 @@ $req = $bdd->prepare('SELECT * FROM `softwares_files` WHERE `date`>=? ORDER BY `
 $req->execute(array(time()-86400));# modifiés aujourd'hui
 $files = '';
 while($data = $req->fetch()) {
-	$files .= "\n".$data['title'].' '.SITE_URL.'/r?';
+	$files .= "\n".$data['title'].' '.SITE_URL.'/dl/';
 	if(!empty($data['label']))
-		$files .= 'p='.$data['label'];
+		$files .= $data['label'];
 	else
-		$files .= 'i='.$data['id'];
+		$files .= $data['id'];
 }
 $req = $bdd->prepare('SELECT * FROM `softwares_mirrors` WHERE `date`>=? ORDER BY `date` DESC');
 $req->execute(array(time()-86400));# modifiés aujourd'hui

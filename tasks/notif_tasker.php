@@ -153,7 +153,7 @@ while($data = $req->fetch()) {
 	$msgtxt = $msgtxt1;
 	foreach($sft as $software) {
 		if($software['date'] > $data['lastmail']) {
-			$message .= '<div class="software"><h3 class="software_title"><a href="'.SITE_URL.'/article.php?id='.$software['id'].'">'.$software['name'].'</a> (<a href="'.SITE_URL.'/cat.php?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $site_name, $software['description']).'<br><span class="software_hits">'.$software['hits'].' visites</span><span class="software_date"> (mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).')</span></p><ul>';
+			$message .= '<div class="software"><h3 class="software_title"><a href="'.SITE_URL.'/a'.$software['id'].'">'.$software['name'].'</a> (<a href="'.SITE_URL.'/c'.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $site_name, $software['description']).'<br><span class="software_hits">'.$software['hits'].' visites</span><span class="software_date"> (mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).')</span></p><ul>';
 			$msgtxt .= ' * '.$software['name'].' ('.$cat[$software['category']].') :\n'.$software['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['category'].' le '.date('d/m/Y à H:i', $software['date']).")\n";
 			foreach($files as $file) {
 				if($file['sw_id'] == $software['id'] and $file['date'] > $data['lastmail']) {
