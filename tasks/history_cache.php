@@ -42,7 +42,7 @@ if($data = $req->fetch()) {
 		$maj_id = $data['id'];
 	$maj_name = substr($data['name'],1);
 	$maj_date = date('Y-m-d', $data['date']);
-	$maj_link = SITE_URL.'/update.php?id='.$data['id'];
+	$maj_link = SITE_URL.'/u'.$data['id'];
 	$maj_time = $data['date'];
 }
 
@@ -85,15 +85,15 @@ foreach($days as &$day) {
 			$c = $sft[$cursft[0]['sw_id']];
 			$html .= '<li';
 			if($space) $html .= ' class="jrnl_space"';
-			$html .= '>Mis à jour par '.$c['author'].' : <a class="jrnl_sft" href="/a?id='.$c['id'].'">'.$c['name'].'</a> <span class="jrnl_cat">(<a href="/c?id='.$c['category'].'">'.$cat[$c['category']].'</a>)</span><p class="jrnl_p">'.$c['description'].'</p><ul>';
+			$html .= '>Mis à jour par '.$c['author'].' : <a class="jrnl_sft" href="/a'.$c['id'].'">'.$c['name'].'</a> <span class="jrnl_cat">(<a href="/c'.$c['category'].'">'.$cat[$c['category']].'</a>)</span><p class="jrnl_p">'.$c['description'].'</p><ul>';
 			foreach($cursft as &$curfile) {
 				if($curfile['label'] != '') {
-					$html .= '<li><a class="jrnl_r" href="/r.php?p='.$curfile['label'].'">'.$curfile['title'].'</a></li>';
-					$rss .= '<item><title>'.$curfile['title'].'</title><link>'.SITE_URL.'/r?p='.$curfile['label'].'</link><dc:creator>'.$c['author'].'</dc:creator><description>'.$c['description'].'</description><pubDate>'.date('r', $curfile['date']).'</pubDate></item>';
+					$html .= '<li><a class="jrnl_r" href="/dl/'.$curfile['label'].'">'.$curfile['title'].'</a></li>';
+					$rss .= '<item><title>'.$curfile['title'].'</title><link>'.SITE_URL.'/dl/'.$curfile['label'].'</link><dc:creator>'.$c['author'].'</dc:creator><description>'.$c['description'].'</description><pubDate>'.date('r', $curfile['date']).'</pubDate></item>';
 				}
 				else {
-					$html .= '<li><a class="jrnl_r" href="/r?id='.$curfile['id'].'">'.$curfile['title'].'</a></li>';
-					$rss .= '<item><title>'.$curfile['title'].'</title><link>'.SITE_URL.'/r?id='.$curfile['id'].'</link><description>'.$c['description'].'</description><pubDate>'.date('r', $curfile['date']).'</pubDate></item>';
+					$html .= '<li><a class="jrnl_r" href="/dl/'.$curfile['id'].'">'.$curfile['title'].'</a></li>';
+					$rss .= '<item><title>'.$curfile['title'].'</title><link>'.SITE_URL.'/dl/'.$curfile['id'].'</link><description>'.$c['description'].'</description><pubDate>'.date('r', $curfile['date']).'</pubDate></item>';
 				}
 			}
 			unset($curfile);

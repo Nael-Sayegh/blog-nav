@@ -68,7 +68,7 @@ foreach($entries as $sw_id => $entry) {
 	if(empty($entry_tr))// Error: sw has no translations
 		continue;
 	
-	echo '<li><a href="/a?id='.$sw_id.'">A'.$sw_id.'&nbsp;: '.str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']).'</a> (<a href="/c?id='.$entry['cat'].'">'.$cat[$entry['cat']].'</a>)</li>';
+	echo '<li><a href="/a'.$sw_id.'">A'.$sw_id.'&nbsp;: '.str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']).'</a> (<a href="/c'.$entry['cat'].'">'.$cat[$entry['cat']].'</a>)</li>';
 }
 $req->closeCursor();
 ?>

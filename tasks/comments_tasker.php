@@ -15,7 +15,7 @@ while($data = $req->fetch()) {
 	$req2 = $bdd->prepare('SELECT `id`,`name` FROM `softwares` WHERE `id`=? LIMIT 1');
 	$req2->execute(array($data['sw_id']));
 	$sw = $req2->fetch()
-	$msg .= 'De "'.$data['pseudo'].'" à '.date('d/m/Y H:i').' sur '.$sw['name'].":\n".$data['text']."\nhttps://progaccess33.net/article.php?id=".$sw['id']."\n\n";
+	$msg .= 'De "'.$data['pseudo'].'" à '.date('d/m/Y H:i').' sur '.$sw['name'].":\n".$data['text']."\n".SITE_URL."/a".$sw['id']."\n\n";
 	$n ++;
 }
 if($n > 0) {

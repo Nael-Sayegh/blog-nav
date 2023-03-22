@@ -199,13 +199,13 @@ while($data = $req->fetch()) {
 				continue;
 			
 			$nbs ++;
-			$message .= '<div class="software"><h3 class="software_title"><a href="'.SITE_URL.'/a?id='.$sw_id.'">'.$software['trs'][$entry_tr]['name'].'</a> (<a href="'.SITE_URL.'/c?id='.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $site_name, $software['trs'][$entry_tr]['description']).'<br><span class="software_date">Mis à jour à '.date('H:i', $software['date']).' le '.date('d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
+			$message .= '<div class="software"><h3 class="software_title"><a href="'.SITE_URL.'/a'.$sw_id.'">'.$software['trs'][$entry_tr]['name'].'</a> (<a href="'.SITE_URL.'/c'.$software['category'].'">'.$cat[$software['category']].'</a>)</h3><p>'.str_replace('{{site}}', $site_name, $software['trs'][$entry_tr]['description']).'<br><span class="software_date">Mis à jour à '.date('H:i', $software['date']).' le '.date('d/m/Y', $software['date']).' par '.$software['author'].'</span><span class="software_hits">, '.$software['hits'].' visites</span></p><ul>';
 			$msgtxt .= ' * '.$software['trs'][$entry_tr]['name'].' ('.$cat[$software['category']].") :\n".$software['trs'][$entry_tr]['description'].' ('.$software['hits'].' visites, mis à jour par '.$software['author'].' le '.date('d/m/Y à H:i', $software['date']).")\n";
 			foreach($files as $file) {
 				if($file['sw_id'] == $sw_id and $file['date'] > $data['lastmail']) {
 					$nbf ++;
-					$message .= '<li><a href="'.SITE_URL.'/r?id='.$file['id'].'">'.$file['title'].' (téléchargé '.$file['hits'].' fois)</a></li>';
-					$msgtxt .= ' - '.$file['title'].', '.SITE_URL.'/r?id='.$file['id'].' ('.$file['hits']." téléchargements)\n";
+					$message .= '<li><a href="'.SITE_URL.'/dl/'.$file['id'].'">'.$file['title'].' (téléchargé '.$file['hits'].' fois)</a></li>';
+					$msgtxt .= ' - '.$file['title'].', '.SITE_URL.'/dl/'.$file['id'].' ('.$file['hits']." téléchargements)\n";
 				}
 			}
 			unset($file);

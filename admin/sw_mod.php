@@ -103,7 +103,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$reqf=$bdd->prepare('SELECT * FROM `softwares_files` ORDER BY `date` DESC LIMIT 1');
 				$reqf->execute();
 				if($data=$reqf->fetch()) {
-				$somsg = $_POST['title'].' : '.SITE_URL.'/r?'.(!empty($_POST['label']) ? ('p='.$_POST['label']):('id='.$data['id'])).' '.SITE_URL.'/a?id='.$data['sw_id'].' '.$nom;
+				$somsg = $_POST['title'].' : '.SITE_URL.'/dl/'.(!empty($_POST['label']) ? $_POST['label']:$data['id']).' '.SITE_URL.'/a'.$data['sw_id'].' '.$nom;
 				include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 				send_mastodon($somsg);
 				include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
@@ -132,7 +132,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$req2->execute(array(finfo_file($finfo,$file), time(), filesize($file), md5_file($file), sha1_file($file), $data['id']));
 				finfo_close($finfo);
 				if(isset($_GET['social']) and $_GET['social'] == 'on') {
-					$somsg = $data['title'].' : '.SITE_URL.'/r?'.(!empty($data['label']) ? ('p='.$data['label']):('id='.$data['id'])).' '.SITE_URL.'/a?id='.$data['sw_id'].' '.$nom;
+					$somsg = $data['title'].' : '.SITE_URL.'/dl/'.(!empty($data['label']) ? $data['label']:$data['id']).' '.SITE_URL.'/a'.$data['sw_id'].' '.$nom;
 					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 					send_mastodon($somsg);
 					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
@@ -242,8 +242,8 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 					if(isset($_POST['social']) and $_POST['social'] == 'on') {
 						$somsg = $_POST['title'].' :';
 						if(!empty($label))
-							$somsg .= ' '.SITE_URL.'/r?p='.$label;
-						$somsg .= ' '.SITE_URL.'/a?id='.$_GET['upload'].' '.$nom;
+							$somsg .= ' '.SITE_URL.'/dl/'.$label;
+						$somsg .= ' '.SITE_URL.'/a'.$_GET['upload'].' '.$nom;
 						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 						send_mastodon($somsg);
 						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
@@ -367,7 +367,7 @@ if(isset($_GET['listfiles'])) {
 	<?php	$req2 = $bdd->prepare('SELECT * FROM softwares_files WHERE sw_id=? ORDER BY date ASC');
 			$req2->execute(array($_GET['listfiles']));
 			while($data2 = $req2->fetch()) {
-				echo '<tr><td><a href="?modf='.$data2['id'].'">'.$data2['name'].'</a></td><td>'.$data2['title'].'</td><td><a href="/r.php?p='.$data2['label'].'">'.$data2['label'].'</a></td><td>'.$data2['filetype'].'</td><td>'.date('d/m/Y H:i',$data2['date']).'</td><td>'.human_filesize($data2['filesize']).'o</td><td><input type="checkbox" name="rfile'.$data2['id'].'" autocomplete="off"></td></tr>';
+				echo '<tr><td><a href="?modf='.$data2['id'].'">'.$data2['name'].'</a></td><td>'.$data2['title'].'</td><td><a href="/dl/'.$data2['label'].'">'.$data2['label'].'</a></td><td>'.$data2['filetype'].'</td><td>'.date('d/m/Y H:i',$data2['date']).'</td><td>'.human_filesize($data2['filesize']).'o</td><td><input type="checkbox" name="rfile'.$data2['id'].'" autocomplete="off"></td></tr>';
 			} $req2->closeCursor(); ?></tbody>
 			</table>
 			<table border="1">
