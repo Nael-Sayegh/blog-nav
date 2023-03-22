@@ -1,6 +1,16 @@
 Some URL rewrites are needed to allow all links to work as expected. Without this rewrites, some majority of links will not work.
 For Nginx users, put the following rewrites in your config file:
+rewrite ^/a(\d+)$ /article.php?id=$1 last;
 rewrite ^/c(\d+)$ /cat.php?id=$1 last;
 rewrite ^/u(\d+)$ /update.php?id=$1 last;
 rewrite ^/dl/(\d+)$ /r.php?id=$1 last;
 rewrite ^/dl/(.*)$ /r.php?p=$1 last;
+
+For Apache users, put the following rewrites in a .htaccess file located at the root folder of your website:
+RewriteEngine On
+
+RewriteRule ^/a(\d+)$ /article.php?id=$1 [L]
+RewriteRule ^/c(\d+)$ /cat.php?id=$1 [L]
+RewriteRule ^/u(\d+)$ /update.php?id=$1 [L]
+RewriteRule ^/dl/(\d+)$ /r.php?id=$1 [L]
+RewriteRule ^/dl/(.*)$ /r.php?p=$1 [L]
