@@ -331,7 +331,7 @@ if($addfile_hash != '' and $addfile_path != '') {
 }
 
 if(isset($_GET['list'])) { ?><table border="1">
-			<thead><tr><th>Nom</th><th>Catégorie</th><th>Dernière modification</th><th>Actions</th></tr></thead>
+			<thead><tr><th>Nom</th><th>Catégorie</th><th>Dernière modification</th></tr></thead>
 			<tbody>
 <?php
 // listing softwares
@@ -343,11 +343,9 @@ else {
 }
 while($data = $req->fetch()) {
 	echo '<tr>
-		<td><a href="?id='.$data['id'].'" role="heading" aria-level="6">'.$data['name'].'</a></td>
+		<td><details><summary><h6>'.$data['name'].'</summary><ul role="menu"<li role="menuitem"><a href="?id='.$data['id'].'">Éditer</a></li><li role="menuitem"><a href="?listfiles='.$data['id'].'">Afficher les fichiers</a></li><li role="menuitem"><a href="translate.php?type=article&id='.$data['id'].'">Traductions</a></li>'.(($nom == $data['author']) ? '<li role="menuitem"><a href="?rsw='.$data['id'].'" onclick="return confirm(\'Faut-il vraiment supprimer l\'article '.$data['name'].'&nbsp;?\')">Supprimer</a></li>':'').'</ul></details></td>
 		<td>'.$cat[$data['category']].'</td>
-		<td>'.date('d/m/Y H:i',$data['date']).' par '.$data['author'].'</td>
-		<td><a href="?listfiles='.$data['id'].'">Afficher les fichiers</a> | <a href="translate.php?type=article&id='.$data['id'].'">Traductions</a>'.(($nom == $data['author']) ? ' | <a href="?rsw='.$data['id'].'" onclick="return confirm(\'Faut-il vraiment supprimer l\'article '.$data['name'].'&nbsp;?\')">Supprimer</a>':'').'</td>
-	</tr>';
+		<td>'.date('d/m/Y H:i',$data['date']).' par '.$data['author'].'</td></tr>';
 }
 ?>
 			</tbody>
