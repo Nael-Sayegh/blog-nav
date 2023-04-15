@@ -39,7 +39,7 @@
   'footer_d-2' => 'anteayer',
   'footer_today' => 'hoy',
   'footer_ontime' => 'a',
-  'footer_copyright' => 'la administración {{site}}',
+  'footer_copyright' => '{{site}} (<a href="https://txmn.tk/blog/why-copyleft/">¿Porqué copyleft?</a>)',
   'footer_opensource' => 'más informaciónes',
   'footer_toplink' => 'Arriba de página',
   'footer_menulink' => 'Menú',

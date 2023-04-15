@@ -46,7 +46,7 @@
   'footer_ontime' => 'la',
   'footer_devver' => 'Versio dev',
   'footer_changelog' => 'Konsulti la ŝanĝoj de ĉi beta versio',
-  'footer_copyright' => 'la administracio {{site}}',
+  'footer_copyright' => '{{site}} (<a href="https://txmn.tk/eo/blog/why-copyleft/">Kial rajtocedo?</a>)',
   'footer_license' => 'la <a href="/opensource.php">kodo de {{site}}</a> estas disponebla laŭ la permesilo {{license}}.<br>
 La teksto estas disponebla laŭ la permesilo {{trlicense}}.',
   'footer_opensource' => 'pri la libera kodo',

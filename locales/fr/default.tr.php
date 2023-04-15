@@ -53,7 +53,7 @@
   'footer_ontime' => 'à',
   'footer_devver' => 'Version dev',
   'footer_changelog' => 'Consulter les changements de cette bêta',
-  'footer_copyright' => '{{site}}',
+  'footer_copyright' => '{{site}} (<a href="https://txmn.tk/fr/blog/why-copyleft/">Pourquoi copyleft&#8239;?</a>)',
   'footer_license' => 'Le <a href="/opensource.php">code de {{site}}</a> est mis à disposition sous licence {{license}}.<br>
 Le texte est sous licence {{trlicense}}.',
   'footer_stablelink' => 'Zone stable du site',
