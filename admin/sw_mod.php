@@ -517,7 +517,8 @@ if(isset($_GET['modf'])) {
 				<label for="f_modf_name">Nom du fichier&nbsp;:</label>
 				<input type="text" name="name" id="f_modf_name" value="<?php echo $data['name']; ?>" required><br>
 				<label for="f_modf_label">Label&nbsp;:</label>
-				<input type="text" name="label" id="f_modf_label" value="<?php echo $data['label']; ?>">
+				<input type="text" name="label" id="f_modf_label" value="<?php echo $data['label']; ?>" maxlength="16" readonly=<?php (!empty($data['label'])?true:false); ?>>
+				<?php if(!empty($data['label'])) echo '<p>Le label de ce fichier est déjà renseigné, pour le modifier, supprimez ce fichier et ajoutez en un nouveau.</p>'; ?>
 			</fieldset>
 			<fieldset>
 				<legend>Remplacer le fichier</legend>
