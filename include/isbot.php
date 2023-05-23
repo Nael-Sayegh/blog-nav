@@ -1,7 +1,7 @@
 <?php
 $isbot = false;
 if(!empty($_SERVER['HTTP_USER_AGENT'])) {
-	$uabots = array('DotBot','bingbot','Googlebot','Ahrefsbot','Twitterbot','applebot','PaperLiBot','SemrushBot','SurdotlyBot','SocialRankIOBot','ubermetrics','facebookexternalhit','LivelapBot','TrendsmapResolver','bot@linkfluence.com','YandexBot','MJ12bot');
+	$uabots = array('DotBot','bingbot','Googlebot','Ahrefsbot','Twitterbot','applebot','PaperLiBot','SemrushBot','SurdotlyBot','SocialRankIOBot','ubermetrics','facebookexternalhit','LivelapBot','TrendsmapResolver','bot@linkfluence.com','YandexBot','MJ12bot','Mastodon','Akkoma');
 	foreach($uabots as &$uabot) {
 		if(strpos($_SERVER['HTTP_USER_AGENT'], $uabot) !== false) {
 			$isbot = true;
