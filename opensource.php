@@ -12,7 +12,7 @@ $stats_page='open-source'; ?>
 require_once('include/load_sound.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
-	<p>Nous avons développé durant des années le site en source fermée, et avons décidé durant l'été 2018 de le libérer. Le code source est donc désormais disponible librement <a href="https://gitlab.com/ProgAccess/ProgAccess">sur GitLab</a> sous licence GNU AGPL.</p>
+	<p>Nous avons développé durant des années le site en source fermée, et avons décidé durant l'été 2018 de le libérer. Le code source est donc désormais disponible librement <a href="<?php echo GIT_URL; ?>">sur GitLab</a> sous licence GNU AGPL.</p>
 	<p>L'équipe compte deux développeurs aux manières assez différentes voire contradictoires en certains points et le code n'est pas organisé pour être compris facilement (l'essentiel consiste en des ajouts et réparations les uns sur les autres, et au final personne n'y comprend plus rien). La libération du code peut donc avoir peu de sens pour le moment, mais nous travaillons beaucoup à la réorganisation, pour avoir un design plus solide, logique, pratique, léger, sécurisé... enfin bref meilleur.</p>
 	
 	<h3>Organisation du code</h3>
@@ -59,7 +59,7 @@ require_once('include/load_sound.php'); ?>
 	<p>Le texte du site (fichiers dans /locales/) est sous licence CC BY-SA. Plus d'informations concernant la licence des traductions, voir dans l'archive locales.zip disponible ci-dessous.</p>
 	
 	<h3>Participer</h3>
-	<a href="https://gitlab.com/ProgAccess/ProgAccess">Dépôt GitLab de ProgAccess</a>
+	<a href="<?php echo GIT_URL; ?>">Dépôt GitLab de <?php echo $site_name; ?></a>
 	<p>Si vous avez le courage de lire et de décrypter notre code, nous serions très heureux que vous puissiez nous aider à intégrer de nouvelles fonctionnalités, chasser et réparer les bugs, organiser le code...</p>
 	<p>Pour rapporter un bug ou suggérer une fonctionnalité, vous pouvez <a href="<?php echo GIT_URL; ?>">ouvrir un ticket sur le GitLab</a>, utiliser le <a href="/contact_form.php">formulaire de contact</a> ou encore utiliser le <a href="<?php echo FLARUM_URL; ?>">forum</a>.</p>
 	
