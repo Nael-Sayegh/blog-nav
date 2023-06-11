@@ -30,7 +30,6 @@ This website comes from the Corentin's desire (a blind high school student) to s
 <h2>Follow us</h2>
 <h3>On social networks</h3>
 <ul>
-	<li><a href="https://twitter.com/ProgAccess">@ProgAccess on Twitter</a></li>
 	<li><a href="https://www.facebook.com/ProgAccess">ProgAccess on Facebook</a></li>
 </ul>
 
