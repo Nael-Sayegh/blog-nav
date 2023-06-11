@@ -71,8 +71,6 @@ if(isset($_GET['form']) and isset($_POST['sname']) and isset($_POST['category'])
 				send_facebook($somsg);
 				require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 				send_mastodon($somsg);
-				require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
-				send_twitter($somsg);
 			}
 			require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 			require_once($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');

@@ -29,7 +29,6 @@ Ce site vient de l'envie de Corentin (un étudiant non-voyant) de partager sa pa
 <h2>Suivre l'actu et contribuer</h2>
 <h3>Sur les réseaux sociaux</h3>
 <ul>
-	<li><a href="https://twitter.com/ProgAccess">@ProgAccess sur Twitter</a></li>
 	<li><a href="https://www.facebook.com/ProgAccess">Page ProgAccess sur Facebook</a></li>
 </ul>
 

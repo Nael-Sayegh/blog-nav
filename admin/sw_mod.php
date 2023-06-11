@@ -106,8 +106,6 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$somsg = $_POST['title'].' : '.SITE_URL.'/dl/'.(!empty($_POST['label']) ? $_POST['label']:$data['id']).' '.SITE_URL.'/a'.$data['sw_id'].' '.$nom;
 				include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 				send_mastodon($somsg);
-				include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
-				send_twitter($somsg);
 				}
 			}
 			exit();
@@ -135,8 +133,6 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 					$somsg = $data['title'].' : '.SITE_URL.'/dl/'.(!empty($data['label']) ? $data['label']:$data['id']).' '.SITE_URL.'/a'.$data['sw_id'].' '.$nom;
 					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 					send_mastodon($somsg);
-					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
-					send_twitter($somsg);
 					include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 					send_facebook($somsg);
 				}
@@ -246,8 +242,6 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 						$somsg .= ' '.SITE_URL.'/a'.$_GET['upload'].' '.$nom;
 						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
 						send_mastodon($somsg);
-						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
-						send_twitter($somsg);
 						include_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 						send_facebook($somsg);
 					}
