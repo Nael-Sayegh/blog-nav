@@ -180,12 +180,6 @@ margin-bottom: 20px;
 	bottom: 0;
 	right: 32px;
 	}
-	#twitter {
-	position: fixed;
-	z-index: 5;
-	bottom: 0;
-	right: 0;
-	}
 }
 
 #loginbox {

@@ -13,9 +13,6 @@ if(isset($_GET['form']) and isset($_POST['pf']) and isset($_POST['msg'])) {
 	if(in_array('fb', $_POST['pf'])) {
 		print('facebook: '.$plainmsg);
 	}
-	if(in_array('tw', $_POST['pf'])) {
-		print('twitter: '.$_POST['msg']);
-	}
 	if(in_array('dd', $_POST['pf'])) {
 		print('discord: '.$plainmsg);
 	}
@@ -26,11 +23,6 @@ if(isset($_GET['form']) and isset($_POST['pf']) and isset($_POST['msg'])) {
 		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 		send_facebook($_POST['msg']);
 		$log .= 'Publication postée ! ';
-	}
-	if($_POST['platform'] == '1' or $_POST['platform'] == '3' or $_POST['platform'] == '5' or $_POST['platform'] == '7') {
-		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
-		send_twitter($_POST['msg']);
-		$log .= 'Tweet posté ! ';
 	}
 	if($_POST['platform'] == '1' or $_POST['platform'] == '4' or $_POST['platform'] == '6' or $_POST['platform'] == '7') {
 		require_once('Discord/DiscordBot.php');
@@ -44,11 +36,6 @@ if(isset($_GET['nl'])) {
 		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 		send_facebook($message);
 		$log .= 'Publication lettre d\'infos postée ';
-	}
-	if($_POST['nl'] == 'tw' or $_POST['nl'] == 'all') {
-		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
-		send_twitter($message);
-		$log .= 'Tweet lettre d\infos posté ';
 	}
 }
 if(isset($_GET['swfb'])) {
@@ -74,24 +61,19 @@ if(!empty($log)) print '<p><b>'.$log.'</b></p>'; ?>
 			<label for="f_platform">Publier&nbsp;:</label>
 			<ul id="f_platform">
 				<li><input id="f_platform_fb" type="checkbox" name="pf[]" value="fb" checked> <label for="f_platform_fb">Facebook</label></li>
-				<li><input id="f_platform_tw" type="checkbox" name="pf[]" value="tw" checked> <label for="f_platform_tw">Twitter</label></li>
 				<li><input id="f_platform_dd" type="checkbox" name="pf[]" value="dd" checked> <label for="f_platform_dd">Discord</label></li>
 			</ul>
 			
 			<!--<select id="f_platform" name="platform">
 				<option value="1" selected>Partout</option>
 				<option value="2">Facebook</option>
-				<option value="3">Twitter</option>
 				<option value="4">Discord</option>
-				<option value="5">Facebook et Twitter</option>
 				<option value="6">Facebook et Discord</option>
-				<option value="7">Twitter et Discord</option>
 			</select><br>-->
 			<label for="f_msg">Message&nbsp;:</label><br>
 			<textarea id="f_msg" name="msg" autocomplete="off" rows="20" style="width: 100%;" required></textarea><br>
 			<input type="submit" value="Publier">
 		</form>
-		<p>Utilisez <i>$$</i> comme séparateur pour Twitter, et <i>$$$$</i> pour écrire vraiment <i>$$</i>.</p>
 		<!--<a href="?swfb">Publier le message Facebook des logiciels mis à jour.</a><br>
 		<a href="?swfb&debug">Debug message Facebook des logiciels mis à jour.</a>-->
 	</body>

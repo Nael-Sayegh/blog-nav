@@ -7,9 +7,6 @@
 [submodule "inclus/lib/MastodonBotPHP"]
 	path = include/lib/MastodonBotPHP
 	url = https://github.com/Eleirbag89/MastodonBotPHP
-[submodule "inclus/lib/twitteroauth"]
-	path = include/lib/twitteroauth
-	url = https://github.com/abraham/twitteroauth
 [submodule "inclus/lib/ca-bundle"]
 	path = include/lib/ca-bundle
 	url = https://github.com/composer/ca-bundle
