@@ -89,7 +89,7 @@ function getLastGitCommit()
 {
 	global $tr0;
 	$hash = shell_exec('git --git-dir="'.GIT_DIR.'" rev-parse --verify HEAD');
-	$commitVersion = strftime(tr('%y.%m.%d.%H:%M', shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%ct '.$hash));
+	$commitVersion = strftime('%y.%m.%d.%H:%M', shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%ct '.$hash));
 	$commitURL = '<a href="'.GIT_COMMIT_BASE_URL.$hash.'">'.rtrim(shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%h')).'</a>';
 echo tr($tr0,'footer_lastcommit',array('version'=>$commitVersion,'commit_url'=>$commitURL,'site'=>$site_name));
 }
