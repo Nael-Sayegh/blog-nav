@@ -100,7 +100,7 @@ echo '<option value="'.$data['id'].'">M'.$data['id'].'</option>';
 <?php
 $req2 = $bdd->query('SELECT * FROM `accounts` ORDER BY id ASC');
 while($data = $req2->fetch()) {
-echo '<option value="'.$data['signup_date'].'">'.strftime(tr($tr0,'fndatetime'),$data['signup_date']).'</option>';
+echo '<option value="'.$data['signup_date'].'">'.getFormattedDate($data['signup_date'], tr($tr0,'fndatetime')).'</option>';
 }
 ?>
 <option value="non"><?php echo tr($tr,'idk'); ?></option>
