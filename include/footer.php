@@ -27,7 +27,7 @@ Copyleft 2015-<?php print date('Y'); ?> <?php echo tr($tr0,'footer_copyright',ar
 <?php getLastGitCommit(); ?>
 <?php if((isset($_COOKIE['date']) and $_COOKIE['date'] == '1')) { ?>
 <noscript>
-<?php echo tr($tr0,'date',array('date'=>getFormattedDate(time(), tr($tr0,'ftdate')),'time'=>getFormattedDate(time(), tr($tr0,'ftime'))); ?>
+<?php echo tr($tr0,'date',array('date'=>getFormattedDate(time(), tr($tr0,'ftdate')),'time'=>getFormattedDate(time(), tr($tr0,'ftime')))); ?>
 </noscript>
 <div style="display:none;" id="ag003030">
 <span id="date_heure"></span>
