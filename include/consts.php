@@ -46,7 +46,7 @@ function numberlocale($n) {
 }
 
 function getFormattedDate($timestamp, $format) {
-	global $tr0;
+	global $tr0, $lang;
 	$dateTimeObj = new DateTime(date('m/d/Y H:i:s', $timestamp), new DateTimeZone(tr($tr0,'timezone')));
 	$dateFormatted = IntlDateFormatter::formatObject($dateTimeObj, $format, $lang);
 	return $dateFormatted;
@@ -96,7 +96,7 @@ function getLastGitCommit()
 {
 	global $tr0;
 	$hash = shell_exec('git --git-dir="'.GIT_DIR.'" rev-parse --verify HEAD');
-	$commitVersion = getFormattedDate(shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%ct '.$hash), tr($tr0,'fndatetime'));
+	$commitVersion = getFormattedDate(shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%ct '.$hash), 'yy.MM.dd.HHmm');
 	$commitURL = '<a href="'.GIT_COMMIT_BASE_URL.$hash.'">'.rtrim(shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%h')).'</a>';
 echo tr($tr0,'footer_lastcommit',array('version'=>$commitVersion,'commit_url'=>$commitURL,'site'=>$site_name));
 }
