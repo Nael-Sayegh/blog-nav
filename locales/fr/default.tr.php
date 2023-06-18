@@ -93,5 +93,5 @@ Le texte est sous licence {{trlicense}}.',
   'menu_linklistlabelbutton' => 'Valider',
   'footer_sociallinks' => 'Réseaux sociaux',
   'menu_forum' => 'Forum',
-  'footer_lastcommit' => '{{site}} - Version du {{date}} ({{commit_url}})',
+  'footer_lastcommit' => '{{site}} - Version {{version}} ({{commit_url}})',
 ); ?>
