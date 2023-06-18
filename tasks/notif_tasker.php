@@ -12,7 +12,7 @@ require_once($document_root.'/include/lib/phpmailer/src/PHPMailer.php');
 require_once($document_root.'/include/lib/phpmailer/src/Exception.php');
 require_once($document_root.'/include/lib/phpmailer/src/SMTP.php');
 
-$datejour = strftime('%d/%m/%Y');
+$datejour = getFormattedDate(time(), tr($tr0,'fndatetime'));
 
 # Netoyage de la table
 $req = $bdd->prepare('DELETE FROM `notifs` WHERE `date`<?');
@@ -213,7 +213,7 @@ $req->closeCursor();
 $btime = microtime(true)-$atime;
 echo $nba.' abonnés, '.$nbs.' envois, '.$nbk.' OK, '.$btime."s\n";
 if($sent) {
-	if(strftime('%w') == '5' or strftime('%w') == '6') {
+	if(getFormattedDate((time(), 'c') == '5' or getFormattedDate(time(), 'c') == '6') {
 		$message = 'Envoi de la Lettre d\'infos à '.$nbs.' abonnés en '.(intval($btime*1000)/1000).' secondes !'."\n".'Fin de la maintenance du jour, reprise éventuelle demain (13:00/22:10).'."\n".'L\'administration';
 	} else {
 		$message = 'Envoi de la Lettre d\'infos à '.$nbs.' abonnés en '.(intval($btime*1000)/1000).' secondes !'."\n".'Fin de la maintenance du jour, reprise éventuelle demain (06:30/12:00 et 13:00/22:10).'."\n".'L\'administration';

@@ -45,6 +45,13 @@ function numberlocale($n) {
 	return str_replace('.', tr($tr0,'decimal_separator'), strval($n));
 }
 
+function getFormattedDate($timestamp, $format) {
+	global $tr0;
+	$dateTimeObj = new DateTime(date('m/d/Y H:i:s', $timestamp), new DateTimeZone(tr($tr0,'timezone')));
+	$dateFormatted = IntlDateFormatter::formatObject($dateTimeObj, $format, $lang);
+	return $dateFormatted;
+}
+
 function human_filesize($bytes, $decimals = 1) {
 	$sz = ' kMGTP';
 	$factor = floor((strlen($bytes) - 1) / 3);
@@ -89,7 +96,7 @@ function getLastGitCommit()
 {
 	global $tr0;
 	$hash = shell_exec('git --git-dir="'.GIT_DIR.'" rev-parse --verify HEAD');
-	$commitVersion = strftime('%y.%m.%d.%H%M', shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%ct '.$hash));
+	$commitVersion = getFormattedDate(shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%ct '.$hash), tr($tr0,'fndatetime'));
 	$commitURL = '<a href="'.GIT_COMMIT_BASE_URL.$hash.'">'.rtrim(shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%h')).'</a>';
 echo tr($tr0,'footer_lastcommit',array('version'=>$commitVersion,'commit_url'=>$commitURL,'site'=>$site_name));
 }
@@ -155,7 +162,7 @@ $req->execute();
 if($data = $req->fetch()) {
 	$derniereversion = 'V'.$data['id'];
 	$versionnom = substr($data['name'],1);
-	$versiondate = strftime(tr($tr0,'fndatetime'), $data['date']);
+	$versiondate = getFormattedDate($data['date'], tr($tr0,'fndatetime'));
 	$versionid=$data['id'];
 }
 ?>

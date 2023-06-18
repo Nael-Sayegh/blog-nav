@@ -20,8 +20,8 @@ require_once($document_root.'/include/consts.php');
 if(isset($simulate))
 	echo "--simulate--\n";
 
-$datejour = strftime('%d/%m/%Y');
-$hrjr = strftime('%H:%M');
+$datejour = getFormattedDate(time(), tr($tr0,'fndate'));
+$hrjr = getFormattedDate(time(), tr($tr0,'ftime'));
 
 # Nettoyage de la table
 $req = $bdd->prepare('DELETE FROM `newsletter_mails` WHERE `expire`<?');
