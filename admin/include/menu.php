@@ -9,7 +9,7 @@
 		<tr><td><a href="cache_update.php">Caches</a></td></tr>
 		<tr><td rowspan="7" role="heading" aria-level="3">Communication & actualités</td><td><a href="tickets.php">Tickets</a></td></tr>
 		<tr><td><a href="publication.php">Publications sociales</a></td></tr>
-		<tr><td><a href="update_article.php">Mises à jour d\'article proposées par les membres</a></td></tr>
+		<!--<tr><td><a href="update_article.php">Mises à jour d\'article proposées par les membres</a></td></tr>-->
 		<tr><td><a href="slidermgr.php">Slider</a></td></tr>
 		<tr><td rowspan="3" role="heading" aria-level="3">Lettre d\'informations</td><td><a href="nl_send.php">Lancer un envoi maintenant</a></td></tr>
 		<tr><td><a href="nl_last.php">Réinitialiser la date du dernier envoi</a></td></tr>

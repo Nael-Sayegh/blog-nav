@@ -22,8 +22,6 @@ if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['status']) and
 	}
 		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 		send_facebook('Nouvel arrivant dans l\'équipe : '.$data['short_name'].' (E'.$data['id'].') : travaille pour '.$worksswi.'.'."\n".'Consulter https://www.progaccess.net/contact.php pour en savoir plus.'."\n".'L\'administration');
-		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/twitter/twitter_publisher.php');
-		send_twitter('Nouvel arrivant dans l\'équipe : '.$data['short_name'].' (E'.$data['id'].') : travaille pour '.$worksswi.'.'."\n".'Consulter https://www.progaccess.net/contact.php pour en savoir plus.'."\n".'L\'administration');
 	}*/
 }
 if(isset($_GET['delete'])) {
