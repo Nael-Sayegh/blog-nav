@@ -50,7 +50,7 @@ if($data = $req->fetch()) {
 $days = array();
 $curtime = $time;
 while($curtime >= $ltime) {
-	$days[] = array(date('Y-m-d', $curtime), strftime('%A %e %B', $curtime));
+	$days[] = array(date('Y-m-d', $curtime), getFormattedDate($curtime, 'EEEE d MMMM'));
 	$curtime -= 86400;
 }
 

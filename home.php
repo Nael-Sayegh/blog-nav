@@ -135,7 +135,7 @@ if($login['confirmed'] == 0)
 <ul>
 	<li><?php echo tr($tr,'profile_rank', array('rank'=>urank($login['rank']))); ?></li>
 	<li><?php echo tr($tr,'profile_id', array('id'=> ($login['team_id']? 'E'.$login['team_id'].'':'') . 'M'.$login['id'])); ?></li>
-	<li><?php echo tr($tr,'profile_signup_date',array('date'=>strftime(tr($tr0,'fndatetime'),$login['signup_date']))); ?></li>
+	<li><?php echo tr($tr,'profile_signup_date',array('date'=>getFormattedDate($login['signup_date'], tr($tr0,'fndatetime')))); ?></li>
 	<?php if(isset($settings['bd_m']) and isset($settings['bd_d'])) { ?>
 	<li><?php $date=getdate(); echo tr($tr,'profile_birthday',array('date'=>((($settings['bd_m']==$date['mon'] and $settings['bd_d']==$date['mday']) or ($settings['bd_m']==2 and $date['mon']==3 and $settings['bd_d']==29 and $date['mday']==1 and $date['year']%4==0)) ? tr($tr,'profile_happy_birthday').' &#127874;' : zeros($settings['bd_d'],2).'/'.zeros($settings['bd_m'],2)))); ?></li>
 	<?php } ?>
@@ -150,13 +150,13 @@ $req = $bdd->prepare('SELECT * FROM `notifs` WHERE `account`=? ORDER BY `date` D
 $req->execute(array($login['id']));
 while($notif = $req->fetch()) {
 	$data = json_decode($notif['data'], true);
-	$notif_html = '<li id="lnotif'.$notif['id'].'" class="lnotif lnotif_'.($notif['unread']?'':'un').'read"><span class="lnotif_date">'.strftime(tr($tr0,'fndatetime'),$notif['date']).'</span> <span class="lnotif_text">';
+	$notif_html = '<li id="lnotif'.$notif['id'].'" class="lnotif lnotif_'.($notif['unread']?'':'un').'read"><span class="lnotif_date">'.getFormattedDate($notif['date'], tr($tr0,'fndatetime')).'</span> <span class="lnotif_text">';
 	if(isset($data['type'])) {
 		if($data['type'] == 'new_comment' and isset($data['article'])) {
 			$req2 = $bdd->prepare('SELECT `name` FROM `softwares` WHERE `id`=? LIMIT 1');
 			$req2->execute(array($data['article']));
 			if($tmp = $req2->fetch())
-				$notif_html .= tr($tr,'notifs_new_comment',array('link'=>'<a href="/article.php?id='.$data['article'].'">'.$tmp['name'].'</a>.'));
+				$notif_html .= tr($tr,'notifs_new_comment',array('link'=>'<a href="/a'.$data['article'].'">'.$tmp['name'].'</a>.'));
 		}
 	}
 	$notif_html .= '</span> <a class="lnotif_readlink" href="?notif_read='.$notif['id'].'&token='.$login['token'].'" onclick="read_notif(event, '.$notif['id'].', true)" style="display:'.($notif['unread']?'initial':'none').'">('.tr($tr,'notifs_read').')</a><a class="lnotif_unreadlink" href="?notif_unread='.$notif['id'].'&token='.$login['token'].'" onclick="read_notif(event, '.$notif['id'].', false)" style="display:'.($notif['unread']?'none':'initial').'">('.tr($tr,'notifs_unread').')</a></li>';
@@ -177,7 +177,7 @@ $req = $bdd->prepare('SELECT * FROM `sessions` WHERE `account`=? ORDER BY `expir
 $req->execute(array($login['id']));
 while($data = $req->fetch()) {
 	echo '<li>';
-	echo tr($tr,'session_item',array('created'=>strftime(tr($tr0,'fndatetime'),$data['created']), 'expires'=>strftime(tr($tr0,'fndatetime'),$data['expire'])));
+	echo tr($tr,'session_item',array('created'=>getFormattedDate($data['created'], tr($tr0,'fndatetime')), 'expires'=>getFormattedDate($data['expire'], tr($tr0,'fndatetime'))));
 	if($data['expire'] > $time)
 		echo ' (<a href="?rm_ses='.$data['id'].'&token='.$login['token'].'">'.tr($tr,'session_item_remove').'</a>)';
 	if($data['id'] == $login['session_id'])

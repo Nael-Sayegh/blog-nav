@@ -26,8 +26,7 @@ Notez également que cette horloge sera incapable de s'actualiser automatiquemen
 <noscript>
 <?php
 setlocale(LC_TIME,"fr_FR.UTF8");
-echo "Quand cette page a été chargée nous étions le ".strftime("%A %e %B %Y");
-echo ", il était ".strftime("%k:%M:%S");
+echo "Quand cette page a été chargée nous étions le ".getFormattedDate(time(), tr($tr0,'fndate'))." et il était ".getFormattedDate(time(), tr($tr0,'ftime'));
 ?>
 <br>
 </noscript>

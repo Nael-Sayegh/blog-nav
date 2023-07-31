@@ -66,7 +66,7 @@ require_once('include/load_sound.php'); ?>
 	<h3>Traductions</h3>
 	<ul>
 		<?php if(file_exists($_SERVER['DOCUMENT_ROOT'].'/source/locales.zip')) { ?>
-		<li>Traductions&nbsp;: <a href="/source/locales.zip">locales.zip</a> (<?php echo strftime(tr($tr0,'fndatetime'), filemtime($_SERVER['DOCUMENT_ROOT'].'/source/locales.zip')); ?>) <?php echo numberlocale(human_filesize(filesize($_SERVER['DOCUMENT_ROOT'].'/source/locales.zip'))).tr($tr0,'byte_letter'); ?></li>
+		<li>Traductions&nbsp;: <a href="/source/locales.zip">locales.zip</a> (<?php echo getFormattedDate(filemtime($_SERVER['DOCUMENT_ROOT'].'/source/locales.zip'), tr($tr0,'fndatetime')); ?>) <?php echo numberlocale(human_filesize(filesize($_SERVER['DOCUMENT_ROOT'].'/source/locales.zip'))).tr($tr0,'byte_letter'); ?></li>
 		<?php } ?>
 	</ul>
 </main>

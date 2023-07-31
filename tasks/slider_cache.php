@@ -46,7 +46,7 @@ foreach($langs_prio as &$lang_i) {
 	$req = $bdd->prepare('SELECT * FROM `site_updates` ORDER BY `date` DESC LIMIT 1');
 	$req->execute();
 	while($data = $req->fetch()) {
-		fwrite($file, '<p>'.tr($tr,'last_site_update_text', array('version'=>substr($data['name'],1), 'id'=>$data['id'], 'date'=>strftime(tr($tr0,'fndatetime'),$data['date']), 'link1'=>'<a href="/u'.$data['id'].'">', 'link2'=>'</a>')).'</p>');
+		fwrite($file, '<p>'.tr($tr,'last_site_update_text', array('version'=>substr($data['name'],1), 'id'=>$data['id'], 'date'=>getFormattedDate(tr($data['date'], tr($tr0,'fndatetime')), 'link1'=>'<a href="/u'.$data['id'].'">', 'link2'=>'</a>')).'</p>');
 		//fwrite($file, '<p>La version '.substr($data['name'],1).' (V'.$data['id'].') du site est sortie le '.date('d/m/Y',$data['date']).' à '.date('H:i',$data['date']).'&nbsp;:<br><a href="/u'.$data['id'].'">consultez ses changements</a>.</p>');
 	}
 	fwrite($file, '</div></div>');
@@ -59,7 +59,7 @@ foreach($langs_prio as &$lang_i) {
 	while($data = $req->fetch()) {
 		$article_trs = get_article_prefered_tr($data['id'], $lang_i);
 		$article_tr = $article_trs['trs'][$article_trs['prefered_tr']];
-		fwrite($file, '<li><a href="/a'.$data['id'].'">'.str_replace('{{site}}', $site_name, $article_tr['title']).'</a> ('.tr($tr,'last_updates_text',array('author'=>$data['author'], 'date'=>strftime(tr($tr0,'fndatetime'),$data['date']))).')</li>');
+		fwrite($file, '<li><a href="/a'.$data['id'].'">'.str_replace('{{site}}', $site_name, $article_tr['title']).'</a> ('.tr($tr,'last_updates_text',array('author'=>$data['author'], 'date'=>getFormattedDate($data['date'], tr($tr0,'fndatetime')))).')</li>');
 	}
 	fwrite($file, '</ul></div></div>');
 
