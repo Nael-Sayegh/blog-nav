@@ -156,7 +156,7 @@ while($notif = $req->fetch()) {
 			$req2 = $bdd->prepare('SELECT `name` FROM `softwares` WHERE `id`=? LIMIT 1');
 			$req2->execute(array($data['article']));
 			if($tmp = $req2->fetch())
-				$notif_html .= tr($tr,'notifs_new_comment',array('link'=>'<a href="/article.php?id='.$data['article'].'">'.$tmp['name'].'</a>.'));
+				$notif_html .= tr($tr,'notifs_new_comment',array('link'=>'<a href="/a'.$data['article'].'">'.$tmp['name'].'</a>.'));
 		}
 	}
 	$notif_html .= '</span> <a class="lnotif_readlink" href="?notif_read='.$notif['id'].'&token='.$login['token'].'" onclick="read_notif(event, '.$notif['id'].', true)" style="display:'.($notif['unread']?'initial':'none').'">('.tr($tr,'notifs_read').')</a><a class="lnotif_unreadlink" href="?notif_unread='.$notif['id'].'&token='.$login['token'].'" onclick="read_notif(event, '.$notif['id'].', false)" style="display:'.($notif['unread']?'none':'initial').'">('.tr($tr,'notifs_unread').')</a></li>';
