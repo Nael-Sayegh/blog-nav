@@ -82,8 +82,8 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				}
 				if(!$nofile) {
 					if($ok) {
-						$req = $bdd->prepare('UPDATE `softwares_files` SET `name`=?, `filetype`=?, `title`=?, `date`=?, `filesize`=?, `label`=?, `md5`=?, `sha1`=?, `total_downloads`=?, `downloads`=? WHERE `id`=? LIMIT 1');
-						$req->execute(array($filename, $filetype, $_POST['title'], time(), $filesize, $_POST['label'], md5_file($file), sha1_file($file), $data['downloads'], 0, $_GET['modf2']));
+						$req = $bdd->prepare('UPDATE `softwares_files` SET `name`=?, `filetype`=?, `title`=?, `date`=?, `filesize`=?, `label`=?, `md5`=?, `sha1`=?, `total_hits`=?, `hits`=? WHERE `id`=? LIMIT 1');
+						$req->execute(array($filename, $filetype, $_POST['title'], time(), $filesize, $_POST['label'], md5_file($file), sha1_file($file), $data['hits']+$data['total_hits'], 0, $_GET['modf2']));
 					} else
 						die('erreur');
 				}
