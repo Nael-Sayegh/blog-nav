@@ -169,7 +169,7 @@ while($data = $req->fetch()) {
 		echo $data['id'];
 	else
 		echo $data['label'];
-	echo '">'.str_replace('{{site}}', $site_name, $data['title']).'</a> <span class="sw_file_size">('.numberlocale(human_filesize($data['filesize'])).tr($tr0,'byte_letter').')</span></td><td class="sw_file_date">'.getFormattedDate($data['date'], tr($tr0,'fndatetime')).'</td><td class="sw_file_hits">'.$data['hits'].'</td><td><details aria-label="'.tr($tr,'files_sums').'" title="'.tr($tr,'files_sums').'"><summary class="sw_file_sum">'.$data['name'].'</summary>md5: '.$data['md5'].'<br>sha1: '.$data['sha1'].'</details></tr>';
+	echo '">'.str_replace('{{site}}', $site_name, $data['title']).'</a> <span class="sw_file_size">('.numberlocale(human_filesize($data['filesize'])).tr($tr0,'byte_letter').')</span></td><td class="sw_file_date">'.getFormattedDate($data['date'], tr($tr0,'fndatetime')).'</td><td class="sw_file_hits">'.tr($tr,'count_dl',array('dl'=>$data['hits'],'total_dl'=>$data['total_hits'])).'</td><td><details aria-label="'.tr($tr,'files_sums').'" title="'.tr($tr,'files_sums').'"><summary class="sw_file_sum">'.$data['name'].'</summary>md5: '.$data['md5'].'<br>sha1: '.$data['sha1'].'</details></tr>';
 	$altc = !$altc;
 }
 if(!$first)
