@@ -214,7 +214,7 @@ if(!$first)
 			<table><caption><?php echo tr($tr,'infos'); ?></caption>
 				<tbody>
 					<?php if($sw_tr['website'] != '') echo '<tr><td>'.tr($tr,'website').'</td><td><a target="_blank" rel="noopener" href="'.$sw_tr['website'].'" id="owlink">'.$sw_tr['website'].'</a></td></tr>'; if($fichiersexistants) echo '<tr><td>'.tr($tr,'hits').'</td>
-<td>'.$sw['downloads'].'</td></tr>'; ?>
+<td>'.tr($tr,'count_dl',array('dl'=>$sw['downloads'],'total_dl'=>$sw['total_downloads'])).'</td></tr>'; ?>
 					<tr>
 						<td><?php echo tr($tr,'visits'); ?></td>
 						<td><?php echo $sw['hits']; ?></td>
