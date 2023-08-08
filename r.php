@@ -46,7 +46,7 @@ if(isset($_GET['id']) and $_GET['id'] != '')
 			fclose($file);
 			require_once('include/isbot.php');
 			if(!(isset($_COOKIE['admincookie_nostats']) and $_COOKIE['admincookie_nostats'] == 'f537856b32e9e5e0418b224167576240') and !$isbot) {
-				$req2 = $bdd->prepare('UPDATE softwares_files SET hits=hits+1 WHERE id=? LIMIT 1');
+				$req2 = $bdd->prepare('UPDATE softwares_files SET hits=hits+1, total_hits=total_hits+1 WHERE id=? LIMIT 1');
 				$req2->execute(array($_GET['id']));
 				$req2 = $bdd->prepare('UPDATE softwares SET downloads=downloads+1 WHERE id=? LIMIT 1');
 				$req2->execute(array($data['sw_id']));
@@ -98,7 +98,7 @@ else if(isset($_GET['p']) and $_GET['p'] != '')
 			fclose($file);
 			require_once('include/isbot.php');
 			if(!(isset($_COOKIE['admincookie_nostats']) and $_COOKIE['admincookie_nostats'] == 'f537856b32e9e5e0418b224167576240') and !$isbot) {
-				$req2 = $bdd->prepare('UPDATE softwares_files SET hits=hits+1 WHERE id=? LIMIT 1');
+				$req2 = $bdd->prepare('UPDATE softwares_files SET hits=hits+1, total_hits=total_hits+1 WHERE id=? LIMIT 1');
 				$req2->execute(array($data['id']));
 				$req2 = $bdd->prepare('UPDATE softwares SET downloads=downloads+1 WHERE id=? LIMIT 1');
 				$req2->execute(array($data['sw_id']));
