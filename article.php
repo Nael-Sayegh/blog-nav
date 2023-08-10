@@ -5,6 +5,7 @@ set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/log.php');
 require_once('include/consts.php');
 require_once('include/isbot.php');
+require_once('include/package_managers.php');
 	if(isset($logged) && $logged == 'true' AND $login['rank'] == 'a') {
 		$req2 = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 		$req2->execute(array($login['id']));
@@ -206,6 +207,32 @@ while($data = $req->fetch()) {
 		$i ++;
 	}
 	echo '</td><td class="sw_file_date">'.getFormattedDate($data['date'], tr($tr0,'fndatetime')).'</td><td class="sw_file_hits">'.$data['hits'].'</td></tr>';
+	$altc = !$altc;
+}
+if(!$first)
+	echo '</tbody></table>';
+
+$first = true;
+$altc = true;
+$req = $bdd->prepare('SELECT * FROM softwares_packages WHERE sw_id=?');
+$req->execute(array($sw['id']));
+while($data = $req->fetch()) {
+	if($first) {
+		echo '<table id="sw_packages"><caption role="heading" aria-level="2"><strong>'.tr($tr,'packages_title',array('title'=>$title)).'</strong></caption><thead><tr><th>'.tr($tr,'packages_manager').'</th><th>'.tr($tr,'packages_name').'</th></tr></thead><tbody>';
+		$first = false;
+	}
+	echo '<tr class="sw_file';
+	if($altc) echo ' altc';
+	echo '"><td>'.$PACKAGE_MANAGERS[$data['manager']]['name'].'</td><td class="sw_file_title"><a class="sw_file_link" href="'.str_replace('{}', $data['name'], $PACKAGE_MANAGERS[$data['manager']]['package_url']).'">'.$data['name'].'</a></td>';
+	if(!empty($data['comment']) or array_key_exists('install_cmd', $PACKAGE_MANAGERS[$data['manager']])) {
+		echo '<td><details><summary>'.tr($tr,'packages_info').'</summary>';
+		if(!empty($data['comments']))
+			echo '<p>'.$data['comments'].'</p>';
+		if(array_key_exists('install_cmd', $PACKAGE_MANAGERS[$data['manager']]))
+			echo '<p>'.tr($tr,'packages_install_cmd').'</p><pre>'.str_replace('{}', $data['name'], $PACKAGE_MANAGERS[$data['manager']]['install_cmd']).'</pre>';
+		echo '</summary></td>';
+	}
+	echo '</tr>';
 	$altc = !$altc;
 }
 if(!$first)
