@@ -24,6 +24,7 @@
   'packages_name' => 'Paquet',
   'packages_info' => 'Plus d\'infos',
   'packages_install_cmd' => 'Commande&nbsp;:',
+  'packages_platform' => 'Plateforme',
   'infos' => 'Autres infos&nbsp;:',
   'website' => 'Site officiel&nbsp;:',
   'hits' => 'Nombre total de téléchargements&nbsp;:',

@@ -218,12 +218,12 @@ $req = $bdd->prepare('SELECT * FROM softwares_packages WHERE sw_id=?');
 $req->execute(array($sw['id']));
 while($data = $req->fetch()) {
 	if($first) {
-		echo '<table id="sw_packages"><caption role="heading" aria-level="2"><strong>'.tr($tr,'packages_title',array('title'=>$title)).'</strong></caption><thead><tr><th>'.tr($tr,'packages_manager').'</th><th>'.tr($tr,'packages_name').'</th></tr></thead><tbody>';
+		echo '<table id="sw_packages"><caption role="heading" aria-level="2"><strong>'.tr($tr,'packages_title',array('title'=>$title)).'</strong></caption><thead><tr><th>'.tr($tr,'packages_platform').'</th><th>'.tr($tr,'packages_manager').'</th><th>'.tr($tr,'packages_name').'</th></tr></thead><tbody>';
 		$first = false;
 	}
 	echo '<tr class="sw_file';
 	if($altc) echo ' altc';
-	echo '"><td>'.$PACKAGE_MANAGERS[$data['manager']]['name'].'</td><td class="sw_file_title"><a class="sw_file_link" href="'.str_replace('{}', $data['name'], $PACKAGE_MANAGERS[$data['manager']]['package_url']).'">'.$data['name'].'</a></td>';
+	echo '"><td>'.$PACKAGE_MANAGERS[$data['manager']]['platforms'].'</td><td>'.$PACKAGE_MANAGERS[$data['manager']]['name'].'</td><td class="sw_file_title"><a class="sw_file_link" href="'.str_replace('{}', $data['name'], $PACKAGE_MANAGERS[$data['manager']]['package_url']).'">'.$data['name'].'</a></td>';
 	if(!empty($data['comment']) or array_key_exists('install_cmd', $PACKAGE_MANAGERS[$data['manager']])) {
 		echo '<td><details><summary>'.tr($tr,'packages_info').'</summary>';
 		if(!empty($data['comments']))
