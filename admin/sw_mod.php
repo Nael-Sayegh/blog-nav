@@ -168,6 +168,18 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 		if($data = $req->fetch())
 			header('Location: sw_mod.php?listfiles='.$data['sw_id']);
 	}
+	if(isset($_GET['addpackage']) and isset($_POST['manager']) and isset($_POST['name'])) {
+		$req1 = $bdd->prepare('SELECT `id` FROM `softwares` WHERE `id`=? LIMIT 1');
+		$req1->execute(array($_GET['addpackage']));
+		if($data = $req1->fetch()) {
+			$comment = '';
+			if(isset($_POST['comment']))
+				$comment = $_POST['comment'];
+			$req2 = $bdd->prepare('INSERT INTO `softwares_packages` (`sw_id`,`manager`,`name`,`comment`) VALUES (?,?,?,?)');
+			$req2->execute(array($_GET['addpackage'], $_POST['manager'], $_POST['name'], $comment));
+			header('Location: sw_mod.php?listfiles='.$data['id']);
+		}
+	}
 	if(isset($_GET['upload']) and isset($_POST['title']) and isset($_POST['method'])) {
 		$ok = false;
 		$complete = false;
@@ -263,7 +275,6 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 			if(isset($_GET['rfile'.$data['id']])) {
 				$req2 = $bdd->prepare('DELETE FROM softwares_files WHERE id=? LIMIT 1');
 				$req2->execute(array($data['id']));
-				header('Location: sw_mod.php?addfile='.$_GET['rfiles']);
 				unlink($_SERVER['DOCUMENT_ROOT'].'/files/'.$data['hash']);
 			}
 		}
@@ -273,11 +284,19 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 			if(isset($_GET['rmir'.$data['id']])) {
 				$req2 = $bdd->prepare('DELETE FROM `softwares_mirrors` WHERE `id`=? LIMIT 1');
 				$req2->execute(array($data['id']));
-				header('Location: sw_mod.php?addfile='.$_GET['rfiles']);
+			}
+		}
+		$req1 = $bdd->prepare('SELECT `id` FROM `softwares_packages` WHERE `sw_id`=?');
+		$req1->execute(array($_GET['rfiles']));
+		while($data = $req1->fetch()) {
+			if(isset($_GET['rpack'.$data['id']])) {
+				$req2 = $bdd->prepare('DELETE FROM `softwares_packages` WHERE `id`=? LIMIT 1');
+				$req2->execute(array($data['id']));
 			}
 		}
 		$req1->closeCursor();
 		include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
+		header('Location: sw_mod.php?addfile='.$_GET['rfiles']);
 	}
 }
 ?>
@@ -345,6 +364,8 @@ while($data = $req->fetch()) {
 			</tbody>
 		</table><?php }
 if(isset($_GET['listfiles'])) {
+	require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
+	
 	$req1 = $bdd->prepare('SELECT id,name,category,website FROM softwares WHERE id=? ORDER BY date ASC');
 	$req1->execute(array($_GET['listfiles']));
 	if($data1 = $req1->fetch()) { ?>
@@ -371,7 +392,16 @@ if(isset($_GET['listfiles'])) {
 				echo '<tr><td><a href="?modm='.$data2['id'].'">'.$data2['title'].'</a></td><td><textarea name="lmir'.$data2['id'].'" readonly>'.htmlentities($data2['links']).'</textarea></td><td><a href="/r.php?m&p='.$data2['label'].'">'.$data2['label'].'</a></td><td>'.date('d/m/Y H:i',$data2['date']).'</td><td><input type="checkbox" name="rmir'.$data2['id'].'" autocomplete="off"></td></tr>';
 			} $req2->closeCursor(); ?></tbody>
 			</table>
-			<input type="submit" onclick="return confirm('Faut-il vraiment supprimer les fichiers sélectionnés&nbsp;?')" value="Supprimer">
+			<table border="1">
+				<thead><tr><th>Gestionnaire</th><th>Paquet</th><th>Commentaire</th><th>Supprimer</th></tr></thead>
+				<tbody>
+	<?php	$req2 = $bdd->prepare('SELECT * FROM `softwares_packages` WHERE `sw_id`=?');
+			$req2->execute(array($_GET['listfiles']));
+			while($data2 = $req2->fetch()) {
+				echo '<tr><td>'.$PACKAGE_MANAGERS[$data2['manager']]['name'].'</td><td>'.$data2['name'].'</td><td><textarea readonly>'.htmlentities($data2['comment']).'</textarea></td><td><input type="checkbox" name="rpack'.$data2['id'].'" autocomplete="off"></td></tr>';
+			} $req2->closeCursor(); ?></tbody>
+			</table>
+			<input type="submit" onclick="return confirm('Faut-il vraiment supprimer les fichiers sélectionnés&#8239;?')" value="Supprimer"/>
 		</form>
 		<?php }
 	$req1->closeCursor();
@@ -491,6 +521,25 @@ f_addfile_group_method();
 				<p>Exemple&nbsp;: [["ZettaScript","https://zettascript.org/fichier.tar.gz"],["CommentÇaMarche","https://commentcamarche.net/download/fichier"]]</p>
 				<label for="f_addmirror_label">Label&nbsp;:</label>
 				<input type="text" name="label" id="f_addmirror_label"><br>
+				<input type="submit" value="Ajouter">
+			</fieldset>
+		</form>
+		<form action="?addpackage=<?php echo $_GET['addfile']; ?>" method="post">
+			<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
+			<fieldset><legend>Ajouter un paquet</legend>
+				<label for="f_addpackage_manager">Gestionnaire&nbsp;:</label>
+				<select name="manager" id="f_addpackage_manager">
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
+foreach($PACKAGE_MANAGERS as $manager_id => $manager_data) {
+	echo '<option value="'.$manager_id.'">'.$manager_data['name'].'</option>';
+}
+?>
+				</select><br/>
+				<label for="f_addpackage_name">Nom du paquet&nbsp;:</label>
+				<input type="text" name="name" id="f_addpackage_name"><br>
+				<label for="f_addpackage_comment">Commentaire&nbsp;:</label><br>
+				<textarea name="comment" id="f_addpackage_comment" style="width: 100%;" onkeyup="close_confirm=true"></textarea>
 				<input type="submit" value="Ajouter">
 			</fieldset>
 		</form>
