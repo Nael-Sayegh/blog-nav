@@ -11,6 +11,7 @@ $titlemodifie = str_replace(' ',' ',$title);
 <li><a href="https://www.facebook.com/sharer.php?u=<?php print $permalink; ?>&t=<?php print $titlemodifie; ?>" target="_blank" title="<?php echo tr($tr0,'footer_fb'); ?>"><img src="/image/facebook.png" alt="<?php echo tr($tr0,'footer_fb'); ?>"></a></li>
 <li><a href="https://twitter.com/share?url=<?php print $permalink; ?>&text=<?php print $titlemodifie; ?>&via=<?php print $site_name; ?>" target="_blank" title="<?php echo tr($tr0,'footer_tw'); ?>"><img src="/image/twitter.png" alt="<?php echo tr($tr0,'footer_tw'); ?>"></a></li>
 <li><a href="/Diaspora/selectpod.php?url=<?php print $permalink; ?>&title=<?php print $titlemodifie; ?>" target="_blank" title="<?php echo tr($tr0,'footer_d*'); ?>"><img src="/image/diaspora_white.svg" alt="<?php echo tr($tr0,'footer_d*'); ?>" style="width:32px;height:32px;"></a></li>
+<li><div class="mastodon-share-button" data-target="<?php print $permalink; ?>" data-name="<?php print $titlemodifie; ?>" data-buttonstyle="btn btn-secondary" data-text="<?php echo tr($tr0,'footer_mastodon'); ?>"></div></li>
 </ul>
 </details>
 </div>
@@ -35,3 +36,4 @@ Copyleft 2015-<?php print date('Y'); ?> <?php echo tr($tr0,'footer_copyright',ar
 <script>document.getElementById("ag003030").style.display="block";date_heure("date_heure");</script>
 <?php } ?>
 </footer>
+<script src="include/lib/mastodon-share-button/dist/mastodon.js"></script>
