@@ -242,7 +242,7 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$req->execute(array(time(), $nom, $_GET['upload']));
 				
 				if($complete) {
-					$req = $bdd->prepare('INSERT INTO softwares_files(sw_id,name,hash,filetype,title,date,filesize,label,`md5`,`sha1`) VALUES(?,?,?,?,?,?,?,?,?,?)');
+					$req = $bdd->prepare('INSERT INTO softwares_files(sw_id,name,hash,filetype,title,date,filesize,total_hits,hits,label,`md5`,`sha1`) VALUES(?,?,?,?,?,?,?,0,0,?,?,?)');
 					$req->execute(array($_GET['upload'], $filename, $hash, $filetype, $_POST['title'], time(), $filesize, $label, md5_file($file), sha1_file($file)));
 					include($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 					include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
