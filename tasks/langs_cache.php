@@ -67,7 +67,7 @@ function load_tr($trlang, $trname) {
 function tr(&$ttr, $tkey, $vars=array()) {
 	if(isset($ttr[$tkey])) return bparse($ttr[$tkey], $vars);
 	global $langs_prio;
-	foreach($langs_prio as &$i) {$tr = load_tr($i, $ttr[\'_\']);if(isset($tr[$tkey])) {$ttr[$tkey] = $tr[$tkey];return bparse($tr[$tkey],$vars);}}
+	foreach($langs_prio as &$i) {$tr = load_tr($i, $ttr[\'_\']);if($tr !== null && isset($tr[$tkey])) {$ttr[$tkey] = $tr[$tkey];return bparse($tr[$tkey],$vars);}}
 	return \'\';
 }
 ?>');
