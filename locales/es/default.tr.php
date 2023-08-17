@@ -56,8 +56,6 @@
   'decimal_separator' => ',',
   'byte_letter' => 'B',
   'loginbox_notifs' => 'Alertas',
-  'loginbox_notifs_sg' => '{{n}} alerta',
-  'loginbox_notifs_pl' => '{{n}} alertas',
   'loginbox_notifs_readall' => 'Marcar todas leídas',
   'loginbox_notifs_read' => 'Marcar leída',
   'menu_sets' => 'Preferencias',
