@@ -8,7 +8,7 @@ $ulmenu_js = function() {
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_articles'); ?></li>
 	<?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_ulli_js.html'); ?>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_news'); ?></li>
-	<li><a href="/newsletter.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl',array('site',=>$site_name)); ?></a></li>
+	<li><a href="/newsletter.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl',array('site'=>$site_name)); ?></a></li>
 	<li><a type="application/rss+xml" href="/rss_feed.xml" role="menuitem"><?php echo tr($tr0,'menu_rss'); ?></a></li>
 	<li><a href="/history.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/history.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_journal'); ?></a></li>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_usefull'); ?></li>
