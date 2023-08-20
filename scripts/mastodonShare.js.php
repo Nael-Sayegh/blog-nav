@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: application/javascript');
-require_once('/include/consts.php');
+set_include_path($_SERVER['DOCUMENT_ROOT']);
+require_once('include/consts.php');
 ?>
 function mastodonShareButtonClick(e) {
 	const btn = e.target;
