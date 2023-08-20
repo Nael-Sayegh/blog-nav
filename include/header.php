@@ -8,4 +8,6 @@
 <style>body {font-size: <?php if(isset($_COOKIE['fontsize']) and preg_match('#[0-9]{1,2}#',$_COOKIE['fontsize'])) echo $_COOKIE['fontsize']; else echo '16'; ?>px;}</style>
 <script src="/scripts/default.js"></script>
 <meta property="og:title" content="<?php print $title; ?>">
+<link rel="stylesheet" href="/css/mastodonShare.css">
+<script src="/scripts/mastodonShare.js.php"></script>
 </head>
