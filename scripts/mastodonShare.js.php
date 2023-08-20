@@ -1,4 +1,7 @@
-<?php require_once('/include/consts.php'); ?>
+<?php
+header('Content-Type: application/javascript');
+require_once('/include/consts.php');
+?>
 function mastodonShareButtonClick(e) {
 	const btn = e.target;
 	let href = document.URL;
