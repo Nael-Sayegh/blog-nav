@@ -84,4 +84,8 @@ The text is under {{trlicense}} license.',
   'loginbox_notifs_read' => 'Mark as read',
   'footer_link_g1' => '{{site}} and libre currency Ğ1',
   'footer_sociallinks' => 'Social medias',
+  'masto_share_title' => 'Sharing ',
+  'masto_share_desc' => 'Please enter your Mastodon instance (e.g. mastodon.social) for sharing',
+  'masto_share_instance_error' => 'Please enter your instance without https:// or other paths!',
+  'masto_share_btn' => 'Mastodon',
 ); ?>

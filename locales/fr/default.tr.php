@@ -89,4 +89,8 @@ Le texte est sous licence {{trlicense}}.',
   'footer_sociallinks' => 'Réseaux sociaux',
   'menu_forum' => 'Forum',
   'footer_lastcommit' => 'Version du site {{site}}&nbsp;: {{commit_url}}',
+  'masto_share_title' => 'Partager ',
+  'masto_share_desc' => 'Veuillez entrer l\'URL de votre instance Mastodon (par exemple mastodon.social) pour le partage',
+  'masto_share_instance_error' => 'Veuillez entrer l\'URL sans https:// ou autre préfixe',
+  'masto_share_btn' => 'Mastodon',
 ); ?>
