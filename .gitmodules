@@ -10,3 +10,6 @@
 [submodule "inclus/lib/ca-bundle"]
 	path = include/lib/ca-bundle
 	url = https://github.com/composer/ca-bundle
+[submodule "include/lib/mastodon_share"]
+	path = include/lib/mastodon_share
+	url = https://github.com/autinerd/simple-mastodon-share-button
