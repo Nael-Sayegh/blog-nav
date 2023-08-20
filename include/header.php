@@ -9,5 +9,5 @@
 <script src="/scripts/default.js"></script>
 <meta property="og:title" content="<?php print $title; ?>">
 <link rel="stylesheet" href="/css/mastodonShare.css">
-<script src="/scripts/mastodonShare.js"></script>
+<script src="/scripts/mastodonShare.js.php"></script>
 </head>
