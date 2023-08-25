@@ -74,6 +74,7 @@ include 'include/menu.php'; ?>
 						<li><em>[1]</em>: name</li>
 						<li><em>[2]</em>: text</li>
 					</ul>
+					<p>Si un ID est spécifié, les articles de la catégorie seront retournés avec leur contenu.</p>
 				</li>
 				<li aria-level="2"><strong>a</strong>(=id)?: Articles
 					<ul>
