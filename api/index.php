@@ -68,7 +68,7 @@ include 'include/menu.php'; ?>
 						<li><em>[8]</em>: date</li>
 					</ul>
 				</li>
-				<li aria-level="2"><strong>c</strong>: Catégories
+				<li aria-level="2"><strong>c</strong>(=id)?: Catégories
 					<ul>
 						<li><em>[0]</em>: id</li>
 						<li><em>[1]</em>: name</li>
