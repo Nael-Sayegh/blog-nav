@@ -71,8 +71,13 @@ if(isset($_GET['slides'])) {
 
 if(isset($_GET['c'])) {
 	$categories = array();
-	$req = $bdd->prepare('SELECT * FROM `softwares_categories`');
-	$req->execute();
+	if(empty($_GET['c'])) {
+		$req = $bdd->prepare('SELECT * FROM `softwares_categories`');
+		$req->execute();
+	} else {
+		$req = $bdd->prepare('SELECT * FROM `softwares_categories` WHERE `id`=? LIMIT 1');
+		$req->execute(array($_GET['c']));
+	}
 	while($data = $req->fetch()) {
 		$categories[] = array($data['id'], $data['name'], $data['text']);
 	}
