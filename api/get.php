@@ -75,7 +75,7 @@ if(isset($_GET['c'])) {
 		$req = $bdd->prepare('SELECT * FROM `softwares_categories`');
 		$req->execute();
 	} else {
-		$req = $bdd->prepare('SELECT * FROM `softwares` WHERE `category`=? LIMIT 1');
+		$req = $bdd->prepare('SELECT * FROM `softwares` WHERE `category`=?');
 		$req->execute(array($_GET['c']));
 	}
 	while($data = $req->fetch()) {
