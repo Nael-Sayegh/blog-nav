@@ -68,13 +68,12 @@ include 'include/menu.php'; ?>
 						<li><em>[8]</em>: date</li>
 					</ul>
 				</li>
-				<li aria-level="2"><strong>c</strong>(=id)?: Catégories
+				<li aria-level="2"><strong>c</strong>: Catégories
 					<ul>
 						<li><em>[0]</em>: id</li>
 						<li><em>[1]</em>: name</li>
 						<li><em>[2]</em>: text</li>
 					</ul>
-					<p>Si un ID est spécifié, les articles de la catégorie seront retournés avec leur contenu.</p>
 				</li>
 				<li aria-level="2"><strong>a</strong>(=id)?: Articles
 					<ul>
@@ -86,6 +85,17 @@ include 'include/menu.php'; ?>
 						<li><em>[5]</em>: downloads</li>
 						<li><em>[6]</em>: author</li>
 						<li><em>[7]</em>: archive_after</li>
+					</ul>
+				</li>
+				<li aria-level="2"><strong>ca(=id)</strong>: Articles de la catégorie {id}
+					<ul>
+						<li><em>[0]</em>: id</li>
+						<li><em>[1]</em>: name</li>
+						<li><em>[2]</em>: date</li>
+						<li><em>[3]</em>: hits</li>
+						<li><em>[4]</em>: downloads</li>
+						<li><em>[5]</em>: author</li>
+						<li><em>[6]</em>: archive_after</li>
 					</ul>
 				</li>
 				<li aria-level="2"><strong>at</strong>(=id)?: Contenus d'articles (sans le contenu)

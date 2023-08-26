@@ -71,17 +71,22 @@ if(isset($_GET['slides'])) {
 
 if(isset($_GET['c'])) {
 	$categories = array();
-	if(empty($_GET['c'])) {
-		$req = $bdd->prepare('SELECT * FROM `softwares_categories`');
-		$req->execute();
-	} else {
-		$req = $bdd->prepare('SELECT * FROM `softwares` WHERE `category`=?');
-		$req->execute(array($_GET['c']));
-	}
+	$req = $bdd->prepare('SELECT * FROM `softwares_categories`');
+	$req->execute();
 	while($data = $req->fetch()) {
 		$categories[] = array($data['id'], $data['name'], $data['text']);
 	}
 	$rdata['articles_categories'] = $categories;
+}
+
+if(isset($_GET['ca']) && !empty($_GET['ca'])) {
+	$category_articles = array();
+	$req = $bdd->prepare('SELECT * FROM `softwares` WHERE `category`=?');
+	$req->execute(array($_GET['ca']));
+	while($data = $req->fetch()) {
+		$category_articles[] = array($data['id'], $data['name'], $data['date'], $data['hits'], $data['downloads'], $data['author'], $data['archive_after']);
+	}
+	$rdata['category_articles'] = $category_articles;
 }
 
 if(isset($_GET['a'])) {
