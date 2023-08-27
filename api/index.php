@@ -87,6 +87,17 @@ include 'include/menu.php'; ?>
 						<li><em>[7]</em>: archive_after</li>
 					</ul>
 				</li>
+				<li aria-level="2"><strong>ca(=id)</strong>: Articles de la catégorie {id}
+					<ul>
+						<li><em>[0]</em>: id</li>
+						<li><em>[1]</em>: name</li>
+						<li><em>[2]</em>: date</li>
+						<li><em>[3]</em>: hits</li>
+						<li><em>[4]</em>: downloads</li>
+						<li><em>[5]</em>: author</li>
+						<li><em>[6]</em>: archive_after</li>
+					</ul>
+				</li>
 				<li aria-level="2"><strong>at</strong>(=id)?: Contenus d'articles (sans le contenu)
 					<ul>
 						<li><em>[0]</em>: id</li>

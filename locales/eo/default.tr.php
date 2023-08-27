@@ -22,8 +22,6 @@
   'loginbox_forgotpsw' => 'Pasvorto forgesita',
   'loginbox_signup' => 'Krei konton',
   'loginbox_notifs' => 'Atentigoj',
-  'loginbox_notifs_sg' => '{{n}} atentigo',
-  'loginbox_notifs_pl' => '{{n}} atentigoj',
   'loginbox_notifs_readall' => 'Ĉiujn marki kiel legita',
   'loginbox_notifs_read' => 'Marki kiel legita',
   'searchtool_label' => 'Serĉi',
