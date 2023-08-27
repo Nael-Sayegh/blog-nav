@@ -8,13 +8,13 @@ $ulmenu_js = function() {
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_articles'); ?></li>
 	<?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_ulli_js.html'); ?>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_news'); ?></li>
-	<li><a href="/newsletter.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl'); ?></a></li>
+	<li><a href="/newsletter.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl',array('site'=>$site_name)); ?></a></li>
 	<li><a type="application/rss+xml" href="/rss_feed.xml" role="menuitem"><?php echo tr($tr0,'menu_rss'); ?></a></li>
 	<li><a href="/history.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/history.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_journal'); ?></a></li>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_usefull'); ?></li>
 	<li><a href="/settings.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/settings.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_sets'); ?></a></li>
 	<li><a href="/gadgets.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/gadgets.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_gadgets'); ?></a></li>
-	<li><a href="/contact.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_infos'); ?></a></li>
+	<li><a href="/contact.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_infos',array('site'=>$site_name)); ?></a></li>
 	<li><a href="/contact_form.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contact_form.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_contact'); ?></a></li>
 	<li><a href="/privacy.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/privacy.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_privacy'); ?></a></li>
 	<li class="menusep" aria-hidden="true">&nbsp;</li>
@@ -29,13 +29,13 @@ $ulmenu_njs = function() {
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_articles'); ?></li>
 	<?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_ulli_njs.html'); ?>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_news'); ?></li>
-	<li><a href="/newsletter.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl'); ?></a></li>
+	<li><a href="/newsletter.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl',array('site'=>$site_name)); ?></a></li>
 	<li><a type="application/rss+xml" href="/rss_feed.xml" role="menuitem"><?php echo tr($tr0,'menu_rss'); ?></a></li>
 	<li><a href="/history.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/history.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_journal'); ?></a></li>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_usefull'); ?></li>
 	<li><a href="/settings.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/settings.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_sets'); ?></a></li>
 	<li><a href="/gadgets.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/gadgets.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_gadgets'); ?></a></li>
-	<li><a href="/contact.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_infos'); ?></a></li>
+	<li><a href="/contact.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_infos',array('site'=>$site_name)); ?></a></li>
 	<li><a href="/contact_form.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contact_form.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_contact'); ?></a></li>
 	<li><a href="/privacy.php" role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/privacy.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_privacy'); ?></a></li>
 	<li class="menusep" aria-hidden="true">&nbsp;</li>
@@ -54,13 +54,13 @@ if(isset($_COOKIE['menu']) && $_COOKIE['menu'] == '1') { ?>
 <option disabled>── <?php echo tr($tr0,'menu_articles'); ?> ──</option>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_select.html'); ?>
 <option disabled>── <?php echo tr($tr0,'menu_news'); ?> ──</option>
-<option value="/newsletter.php" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl'); ?></option>
+<option value="/newsletter.php" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl',array('site'=>$site_name)); ?></option>
 <option value="/rss_feed.xml"><?php echo tr($tr0,'menu_rss'); ?></option>
 <option value="/history.php" <?php if($_SERVER['DOCUMENT_URI'] == '/history.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_journal'); ?></option>
 <option disabled>── <?php echo tr($tr0,'menu_usefull'); ?> ──</option>
 <option value="/settings.php" <?php if($_SERVER['DOCUMENT_URI'] == '/settings.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_sets'); ?></option>
 <option value="/gadgets.php" <?php if($_SERVER['DOCUMENT_URI'] == '/gadgets.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_gadgets'); ?></option>
-<option value="/contact.php" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_infos'); ?></option>
+<option value="/contact.php" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_infos',array('site'=>$site_name)); ?></option>
 <option value="/contact_form.php" <?php if($_SERVER['DOCUMENT_URI'] == '/contact_form.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_contact'); ?></option>
 <option value="/privacy.php" <?php if($_SERVER['DOCUMENT_URI'] == '/privacy.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_privary'); ?></option>
 </select>
