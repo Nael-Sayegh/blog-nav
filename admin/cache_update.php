@@ -17,8 +17,8 @@ if(isset($_GET['cache'])) {
 		$file4 = fopen($cachedir.'menu_search.html', 'w');
 		$req = $bdd->query('SELECT * FROM `softwares_categories` ORDER BY name ASC');
 		while($data = $req->fetch()) {
-			fwrite($file1, '<li><a id="ulli_js_linkcat_'.$data['id'].'" href="/c'.$data['id'].'" role="menuitem">'.$data['name'].'</a></li>');
-			fwrite($file2, '<li><a id="ulli_njs_linkcat_'.$data['id'].'" href="/c'.$data['id'].'" role="menuitem">'.$data['name'].'</a></li>');
+			fwrite($file1, '<li role="menuitem"><a id="ulli_js_linkcat_'.$data['id'].'" href="/c'.$data['id'].'">'.$data['name'].'</a></li>');
+			fwrite($file2, '<li role="menuitem"><a id="ulli_njs_linkcat_'.$data['id'].'" href="/c'.$data['id'].'">'.$data['name'].'</a></li>');
 			fwrite($file3, '<option id="sel_linkcat_'.$data['id'].'" value="/c'.$data['id'].'">'.$data['name'].'</option>');
 			fwrite($file4, '<option value="'.$data['id'].'">'.$data['name'].'</option>');
 		}
