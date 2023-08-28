@@ -119,6 +119,21 @@ if(isset($_GET['at'])) {
 	$rdata['articles_tr'] = $articles_tr;
 }
 
+if(isset($_GET['cat']) && !empty($_GET['cat'])) {
+	$category_articles_tr = array();
+	$req_softwares = $bdd->prepare('SELECT `id` FROM `softwares` WHERE `category` = ?');
+	$req_softwares->execute(array($_GET['cat']));
+	while($software = $req_softwares->fetch()) {
+		$sw_id = $software['id'];
+		$req = $bdd->prepare('SELECT * FROM `softwares_tr` WHERE `published` = 1 AND `sw_id` = ?');
+		$req->execute(array($sw_id));
+		while($data = $req->fetch()) {
+			$category_articles_tr[] = array($data['id'], $data['lang'], $data['sw_id'], $data['name'], $data['date'], $data['keywords'], $data['description'], $data['website'], $data['author']);
+		}
+	}
+	$rdata['category_articles_tr'] = $category_articles_tr;
+}
+
 if(isset($_GET['att'])) {
 	$articles_tr_text = array();
 	if(empty($_GET['att'])) {
@@ -132,6 +147,21 @@ if(isset($_GET['att'])) {
 		$articles_tr_text[] = array($data['id'], $data['lang'], $data['sw_id'], $data['name'], $data['date'], $data['keywords'], $data['description'], $data['website'], $data['author'], $data['text']);
 	}
 	$rdata['articles_tr_text'] = $articles_tr_text;
+}
+
+if(isset($_GET['catt']) && !empty($_GET['catt'])) {
+	$category_articles_tr_text = array();
+	$req_softwares = $bdd->prepare('SELECT `id` FROM `softwares` WHERE `category` = ?');
+	$req_softwares->execute(array($_GET['catt']));
+	while($software = $req_softwares->fetch()) {
+		$sw_id = $software['id'];
+		$req = $bdd->prepare('SELECT * FROM `softwares_tr` WHERE `published` = 1 AND `sw_id` = ?');
+		$req->execute(array($sw_id));
+		while($data = $req->fetch()) {
+			$category_articles_tr_text[] = array($data['id'], $data['lang'], $data['sw_id'], $data['name'], $data['date'], $data['keywords'], $data['description'], $data['website'], $data['author'], $data['text']);
+		}
+	}
+	$rdata['category_articles_tr_text'] = $category_articles_tr_text;
 }
 
 if(isset($_GET['su'])) {
