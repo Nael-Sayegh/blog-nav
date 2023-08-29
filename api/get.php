@@ -189,6 +189,16 @@ if(isset($_GET['af'])) {
 	$rdata['articles_files'] = $articles_files;
 }
 
+if(isset($_GET['aaf']) && !empty($_GET['aaf'])) {
+	$article_files = array();
+	$req = $bdd->prepare('SELECT * FROM `softwares_files` WHERE `sw_id`=?');
+	$req->execute(array($_GET['aaf']));
+	while($data = $req->fetch()) {
+		$article_files[] = array($data['id'], $data['name'], $data['filetype'], $data['title'], $data['date'], $data['filesize'], $data['hits'], $data['label'], $data['md5'], $data['sha1']);
+	}
+	$rdata['article_files'] = $article_files;
+}
+
 if(isset($_GET['afl'])) {
 	$articles_files_by_label = array();
 	if(empty($_GET['afl'])) {
@@ -217,6 +227,16 @@ if(isset($_GET['am'])) {
 		$articles_mirrors[] = array($data['id'], $data['sw_id'], json_decode($data['links']), $data['title'], $data['date'], $data['hits'], $data['label']);
 	}
 	$rdata['articles_mirrors'] = $articles_mirrors;
+}
+
+if(isset($_GET['aam']) && !empty($_GET['aam'])) {
+	$article_mirrors = array();
+	$req = $bdd->prepare('SELECT * FROM `softwares_mirrors` WHERE `sw_id`=?');
+	$req->execute(array($_GET['aam']));
+	while($data = $req->fetch()) {
+		$article_mirrors[] = array($data['id'], json_decode($data['links']), $data['title'], $data['date'], $data['hits'], $data['label']);
+	}
+	$rdata['article_mirrors'] = $article_mirrors;
 }
 
 if(isset($_GET['aml'])) {

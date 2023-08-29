@@ -111,6 +111,19 @@ include 'include/menu.php'; ?>
 						<li><em>[8]</em>: author</li>
 					</ul>
 				</li>
+				<li aria-level="2"><strong>cat(=id)</strong>: Contenus d'articles de la catégorie {id} (sans le contenu)
+					<ul>
+						<li><em>[0]</em>: id</li>
+						<li><em>[1]</em>: lang</li>
+						<li><em>[2]</em>: article_id</li>
+						<li><em>[3]</em>: name</li>
+						<li><em>[4]</em>: date</li>
+						<li><em>[5]</em>: keywords</li>
+						<li><em>[6]</em>: description</li>
+						<li><em>[7]</em>: website</li>
+						<li><em>[8]</em>: author</li>
+					</ul>
+				</li>
 				<li aria-level="2"><strong>att</strong>(=id)?: Contenus d'articles (avec le contenu)
 					<ul>
 						<li><em>[0]</em>: id</li>
@@ -123,19 +136,6 @@ include 'include/menu.php'; ?>
 						<li><em>[7]</em>: website</li>
 						<li><em>[8]</em>: author</li>
 						<li><em>[9]</em>: text</li>
-					</ul>
-				</li>
-				<li aria-level="2"><strong>cat(=id)</strong>: Contenus d'articles de la catégorie {id} (sans le contenu)
-					<ul>
-						<li><em>[0]</em>: id</li>
-						<li><em>[1]</em>: lang</li>
-						<li><em>[2]</em>: article_id</li>
-						<li><em>[3]</em>: name</li>
-						<li><em>[4]</em>: date</li>
-						<li><em>[5]</em>: keywords</li>
-						<li><em>[6]</em>: description</li>
-						<li><em>[7]</em>: website</li>
-						<li><em>[8]</em>: author</li>
 					</ul>
 				</li>
 				<li aria-level="2"><strong>catt(=id)</strong>: Contenus d'articles de la catégorie {id} (avec le contenu)
@@ -177,6 +177,20 @@ include 'include/menu.php'; ?>
 						<li><em>[10]</em>: sha1</li>
 					</ul>
 				</li>
+				<li aria-level="2"><strong>aaf(=id)</strong>: Fichiers de l'article {id}
+					<ul>
+						<li><em>[0]</em>: id</li>
+						<li><em>[1]</em>: name</li>
+						<li><em>[2]</em>: filetype</li>
+						<li><em>[3]</em>: title</li>
+						<li><em>[4]</em>: date</li>
+						<li><em>[5]</em>: filesize</li>
+						<li><em>[6]</em>: hits</li>
+						<li><em>[7]</em>: label</li>
+						<li><em>[8]</em>: md5</li>
+						<li><em>[9]</em>: sha1</li>
+					</ul>
+				</li>
 				<li aria-level="2"><strong>afl</strong>(=label)?: Fichiers d'articles (par label)
 					<ul>
 						<li><em>[0]</em>: id</li>
@@ -201,6 +215,16 @@ include 'include/menu.php'; ?>
 						<li><em>[4]</em>: date</li>
 						<li><em>[5]</em>: hits</li>
 						<li><em>[6]</em>: label</li>
+					</ul>
+				</li>
+				<li aria-level="2"><strong>aam(=id)</strong>: Miroirs de l'article {id}
+					<ul>
+						<li><em>[0]</em>: id</li>
+						<li><em>[1]</em>: links</li>
+						<li><em>[2]</em>: title</li>
+						<li><em>[3]</em>: date</li>
+						<li><em>[4]</em>: hits</li>
+						<li><em>[5]</em>: label</li>
 					</ul>
 				</li>
 				<li aria-level="2"><strong>aml</strong>(=label)?: Miroirs d'articles (par label)
