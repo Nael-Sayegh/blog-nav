@@ -23,25 +23,23 @@
 <h2>Histoire du site</h2>
 <p>Ce site est d'abord né le 25/05/2015 sous le nom <q>Accessibilité Programmes</q>.<br>
 Ce même site renaîtra sous le nom <q>ProgAccess33</q> le 19/09/2016, et enfin, le nom sera de nouveau raccourci pour devenir <q>ProgAccess</q> lors de la V15.0 le 09/09/2017.<br>
-Ce site vient de l'envie de Corentin (un étudiant non-voyant) de partager sa passion avec un grand public et surtout de rassembler en un seul endroit les logiciels accessibles aux déficients visuels et bien sur à tous.</p>
+Ce site vient de l'envie de Corentin (un jeune non-voyant) de partager sa passion avec un grand public et surtout de rassembler en un seul endroit les logiciels accessibles aux déficients visuels et bien sur à tous.</p>
 <p>Durant l'été 2018, plusieurs changements majeurs ont eu lieu&nbsp;: en août, <a href="opensource.php">le code source</a> a été publié sous licence <a href="https://gnu.org">GNU AGPL</a>, le site devient donc un logiciel libre. Plus tard dans le même mois, l'équipe entreprend la traduction du site, commençant par l'italien, l'espéranto, l'anglais et l'espagnol. Michel Such nous confie le site <a href="https://nvda-fr.org">NVDA-FR</a>, et un site dédié à <a href="https://accessikey.nvda-fr.org">l'AccessiKey</a> est créé.</p>
 
 <h2>Suivre l'actu et contribuer</h2>
 <h3>Sur les réseaux sociaux</h3>
 <ul>
-	<li><a href="https://www.facebook.com/ProgAccess">Page ProgAccess sur Facebook</a></li>
+	<li><a href="https://www.facebook.com/ProgAccess">Page {{site}} sur Facebook</a></li>
+	<li><a href="https://mastodon.progaccess.net/@ProgAccess">Compte {{site}} sur Mastodon</a></li>
 </ul>
 
 <h3>En interne sur le site</h3>
 <ul>
-	<li><a href="/newsletter.php">S'inscrire à la lettre d'infos (envoi chaque soir entre 20:12 et 20:21)</a></li>
+	<li><a href="/newsletter.php">S'inscrire à la l'actu {{site}} (envoi chaque soir entre)</a></li>
 	<li><a href="/history.php">Journal des modifs (actualisation en temps réel)</a></li>
 	<li><a href="/rss_feed.xml">Flux RSS (actualisation en temps réel)</a></li>
 	<li><a href="/api">Pour les développeurs&nbsp;: les données ouvertes via notre API</a></li>
 </ul>
-
-<h3>Version de {{site}}</h3>
-<p>{{site}} est régulièrement mis à jour dès que d'importants changements de code sont réalisés. La version actuelle de site est la {{lastv}}, elle porte l'identifiant {{lastvid}} et a été publiée le {{lastvdate}}, vous pouvez <a href="/u{{lastvu}}">en consulter les changements ici</a>.</p>
 
 <h3>Code source de {{site}}</h3>
 <p>{{site}} est libre et open-source, son code est disponible sur <a href="https://gitlab.com/ProgAccess/ProgAccess">GitLab</a>. Vous pouvez <a href="opensource.php">en savoir plus sur le développement ici</a>.</p>
