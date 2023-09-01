@@ -41,7 +41,7 @@
   'urank_b' => 'Banni',
   'footer_share' => 'Partager cette page sur&nbsp;:',
   'footer_fb' => 'Facebook',
-  'footer_tw' => 'Twitter',
+  'footer_x' => 'X',
   'footer_g+' => 'Google+',
   'footer_d*' => 'Diaspora*',
   'footer_lastmodif' => 'Dernière modification',

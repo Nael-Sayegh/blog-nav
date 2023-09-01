@@ -9,9 +9,9 @@ $titlemodifie = str_replace(' ',' ',$title);
 <summary><?php echo tr($tr0,'footer_share'); ?></summary>
 <ul>
 <li><a href="https://www.facebook.com/sharer.php?u=<?php print $permalink; ?>&t=<?php print $titlemodifie; ?>" target="_blank" title="<?php echo tr($tr0,'footer_fb'); ?>"><img src="/image/facebook.png" alt="<?php echo tr($tr0,'footer_fb'); ?>"></a></li>
-<li><a href="https://twitter.com/share?url=<?php print $permalink; ?>&text=<?php print $titlemodifie; ?>&via=<?php print $site_name; ?>" target="_blank" title="<?php echo tr($tr0,'footer_tw'); ?>"><img src="/image/twitter.png" alt="<?php echo tr($tr0,'footer_tw'); ?>"></a></li>
+<li><a href="https://x.com/share?url=<?php print $permalink; ?>&text=<?php print $titlemodifie; ?>&via=<?php print $site_name; ?>" target="_blank" title="<?php echo tr($tr0,'footer_x'); ?>"><img src="/image/x.png" alt="<?php echo tr($tr0,'footer_x'); ?>"></a></li>
 <li><a href="/Diaspora/selectpod.php?url=<?php print $permalink; ?>&title=<?php print $titlemodifie; ?>" target="_blank" title="<?php echo tr($tr0,'footer_d*'); ?>"><img src="/image/diaspora_white.svg" alt="<?php echo tr($tr0,'footer_d*'); ?>" style="width:32px;height:32px;"></a></li>
-<li><button class="mastodon-share" data-title="<?php print $titlemodifie; ?>" data-href="<?php print $permalink; ?>"></button></li>
+<li><button class="mastodon-share" data-title="<?php print $titlemodifie; ?>" data-href="<?php print $permalink; ?>" role="link"></button></li>
 </ul>
 </details>
 </div>

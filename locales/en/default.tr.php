@@ -36,7 +36,7 @@
   'urank_b' => 'Banished',
   'footer_share' => 'Share this page on:',
   'footer_fb' => 'Facebook',
-  'footer_tw' => 'Twitter',
+  'footer_x' => 'X',
   'footer_g+' => 'Google+',
   'footer_d*' => 'Diaspora*',
   'footer_lastmodif' => 'Last modification',
