@@ -31,7 +31,7 @@
   'urank_i' => 'Anónimo',
   'urank_b' => 'Desterrado',
   'footer_fb' => 'Facebook',
-  'footer_tw' => 'Twitter',
+  'footer_x' => 'X',
   'footer_g+' => 'Google+',
   'footer_d*' => 'Diaspora*',
   'footer_lastmodif' => 'Ultima modificación',
