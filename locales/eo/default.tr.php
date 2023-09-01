@@ -34,7 +34,7 @@
   'urank_i' => 'anonyma',
   'footer_share' => 'Komunigi ĉi retpaĝo kun:',
   'footer_fb' => 'Facebook',
-  'footer_tw' => 'Twitter',
+  'footer_' => 'X',
   'footer_g+' => 'Google+',
   'footer_d*' => 'Diaspora*',
   'footer_lastmodif' => 'Lasta modifo',
