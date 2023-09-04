@@ -147,7 +147,7 @@ html, body {margin: 0;padding: 0;font-family: Cantarell;}
 		</div>
 		<div id="content">
 		<h2>Bonjour {{mail_user}},</h2>';
-$message2 = '<hr><div  role="contentinfo" aria-label="Informations sur l\'abonnement"><p>Vous recevez l\actu '.$site_name.' car vous vous y êtes inscrit jusqu\'au ';
+$message2 = '<hr><div  role="contentinfo" aria-label="Informations sur l\'abonnement"><p>Vous recevez l\'actu '.$site_name.' car vous vous y êtes inscrit jusqu\'au ';
 $message3 = ', <a id="link" href="'.SITE_URL.'/nlmod.php?id=';
 $message4 = '">cliquez ici pour modifier vos préférences ou vous désinscrire</a>.</p>
 			<p>Veuillez ne pas répondre, ce mail a été envoyé automatiquement, vous pouvez <a href="'.SITE_URL.'/contact.php">nous contacter ici</a></p>
