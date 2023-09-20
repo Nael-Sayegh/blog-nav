@@ -22,8 +22,8 @@ if(isset($_GET['a']) and $_GET['a'] == 's') {
 			$log .= 'Cette adresse est déjà inscrite&#8239;!';
 		else {
 			$hash = sha1(strval(rand()+time()).$_POST['mail']).sha1($_POST['mail'].$_SERVER['REMOTE_ADDR'].strval(rand()));
-			$f_site = false;
-			if(isset($_POST['notif_site']) and $_POST['notif_site'] == 'on') $f_site = true;
+			$f_site = 0;
+			if(isset($_POST['notif_site']) and $_POST['notif_site'] == 'on') $f_site = 1;
 			$f_upd = false;
 			if(isset($_POST['notif_up']) and $_POST['notif_up'] == 'on') $f_upd = true;
 			$f_upd_n = false;
