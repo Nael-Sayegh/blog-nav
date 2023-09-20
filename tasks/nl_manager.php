@@ -219,7 +219,7 @@ while($data = $req->fetch()) {
 	echo $data['mail'];
 	if($nbs > 0 or $nbf > 0) {
 		echo ' send';
-		if($data['notif_site'] and $data['lastmail'] < $maj_date) {
+		if($data['notif_site'] == 1 and $data['lastmail'] < $maj_date) {
 			$message .= '<h2>'.$site_name.' version '.$maj_name.' : '.$maj_id.' ('.$maj_author.')</h2><p>'.$maj_text.'</p>';
 			$msgtxt .= 'Mise à jour du site : '.$site_name.' version '.$maj_name.' ('.$maj_id.')'."\n".strip_tags(html_entity_decode($maj_text))."\n\n"; 
 		}
