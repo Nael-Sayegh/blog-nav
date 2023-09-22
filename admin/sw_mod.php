@@ -242,8 +242,8 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$req->execute(array(time(), $nom, $_GET['upload']));
 				
 				if($complete) {
-					$req = $bdd->prepare('INSERT INTO softwares_files(sw_id,name,hash,filetype,title,date,filesize,total_hits,hits,label,`md5`,`sha1`) VALUES(?,?,?,?,?,?,?,0,0,?,?,?)');
-					$req->execute(array($_GET['upload'], $filename, $hash, $filetype, $_POST['title'], time(), $filesize, $label, md5_file($file), sha1_file($file)));
+					$req = $bdd->prepare('INSERT INTO softwares_files(sw_id,name,hash,filetype,title,date,filesize,total_hits,hits,label,`md5`,`sha1`,`arch`,`platform`) VALUES(?,?,?,?,?,?,?,0,0,?,?,?,?,?)');
+					$req->execute(array($_GET['upload'], $filename, $hash, $filetype, $_POST['title'], time(), $filesize, $label, md5_file($file), sha1_file($file), $_POST['arch'], $_POST['platform']));
 					include($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 					include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 					
@@ -583,6 +583,27 @@ if(isset($_GET['modf'])) {
 				<label for="f_modf_label">Label&nbsp;:</label>
 				<input type="text" name="label" id="f_modf_label" value="<?php echo $data['label']; ?>" maxlength="16" readonly=<?php (!empty($data['label'])?true:false); ?>>
 				<?php if(!empty($data['label'])) echo '<p>Le label de ce fichier est déjà renseigné, pour le modifier, supprimez ce fichier et ajoutez en un nouveau.</p>'; ?>
+
+				<label for="f_modf_arch">Architecture&nbsp;:</label>
+				<select name="arch" id="f_modf_arch">
+					<option value=""<?php if(!in_array($data['arch'])) echo 'selected'; ?>></option>
+					<?php
+		require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
+		foreach($arch_id => $arch_title in $ARCHS) {
+			echo '<option value="'.$arch_id.'">'.$arch_title.'</option>';
+		}
+					?>
+				</select>
+
+				<label for="f_modf_platform">Plateforme&nbsp;:</label>
+				<select name="platform" id="f_modf_platform">
+					<option value=""<?php if(!in_array($data['platform'])) echo 'selected'; ?>></option>
+					<?php
+		foreach($platform_id => $platform_title in $PLATFORMS) {
+			echo '<option value="'.$platform_id.'">'.$platform_title.'</option>';
+		}
+					?>
+				</select>
 			</fieldset>
 			<fieldset>
 				<legend>Remplacer le fichier</legend>
