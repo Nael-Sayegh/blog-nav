@@ -480,7 +480,7 @@ if(isset($_GET['addfile'])) {
 					<option value="" selected></option>
 					<?php
 		require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
-		foreach($arch_id => $arch_title in $ARCHS) {
+		foreach($ARCHS as $arch_id => $arch_title) {
 			echo '<option value="'.$arch_id.'">'.$arch_title.'</option>';
 		}
 					?>
@@ -490,7 +490,7 @@ if(isset($_GET['addfile'])) {
 				<select name="platform" id="f_addfile_platform">
 					<option value="" selected></option>
 					<?php
-		foreach($platform_id => $platform_title in $PLATFORMS) {
+		foreach($PLATFORMS as $platform_id => $platform_title) {
 			echo '<option value="'.$platform_id.'">'.$platform_title.'</option>';
 		}
 					?>
@@ -589,7 +589,7 @@ if(isset($_GET['modf'])) {
 					<option value=""<?php if(!in_array($data['arch'])) echo 'selected'; ?>></option>
 					<?php
 		require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
-		foreach($arch_id => $arch_title in $ARCHS) {
+		foreach($ARCHS as $arch_id => $arch_title) {
 			echo '<option value="'.$arch_id.'">'.$arch_title.'</option>';
 		}
 					?>
@@ -599,7 +599,7 @@ if(isset($_GET['modf'])) {
 				<select name="platform" id="f_modf_platform">
 					<option value=""<?php if(!in_array($data['platform'])) echo 'selected'; ?>></option>
 					<?php
-		foreach($platform_id => $platform_title in $PLATFORMS) {
+		foreach($PLATFORMS as $platform_id => $platform_title) {
 			echo '<option value="'.$platform_id.'">'.$platform_title.'</option>';
 		}
 					?>
