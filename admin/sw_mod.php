@@ -82,8 +82,8 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				}
 				if(!$nofile) {
 					if($ok) {
-						$req = $bdd->prepare('UPDATE `softwares_files` SET `name`=?, `filetype`=?, `title`=?, `date`=?, `filesize`=?, `label`=?, `md5`=?, `sha1`=?, `hits`=? WHERE `id`=? LIMIT 1');
-						$req->execute(array($filename, $filetype, $_POST['title'], time(), $filesize, $_POST['label'], md5_file($file), sha1_file($file), 0, $_GET['modf2']));
+						$req = $bdd->prepare('UPDATE `softwares_files` SET `name`=?, `filetype`=?, `title`=?, `date`=?, `filesize`=?, `label`=?, `md5`=?, `sha1`=?, `hits`=?, `arch`=?, `platform`=? WHERE `id`=? LIMIT 1');
+						$req->execute(array($filename, $filetype, $_POST['title'], time(), $filesize, $_POST['label'], md5_file($file), sha1_file($file), 0, $_POST['arch'], $_POST['platform'], $_GET['modf2']));
 					} else
 						die('erreur');
 				}
@@ -586,18 +586,18 @@ if(isset($_GET['modf'])) {
 
 				<label for="f_modf_arch">Architecture&nbsp;:</label>
 				<select name="arch" id="f_modf_arch">
-					<option value=""<?php if(!in_array($data['arch'])) echo 'selected'; ?>></option>
+					<option value=""<?php if(!in_array($data['arch'], $ARCHS)) echo 'selected'; ?>></option>
 					<?php
 		require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
 		foreach($ARCHS as $arch_id => $arch_title) {
 			echo '<option value="'.$arch_id.'">'.$arch_title.'</option>';
 		}
 					?>
-				</select>
+				</select><br>
 
 				<label for="f_modf_platform">Plateforme&nbsp;:</label>
 				<select name="platform" id="f_modf_platform">
-					<option value=""<?php if(!in_array($data['platform'])) echo 'selected'; ?>></option>
+					<option value=""<?php if(!in_array($data['platform'], $PLATFORMS)) echo 'selected'; ?>></option>
 					<?php
 		foreach($PLATFORMS as $platform_id => $platform_title) {
 			echo '<option value="'.$platform_id.'">'.$platform_title.'</option>';
