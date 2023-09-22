@@ -94,7 +94,7 @@ function get_article_prefered_tr($article_id, $lang) {
 
 function getLastGitCommit()
 {
-	global $tr0;
+	global $tr0, $site_name;
 	$hash = shell_exec('git --git-dir="'.GIT_DIR.'" rev-parse --verify HEAD');
 	$commitVersion = getFormattedDate(shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%ct '.$hash), 'yy.MM.dd.HHmm');
 	$commitURL = '<a href="'.GIT_COMMIT_BASE_URL.$hash.'">'.$commitVersion.'('.rtrim(shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%h')).')</a>';
