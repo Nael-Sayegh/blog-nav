@@ -90,8 +90,8 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				}
 			}
 			if($nofile) {
-				$req = $bdd->prepare('UPDATE `softwares_files` SET `name`=? , `title`=? , `label`=?, `date`=? WHERE `id`=? LIMIT 1');
-				$req->execute(array($_POST['name'], $_POST['title'], $_POST['label'], time(), $_GET['modf2']));
+				$req = $bdd->prepare('UPDATE `softwares_files` SET `name`=? , `title`=? , `label`=?, `date`=?, `arch`=?, `platform`=? WHERE `id`=? LIMIT 1');
+				$req->execute(array($_POST['name'], $_POST['title'], $_POST['label'], time(), $_POST['arch'], $_POST['platform'], $_GET['modf2']));
 			}
 			
 			header('Location: sw_mod.php?listfiles='.$data['sw_id']);
