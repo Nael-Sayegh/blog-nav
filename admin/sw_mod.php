@@ -474,6 +474,27 @@ if(isset($_GET['addfile'])) {
 				
 				<label for="f_addfile_label">Label&nbsp;:</label>
 				<input type="text" name="label" id="f_addfile_label" placeholder="toto-win-install"><br>
+
+				<label for="f_addfile_arch">Architecture&nbsp;:</label>
+				<select name="arch" id="f_addfile_arch">
+					<option value="" selected></option>
+					<?php
+		require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
+		foreach($arch_id => $arch_title in $ARCHS) {
+			echo '<option value="'.$arch_id.'">'.$arch_title.'</option>';
+		}
+					?>
+				</select>
+
+				<label for="f_addfile_platform">Plateforme&nbsp;:</label>
+				<select name="platform" id="f_addfile_platform">
+					<option value="" selected></option>
+					<?php
+		foreach($platform_id => $platform_title in $PLATFORMS) {
+			echo '<option value="'.$platform_id.'">'.$platform_title.'</option>';
+		}
+					?>
+				</select>
 				
 				<label for="f_addfile_social">Annoncer sur les médias sociaux&nbsp;:</label>
 				<input type="checkbox" name="social" id="f_addfile_social"<?php if(!DEV) echo ' checked'; ?>><br>

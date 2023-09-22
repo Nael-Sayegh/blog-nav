@@ -15,6 +15,7 @@
   'files_size' => 'Titre du fichier (taille)',
   'files_date' => 'Modifié le',
   'files_hits' => 'Téléchargements',
+  'files_platform' => 'Plateforme',
   'files_sums' => 'Sommes de contrôle',
   'mirrors_title' => 'Fichiers en miroir pour <em>{{title}}</em>&nbsp;:',
   'mirrors_filetitle' => 'Titre',

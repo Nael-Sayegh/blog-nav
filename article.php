@@ -159,13 +159,29 @@ $req = $bdd->prepare('SELECT * FROM softwares_files WHERE sw_id=? ORDER BY date 
 $req->execute(array($sw['id']));
 while($data = $req->fetch()) {
 	if($first) {
-		echo '<span style="position:absolute; top:-999px; left:-9999px;" role="heading" aria-level="2">'.tr($tr,'files_title',array('title'=>$title)).'</span><table id="sw_files"><caption><strong>'.tr($tr,'files_title',array('title'=>$title)).'</strong></caption><thead><tr><th>'.tr($tr,'files_size').'</th><th>'.tr($tr,'files_date').'</th><th>'.tr($tr,'files_hits').'</th><th>MD5, SHA1</th></tr></thead><tbody>';
+?>
+	<span style="position:absolute; top:-999px; left:-9999px;" role="heading" aria-level="2">
+		<?php echo tr($tr,'files_title',array('title'=>$title)) ?>
+	</span>
+	<table id="sw_files">
+		<caption><strong><?php echo tr($tr,'files_title',array('title'=>$title)); ?></strong></caption>
+		<thead>
+			<tr>
+				<th><?php echo tr($tr,'files_size'); ?></th>
+				<th><?php echo tr($tr,'files_platform'); ?></th>
+				<th><?php echo tr($tr,'files_date'); ?></th>
+				<th><?php echo tr($tr,'files_hits'); ?></th>
+				<th>MD5, SHA1</th>
+			</tr>
+		</thead>
+	<tbody>
+<?php
 		$fichiersexistants = true;
 		$first = false;
 	}
 	echo '<tr class="sw_file';
 	if($altc) echo ' altc';
-	echo '"><td class="sw_file_ltd"><a class="sw_file_link" href="/dl/';
+	echo '"><td>'.($PLATFORMS[$data['platform']]??'').' '.($ARCHS[$data['arch']]??'').'</td><td class="sw_file_ltd"><a class="sw_file_link" href="/dl/';
 	if(empty($data['label']))
 		echo $data['id'];
 	else

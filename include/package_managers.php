@@ -68,4 +68,13 @@ $PACKAGE_MANAGERS = array(
 		'install_cmd' => 'sudo snap install {}',
 	),
 );
+$PLATFORMS = array(
+	'Android',
+	'Linux',
+	'Windows',
+);
+$ARCHS = array(
+	'x86' => 'x86',
+	'x86_64' => 'x86_64',
+);
 ?>
