@@ -4,6 +4,7 @@ $justpa = true;
 $titlePAdm='Modification d\'un article';
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
 $time = time();
 $addfile_hash = '';
 $addfile_path = '';
@@ -364,7 +365,6 @@ while($data = $req->fetch()) {
 			</tbody>
 		</table><?php }
 if(isset($_GET['listfiles'])) {
-	require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
 	
 	$req1 = $bdd->prepare('SELECT id,name,category,website FROM softwares WHERE id=? ORDER BY date ASC');
 	$req1->execute(array($_GET['listfiles']));
@@ -479,7 +479,6 @@ if(isset($_GET['addfile'])) {
 				<select name="arch" id="f_addfile_arch">
 					<option value="" selected></option>
 					<?php
-		require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
 		foreach($ARCHS as $arch_id => $arch_title) {
 			echo '<option value="'.$arch_id.'">'.$arch_title.'</option>';
 		}
@@ -551,7 +550,6 @@ f_addfile_group_method();
 				<label for="f_addpackage_manager">Gestionnaire&nbsp;:</label>
 				<select name="manager" id="f_addpackage_manager">
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
 foreach($PACKAGE_MANAGERS as $manager_id => $manager_data) {
 	echo '<option value="'.$manager_id.'">'.$manager_data['name'].'</option>';
 }
@@ -588,7 +586,6 @@ if(isset($_GET['modf'])) {
 				<select name="arch" id="f_modf_arch">
 					<option value=""<?php if(!in_array($data['arch'], $ARCHS)) echo 'selected'; ?>></option>
 					<?php
-		require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
 		foreach($ARCHS as $arch_id => $arch_title) {
 			echo '<option value="'.$arch_id.'">'.$arch_title.'</option>';
 		}
