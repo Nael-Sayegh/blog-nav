@@ -24,7 +24,7 @@
 <p>Ce site est d'abord né le 25/05/2015 sous le nom <q>Accessibilité Programmes</q>.<br>
 Ce même site renaîtra sous le nom <q>ProgAccess33</q> le 19/09/2016, et enfin, le nom sera de nouveau raccourci pour devenir <q>ProgAccess</q> lors de la V15.0 le 09/09/2017.<br>
 Ce site vient de l'envie de Corentin (un jeune non-voyant) de partager sa passion avec un grand public et surtout de rassembler en un seul endroit les logiciels accessibles aux déficients visuels et bien sur à tous.</p>
-<p>Durant l'été 2018, plusieurs changements majeurs ont eu lieu&nbsp;: en août, <a href="opensource.php">le code source</a> a été publié sous licence <a href="https://gnu.org">GNU AGPL</a>, le site devient donc un logiciel libre. Plus tard dans le même mois, l'équipe entreprend la traduction du site, commençant par l'italien, l'espéranto, l'anglais et l'espagnol. Michel Such nous confie le site <a href="https://nvda-fr.org">NVDA-FR</a>, et un site dédié à <a href="https://accessikey.nvda-fr.org">l'AccessiKey</a> est créé.</p>
+<p>Durant l'été 2018, plusieurs changements majeurs ont eu lieu&nbsp;: en août, <a href="opensource.php">le code source</a> a été publié sous licence <a href="https://gnu.org">GNU AGPL</a>, le site devient donc un logiciel libre. Plus tard dans le même mois, l'équipe entreprend la traduction du site, commençant par l'italien, l'espéranto, l'anglais et l'espagnol. Michel Such nous confie le site <a href="https://nvda.fr">NVDA-FR</a>, et un site dédié à <a href="https://accessikey.nvda.fr">l'AccessiKey</a> est créé.</p>
 
 <h2>Suivre l'actu et contribuer</h2>
 <h3>Sur les réseaux sociaux</h3>
