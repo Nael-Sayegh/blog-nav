@@ -92,7 +92,7 @@ if($logged and $login['rank'] == 'a') {
 	}
 }
 if(isset($justpa) && $justpa && $worksnum2 == '0') {
-	header('Location: https://www.nvda-fr.org/admin/');
+	header('Location: https://www.nvda.fr/admin/');
 	exit();
 }
 ?>

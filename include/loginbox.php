@@ -18,7 +18,7 @@ $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 <a role="menuitem" class="hlink" href="/admin"><?php echo tr($tr0,'loginbox_adminlink').' ('.$site_name.')'; ?></a><br>
 				<?php }
 				if($worksnum1 == '0' or $worksnum1 == '2') { ?>
-					<a role="menuitem" class="hlink" href="https://www.nvda-fr.org/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr0,'loginbox_adminlink').' (NVDA-FR)'; ?></a><br>
+					<a role="menuitem" class="hlink" href="https://www.nvda.fr/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr0,'loginbox_adminlink').' (NVDA-FR)'; ?></a><br>
 				<?php } ?>
 				<a role="menuitem" class="hlink" href="/members_list.php"><?php echo tr($tr0,'loginbox_alistlink'); ?></a><br>
 				<?php } ?>
@@ -42,7 +42,7 @@ $req = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 <a role="menuitem" class="hlink" href="/admin"><?php echo tr($tr0,'loginbox_adminlink').' ('.$site_name.')'; ?></a><br>
 				<?php }
 				if($worksnum1 == '0' or $worksnum1 == '2') { ?>
-					<a role="menuitem" class="hlink" href="https://www.nvda-fr.org/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr0,'loginbox_adminlink').' (NVDA-FR)'; ?></a><br>
+					<a role="menuitem" class="hlink" href="https://www.nvda.fr/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr0,'loginbox_adminlink').' (NVDA-FR)'; ?></a><br>
 				<?php } ?>
 				<a role="menuitem" class="hlink" href="/members_list.php"><?php echo tr($tr0,'loginbox_alistlink'); ?></a><br>
 				<?php } ?>
