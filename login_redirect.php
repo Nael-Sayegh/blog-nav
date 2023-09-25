@@ -28,7 +28,7 @@ echo str_replace('{{membername}}', $login['username'], tr($tr,'maintext'));
 	<li><a href="/admin"><?php echo tr($tr,'adminlink').' ('.$site_name.')'; ?></a></li>
 <?php }
 	if($worksnum == '0' or $worksnum == '2') { ?>
-	<li><a href="https://www.nvda-fr.org/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr,'adminlink').' (NVDA-FR)'; ?></a></li>
+	<li><a href="https://www.nvda.fr/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr,'adminlink').' (NVDA-FR)'; ?></a></li>
 <?php } }
 if(isset($login['forum_id']) and $login['forum_id'] !== NULL) { ?>
 	<li><a href="/auth_forum.php?token=<?php echo $login['token']; ?>"><?php echo tr($tr,'forumlink'); ?></a></li>
