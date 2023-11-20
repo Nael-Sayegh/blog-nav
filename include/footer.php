@@ -3,7 +3,7 @@ $permalink = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 $titlemodifie = str_replace(' ',' ',$title);
 ?>
 <footer id="footer">
-<p role="alert"><strong>Parce que l'accessibilité est une cause du quotidien, luttons pour que les transports soit aussi accessibles à tous.<br>À Bordeaux, l'accessibilité du réseau de transports doit être améliorée, pour défendre cette cause, Corentin, fondateur de <?php $site_name; ?> a lancé une pétition adressée à TBM et Bordeaux Métropole.<br>Pour soutenir cette action, <a href="https://www.change.org/p/tbm-pour-l-annonce-syst%C3%A9matique-de-la-destination-d-un-tram">signez et partagez la pétition</a>.<br>Merci pour votre soutien.</strong></p>
+<p role="alert"><strong>Parce que l'accessibilité est une cause du quotidien, luttons pour que les transports soit aussi accessibles à tous.<br>À Bordeaux, l'accessibilité du réseau de transports doit être améliorée, pour défendre cette cause, Corentin, fondateur de <?php echo $site_name; ?> et habitant de Bordeaux a lancé une pétition adressée à TBM et Bordeaux Métropole.<br>Pour soutenir cette action, <a href="https://www.change.org/p/tbm-pour-l-annonce-syst%C3%A9matique-de-la-destination-d-un-tram">signez et partagez la pétition</a>.<br>Merci pour votre soutien.</strong></p>
 <a style="position:absolute; top:-999px; left:-9999px;" href="#hautpage" accesskey="H"><?php echo tr($tr0,'footer_toplink'); ?></a>
 <div id="social_share" role="complementary">
 <details open>
