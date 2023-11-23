@@ -5,6 +5,12 @@ $justpa = true;
 $titlePAdm='Gestion des comptes membres';
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/phpmailer/src/PHPMailer.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/phpmailer/src/Exception.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/phpmailer/src/SMTP.php');
 if(isset($_GET['delete'])) {
 	$req = $bdd->prepare('DELETE FROM `accounts` WHERE `id`=? LIMIT 1');
 	$req->execute(array($_GET['delete']));
@@ -18,6 +24,43 @@ if(isset($_GET['mod2']) and isset($_POST['username']) and isset($_POST['email'])
 		$req = $bdd->prepare('UPDATE `accounts` SET `username`=?, `email`=?, `rank`=? WHERE `id`=? LIMIT 1');
 		$req->execute(array(htmlentities($_POST['username']), $_POST['email'], $_POST['rank'], $_GET['mod2']));
 	}
+	$mail = new PHPMailer;
+	$mail->isSMTP();
+	$mail->Host = SMTP_HOST;
+	$mail->Port = SMTP_PORT;
+	$mail->SMTPAuth = true;
+	$mail->Username = SMTP_USERNAME;
+	$mail->Password = SMTP_PSW;
+	$mail->setFrom(SMTP_MAIL, SMTP_NAME);
+	$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
+	$mail->addAddress($data['email']);
+	$mail->Subject = $site_name.' : modification de votre compte membre';
+	$mail->CharSet = 'UTF-8';
+	$mail->IsHTML(TRUE);
+	$mail->Body = '<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Modification de votre compte membre sur '.$site_name.'</title>
+</head>
+<body>
+<h1>'.$site_name.'</h1>
+<img src="'.SITE_URL.'/image/logo128-170.png" alt="Logo">
+<h2>Bonjour '.htmlentities($_POST['username']).'</h2>
+<p>Un administrateur vient d\'apporter des modifications à votre compte membre sur '.$site_name.'<br>
+Vos nouvelles informations sont les suivantes :</p>
+<ul>
+<li>Nom d\'utilisateur : '.htmlentities($_POST['username']).'</li>
+<li>Adresse mail : '.$_POST['email'].'</li>
+</ul>
+<p>Si vous avez perdu votre mot de passe, vous pouvez en demander un nouveau sur <a href="'.SITE_URL.'/fg_password.php">la page de réinitialisation de mot de passe</a>.</p>
+<p>Ne répondez pas à ce mail, il vous a été envoyé automatiquement.<br>
+Cordialement.<br>
+'.$site_name.'</p>
+</body>
+</html>';
+	$mail->AltBody = 'Ce mail est uniquement disponible en HTML, activer l\'affichage HTML dans votre messagerie';
+	$mail->send();
 }
 ?>
 <!DOCTYPE html>
