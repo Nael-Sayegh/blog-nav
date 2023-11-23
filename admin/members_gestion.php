@@ -33,7 +33,7 @@ if(isset($_GET['mod2']) and isset($_POST['username']) and isset($_POST['email'])
 	$mail->Password = SMTP_PSW;
 	$mail->setFrom(SMTP_MAIL, SMTP_NAME);
 	$mail->addReplyTo(SMTP_MAIL, SMTP_NAME);
-	$mail->addAddress($data['email']);
+	$mail->addAddress($_POST['email']);
 	$mail->Subject = $site_name.' : modification de votre compte membre';
 	$mail->CharSet = 'UTF-8';
 	$mail->IsHTML(TRUE);
