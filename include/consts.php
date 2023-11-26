@@ -111,8 +111,8 @@ return false;
 
 function setTimeZone($timezone, $lc_code)
 {
-	date_default_timezone_set(tr($tr0,'timezone')); 
-	setlocale(LC_ALL, tr($tr0,'lc_code'));
+	date_default_timezone_set($timezone);
+	setlocale(LC_ALL, $lc_code);
 }
 
 function getUserById($id) {
