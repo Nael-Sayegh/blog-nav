@@ -109,9 +109,8 @@ else
 return false;
 }
 
-function setTimeZone()
+function setTimeZone($timezone, $lc_code)
 {
-	global $tr0;
 	date_default_timezone_set(tr($tr0,'timezone')); 
 	setlocale(LC_ALL, tr($tr0,'lc_code'));
 }
@@ -153,7 +152,6 @@ elseif(isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
 	$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 if(!in_array($lang, $langs_prio)) $lang = $langs_prio[0];
 putenv('LANG='.$lang);
-setTimeZone();
 
 // MISC CONSTS/VARS
 $tr0 = load_tr($lang, 'default');
@@ -165,6 +163,7 @@ $slogan = tr($tr0,'slogan');
 $lastosv = '17.0';
 $tr_todo = array(0=>'Référence', 1=>'OK', 2=>'À vérifier', 3=>'À modifier', 4=>'À terminer');
 $args = array();
+setTimeZone(tr($tr0,'timezone'), tr($tr0,'lc_code'));
 // VERSION
 $derniereversion = '';
 $versionnom = '';
