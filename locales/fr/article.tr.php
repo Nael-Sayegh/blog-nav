@@ -49,4 +49,5 @@
   'detailskw' => 'Mots clés',
   'confirm_del_com' => 'Faut-il vraiment supprimer le commentaire&nbsp;?',
   'count_dl' => '{{dl}} depuis la dernière mise à jour, {{total_dl}} au total',
+  'empty_nickname' => 'Anonyme',
 ); ?>

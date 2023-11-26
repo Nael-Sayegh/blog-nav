@@ -279,7 +279,7 @@ $req = $bdd->prepare('SELECT * FROM softwares_comments WHERE sw_id=? ORDER BY da
 $req->execute(array($sw['id']));
 while($data = $req->fetch()) {
 	echo '<div class="comment"><div class="comment_h"><h3><!--K'.$data['id'].': -->';
-	echo htmlentities($data['pseudo']);
+	echo (getUserById($data['pseudo'])?getUserById($data['pseudo']->username):tr($tr,'empty_nickname'));
 	echo ' ('.date('d/m/Y, H:i', $data['date']).')</h3>';
 	echo '</div>';
 	echo '<p class="comment_p">'.str_replace("\n",'<br>',htmlentities($data['text'])).'</p></div>';
