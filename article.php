@@ -312,7 +312,7 @@ if(isset($logged) && $logged == 'true') { ?>
 					<?php if($comlog!='') echo '<strong>'.$comlog.'</strong>'; ?>
 					<fieldset><legend><?php echo tr($tr,'comments_send'); ?></legend>
 						<p><?php echo tr($tr,'comments_warn'); ?></p>
-						<p><?php echo tr($tr,'comments_nickname',array('nickname'=>$login['username'])); ?>
+						<p><?php echo tr($tr,'comments_nickname',array('nickname'=>$login['username'])); ?></p>
 						<label for="fc_text"><?php echo tr($tr,'comments_text'); ?></label><br>
 						<textarea id="fc_text" class="ta" name="text" maxlength="1023"><?php if(isset($_POST['text']) and strlen($_POST['text']) <= 1023) echo htmlentities($_POST['text']); ?></textarea><br>
 						<input type="submit" value="<?php echo tr($tr,'comments_ok'); ?>">
