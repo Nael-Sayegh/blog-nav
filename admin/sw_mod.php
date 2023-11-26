@@ -4,6 +4,7 @@ $justpa = true;
 $titlePAdm='Modification d\'un article';
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
 $time = time();
 $addfile_hash = '';
 $addfile_path = '';
@@ -82,15 +83,15 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				}
 				if(!$nofile) {
 					if($ok) {
-						$req = $bdd->prepare('UPDATE `softwares_files` SET `name`=?, `filetype`=?, `title`=?, `date`=?, `filesize`=?, `label`=?, `md5`=?, `sha1`=?, `hits`=? WHERE `id`=? LIMIT 1');
-						$req->execute(array($filename, $filetype, $_POST['title'], time(), $filesize, $_POST['label'], md5_file($file), sha1_file($file), 0, $_GET['modf2']));
+						$req = $bdd->prepare('UPDATE `softwares_files` SET `name`=?, `filetype`=?, `title`=?, `date`=?, `filesize`=?, `label`=?, `md5`=?, `sha1`=?, `hits`=?, `arch`=?, `platform`=? WHERE `id`=? LIMIT 1');
+						$req->execute(array($filename, $filetype, $_POST['title'], time(), $filesize, $_POST['label'], md5_file($file), sha1_file($file), 0, $_POST['arch'], $_POST['platform'], $_GET['modf2']));
 					} else
 						die('erreur');
 				}
 			}
 			if($nofile) {
-				$req = $bdd->prepare('UPDATE `softwares_files` SET `name`=? , `title`=? , `label`=?, `date`=? WHERE `id`=? LIMIT 1');
-				$req->execute(array($_POST['name'], $_POST['title'], $_POST['label'], time(), $_GET['modf2']));
+				$req = $bdd->prepare('UPDATE `softwares_files` SET `name`=? , `title`=? , `label`=?, `date`=?, `arch`=?, `platform`=? WHERE `id`=? LIMIT 1');
+				$req->execute(array($_POST['name'], $_POST['title'], $_POST['label'], time(), $_POST['arch'], $_POST['platform'], $_GET['modf2']));
 			}
 			
 			header('Location: sw_mod.php?listfiles='.$data['sw_id']);
@@ -242,8 +243,8 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 				$req->execute(array(time(), $nom, $_GET['upload']));
 				
 				if($complete) {
-					$req = $bdd->prepare('INSERT INTO softwares_files(sw_id,name,hash,filetype,title,date,filesize,total_hits,hits,label,`md5`,`sha1`) VALUES(?,?,?,?,?,?,?,0,0,?,?,?)');
-					$req->execute(array($_GET['upload'], $filename, $hash, $filetype, $_POST['title'], time(), $filesize, $label, md5_file($file), sha1_file($file)));
+					$req = $bdd->prepare('INSERT INTO softwares_files(sw_id,name,hash,filetype,title,date,filesize,total_hits,hits,label,`md5`,`sha1`,`arch`,`platform`) VALUES(?,?,?,?,?,?,?,0,0,?,?,?,?,?)');
+					$req->execute(array($_GET['upload'], $filename, $hash, $filetype, $_POST['title'], time(), $filesize, $label, md5_file($file), sha1_file($file), $_POST['arch'], $_POST['platform']));
 					include($_SERVER['DOCUMENT_ROOT'].'/tasks/history_cache.php');
 					include($_SERVER['DOCUMENT_ROOT'].'/tasks/slider_cache.php');
 					
@@ -364,7 +365,6 @@ while($data = $req->fetch()) {
 			</tbody>
 		</table><?php }
 if(isset($_GET['listfiles'])) {
-	require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
 	
 	$req1 = $bdd->prepare('SELECT id,name,category,website FROM softwares WHERE id=? ORDER BY date ASC');
 	$req1->execute(array($_GET['listfiles']));
@@ -474,6 +474,26 @@ if(isset($_GET['addfile'])) {
 				
 				<label for="f_addfile_label">Label&nbsp;:</label>
 				<input type="text" name="label" id="f_addfile_label" placeholder="toto-win-install"><br>
+
+				<label for="f_addfile_arch">Architecture&nbsp;:</label>
+				<select name="arch" id="f_addfile_arch">
+					<option value="" selected></option>
+					<?php
+		foreach($ARCHS as $arch_id => $arch_title) {
+			echo '<option value="'.$arch_id.'">'.$arch_title.'</option>';
+		}
+					?>
+				</select>
+
+				<label for="f_addfile_platform">Plateforme&nbsp;:</label>
+				<select name="platform" id="f_addfile_platform">
+					<option value="" selected></option>
+					<?php
+		foreach($PLATFORMS as $platform_id => $platform_title) {
+			echo '<option value="'.$platform_id.'">'.$platform_title.'</option>';
+		}
+					?>
+				</select>
 				
 				<label for="f_addfile_social">Annoncer sur les médias sociaux&nbsp;:</label>
 				<input type="checkbox" name="social" id="f_addfile_social"<?php if(!DEV) echo ' checked'; ?>><br>
@@ -530,7 +550,6 @@ f_addfile_group_method();
 				<label for="f_addpackage_manager">Gestionnaire&nbsp;:</label>
 				<select name="manager" id="f_addpackage_manager">
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/include/package_managers.php');
 foreach($PACKAGE_MANAGERS as $manager_id => $manager_data) {
 	echo '<option value="'.$manager_id.'">'.$manager_data['name'].'</option>';
 }
@@ -562,6 +581,26 @@ if(isset($_GET['modf'])) {
 				<label for="f_modf_label">Label&nbsp;:</label>
 				<input type="text" name="label" id="f_modf_label" value="<?php echo $data['label']; ?>" maxlength="16" readonly=<?php (!empty($data['label'])?true:false); ?>>
 				<?php if(!empty($data['label'])) echo '<p>Le label de ce fichier est déjà renseigné, pour le modifier, supprimez ce fichier et ajoutez en un nouveau.</p>'; ?>
+
+				<label for="f_modf_arch">Architecture&nbsp;:</label>
+				<select name="arch" id="f_modf_arch">
+					<option value=""<?php if(!in_array($data['arch'], $ARCHS)) echo 'selected'; ?>></option>
+					<?php
+		foreach($ARCHS as $arch_id => $arch_title) {
+			echo '<option value="'.$arch_id.'">'.$arch_title.'</option>';
+		}
+					?>
+				</select><br>
+
+				<label for="f_modf_platform">Plateforme&nbsp;:</label>
+				<select name="platform" id="f_modf_platform">
+					<option value=""<?php if(!in_array($data['platform'], $PLATFORMS)) echo 'selected'; ?>></option>
+					<?php
+		foreach($PLATFORMS as $platform_id => $platform_title) {
+			echo '<option value="'.$platform_id.'">'.$platform_title.'</option>';
+		}
+					?>
+				</select>
 			</fieldset>
 			<fieldset>
 				<legend>Remplacer le fichier</legend>

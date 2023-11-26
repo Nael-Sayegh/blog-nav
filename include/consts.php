@@ -94,7 +94,7 @@ function get_article_prefered_tr($article_id, $lang) {
 
 function getLastGitCommit()
 {
-	global $tr0;
+	global $tr0, $site_name;
 	$hash = shell_exec('git --git-dir="'.GIT_DIR.'" rev-parse --verify HEAD');
 	$commitVersion = getFormattedDate(shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%ct '.$hash), 'yy.MM.dd.HHmm');
 	$commitURL = '<a href="'.GIT_COMMIT_BASE_URL.$hash.'">'.$commitVersion.'('.rtrim(shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%h')).')</a>';
@@ -114,6 +114,19 @@ function setTimeZone()
 	global $tr0;
 	date_default_timezone_set(tr($tr0,'timezone')); 
 	setlocale(LC_ALL, tr($tr0,'lc_code'));
+}
+
+function getUserById($id) {
+    global $bdd;
+    if (is_numeric($id))
+    {
+        $id = (int) $id;
+        $req = $bdd->prepare("SELECT * FROM accounts WHERE id =?");
+        $req->execute(array($id));
+        if ($user = $req->fetch(PDO::FETCH_OBJ))
+            return $user;
+    }
+    return false;
 }
 
 if(!(isset($noct) and $noct))
