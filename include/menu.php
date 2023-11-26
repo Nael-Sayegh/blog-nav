@@ -1,6 +1,6 @@
 <?php
 $ulmenu_js = function() {
-	global $lang, $args, $tr0; ?>
+	global $lang, $args, $tr0, $site_name; ?>
 <ul class="ulmenu_js" role="menu">
 	<li><form method="get"><?php echo args_html_form($args); ?><select aria-label="<?php echo tr($tr0,'menu_changelang'); ?>" title="<?php echo tr($tr0,'menu_changelang'); ?>" name="lang" autocomplete="off"><?php echo langs_html_opts($lang); ?></select><input type="submit" value="OK"></form></li>
 	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/index.php') echo 'aria-current="page"'; ?>><a href="/"><?php echo tr($tr0,'menu_homepage'); ?></a></li>
@@ -21,7 +21,7 @@ $ulmenu_js = function() {
 </ul>
 <?php };
 $ulmenu_njs = function() {
-	global $lang, $args, $tr0; ?>
+	global $lang, $args, $tr0, $site_name; ?>
 <ul class="ulmenu_njs" role="menu">
 	<li><form method="get"><?php echo args_html_form($args); ?><select aria-label="<?php echo tr($tr0,'menu_changelang'); ?>" title="<?php echo tr($tr0,'menu_changelang'); ?>" name="lang" autocomplete="off"><?php echo langs_html_opts($lang); ?></select><input type="submit" value="OK"></form></li>
 	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/index.php') echo 'aria-current="page"'; ?>><a href="/"><?php echo tr($tr0,'menu_homepage'); ?></a></li>
