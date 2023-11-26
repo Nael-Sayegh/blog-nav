@@ -116,6 +116,19 @@ function setTimeZone()
 	setlocale(LC_ALL, tr($tr0,'lc_code'));
 }
 
+function getUserById($id) {
+    global $bdd;
+    if (is_numeric($id))
+    {
+        $id = (int) $id;
+        $req = $bdd->prepare("SELECT * FROM accounts WHERE id =?");
+        $req->execute(array($id));
+        if ($user = $req->fetch(PDO::FETCH_OBJ))
+            return $user;
+    }
+    return false;
+}
+
 if(!(isset($noct) and $noct))
 	header('Content-Type: text/html; charset=UTF-8');
 ini_set('default_charset', 'utf-8');

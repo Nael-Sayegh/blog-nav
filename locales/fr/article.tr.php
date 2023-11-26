@@ -39,7 +39,6 @@
   'comments_ok' => 'Envoyer',
   'comments_send' => 'Envoyer un commentaire',
   'comments_warn' => 'Écrivez ici votre commentaire sur ce logiciel. Vous aurez la possibilité de modifier ou de supprimer votre commentaire pendant 24h après la publication.',
-  'comments_pseudo' => 'Pseudo&nbsp;:',
   'comments_text' => 'Texte&nbsp;:',
   'comments_subscribe' => 'Suivre',
   'comments_subscribe_long' => 'Être notifié des commentaires sur cet article',
@@ -49,4 +48,6 @@
   'detailskw' => 'Mots clés',
   'confirm_del_com' => 'Faut-il vraiment supprimer le commentaire&nbsp;?',
   'count_dl' => '{{dl}} depuis la dernière mise à jour, {{total_dl}} au total',
+  'empty_nickname' => 'Anonyme',
+  'comments_nickname' => 'Votre commentaire sera publié en tant que&nbsp;: {{nickname}}',
 ); ?>

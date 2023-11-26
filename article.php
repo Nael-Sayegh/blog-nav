@@ -44,10 +44,10 @@ $args['id'] = $sw['id'];
 $title = str_replace('{{site}}', $site_name, $sw_tr['name']);
 $comlog = '';
 
-if(isset($_GET['comment']) and isset($_POST['pseudo']) and isset($_POST['text'])) {
-	if(strlen($_POST['pseudo']) <= 31 or strlen($_POST['text']) <= 1023) {
+if(isset($_GET['comment']) and isset($_POST['text'])) {
+	if(strlen($_POST['text']) <= 1023) {
 		$req = $bdd->prepare('INSERT INTO softwares_comments(sw_id,date,pseudo,text,ip) VALUES(?,?,?,?,?)');
-		$req->execute(array($sw['id'], time(), $_POST['pseudo'], $_POST['text'], sha1($_SERVER['REMOTE_ADDR'])));
+		$req->execute(array($sw['id'], time(), $login['id'], $_POST['text'], sha1($_SERVER['REMOTE_ADDR'])));
 		$comlog = tr($tr,'comment_sent');
 		header('Location: /a'.$sw['id']);
 		
@@ -279,7 +279,7 @@ $req = $bdd->prepare('SELECT * FROM softwares_comments WHERE sw_id=? ORDER BY da
 $req->execute(array($sw['id']));
 while($data = $req->fetch()) {
 	echo '<div class="comment"><div class="comment_h"><h3><!--K'.$data['id'].': -->';
-	echo htmlentities($data['pseudo']);
+	echo (getUserById($data['pseudo'])?getUserById($data['pseudo']->username):tr($tr,'empty_nickname'));
 	echo ' ('.date('d/m/Y, H:i', $data['date']).')</h3>';
 	echo '</div>';
 	echo '<p class="comment_p">'.str_replace("\n",'<br>',htmlentities($data['text'])).'</p></div>';
@@ -312,8 +312,7 @@ if(isset($logged) && $logged == 'true') { ?>
 					<?php if($comlog!='') echo '<strong>'.$comlog.'</strong>'; ?>
 					<fieldset><legend><?php echo tr($tr,'comments_send'); ?></legend>
 						<p><?php echo tr($tr,'comments_warn'); ?></p>
-						<label for="fc_pseudo"><?php echo tr($tr,'comments_pseudo'); ?></label>
-						<input type="text" id="fc_pseudo" name="pseudo" maxlength="31"<?php echo ' value="'.$login['username'].'"'; ?> readonly><br>
+						<p><?php echo tr($tr,'comments_nickname',array('nickname'=>$login['username'])); ?>
 						<label for="fc_text"><?php echo tr($tr,'comments_text'); ?></label><br>
 						<textarea id="fc_text" class="ta" name="text" maxlength="1023"><?php if(isset($_POST['text']) and strlen($_POST['text']) <= 1023) echo htmlentities($_POST['text']); ?></textarea><br>
 						<input type="submit" value="<?php echo tr($tr,'comments_ok'); ?>">
