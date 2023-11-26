@@ -279,7 +279,7 @@ $req = $bdd->prepare('SELECT * FROM softwares_comments WHERE sw_id=? ORDER BY da
 $req->execute(array($sw['id']));
 while($data = $req->fetch()) {
 	echo '<div class="comment"><div class="comment_h"><h3><!--K'.$data['id'].': -->';
-	echo (getUserById($data['pseudo'])?getUserById($data['pseudo']->username):tr($tr,'empty_nickname'));
+	echo (getUserById($data['pseudo'])?getUserById($data['pseudo'])->username:tr($tr,'empty_nickname'));
 	echo ' ('.date('d/m/Y, H:i', $data['date']).')</h3>';
 	echo '</div>';
 	echo '<p class="comment_p">'.str_replace("\n",'<br>',htmlentities($data['text'])).'</p></div>';
@@ -312,7 +312,7 @@ if(isset($logged) && $logged == 'true') { ?>
 					<?php if($comlog!='') echo '<strong>'.$comlog.'</strong>'; ?>
 					<fieldset><legend><?php echo tr($tr,'comments_send'); ?></legend>
 						<p><?php echo tr($tr,'comments_warn'); ?></p>
-						<p><?php echo tr($tr,'comments_nickname',array('nickname'=>$login['username'])); ?>
+						<p><?php echo tr($tr,'comments_nickname',array('nickname'=>$login['username'])); ?></p>
 						<label for="fc_text"><?php echo tr($tr,'comments_text'); ?></label><br>
 						<textarea id="fc_text" class="ta" name="text" maxlength="1023"><?php if(isset($_POST['text']) and strlen($_POST['text']) <= 1023) echo htmlentities($_POST['text']); ?></textarea><br>
 						<input type="submit" value="<?php echo tr($tr,'comments_ok'); ?>">
