@@ -26,6 +26,8 @@
   'loginbox_forgotpsw' => 'Mot de passe oublié',
   'loginbox_signup' => 'S\'inscrire',
   'loginbox_notifs' => 'Notifications',
+  'loginbox_notifs_pl' => '{{n}} Notifications',
+  'loginbox_notifs_sg' => '{{n}} Notification',
   'loginbox_notifs_readall' => 'Tout marquer comme lu',
   'loginbox_notifs_read' => 'Marquer comme lu',
   'loginbox_arialab_menu' => 'Menu utilisateur',
