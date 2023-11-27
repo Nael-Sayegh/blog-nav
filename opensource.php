@@ -27,7 +27,6 @@ require_once('include/load_sound.php'); ?>
 		<li><span class="dir">c</span>&nbsp;: Permet de fournir une URL plus courte pour les catégories.</li>
 		<li><span class="dir">cache</span>&nbsp;: Fichiers de cache générés automatiquement.</li>
 		<li><span class="dir">css</span>&nbsp;: Styles CSS.</li>
-		<li><span class="dir">Diaspora</span>&nbsp;: Librairie d'interaction avec Diaspora.</li>
 		<li><span class="dir">files</span>&nbsp;: Fichiers téléchargeables (gestion automatique).</li>
 		<li><span class="dir">gadgets</span>&nbsp;: Pages et ressources des gadgets.</li>
 		<li><span class="dir">image</span>&nbsp;: Images.</li>

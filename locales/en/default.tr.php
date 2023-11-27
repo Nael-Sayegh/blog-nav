@@ -38,7 +38,6 @@
   'footer_fb' => 'Facebook',
   'footer_x' => 'X',
   'footer_g+' => 'Google+',
-  'footer_d*' => 'Diaspora*',
   'footer_lastmodif' => 'Last modification',
   'footer_d-1' => 'yesterday',
   'footer_d-2' => 'day before yesterday',
