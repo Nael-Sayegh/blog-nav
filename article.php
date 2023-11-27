@@ -6,6 +6,7 @@ require_once('include/log.php');
 require_once('include/consts.php');
 require_once('include/isbot.php');
 require_once('include/package_managers.php');
+$workn="";
 	if(isset($logged) && $logged == 'true' AND $login['rank'] == 'a') {
 		$req2 = $bdd->prepare('SELECT `works` FROM `team` WHERE `account_id`=? LIMIT 1');
 		$req2->execute(array($login['id']));
