@@ -36,7 +36,6 @@
   'footer_fb' => 'Facebook',
   'footer_' => 'X',
   'footer_g+' => 'Google+',
-  'footer_d*' => 'Diaspora*',
   'footer_lastmodif' => 'Lasta modifo',
   'footer_d-1' => 'hieraŭ',
   'footer_d-2' => 'antaŭhieraŭ',
