@@ -50,4 +50,5 @@
   'count_dl' => '{{dl}} depuis la dernière mise à jour, {{total_dl}} au total',
   'empty_nickname' => 'Anonyme',
   'comments_nickname' => 'Votre commentaire sera publié en tant que&nbsp;: {{nickname}}',
+  'comments_admin' => 'admin',
 ); ?>
