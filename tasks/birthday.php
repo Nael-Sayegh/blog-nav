@@ -3,7 +3,7 @@ $document_root = __DIR__.'/..';
 require_once($document_root.'/include/config.local.php');
 require_once($document_root.'/include/consts.php');
 require_once($document_root.'/include/lib/facebook/fb_publisher.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/Mastodon/mastodon_publisher.php');
+require_once($document_root.'/include/lib/Mastodon/mastodon_publisher.php');
 $req = $bdd->prepare('SELECT * FROM `team` ORDER BY `age` DESC');
 $req->execute();
 while($data = $req->fetch()) {
