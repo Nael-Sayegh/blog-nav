@@ -6,12 +6,12 @@ $titlePAdm='Gestion de l\'équipe';
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 
-if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['status']) and isset($_POST['age']) and isset($_POST['short_name']) and isset($_POST['bio']) and isset($_POST['works']) and isset($_POST['twitter'])) {
+if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['status']) and isset($_POST['age']) and isset($_POST['short_name']) and isset($_POST['bio']) and isset($_POST['works']) and isset($_POST['mastodon'])) {
 	$account_id = NULL;
 	if(isset($_POST['account_id']) and !empty($_POST['account_id']))
 		$account_id = $_POST['account_id'];
-	$req = $bdd->prepare('INSERT INTO `team`(`name`, `status`, `date`, `age`, `account_id`, `short_name`, `bio`, `works`, `twitter`, `rights`) VALUES(?,?,?,?,?,?,?,?,?,?)');
-	$req->execute(array($_POST['name'], $_POST['status'], time(), strtotime(preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $_POST['age'])), $account_id, $_POST['short_name'], $_POST['bio'], $_POST['works'], $_POST['twitter'], ''));
+	$req = $bdd->prepare('INSERT INTO `team`(`name`, `status`, `date`, `age`, `account_id`, `short_name`, `bio`, `works`, `mastodon`, `rights`) VALUES(?,?,?,?,?,?,?,?,?,?)');
+	$req->execute(array($_POST['name'], $_POST['status'], time(), strtotime(preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $_POST['age'])), $account_id, $_POST['short_name'], $_POST['bio'], $_POST['works'], $_POST['mastodon'], ''));
 /*	$req = $bdd->prepare('SELECT `id`,`works`,`age`,`short_name` FROM `team` ORDER BY `id` DESC LIMIT 1');
 	$req->execute();
 	if($data = $req->fetch()) {
@@ -28,9 +28,9 @@ if(isset($_GET['delete'])) {
 	$req = $bdd->prepare('DELETE FROM `team` WHERE `id`=? LIMIT 1');
 	$req->execute(array($_GET['delete']));
 }
-if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['status']) and isset($_POST['age']) and isset($_POST['account_id']) and isset($_POST['short_name']) and isset($_POST['bio']) and isset($_POST['works']) and isset($_POST['twitter'])) {
-	$req = $bdd->prepare('UPDATE `team` SET `name`=?, `status`=?, `age`=?, `account_id`=?, `short_name`=?, `bio`=?, `works`=?, `twitter`=?, `rights`=? WHERE `id`=? LIMIT 1');
-	$req->execute(array(htmlentities($_POST['name']), $_POST['status'], strtotime(preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $_POST['age'])), $_POST['account_id'], $_POST['short_name'], $_POST['bio'], $_POST['works'], $_POST['twitter'], '', $_GET['mod2']));
+if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['status']) and isset($_POST['age']) and isset($_POST['account_id']) and isset($_POST['short_name']) and isset($_POST['bio']) and isset($_POST['works']) and isset($_POST['mastodon'])) {
+	$req = $bdd->prepare('UPDATE `team` SET `name`=?, `status`=?, `age`=?, `account_id`=?, `short_name`=?, `bio`=?, `works`=?, `mastodon`=?, `rights`=? WHERE `id`=? LIMIT 1');
+	$req->execute(array(htmlentities($_POST['name']), $_POST['status'], strtotime(preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $_POST['age'])), $_POST['account_id'], $_POST['short_name'], $_POST['bio'], $_POST['works'], $_POST['mastodon'], '', $_GET['mod2']));
 }
 ?>
 <!DOCTYPE html>
@@ -44,12 +44,12 @@ if(isset($_GET['mod2']) and isset($_POST['name']) and isset($_POST['status']) an
 	<body>
 <?php require_once('include/banner.php'); ?>
 		<table border="1">
-			<thead><tr><th>Numéro d'équipier</th><th>Nom</th><th>Nom court</th><th>Statut(s)</th><th>Date</th><th>Âge</th><th>Twitter</th><th>Actions</th></tr></thead>
+			<thead><tr><th>Numéro d'équipier</th><th>Nom</th><th>Nom court</th><th>Statut(s)</th><th>Date</th><th>Âge</th><th>Mastodon</th><th>Actions</th></tr></thead>
 			<tbody>
 <?php
 $req = $bdd->query('SELECT * FROM `team` ORDER BY `name` ASC');
 while($data = $req->fetch()) {
-	echo '<tr><td>M'.$data['account_id'].'/E'.$data['id'].'</td><td>'.$data['name'].'</td><td>'.$data['short_name'].'</td><td>'.$data['status'].'</td><td>'.date('d/m/Y H:i',$data['date']).'</td><td>'.intval((time()-$data['age'])/31557600).'</td><td>@'.$data['twitter'].'</td><td><a href="?mod='.$data['id'].'#mod">Modifier</a> | <a href="?delete='.$data['id'].'">Supprimer</a></td></tr>';
+	echo '<tr><td>M'.$data['account_id'].'/E'.$data['id'].'</td><td>'.$data['name'].'</td><td>'.$data['short_name'].'</td><td>'.$data['status'].'</td><td>'.date('d/m/Y H:i',$data['date']).'</td><td>'.intval((time()-$data['age'])/31557600).'</td><td>@'.$data['mastodon'].'</td><td><a href="?mod='.$data['id'].'#mod">Modifier</a> | <a href="?delete='.$data['id'].'">Supprimer</a></td></tr>';
 }
 ?>
 			</tbody>
@@ -85,7 +85,7 @@ if(isset($_GET['mod'])) {
 <option value="1" <?php if($data['works'] == '1') { echo 'selected'; } ?>><?php print $site_name; ?></option>
 <option value="2" <?php if($data['works'] == '2') { echo 'selected'; } ?>>NVDA-FR et <?php print $site_name; ?></option>
 </select><br>
-			<label for="f2_twitter">Pseudo Twitter (sans le @)&nbsp;:</label><input type="text" name="twitter" id="f2_twitter" maxlength="255" value="<?php echo $data['twitter']; ?>"><br>
+			<label for="f2_mastodon">Pseudo Mastodon (sans le @ et avec l'instance si différent de mastodon.progaccess.net)&nbsp;:</label><input type="text" name="mastodon" id="f2_mastodon" maxlength="255" value="<?php echo $data['mastodon']; ?>"><br>
 			<input type="submit" value="Modifier">
 		</form>
 <?php
@@ -119,7 +119,7 @@ while($data = $req->fetch()) {
 <option value="1"><?php print $site_name; ?></option>
 <option value="2">NVDA-FR et <?php print $site_name; ?></option>
 </select><br>
-			<label for="f_twitter">Pseudo Twitter (sans le @)&nbsp;:</label><input type="text" name="twitter" id="f_twitter" maxlength="255"><br>
+			<label for="f_mastodon">Pseudo Mastodon (sans le @ et avec l'instance si différent de mastodon.progaccess.net)&nbsp;:</label><input type="text" name="mastodon" id="f_mastodon" maxlength="255"><br>
 			<input type="submit" value="Ajouter">
 		</form>
 	</body>
