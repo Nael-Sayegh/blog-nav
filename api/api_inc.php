@@ -4,5 +4,5 @@ if(!isset($noapi)) {
 	$noct = true;
 	require_once $_SERVER['DOCUMENT_ROOT'].'/include/consts.php';
 }
-$api_version = '0.5.2-3';
+$api_version = '0.5.3-3';
 ?>
