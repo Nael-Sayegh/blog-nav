@@ -175,6 +175,8 @@ include 'include/menu.php'; ?>
 						<li><em>[8]</em>: label</li>
 						<li><em>[9]</em>: md5</li>
 						<li><em>[10]</em>: sha1</li>
+						<li><em>[11]</em>: arch</li>
+						<li><em>[12]</em>: platform</li>
 					</ul>
 				</li>
 				<li aria-level="2"><strong>aaf(=id)</strong>: Fichiers de l'article {id}
@@ -189,6 +191,8 @@ include 'include/menu.php'; ?>
 						<li><em>[7]</em>: label</li>
 						<li><em>[8]</em>: md5</li>
 						<li><em>[9]</em>: sha1</li>
+						<li><em>[10]</em>: arch</li>
+						<li><em>[11]</em>: platform</li>
 					</ul>
 				</li>
 				<li aria-level="2"><strong>afl</strong>(=label)?: Fichiers d'articles (par label)
@@ -204,6 +208,8 @@ include 'include/menu.php'; ?>
 						<li><em>[8]</em>: label</li>
 						<li><em>[9]</em>: md5</li>
 						<li><em>[10]</em>: sha1</li>
+						<li><em>[11]</em>: arch</li>
+						<li><em>[12]</em>: platform</li>
 					</ul>
 				</li>
 				<li aria-level="2"><strong>am</strong>(=id)?: Miroirs d'articles

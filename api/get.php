@@ -184,7 +184,7 @@ if(isset($_GET['af'])) {
 		$req->execute(array($_GET['af']));
 	}
 	while($data = $req->fetch()) {
-		$articles_files[] = array($data['id'], $data['sw_id'], $data['name'], $data['filetype'], $data['title'], $data['date'], $data['filesize'], $data['hits'], $data['label'], $data['md5'], $data['sha1']);
+		$articles_files[] = array($data['id'], $data['sw_id'], $data['name'], $data['filetype'], $data['title'], $data['date'], $data['filesize'], $data['hits'], $data['label'], $data['md5'], $data['sha1'], $data['arch'], $data['platform']);
 	}
 	$rdata['articles_files'] = $articles_files;
 }
@@ -194,7 +194,7 @@ if(isset($_GET['aaf']) && !empty($_GET['aaf'])) {
 	$req = $bdd->prepare('SELECT * FROM `softwares_files` WHERE `sw_id`=?');
 	$req->execute(array($_GET['aaf']));
 	while($data = $req->fetch()) {
-		$article_files[] = array($data['id'], $data['name'], $data['filetype'], $data['title'], $data['date'], $data['filesize'], $data['hits'], $data['label'], $data['md5'], $data['sha1']);
+		$article_files[] = array($data['id'], $data['name'], $data['filetype'], $data['title'], $data['date'], $data['filesize'], $data['hits'], $data['label'], $data['md5'], $data['sha1'], $data['arch'], $data['platform']);
 	}
 	$rdata['article_files'] = $article_files;
 }
@@ -209,7 +209,7 @@ if(isset($_GET['afl'])) {
 		$req->execute(array($_GET['afl']));
 	}
 	while($data = $req->fetch()) {
-		$articles_files_by_label[] = array($data['id'], $data['sw_id'], $data['name'], $data['filetype'], $data['title'], $data['date'], $data['filesize'], $data['hits'], $data['label'], $data['md5'], $data['sha1']);
+		$articles_files_by_label[] = array($data['id'], $data['sw_id'], $data['name'], $data['filetype'], $data['title'], $data['date'], $data['filesize'], $data['hits'], $data['label'], $data['md5'], $data['sha1'], $data['arch'], $data['platform']);
 	}
 	$rdata['articles_files_by_label'] = $articles_files_by_label;
 }
