@@ -48,12 +48,7 @@ function clickpause() {
 }
 
 function focuspause(slidefocus) {
-  var slider = document.getElementById("slidershow");
-  var sliderRect = slider.getBoundingClientRect();
-  var x = event.clientX;
-  var y = event.clientY;
-  var keyCode = event.keyCode || event.which;
-  slidepause = !slidefocus || (x >= sliderRect.left && x <= sliderRect.right && y >= sliderRect.top && y <= sliderRect.bottom) || (keyCode >= 37 && keyCode <= 40);
+  slidepause = slidefocus;
   clickpause();
 }
 
