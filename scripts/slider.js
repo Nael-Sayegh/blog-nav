@@ -3,11 +3,13 @@ var slideint;
 var slidepause = false;
 
 document.getElementById("slidershow").addEventListener("focusin", function() {
-  focuspause(true);
+  slidepause = true;
+  clickpause();
 });
 
 document.getElementById("slidershow").addEventListener("focusout", function() {
-  focuspause(false);
+  slidepause = false;
+  clickpause();
 });
 
 function slide(k = 1) {
@@ -45,11 +47,6 @@ function clickpause() {
     $("#slidepause").attr("class", "slidepaused");
   }
   slidepause = !slidepause;
-}
-
-function focuspause(slidefocus) {
-  slidepause = slidefocus;
-  clickpause();
 }
 
 $(function() {
