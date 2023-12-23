@@ -72,7 +72,7 @@ l\'administration '.$site_name;
 	if(!$nldata['confirm']) {
 		$req2 = $bdd->prepare('UPDATE `newsletter_mails` SET `confirm`=1 , `lastmail`=?, `lastmail_n`=? WHERE `id`=?');
 		$req2->execute(array(time(), time(), $nldata['id']));
-		$log .= 'Votre inscription à la l\'actu '.$site_name.' a bien été confirmée.<br>';
+		$log .= 'Votre inscription à l\'actu '.$site_name.' a bien été confirmée.<br>';
 	}
 	if(isset($_GET['mod'])) {
 		$freq = $nldata['freq'];

@@ -3,11 +3,13 @@ var slideint;
 var slidepause = false;
 
 document.getElementById("slidershow").addEventListener("focusin", function() {
-  focuspause(true);
+  slidepause = true;
+  clickpause();
 });
 
 document.getElementById("slidershow").addEventListener("focusout", function() {
-  focuspause(false);
+  slidepause = false;
+  clickpause();
 });
 
 function slide(k = 1) {
@@ -45,16 +47,6 @@ function clickpause() {
     $("#slidepause").attr("class", "slidepaused");
   }
   slidepause = !slidepause;
-}
-
-function focuspause(slidefocus) {
-  var slider = document.getElementById("slidershow");
-  var sliderRect = slider.getBoundingClientRect();
-  var x = event.clientX;
-  var y = event.clientY;
-  var keyCode = event.keyCode || event.which;
-  slidepause = !slidefocus || (x >= sliderRect.left && x <= sliderRect.right && y >= sliderRect.top && y <= sliderRect.bottom) || (keyCode >= 37 && keyCode <= 40);
-  clickpause();
 }
 
 $(function() {
