@@ -147,7 +147,7 @@ html, body {margin: 0;padding: 0;font-family: Cantarell;}
 		</div>
 		<div id="content">
 		<h2>Bonjour {{mail_user}},</h2>';
-$message2 = '<h2>Pétition pour des transports plus accessibles à Bordeaux</h2><p>Corentin, fondateur de '.$site_name.' et habitant de Bordeaux, a lancé une pétition pour améliorer l\'accessibilité du réseau de transports bordelais, particulièrement en ce qui concerne les tramways. Pour soutenir cette action, signez et partagez <a href="https://www.change.org/p/tbm-pour-l-annonce-syst%C3%A9matique-de-la-destination-d-un-tram">la pétition adressée à TBM et Bordeaux Métropole</a>.<br>Cette pétition a également fait l\'objet d\'une médiatisation dans le journal Sud Ouest, vous pouvez lire l\'<a href="https://www.sudouest.fr/sante/handicap/tramway-de-bordeaux-les-personnes-deficientes-visuelles-se-font-entendre-17962342.php">article du Sud Ouest ici</a>.<br>Merci pour votre soutien.</p><hr><div  role="contentinfo" aria-label="Informations sur l\'abonnement"><p>Vous recevez l\'actu '.$site_name.' car vous vous y êtes inscrit jusqu\'au ';
+$message2 = '<hr><div  role="contentinfo" aria-label="Informations sur l\'abonnement"><p>Vous recevez l\'actu '.$site_name.' car vous vous y êtes inscrit jusqu\'au ';
 $message3 = ', <a id="link" href="'.SITE_URL.'/nlmod.php?id=';
 $message4 = '">cliquez ici pour modifier vos préférences ou vous désinscrire</a>.</p>
 			<p>Veuillez ne pas répondre, ce mail a été envoyé automatiquement, vous pouvez <a href="'.SITE_URL.'/contact.php">nous contacter ici</a></p>
