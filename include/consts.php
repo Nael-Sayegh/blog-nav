@@ -13,12 +13,13 @@ function urlsafe_b64decode($data) {
 	return base64_decode($data);
 }
 
-function zeros($n, $d=3) {
-	$l = floor(log10($n)+1);
-	if($l < $d)
-		return str_repeat('0', $d-$l) . $n;
-	else
-		return strval($n);
+function zeros($n, $d = 3) {
+    $l = floor(log10($n) + 1);
+    if ($l < $d) {
+        return str_repeat('0', (int)($d - $l)) . $n;
+    } else {
+        return strval($n);
+    }
 }
 
 function args_html_form($args) {
