@@ -26,10 +26,13 @@ if(isset($_GET['reply']) and isset($_GET['h'])) {
 
 if(isset($_GET['act']) and ($_GET['act'] == 'contact' or $_GET['act'] == 'reply')) {
 	$MTCaptchaSDK = new MTCaptchaLib(MTCAPTCHA_PRIVATE);
-	$result = $MTCaptchaSDK->validate_token("");
-	if($result['success'] == false)
-		exit();
-	
+	$result = $MTCaptchaSDK->validate_token($_POST['mtcaptcha-verifiedtoken']);
+	if($result == false)
+	{
+		$log .= '<li>Le code de vérification antispam est incorrect</li>';
+	}
+	else
+	{
 	$reply2 = false;
 	if($_GET['act'] == 'reply' and isset($_GET['id']) and isset($_GET['h'])) {
 		$req = $bdd->prepare('SELECT * FROM `tickets` WHERE `id`=? AND `hash`=? LIMIT 1');
@@ -210,6 +213,7 @@ else
 		$mail->send();
 		}
 	}
+}
 }
 ?>
 <!DOCTYPE html>
