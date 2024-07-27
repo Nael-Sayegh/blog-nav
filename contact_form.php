@@ -27,7 +27,7 @@ if(isset($_GET['reply']) and isset($_GET['h'])) {
 if(isset($_GET['act']) and ($_GET['act'] == 'contact' or $_GET['act'] == 'reply')) {
 	$MTCaptchaSDK = new MTCaptchaLib(MTCAPTCHA_PRIVATE);
 	$result = $MTCaptchaSDK->validate_token($_POST['mtcaptcha-verifiedtoken']);
-	if($result == false)
+	if(!$result)
 	{
 		$log .= '<li>Le code de vérification antispam est incorrect</li>';
 	}
