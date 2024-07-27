@@ -10,7 +10,7 @@
 <meta property="og:title" content="<?php print $title; ?>">
 <link rel="stylesheet" href="/css/mastodonShare.css">
 <script src="/scripts/mastodonShare.js.php"></script>
-<?php if ($_SERVER['SCRIPT_NAME'] == 'contact_form.php')
+<?php if ($_SERVER['SCRIPT_NAME'] == '/contact_form.php')
 { ?>
 	<script>
 		var mtcaptchaConfig = {
