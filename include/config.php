@@ -59,4 +59,8 @@ define('WEBMAIL_URL', 'URL OF YOUR WEBMAIL');
 define('WEBMAIL_NAME', 'NAME OF YOUR WEBMAIL');
 define('CONTROLPANEL_URL', 'URL OF YOUR SERVER CONTROL PANEL');
 define('CONTROLPANEL_NAME', 'NAME OF YOUR SERVER CONTROL PANEL');
+
+// Captcha
+define('MTCAPTCHA_PUBLIC', 'Your MtCaptcha public key');
+define('MTCAPTCHA_PRIVATE', 'Your MtCaptcha private key');
 ?>
