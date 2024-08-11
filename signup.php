@@ -4,6 +4,7 @@ require_once('include/log.php');
 $stats_page='signup';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/consts.php');
+require_once('include/lib/mtcaptcha/lib/class.mtcaptchalib.php');
 $sound_path='/audio/page_sounds/member.mp3';
 $title = 'Se créer un compte '.$site_name;
 
@@ -13,7 +14,12 @@ if(isset($_GET['a']) and $_GET['a'] == 'form' and isset($_POST['username']) and 
 	if(strlen($_POST['mail']) > 255 or empty($_POST['mail'])) $log .= '<li>Votre adresse e-mail ne doit pas dépasser 255 caractères.</li>';
 	if($_POST['psw'] != $_POST['rpsw']) $log .= '<li>Veuillez rentrer deux fois le mot de passe identique.</li>';
 	if(strlen($_POST['psw']) > 128 or strlen($_POST['psw']) < 8) $log .= '<li>Votre mot de passe doit comporter entre 8 et 64 caractères.</li>';
-	if(!(isset($_POST['box1']) and $_POST['box1']=='on') or (isset($_POST['box2']) and $_POST['box2']=='on')) $log .= '<li>Veuillez cocher l\'avant-dernière case, mais pas la dernière.</li>';
+	$MTCaptchaSDK = new MTCaptchaLib(MTCAPTCHA_PRIVATE);
+	$result = $MTCaptchaSDK->validate_token($_POST['mtcaptcha-verifiedtoken']);
+	if(!$result)
+	{
+		$log .= '<li>Le code de vérification antispam est incorrect</li>';
+	}
 	if(empty($log)) {
 		$username = $_POST['username'];
 		$req = $bdd->prepare('SELECT `username`,`email` FROM `accounts` WHERE `username`=? OR `email`=? LIMIT 1');
@@ -100,10 +106,7 @@ require_once('include/load_sound.php'); ?>
 				<td><input type="checkbox" id="f_nl" name="nl"> <span>(mail hebdomadaire pour rester informer des mises à jours)</span></td></tr>
 			<tr><td class="formlabel"><label for="f_forum">S'inscrire au <a href="<?php echo FLARUM_URL; ?>">forum <?php echo $site_name; ?></a>&nbsp;:</label></td>
 				<td><input type="checkbox" id="f_forum" name="forum" checked></td></tr>
-			<tr><td class="formlabel"><label for="f_box1">Cochez cette case&nbsp;:</label></td>
-				<td><input type="checkbox" id="f_box1" name="box1"></td></tr>
-			<tr><td class="formlabel"><label for="f_box2">Ne cochez pas cette case&nbsp;:</label></td>
-				<td><input type="checkbox" id="f_box2" name="box2"></td></tr>
+			<div class="mtcaptcha"></div>
 		</table>
 		<p>L'usage des cookies est nécessaire pour utiliser l'espace membres. Vous créer un compte <?php echo $site_name; ?> confirme que vous acceptez les cookies en vous identifiant.<br>Nous ne partagerons pas votre adresse e-mail avec des tiers. Vous pourrez modifier les paramètres de votre compte ou le supprimer à tout moment.</p>
 		<input type="submit" value="S'inscrire">

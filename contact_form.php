@@ -7,6 +7,7 @@ require_once('include/lib/phpmailer/src/Exception.php');
 require_once('include/lib/phpmailer/src/SMTP.php');
 include_once('include/log.php');
 require_once('include/consts.php');
+require_once('include/lib/mtcaptcha/lib/class.mtcaptchalib.php');
 $tr = load_tr($lang, 'contacter');
 $title='Contacter l\'équipe '.$site_name;
 $sound_path='/audio/page_sounds/contact.mp3';
@@ -24,9 +25,14 @@ if(isset($_GET['reply']) and isset($_GET['h'])) {
 }
 
 if(isset($_GET['act']) and ($_GET['act'] == 'contact' or $_GET['act'] == 'reply')) {
-	if(isset($_POST['agree']))
-		exit();
-	
+	$MTCaptchaSDK = new MTCaptchaLib(MTCAPTCHA_PRIVATE);
+	$result = $MTCaptchaSDK->validate_token($_POST['mtcaptcha-verifiedtoken']);
+	if(!$result)
+	{
+		$log .= '<li>Le code de vérification antispam est incorrect</li>';
+	}
+	else
+	{
 	$reply2 = false;
 	if($_GET['act'] == 'reply' and isset($_GET['id']) and isset($_GET['h'])) {
 		$req = $bdd->prepare('SELECT * FROM `tickets` WHERE `id`=? AND `hash`=? LIMIT 1');
@@ -208,6 +214,7 @@ else
 		}
 	}
 }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -234,8 +241,7 @@ if(!empty($log)) echo '<ul id="log">'.$log.'</ul>'; ?>
 		<?php } ?><br>
 		<label for="f_msg">Votre message&nbsp;:</label><br>
 		<textarea id="f_msg" name="msg" maxlength="8192" style="width: calc(100% - 10px);min-height: 100px;margin-bottom: 10px;" required><?php if(isset($_POST['msg']))echo htmlentities($_POST['msg']); ?></textarea><br>
-		<label for="f_agree" class="f_antispam">Veuillez ne pas cocher cette case&nbsp;:</label>
-		<input type="checkbox" id="f_agree" name="agree" class="f_antispam"><br>
+		<div class="mtcaptcha"></div>
 		<label for="f_copy">Recevoir une copie de votre message&nbsp;:</label>
 		<input type="checkbox" id="f_copy" name="copy"><br>
 		<input type="submit" value="Envoyer">

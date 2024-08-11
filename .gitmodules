@@ -10,3 +10,6 @@
 [submodule "inclus/lib/ca-bundle"]
 	path = include/lib/ca-bundle
 	url = https://github.com/composer/ca-bundle
+[submodule "include/lib/mtcaptcha"]
+	path = include/lib/mtcaptcha
+	url = https://github.com/mtcaptcha-public/mtcaptcha-php-sdk
