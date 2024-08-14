@@ -16,9 +16,9 @@ if(isset($_GET['add']) and isset($_POST['name']) and isset($_POST['status']) and
 	$req->execute();
 	if($data = $req->fetch()) {
 		switch($data['works']) {
-		case '0': $worksswi = 'NVDA-FR'; break;
+		case '0': $worksswi = 'NVDA.FR'; break;
 		case '1': $worksswi = $site_name; break;
-		case '2': $worksswi = 'NVDA-FR & '.$site_name; break;
+		case '2': $worksswi = 'NVDA.FR & '.$site_name; break;
 	}
 		require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/facebook/fb_publisher.php');
 		send_facebook('Nouvel arrivant dans l\'équipe : '.$data['short_name'].' (E'.$data['id'].') : travaille pour '.$worksswi.'.'."\n".'Consulter https://www.progaccess.net/contact.php pour en savoir plus.'."\n".'L\'administration');
@@ -81,9 +81,9 @@ if(isset($_GET['mod'])) {
 			<textarea id="f2_bio" name="bio" style="width:100%;height:10em;"><?php echo htmlentities($data['bio']); ?></textarea><br>
 <label for="f2_works">Travaille pour&nbsp;:</label>
 <select id="f2_works" name="works">
-<option value="0" <?php if($data['works'] == '0') { echo 'selected'; } ?>>NVDA-FR</option>
+<option value="0" <?php if($data['works'] == '0') { echo 'selected'; } ?>>NVDA.FR</option>
 <option value="1" <?php if($data['works'] == '1') { echo 'selected'; } ?>><?php print $site_name; ?></option>
-<option value="2" <?php if($data['works'] == '2') { echo 'selected'; } ?>>NVDA-FR et <?php print $site_name; ?></option>
+<option value="2" <?php if($data['works'] == '2') { echo 'selected'; } ?>>NVDA.FR et <?php print $site_name; ?></option>
 </select><br>
 			<label for="f2_mastodon">Pseudo Mastodon (sans le @ et avec l'instance si différent de mastodon.progaccess.net)&nbsp;:</label><input type="text" name="mastodon" id="f2_mastodon" maxlength="255" value="<?php echo $data['mastodon']; ?>"><br>
 			<input type="submit" value="Modifier">
@@ -115,9 +115,9 @@ while($data = $req->fetch()) {
 			<textarea id="f_bio" name="bio" style="width:100%;height:10em;"></textarea><br>
 <label for="f_works">Travaille pour&nbsp;:</label>
 <select id="f_works" name="works">
-<option value="0">NVDA-FR</option>
+<option value="0">NVDA.FR</option>
 <option value="1"><?php print $site_name; ?></option>
-<option value="2">NVDA-FR et <?php print $site_name; ?></option>
+<option value="2">NVDA.FR et <?php print $site_name; ?></option>
 </select><br>
 			<label for="f_mastodon">Pseudo Mastodon (sans le @ et avec l'instance si différent de mastodon.progaccess.net)&nbsp;:</label><input type="text" name="mastodon" id="f_mastodon" maxlength="255"><br>
 			<input type="submit" value="Ajouter">
