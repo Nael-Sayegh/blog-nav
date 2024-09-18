@@ -60,7 +60,7 @@ require_once('include/load_sound.php'); ?>
 	<h3>Participer</h3>
 	<a href="<?php echo GIT_URL; ?>">Dépôt GitLab de <?php echo $site_name; ?></a>
 	<p>Si vous avez le courage de lire et de décrypter notre code, nous serions très heureux que vous puissiez nous aider à intégrer de nouvelles fonctionnalités, chasser et réparer les bugs, organiser le code...</p>
-	<p>Pour rapporter un bug ou suggérer une fonctionnalité, vous pouvez <a href="<?php echo GIT_URL; ?>">ouvrir un ticket sur le GitLab</a>, utiliser le <a href="/contact_form.php">formulaire de contact</a> ou encore utiliser le <a href="<?php echo FLARUM_URL; ?>">forum</a>.</p>
+	<p>Pour rapporter un bug ou suggérer une fonctionnalité, vous pouvez <a href="<?php echo GIT_URL; ?>">ouvrir un ticket sur le GitLab</a>, ou utiliser le <a href="/contact_form.php">formulaire de contact</a>.</p>
 	
 	<h3>Traductions</h3>
 	<ul>

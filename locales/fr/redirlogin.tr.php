@@ -11,5 +11,4 @@ Que souhaitez-vous faire ensuite ?</p>',
   'adminlink' => 'Aller à l\'administration',
   'memberlistlink' => 'Consulter la liste de tous les membres',
   'logoutlink' => 'Me déconnecter',
-  'forumlink' => 'Aller sur le forum',
 ); ?>
