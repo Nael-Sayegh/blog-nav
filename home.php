@@ -81,19 +81,6 @@ if((isset($_GET['token']) and $_GET['token'] == $login['token']) or (isset($_POS
 			exit();
 		}
 	}
-	if(isset($_GET['chforum']) and isset($_POST['username']) and isset($login['forum_id']) and $login['forum_id'] !== NULL) {
-		require_once('include/flarum.php');
-		update_forum_account($login, $_POST['username']);
-		$log .= '<li>'.tr($tr,'log_forum_updated_ok').'</li>';
-	}
-	if(isset($_GET['newforum']) and (!isset($login['forum_id']) or $login['forum_id'] === NULL)) {
-		require_once('include/flarum.php');
-		$newforum_result = create_forum_account($login['id'], $login['username'], $login['email']);
-		$login['forum_id'] = $newforum_result['id'];
-		$login['forum_psw'] = $newforum_result['psw'];
-		$login['forum_username'] = $newforum_result['username'];
-		$log .= '<li>'.tr($tr,'log_forum_created_ok', array('token'=>$login['token'])).'</li>';
-	}
 	if(isset($_GET['notifs_all_read'])) {
 		$req = $bdd->prepare('UPDATE `notifs` SET `unread`=0 WHERE `account`=? AND `unread`=1');
 		$req->execute(array($login['id']), array('token'=>$login['token']));
@@ -225,37 +212,6 @@ while($data = $req->fetch()) {
 			</table>
 		</fieldset>
 	</form>
-<?php
-if(isset($login['forum_id']) and $login['forum_id'] !== NULL) {
-	$req = $bdd->prepare('SELECT `forum_username` FROM `accounts` WHERE `id`=? LIMIT 1');
-	$req->execute(array($login['id']));
-	if($data = $req->fetch()) {
-		$forum_username = $data['forum_username'];
-?>
-	<form action="?chforum" method="post">
-		<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
-		<fieldset><legend><?php echo tr($tr,'chforum'); ?></legend>
-			<p><?php echo tr($tr,'chforum_username_info'); ?></p>
-			<table>
-				<tr><td class="formlabel"><label for="f4_username"><?php echo tr($tr,'chforum_username'); ?></label></td>
-					<td><input type="text" id="f4_username" name="username" maxlength="64" value="<?php echo $forum_username; ?>" autocomplete="off" required></td></tr>
-				<tr><td></td>
-					<td><input type="submit" value="<?php echo tr($tr,'chforum_submit'); ?>"></td></tr>
-			</table>
-		</fieldset>
-	</form>
-<?php
-	}
-	else
-		echo '<p>Erreur avec les informations sur le compte Forum ProgAccess&nbsp;: veuillez contacter un administrateur.</p>';
-} else {
-?>
-	<fieldset><legend><?php echo tr($tr,'newforum'); ?></legend>
-		<a href="?newforum&token=<?php echo $login['token']; ?>"><?php echo tr($tr,'newforum_link'); ?></a>
-	</fieldset>
-<?php
-}
-?>
 	<form action="?rm" method="post">
 		<input type="hidden" name="token" value="<?php echo $login['token']; ?>">
 		<fieldset><legend><?php echo tr($tr,'remove_account'); ?></legend>

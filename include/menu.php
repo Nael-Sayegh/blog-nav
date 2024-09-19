@@ -4,7 +4,6 @@ $ulmenu_js = function() {
 <ul class="ulmenu_js" role="menu">
 	<li><form method="get"><?php echo args_html_form($args); ?><select aria-label="<?php echo tr($tr0,'menu_changelang'); ?>" title="<?php echo tr($tr0,'menu_changelang'); ?>" name="lang" autocomplete="off"><?php echo langs_html_opts($lang); ?></select><input type="submit" value="OK"></form></li>
 	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/index.php') echo 'aria-current="page"'; ?>><a href="/"><?php echo tr($tr0,'menu_homepage'); ?></a></li>
-	<li role="menuitem"><a href="<?php echo FLARUM_URL; ?>"><?php echo tr($tr0,'menu_forum'); ?></a></li>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_articles'); ?></li>
 	<?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_ulli_js.html'); ?>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_news'); ?></li>
@@ -25,7 +24,6 @@ $ulmenu_njs = function() {
 <ul class="ulmenu_njs" role="menu">
 	<li><form method="get"><?php echo args_html_form($args); ?><select aria-label="<?php echo tr($tr0,'menu_changelang'); ?>" title="<?php echo tr($tr0,'menu_changelang'); ?>" name="lang" autocomplete="off"><?php echo langs_html_opts($lang); ?></select><input type="submit" value="OK"></form></li>
 	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/index.php') echo 'aria-current="page"'; ?>><a href="/"><?php echo tr($tr0,'menu_homepage'); ?></a></li>
-	<li role="menuitem"><a href="<?php echo FLARUM_URL; ?>"><?php echo tr($tr0,'menu_forum'); ?></a></li>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_articles'); ?></li>
 	<?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_ulli_njs.html'); ?>
 	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_news'); ?></li>
@@ -50,7 +48,6 @@ if(isset($_COOKIE['menu']) && $_COOKIE['menu'] == '1') { ?>
 <label for="menu_menu"><?php echo tr($tr0,'menu_linklistlabel'); ?></label>
 <select name="d" id="menu_menu" onKeyPress="redirect(event,this);">
 <option value="/" <?php if($_SERVER['DOCUMENT_URI'] == '/index.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_homepage'); ?></option>
-<option value="<?php echo FLARUM_URL; ?>"><?php echo tr($tr0,'menu_forum'); ?></option>
 <option disabled>── <?php echo tr($tr0,'menu_articles'); ?> ──</option>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_select.html'); ?>
 <option disabled>── <?php echo tr($tr0,'menu_news'); ?> ──</option>

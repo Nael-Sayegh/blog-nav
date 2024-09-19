@@ -23,7 +23,6 @@ Nous avons donc conservé l\'activité initiale, mais avons agrandi notre champ 
 <ul>
 <li>Répertorier de manière intuitive et organisée les logiciels utilisables par tous sous Windows, Android ou GNU/Linux&#8239;;</li>
 <li>Proposer des tutoriels (audio ou écrits) ainsi que, dans le futur, un service d\'assistance informatique à distance pour permettre aux utilisateurs les moins avancés de se débrouiller le mieux possible avec leur matériel&#8239;;</li>
-<li>Promouvoir l\'échange et la participation par le biais du <a href="https://forum.progaccess.net">forum</a>&#8239;;</li>
 <li>Créer et défendre un maximum le logiciel libre (ou la culture libre en général)&#8239;;</li>
 <li>Faire évoluer les mentalités et faire prendre conscience de l\'extrême importance de l\'accessibilité dans tous les domaines (informatique, santé, commerce, loisirs et bien d\'autre)&#8239;;</li>
 <li>Proposer des tests de matériel plus ou moins spécialisé.</li>

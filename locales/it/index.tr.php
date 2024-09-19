@@ -18,7 +18,6 @@
 <ul>
 <li>Identificare intuitamente e organizzare software utilizzabile da tutti sotto le finestre, Android o GNU/Linux</li>
 <li>Proporre tutoriali (audio o scritto) e un servizio di assistenza per computer remoto (che sta per arrivare) per permettere agli utenti meno sviluppati di gestire il meglio possibile con le attrezzature</li>
-<li>Promuovere lo scambio e la partecipazione (il forum, tuttora in fase di sviluppo, dovrebbe essere in qualche modo)</li>
 <li>Creare e difendere un software libero (o una cultura libera in generale)</li>
 <li>Per cambiare atteggiamento e sensibilizzare l\'estrema importanza dell accessibilità in tutti i settori (tecnologia dell\'informazione, sanità, commercio, tempo libero e altro)</li>
 <li>Propongono prove di hardware più o meno specializzate.</li>

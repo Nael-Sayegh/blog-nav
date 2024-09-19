@@ -44,7 +44,6 @@
   'footer_menulink' => 'Menú',
   'menu_changelang' => 'Cambiar el idioma',
   'menu_articles' => 'Softwares/tutos',
-  'menu_forum' => 'Foro',
   'menu_infos' => 'Acerca de {{site}}',
   'menu_contact' => 'Contactar nosotros',
   'menu_menutitle' => 'Menú',

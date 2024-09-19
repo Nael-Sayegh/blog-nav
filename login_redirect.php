@@ -29,10 +29,7 @@ echo str_replace('{{membername}}', $login['username'], tr($tr,'maintext'));
 <?php }
 	if($worksnum == '0' or $worksnum == '2') { ?>
 	<li><a href="https://www.nvda.fr/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?php echo tr($tr,'adminlink').' (NVDA-FR)'; ?></a></li>
-<?php } }
-if(isset($login['forum_id']) and $login['forum_id'] !== NULL) { ?>
-	<li><a href="/auth_forum.php?token=<?php echo $login['token']; ?>"><?php echo tr($tr,'forumlink'); ?></a></li>
-<?php } ?>
+<?php } } ?>
 	<li><a href="/"><?php echo tr($tr,'homelink'); ?></a></li>
 	<li><a href="/home.php"><?php echo tr($tr,'memberlink'); ?></a></li>
 	<li><a href="/members_list.php"><?php echo tr($tr,'memberlistlink'); ?></a></li>

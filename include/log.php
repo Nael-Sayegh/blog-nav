@@ -10,7 +10,7 @@ function check_login($session, $connectid) {
 		LEFT JOIN `team` ON `team`.`account_id` = `accounts`.`id` 
 		WHERE `accounts`.`connectid`=? AND `accounts`.`expire`>? LIMIT 1');*/
 	$req = $bdd->prepare('
-		SELECT `sessions`.`id` AS `session_id`, `sessions`.`session`, `sessions`.`connectid`, `sessions`.`expire`, `sessions`.`token`, `accounts`.`id`, `accounts`.`id64`, `accounts`.`email`, `accounts`.`username`, `accounts`.`signup_date`, `accounts`.`password`, `accounts`.`settings`, `accounts`.`confirmed`, `accounts`.`subscribed_comments`, `accounts`.`rank`, `team`.`id` AS `team_id`, `accounts`.`forum_id` AS `forum_id` 
+		SELECT `sessions`.`id` AS `session_id`, `sessions`.`session`, `sessions`.`connectid`, `sessions`.`expire`, `sessions`.`token`, `accounts`.`id`, `accounts`.`id64`, `accounts`.`email`, `accounts`.`username`, `accounts`.`signup_date`, `accounts`.`password`, `accounts`.`settings`, `accounts`.`confirmed`, `accounts`.`subscribed_comments`, `accounts`.`rank`, `team`.`id` AS `team_id`
 		FROM `sessions` 
 		LEFT JOIN `accounts` ON `accounts`.`id` = `sessions`.`account` 
 		LEFT JOIN `team` ON `team`.`account_id` = `sessions`.`account` 

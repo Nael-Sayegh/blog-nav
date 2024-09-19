@@ -61,10 +61,6 @@ if(isset($_GET['a']) and $_GET['a'] == 'form' and isset($_POST['username']) and 
 			$req->execute(array($username, $email, $id64, $password, time(), json_encode($settings)));
 			$id = $bdd->lastInsertId();
 			
-			if(isset($_POST['forum']) and $_POST['forum'] == 'on') {
-				require_once('include/flarum.php');
-				create_forum_account($id, $username, $email);
-			}
 			
 			include('include/sendconfirm.php');
 			send_confirm($id, $email, $mhash, $username);
@@ -104,8 +100,6 @@ require_once('include/load_sound.php'); ?>
 				<td><input type="password" id="f_rpsw" name="rpsw" maxlength="64" required></td></tr>
 			<tr><td class="formlabel"><label for="f_nl">S'inscrire à la lettre d'information&nbsp;:</label></td>
 				<td><input type="checkbox" id="f_nl" name="nl"> <span>(mail hebdomadaire pour rester informer des mises à jours)</span></td></tr>
-			<tr><td class="formlabel"><label for="f_forum">S'inscrire au <a href="<?php echo FLARUM_URL; ?>">forum <?php echo $site_name; ?></a>&nbsp;:</label></td>
-				<td><input type="checkbox" id="f_forum" name="forum" checked></td></tr>
 			<div class="mtcaptcha"></div>
 		</table>
 		<p>L'usage des cookies est nécessaire pour utiliser l'espace membres. Vous créer un compte <?php echo $site_name; ?> confirme que vous acceptez les cookies en vous identifiant.<br>Nous ne partagerons pas votre adresse e-mail avec des tiers. Vous pourrez modifier les paramètres de votre compte ou le supprimer à tout moment.</p>

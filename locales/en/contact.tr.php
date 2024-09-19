@@ -96,7 +96,6 @@ This website comes from the Corentin's desire (a blind high school student) to s
 		</tr>
 	</tbody>
 </table>
-<p>If you have questions about your project's accessibility, <a href="https://forum.progaccess.net">we can discuss it on the forum</a>.</p>
 
 <h2>Website's timetable</h2>
 <h3>Automated tasks</h3>

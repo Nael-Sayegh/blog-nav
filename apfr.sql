@@ -17,9 +17,6 @@ CREATE TABLE `accounts` (
   `settings` mediumtext NOT NULL,
   `rank` char(1) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `subscribed_comments` tinyint(1) NOT NULL DEFAULT 0,
-  `forum_id` int(10) unsigned DEFAULT NULL,
-  `forum_psw` varchar(32) DEFAULT NULL,
-  `forum_username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

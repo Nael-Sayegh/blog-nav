@@ -2,7 +2,7 @@
 $document_root = __DIR__.'/..';
 require_once($document_root.'/include/consts.php');
 
-$files = array('Slider.php', 'index.php', 'browser_homepage.php', 'members_list.php', 'art_list.php', 'article.php', 'auth_forum.php', 'cat.php', 'privacy.php', 'confirm.php', 'contact.php', 'contact_form.php', 'gadgets.php', 'home.php', 'history.php', 'login.php', 'logout.php', 'fg_password.php', 'mdp_verif.php', 'newsletter.php', 'nlmod.php', 'opensearch.xml.php', 'opensource.php', 'settings.php', 'r.php', 'nav_redirect.php', 'robots.txt', 'search.php', 'signup.php', 'sitemap.xml', 'trident.php', 'update.php',
+$files = array('Slider.php', 'index.php', 'browser_homepage.php', 'members_list.php', 'art_list.php', 'article.php', 'cat.php', 'privacy.php', 'confirm.php', 'contact.php', 'contact_form.php', 'gadgets.php', 'home.php', 'history.php', 'login.php', 'logout.php', 'fg_password.php', 'mdp_verif.php', 'newsletter.php', 'nlmod.php', 'opensearch.xml.php', 'opensource.php', 'settings.php', 'r.php', 'nav_redirect.php', 'robots.txt', 'search.php', 'signup.php', 'sitemap.xml', 'trident.php', 'update.php',
 	'403/403.html', '403B.php',
 	'a/index.php',
 	'admin/index.php', 'admin/cache_update.php', 'admin/nl_send.php', 'admin/maintenance.php', 'admin/members_gestion.php', 'admin/mvtrsw.php', 'admin/nl_last.php', 'admin/nl_list.php', 'admin/publication.php', 'admin/showstats.php', 'admin/slidermgr.php', 'admin/sw_add.php', 'admin/sw_categories.php', 'admin/sw_mod.php', 'admin/team_gestion.php', 'admin/techniques.php', 'admin/tickets.php', 'admin/translate.php', 'admin/translate_todo.php', 'admin/up_publish.php',
@@ -12,7 +12,7 @@ $files = array('Slider.php', 'index.php', 'browser_homepage.php', 'members_list.
 	'c/index.php',
 	'css/default.css', 'css/search.css', 'css/slider.css',
 	'gadgets/IP.php', 'gadgets/clock.php', 'GEOIP/infos.php', 'gadgets/password_gen.php', 'gadgets/flipping_coin.php',
-	'include/compteur.php', 'include/config.php', 'include/consts.php', 'include/dbconnect.php', 'include/flarum.php', 'include/footer.php', 'include/header.php', 'include/isbot.php', 'include/log.php', 'include/loginbox.php', 'include/maintenance_mode.php', 'include/maintenancemode.html', 'include/menu.php', 'include/searchtool.php', 'include/sendconfirm.php', 'include/load_sound.php', 'include/sontrident.php', 'include/stats.php', 'include/trident.php', 'include/user_rank.php',
+	'include/compteur.php', 'include/config.php', 'include/consts.php', 'include/dbconnect.php', 'include/footer.php', 'include/header.php', 'include/isbot.php', 'include/log.php', 'include/loginbox.php', 'include/maintenance_mode.php', 'include/maintenancemode.html', 'include/menu.php', 'include/searchtool.php', 'include/sendconfirm.php', 'include/load_sound.php', 'include/sontrident.php', 'include/stats.php', 'include/trident.php', 'include/user_rank.php',
 	'include/lib/facebook/fb_publisher.php', 	'res/phpsocialclient/facebook.php', 'res/phpsocialclient/twitter.php', 'res/phpsocialclient/locales/en.php', 'res/phpsocialclient/locales/fr.php', 'res/phpsocialclient/templates/getdata.php', 'res/phpsocialclient/templates/locales.php',
 	'r/index.php',
 	'scripts/default.js', 'scripts/clock.js', 'scripts/pa_api.js', 'scripts/slider.js',
