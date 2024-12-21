@@ -2,9 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once('include/lib/phpmailer/src/PHPMailer.php');
-require_once('include/lib/phpmailer/src/Exception.php');
-require_once('include/lib/phpmailer/src/SMTP.php');
+require_once('vendor/autoload.php');
 include_once('include/log.php');
 require_once('include/consts.php');
 require_once('include/lib/mtcaptcha/lib/class.mtcaptchalib.php');

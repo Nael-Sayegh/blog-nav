@@ -1,15 +1,3 @@
-[submodule "inclus/lib/phpmailer"]
-	path = include/lib/phpmailer
-	url = https://github.com/phpmailer/phpmailer
-[submodule "inclus/lib/parsedown"]
-	path = include/lib/parsedown
-	url = https://github.com/erusev/parsedown
-[submodule "inclus/lib/MastodonBotPHP"]
-	path = include/lib/MastodonBotPHP
-	url = https://github.com/Eleirbag89/MastodonBotPHP
-[submodule "inclus/lib/ca-bundle"]
-	path = include/lib/ca-bundle
-	url = https://github.com/composer/ca-bundle
 [submodule "include/lib/mtcaptcha"]
 	path = include/lib/mtcaptcha
 	url = https://github.com/mtcaptcha-public/mtcaptcha-php-sdk

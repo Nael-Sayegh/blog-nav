@@ -1,0 +1,10 @@
+{
+    "name": "progaccess/progaccess",
+    "description": "ProgAccess dependencies",
+    "require": {
+        "phpmailer/phpmailer": "^6.9",
+        "erusev/parsedown": "^1.7",
+        "eleirbag89/mastodonbotphp": "^0.1.0",
+        "composer/ca-bundle": "^1.5"
+    }
+}

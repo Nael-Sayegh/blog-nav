@@ -7,9 +7,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/phpmailer/src/PHPMailer.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/phpmailer/src/Exception.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/include/lib/phpmailer/src/SMTP.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php');
 if(isset($_GET['archive'])) {
 	$req = $bdd->prepare('UPDATE `tickets` SET `status`=3 WHERE `id`=? LIMIT 1');
 	$req->execute(array($_GET['archive']));

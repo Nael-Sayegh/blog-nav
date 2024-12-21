@@ -4,9 +4,7 @@ require_once('include/consts.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require_once('include/lib/phpmailer/src/PHPMailer.php');
-require_once('include/lib/phpmailer/src/Exception.php');
-require_once('include/lib/phpmailer/src/SMTP.php');
+require_once('vendor/autoload.php');
 
 if(isset($_GET['id']) and isset($_GET['h'])) {
 	$req = $bdd->prepare('SELECT `id`, `username`, `email`, `signup_date`, `settings` FROM `accounts` WHERE `id`=? AND `signup_date`<? AND `confirmed`=0');
