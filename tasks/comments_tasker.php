@@ -22,9 +22,7 @@ if($n > 0) {
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
 	use PHPMailer\PHPMailer\SMTP;
-	require_once($document_root.'/include/lib/phpmailer/src/PHPMailer.php');
-	require_once($document_root.'/include/lib/phpmailer/src/Exception.php');
-	require_once($document_root.'/include/lib/phpmailer/src/SMTP.php');
+	require_once($document_root.'/vendor/autoload.php');
 	$mail = new PHPMailer;
 	$mail->isSMTP();
 	$mail->Host = SMTP_HOST;

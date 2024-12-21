@@ -7,3 +7,4 @@ stats
 source
 .well-known
 rss_feed.xml
+/vendor/
