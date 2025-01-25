@@ -51,19 +51,24 @@ showother();
 <p id="result">
 <?php
 if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['typePasswd'])) {
+	$result = "";
 	if($_POST['typePasswd'] == '1') $caract = '0123456789';
 	else if($_POST['typePasswd'] == '2') $caract = 'abcdefghijklmnopqrstuvwxyz';
 	else if($_POST['typePasswd'] == '3') $caract = 'abcdefghijklmnopqrstuvwxyz0123456789';
 	else if($_POST['typePasswd'] == '4') $caract = 'abcdefghijklmnopqrstuvwxyz0123456789@!:;,/?*$=+.-_ &)(][{}#"\'';
 	else if($_POST['typePasswd'] == '5' && isset($_POST['charpers']) && !empty($_POST['charpers'])) $caract = 'abcdefghijklmnopqrstuvwxyz0123456789'.$_POST['charpers'];
 	for($nbrPasswd = 1; $nbrPasswd <=  $_POST['nbrPasswd']; $nbrPasswd++) {
+		$password = '';
 		for($i = 1; $i <= $_POST['nbrChr']; $i++) {
 			if(isset($_POST['maj']) and $_POST['maj'] == 'on' and rand(0,2) == 1)
-				print strtoupper($caract[mt_rand(0,(strlen($caract)-1))]);
+				$password .= strtoupper($caract[mt_rand(0,(strlen($caract)-1))]);
 			else
-				print $caract[mt_rand(0,(strlen($caract)-1))];
+				$password .= $caract[mt_rand(0,(strlen($caract)-1))];
 		}
+		$result .= $password . "\n";
 	}
+		$result = trim($result);
+		echo nl2br($result);
 }
 ?>
 </p>
