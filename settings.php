@@ -94,7 +94,7 @@ $infosdef = isset($_COOKIE['infosdef']) ? $_COOKIE['infosdef'] : 1;
 <option value="11" style="font-size: 11px;" <?php if($fontsize=='11')echo'selected';?>><?php echo tr($tr,'11'); ?></option><option value="16" style="font-size: 16px;" <?php if($fontsize=='16')echo'selected';?>><?php echo tr($tr,'16'); ?></option><option value="20" style="font-size: 20px;" <?php if($fontsize=='20')echo'selected';?>><?php echo tr($tr,'20'); ?></option><option value="24" style="font-size: 24px;" <?php if($fontsize=='24')echo'selected';?>><?php echo tr($tr,'24'); ?></option></select><br>
 <h3><?php echo tr($tr,'audio'); ?></h3>
 <label for="f_audio"><?php echo tr($tr,'soundsvolume'); ?></label>
-<input type="range" min="0" max="10" step="1" defaultValue="0" value="<?php echo htmlspecialchars($audio); ?>" name="audio" id="f_audio"><br>
+<input type="range" min="0" max="10" step="1" value="<?php echo (isset($audio) && $audio != 0)?htmlspecialchars($audio):0; ?>" name="audio" id="f_audio"><br>
 <h3><?php echo tr($tr,'other'); ?></h3>
 <label for="f_date"><?php echo tr($tr,'datetime'); ?></label>
 <input type="checkbox" id="f_date" name="date" <?php if($date==1) echo 'checked="checked"'; ?>><br>

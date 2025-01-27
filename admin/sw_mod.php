@@ -505,7 +505,7 @@ function f_addfile_group_method() {
 	var val = document.getElementById("f_addfile_method").value;
 	switch(val) {
 		case "form":
-			document.getElementById("f_addfile_group_method_form").style = "";
+			document.getElementById("f_addfile_group_method_form").style = "display: block;";
 			document.getElementById("f_addfile_file").required = true;
 			document.getElementById("f_addfile_group_method_url").style = "display: none;";
 			document.getElementById("f_addfile_url").required = false;
@@ -521,7 +521,7 @@ function f_addfile_group_method() {
 		case "url":
 			document.getElementById("f_addfile_group_method_form").style = "display: none;";
 			document.getElementById("f_addfile_file").required = false;
-			document.getElementById("f_addfile_group_method_url").style = "";
+			document.getElementById("f_addfile_group_method_url").style = "display: block;";
 			document.getElementById("f_addfile_url").required = true;
 			document.getElementById("f_addfile_name").required = true;
 		break;
@@ -645,14 +645,14 @@ function f_modf_group_method() {
 			document.getElementById("f_modf_name").required = true;
 		break;
 		case "form":
-			document.getElementById("f_modf_group_method_form").style = "";
+			document.getElementById("f_modf_group_method_form").style = "display: block;";
 			document.getElementById("f_modf_group_method_url").style = "display: none;";
 			document.getElementById("f_modf_url").required = false;
 			document.getElementById("f_modf_name").required = false;
 		break;
 		case "url":
 			document.getElementById("f_modf_group_method_form").style = "display: none;";
-			document.getElementById("f_modf_group_method_url").style = "";
+			document.getElementById("f_modf_group_method_url").style = "display: block;";
 			document.getElementById("f_modf_url").required = true;
 			document.getElementById("f_modf_name").required = true;
 		break;
