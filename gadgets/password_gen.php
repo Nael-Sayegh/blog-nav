@@ -15,10 +15,10 @@ require_once('include/load_sound.php'); ?>
 <p>Vous avez bien été redirigé vers notre générateur de mots de passe.</p>
 <form method="post">
 <label for="nombre">Nombre de mots de passe a générer :</label>
-<input id="nombre" name="nbrPasswd" type="number" min="1" value="1" required>
+<input id="nombre" name="nbrPasswd" type="number" min="1" max="10" value="1" required>
 <br>
 <label for="taille">Nombre de caractères :</label>
-<input id="taille" name="nbrChr" type="number" min="1" value="12" required>
+<input id="taille" name="nbrChr" type="number" min="1" max="250" value="12" required>
 <br>
 <label for="type">Type de mot de passe :</label>
 <select id="type" name="typePasswd" onchange="showother()">
@@ -35,11 +35,11 @@ require_once('include/load_sound.php'); ?>
 <label for="maj">Majuscules aléatoires :</label>
 <input type="checkbox" name="maj" id="maj"><br>
 <input type="submit" value="Générer">
-<script type="text/javascript">
+<script>
 function showother() {
 	if(document.getElementById("type").value == "5") {
-		document.getElementById("f_charpers").style = "";
-		document.getElementById("charpers").style = "";
+		document.getElementById("f_charpers").style = "display: block;";
+		document.getElementById("charpers").style = "display: block;";
 	} else {
 		document.getElementById("f_charpers").style = "display: none;";
 		document.getElementById("charpers").style = "display: none;";
@@ -50,7 +50,7 @@ showother();
 </form>
 <p id="result">
 <?php
-if(isset($_POST['nbrPasswd']) and isset($_POST['nbrChr']) and isset($_POST['typePasswd'])) {
+if(isset($_POST['nbrPasswd']) and $_POST['nbrPasswd'] <= 10 and isset($_POST['nbrChr']) and $_POST['nbrChr'] <= 250 and isset($_POST['typePasswd'])) {
 	$result = "";
 	if($_POST['typePasswd'] == '1') $caract = '0123456789';
 	else if($_POST['typePasswd'] == '2') $caract = 'abcdefghijklmnopqrstuvwxyz';
