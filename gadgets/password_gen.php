@@ -29,8 +29,8 @@ require_once('include/load_sound.php'); ?>
 <option value="5">Caractères alphanumériques et autres (personnalisés)</option>
 </select>
 <br>
-<label for="f_charpers">Spécifier les caractères spéciaux (tous collés)&nbsp;:</label>
-<input type="text" name="charpers" id="f_charpers">
+<label for="f_charpers" style="display: none;">Spécifier les caractères spéciaux (tous collés)&nbsp;:</label>
+<input type="text" name="charpers" id="f_charpers" style="display: none;">
 <noscript>Ne spécifier les caractères que si "Caractères alphanumériques et autres (personnalisés)" est sélectionné</noscript><br>
 <label for="maj">Majuscules aléatoires :</label>
 <input type="checkbox" name="maj" id="maj"><br>

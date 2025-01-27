@@ -456,14 +456,14 @@ if(isset($_GET['addfile'])) {
 					<option value="url">URL</option>
 				</select><br>
 				
-				<div id="f_addfile_group_method_form">
+				<div id="f_addfile_group_method_form" style="display: none;">
 					<label for="f_addfile_file">Fichier&nbsp;:</label>
 					<input type="file" name="file" id="f_addfile_file">
 					<noscript>Ne choisir un fichier que si la méthode <em>Simple</em> est choisie.</noscript>
 					<p>Si le nom souhaité est différent du nom actuel du fichier, remplissez le champ suivant. Sinon, laissez vide.</p>
 				</div>
 				
-				<div id="f_addfile_group_method_url">
+				<div id="f_addfile_group_method_url" style="display: none;">
 					<label for="f_addfile_url">URL&nbsp;:</label>
 					<input type="text" name="url" id="f_addfile_url">
 					<noscript>Ne choisir une URL que si la méthode <em>URL</em> est choisie.</noscript>
