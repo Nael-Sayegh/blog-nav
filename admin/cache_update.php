@@ -18,7 +18,7 @@ if (isset($_GET['cache']))
         $categories = [];
         foreach ($bdd->query($sql) as $row)
         {
-            $categories[] = ['id' => (int)$row['id'], 'name' => $row['name'], 'title' => strip_tags((string) $row['text'])];
+            $categories[] = ['id' => (int)$row['id'], 'name' => $row['name'], 'title' => ' - '.strip_tags((string) $row['text'])];
         }
         file_put_contents($cachedir.'menu_categories.json', json_encode($categories, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
     }
