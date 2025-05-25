@@ -4,13 +4,13 @@ $tr = [
   '_' => 'index',
   '_todo_level' => 0,
   '_last_author' => 'Pascal',
-  '_last_modif' => 1746970072,
+  '_last_modif' => 1748185111,
   'title' => '{{slogan}}',
   'happynewyear' => 'Toute l\'équipe {{site}} vous souhaite une excellente année {{year}}&#8239;!',
   'texttitle' => '{{slogan}}&#8239;!',
   'maintext' => '<p>Pour empêcher qu\'Internet soit une ressource exclusive et privée, luttons pour le rendre plus ouvert et accessible.</p>
 <h3>Accessible</h3>
-<p>Une chose accessible (quelqu\'elle soit) est utilisable partout, par tous, tout le temps (dans la mesure du possible).
+<p>Une chose accessible (quelle qu\'elle soit) est utilisable partout, par tous, tout le temps (dans la mesure du possible).
 Internet (ou l\'informatique en général) est un bien commun, œuvre intellectuelle et matérielle de l\'Humanité, qui doit être accessible à tous. Cela implique qu\'il doit être aussi bien utilisable avec ou sans handicap, quelque soit le budget, la géographie, la taille de l\'écran, les performances de l\'ordinateur, etc.</p>
 <p>L\'accessibilité d\'un logiciel ou d\'un matériel est déterminée par le prix, mais surtout par des choix techniques à tous les niveaux. À nous de faire les bons choix, de développer des outils appropriés (logiciels, études, normes), et de l\'imposer aux éditeurs et aux fabricants.</p>
 

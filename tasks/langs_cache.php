@@ -32,10 +32,27 @@ foreach ($langs_alpha as $i)
 
 $available_trs = [];
 $available_trs_index = [];
-$trsdirs = array_diff(scandir($document_root.'/locales'), ['..', '.', 'LICENSE.txt']);
+$all = scandir($document_root.'/locales');
+if ($all === false)
+{
+    throw new RuntimeException("Impossible de lister $document_root/locales");
+}
+$trsdirs = array_filter($all, function ($d) use ($document_root) {
+    if (in_array($d, ['.', '..', 'LICENSE.txt'], true))
+    {
+        return false;
+    }
+    return is_dir($document_root . '/locales/' . $d);
+});
 foreach ($trsdirs as $trsdir)
 {
-    $trsfiles = array_diff(scandir($document_root.'/locales/'.$trsdir), ['..', '.', 'LICENSE.txt']);
+    $dir = $document_root . '/locales/' . $trsdir;
+    $files = scandir($dir);
+    if ($files === false)
+    {
+        continue;
+    }
+    $trsfiles = array_filter($files, fn ($f) => preg_match('/^(.+)\.tr\.php$/', (string) $f));
     foreach ($trsfiles as $trsfile)
     {
         if (preg_match('/^(.+)\\.tr\\.php$/', $trsfile, $match))
