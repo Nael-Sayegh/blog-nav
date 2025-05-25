@@ -566,7 +566,7 @@ while ($data = $req->fetch())
     echo ' ('.date('d/m/Y, H:i', $data['date']).')';
     echo '</span>';
     echo '<blockquote>'.convertToMD(str_replace("\n", '<br>', htmlentities((string) $data['text']))).'</blockquote></div>';
-    if ((isset($logged) && $logged && ($data['nickname'] === $login['id'] && $data['date'] > time() - 86400) || (checkMemberRights('comment_articles') || ($login['rank'] === 'a' && in_array($login['works'], ['1', '2']) && checkAdminRights('manage_comments')))))
+    if (isset($logged) && $logged && (($data['nickname'] === $login['id'] && $data['date'] > time() - 86400) || checkMemberRights('comment_articles') || ($login['rank'] === 'a' && in_array($login['works'], ['1', '2']) && checkAdminRights('manage_comments'))))
     {
         echo '<span class="comment_a"><a href="?id='.$sw['id'].'&cedit='.$data['id'].'#cedit">'.tr($tr, 'comments_mod').'</a> <a href="?id='.$sw['id'].'&cdel='.$data['id'].'" onclick="return confirm(\''.tr($tr, 'confirm_del_com').'\')">'.tr($tr, 'comments_rm').'</a></span>';
     }
