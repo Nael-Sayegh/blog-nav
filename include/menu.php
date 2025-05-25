@@ -94,7 +94,8 @@ function render_menu(string $mode, array $items)
             {
                 case 'menutitle':
                     printf(
-                        '<li class="menutitle" role="menuitem" aria-disabled="true">%s</li>',
+                        '<li class="menutitle" role="separator" aria-disabled="true" aria-label="%s">%s</li>',
+                        tr($tr0, $it['label']),
                         tr($tr0, $it['label'])
                     );
                     break;
