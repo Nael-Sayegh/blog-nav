@@ -1,37 +1,40 @@
 <?php
 $permalink = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-$titlemodifie = str_replace(' ',' ',$title);
+$titlemodifie = str_replace(' ', ' ', $title);
 ?>
 <footer id="footer">
-<a style="position:absolute; top:-999px; left:-9999px;" href="#hautpage" accesskey="H"><?php echo tr($tr0,'footer_toplink'); ?></a>
+<a class="sr_only" href="#hautpage" accesskey="H"><?= tr($tr0, 'footer_toplink') ?></a>
 <div id="social_share" role="complementary">
 <details open>
-<summary><?php echo tr($tr0,'footer_share'); ?></summary>
+<summary><?= tr($tr0, 'footer_share') ?></summary>
 <ul>
-<li><a href="https://www.facebook.com/sharer.php?u=<?php print $permalink; ?>&t=<?php print $titlemodifie; ?>" target="_blank" title="<?php echo tr($tr0,'footer_fb'); ?>"><img src="/image/facebook.png" alt="<?php echo tr($tr0,'footer_fb'); ?>"></a></li>
-<li><a href="https://x.com/share?url=<?php print $permalink; ?>&text=<?php print $titlemodifie; ?>&via=<?php print $site_name; ?>" target="_blank" title="<?php echo tr($tr0,'footer_x'); ?>"><img src="/image/x.png" alt="<?php echo tr($tr0,'footer_x'); ?>"></a></li>
+<li><a href="https://www.facebook.com/sharer.php?u=<?php print $permalink; ?>&t=<?php print $titlemodifie; ?>" target="_blank" title="<?= tr($tr0, 'footer_fb') ?>"><img src="/images/facebook.png" alt="<?= tr($tr0, 'footer_fb') ?>"></a></li>
+<li><a href="https://x.com/share?url=<?php print $permalink; ?>&text=<?php print $titlemodifie; ?>&via=<?php print $site_name; ?>" target="_blank" title="<?= tr($tr0, 'footer_x') ?>"><img src="/images/x.png" alt="<?= tr($tr0, 'footer_x') ?>"></a></li>
 <li><button class="mastodon-share" data-title="<?php print $titlemodifie; ?>" data-href="<?php print $permalink; ?>" role="link"></button></li>
 </ul>
 </details>
 </div>
 <?php
-include('include/stats.php'); ?>
+include('include/stats.php');
+if ((defined('FB_URL') && constant('FB_URL')) || (defined('MASTO_URL') && constant('MASTO_URL')) || (defined('CESIUM_URL') && constant('CESIUM_URL'))): ?>
 <details open>
-<summary><?php echo tr($tr0,'footer_sociallinks'); ?></summary>
-<a target="_blank" href="<?php echo CESIUM_URL; ?>" title="<?php echo tr($tr0,'footer_link_g1',array('site'=>$site_name)); ?>"><img id="g1" alt="<?php echo tr($tr0,'footer_link_g1',array('site'=>$site_name)); ?>" src="/image/gbreve-simple.svg" style="width:32px;height:32px;"></a>
-<a target="_blank" href="<?php echo FB_URL; ?>" title="<?php echo tr($tr0,'footer_link_fb',array('site'=>$site_name)); ?>"><img id="facebook" alt="<?php echo tr($tr0,'footer_link_fb',array('site'=>$site_name)); ?>" src="/image/facebook.png"></a>
-<a target="_blank" rel="me" href="<?php echo MASTO_URL; ?>" title="<?php echo tr($tr0,'footer_link_masto',array('site'=>$site_name)); ?>"><img id="mastodon" alt="<?php echo tr($tr0,'footer_link_masto',array('site'=>$site_name)); ?>" src="/image/mastodon-purple.svg" style="width:32px;height:32px;"></a>
-</details>
-Copyleft 2015-<?php print date('Y'); ?> <?php echo tr($tr0,'footer_copyright',array('site'=>$site_name)); ?><br>
-<?php echo tr($tr0,'footer_license',array('site'=>$site_name,'license'=>'<a href="https://www.gnu.org/licenses/licenses.html#AGPL" title="GNU Affero General Public License v3">GNU AGPL v3</a>','trlicense'=>'<a href="http://creativecommons.org/licenses/by-sa/4.0/" title="Creative Commons Attribution-ShareAlike 4.0 International License">CC BY-SA 4.0</a>')); ?><br>
-<?php getLastGitCommit(); ?>
-<?php if((isset($_COOKIE['date']) and $_COOKIE['date'] == '1')) { ?>
-<noscript>
-<?php echo tr($tr0,'date',array('date'=>getFormattedDate(time(), tr($tr0,'ftdate')),'time'=>getFormattedDate(time(), tr($tr0,'ftime')))); ?>
-</noscript>
-<div style="display:none;" id="ag003030">
-<span id="date_heure"></span>
-</div>
-<script>document.getElementById("ag003030").style.display="block";date_heure("date_heure");</script>
+<summary><?= tr($tr0, 'footer_sociallinks') ?></summary>
+<?php if (defined('FB_URL') && ($fbUrl = constant('FB_URL')))
+{ ?>
+<a target="_blank" href="<?= $fbUrl ?>" title="<?= tr($tr0, 'footer_link_fb', ['site' => $site_name]) ?>"><img id="facebook" alt="<?= tr($tr0, 'footer_link_fb', ['site' => $site_name]) ?>" src="/images/facebook.png"></a>
+<?php }
+if (defined('MASTO_URL') && ($mastoUrl = constant('MASTO_URL')))
+{ ?>
+<a target="_blank" rel="me" href="<?= $mastoUrl ?>" title="<?= tr($tr0, 'footer_link_masto', ['site' => $site_name]) ?>"><img id="mastodon" alt="<?= tr($tr0, 'footer_link_masto', ['site' => $site_name]) ?>" src="/images/mastodon-purple.svg" style="width:32px;height:32px;"></a>
+<?php }
+if (defined('CESIUM_URL') && ($cesiumUrl = constant('CESIUM_URL')))
+{ ?>
+<a target="_blank" href="<?= $cesiumUrl ?>" title="<?= tr($tr0, 'footer_link_g1', ['site' => $site_name]) ?>"><img id="g1" alt="<?= tr($tr0, 'footer_link_g1', ['site' => $site_name]) ?>" src="/images/gbreve-simple.svg" style="width:32px;height:32px;"></a>
 <?php } ?>
+</details>
+<?php endif; ?>
+Copyleft 2015-<?php print date('Y'); ?> <?= tr($tr0, 'footer_copyright', ['site' => $site_name]) ?><br>
+<?= tr($tr0, 'footer_license', ['site' => $site_name,'license' => '<a href="https://www.gnu.org/licenses/licenses.html#AGPL" title="GNU Affero General Public License v3">GNU AGPL v3</a>','trlicense' => '<a href="http://creativecommons.org/licenses/by-sa/4.0/" title="Creative Commons Attribution-ShareAlike 4.0 International License">CC BY-SA 4.0</a>']) ?><br>
+<p><?php getContentLastModif(); ?><br>
+<?php getVersionFromGit(); ?></p>
 </footer>

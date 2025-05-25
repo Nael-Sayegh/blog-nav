@@ -1,8 +1,10 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'home',
   '_todo_level' => 0,
   '_last_author' => 'Pascal',
-  '_last_modif' => 1624356918,
+  '_last_modif' => 1747079706,
   'title' => 'Profil',
   'err_name_length' => 'Votre nom d\'utilisateur doit comporter entre 3 et 32 caractères.',
   'err_mail_length' => 'Votre adresse e-mail ne doit pas dépasser 255 caractères.',
@@ -54,4 +56,18 @@
   'session_item' => 'créée le {{created}}, expire le {{expires}}',
   'session_item_current' => 'actuelle',
   'session_item_remove' => 'verrouiller',
-); ?>
+  'wrong_2fa' => 'Code A2F invalide. Veuillez réessayer.',
+  'enable_2fa_title' => 'Activer l\'authentification à 2 facteurs',
+  'enable_2fa_text' => 'Scannez ce QR code avec votre application A2F (Google/Microsoft Authenticator, Twilio Authy, etc.) puis entrez le code à usage unique généré.',
+  'manual_code' => 'Clé à entrer manuellement',
+  'manual_code_hint' => 'Si vous ne pouvez pas scanner le QR code, vous pouvez entrer cette clé manuellement dans votre application A2F.',
+  'disable_2fa_title' => 'Désactiver l\'Authentification à 2 facteurs',
+  'disable_2fa_text' => 'Pour désactiver l\'authentification à 2 facteurs (A2F), confirmez votre mot de passe.',
+  'disable_2fa_psw' => 'Mot de passe',
+  'disable_2fa_confirm' => 'Désactiver l\'A2F',
+  'err_2fa_code_invalid' => 'Le code A2F saisi est invalide.',
+  'enter_2fa_code' => 'Code de vérification',
+  'confirm' => 'Valider',
+  'log_2fa_enabled' => 'L\'Authentification à 2 facteurs a correctement été activée',
+  'log_2fa_disabled' => 'L\'Authentification à 2 facteurs a correctement été désactivée',
+];

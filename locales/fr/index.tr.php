@@ -1,8 +1,10 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'index',
   '_todo_level' => 0,
   '_last_author' => 'Pascal',
-  '_last_modif' => 1621417424,
+  '_last_modif' => 1746970072,
   'title' => '{{slogan}}',
   'happynewyear' => 'Toute l\'équipe {{site}} vous souhaite une excellente année {{year}}&#8239;!',
   'texttitle' => '{{slogan}}&#8239;!',
@@ -29,7 +31,7 @@ Nous avons donc conservé l\'activité initiale, mais avons agrandi notre champ 
 </ul>
 <p>Pour réaliser tout cela, une équipe essentiellement composée de jeunes travaille pour coder et maintenir le site, vous pouvez <a href="/contact.php">la découvrir ici</a>.<br>
 Nous nous appuyons également sur vous tous sans qui le site n\'existerait pas aujourd\'hui.</p>
-<p>Un bug à remonter, un message à faire passer à l\'administration du site&#8239;? <a href="/contact_form.php">Contactez-nous</a>.</p>
+<p>Un bug à remonter, un message à faire passer à l\'équipe du site&#8239;? <a href="/contact_form.php">Contactez-nous</a>.</p>
 
 <h2>Comment aider&nbsp;?</h2>
 <p>Vous êtes convaincu, ce site vous plaît et vous voulez l\'aider&#8239;? Suivez le guide&nbsp;:</p>
@@ -56,5 +58,5 @@ Nous nous appuyons également sur vous tous sans qui le site n\'existerait pas a
 </ul>',
   'sliderinactext' => '<p>Vous avez choisis de ne pas utiliser notre système d\'informations défilantes, retrouvez donc ci-dessous nos dernières actualités.</p>',
   'sliderinactitle' => 'Actualités',
-  'mailconfirmtext' => 'Nous vous remercions pour votre message. Vous devriez recevoir bientôt un e-mail de réponse.',
-); ?>
+  'mailconfirmtext' => 'Nous vous remercions pour votre message. Nous y répondrons très bientôt.',
+];

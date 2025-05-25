@@ -1,8 +1,8 @@
 <?php set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/log.php');
 require_once('include/consts.php');
-$title=' politique de confidentialité '.$site_name;
-$sound_path='/audio/page_sounds/privacy.mp3';
+$title = ' politique de confidentialité '.$site_name;
+$sound_path = '/audio/page_sounds/privacy.mp3';
 $stats_page = 'conf'; ?>
 <!DOCTYPE html>
 <html lang="fr">

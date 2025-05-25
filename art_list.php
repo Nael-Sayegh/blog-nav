@@ -3,13 +3,16 @@ set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/log.php');
 require_once('include/consts.php');
 $tr = load_tr($lang, 'art_list');
-$title = tr($tr,'title');
+$title = tr($tr, 'title');
 $stats_page = 'art-list';
-$sound_path='/audio/page_sounds/article.mp3';
-$cat = array();
-$req = $bdd->query('SELECT * FROM `softwares_categories`');
-while($data = $req->fetch()) {
-$cat[$data['id']] = $data['name'];
+$sound_path = '/audio/page_sounds/article.mp3';
+$cat = [];
+$SQL = <<<SQL
+    SELECT * FROM softwares_categories
+    SQL;
+foreach ($bdd->query($SQL) as $data)
+{
+    $cat[$data['id']] = $data['name'];
 }
 ?>
 <!DOCTYPE html>
@@ -21,59 +24,76 @@ require_once('include/load_sound.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <form method="get">
-<label for="f1_sort"><?php echo tr($tr,'sort_label'); ?></label>
+<label for="f1_sort"><?= tr($tr, 'sort_label') ?></label>
 <select name="sort" id="f1_sort">
-<option value="id"><?php echo tr($tr,'sort_article_id'); ?></option>
-<option value="nom"><?php echo tr($tr,'sort_alpha_order'); ?></option>
-<option value="date"><?php echo tr($tr,'sort_date'); ?></option>
+<option value="id"><?= tr($tr, 'sort_article_id') ?></option>
+<option value="nom"><?= tr($tr, 'sort_alpha_order') ?></option>
+<option value="date"><?= tr($tr, 'sort_date') ?></option>
 </select>
-<input type="submit" value="<?php echo tr($tr,'sort_btn'); ?>" style="cursor:pointer;">
+<input type="submit" value="<?= tr($tr, 'sort_btn') ?>" style="cursor:pointer;">
 </form>
 <ul>
 <?php
-if(isset($_GET['sort'])) {
-	switch($_GET['sort']) {
-		case 'id': $order = 'id'; break;
-		case 'nom': $order = 'name'; break;
-		case 'date': $order = 'date DESC'; break;
-	}
+if (isset($_GET['sort']))
+{
+    switch ($_GET['sort'])
+    {
+        case 'id': $order = 'id';
+            break;
+        case 'nom': $order = 'name';
+            break;
+        case 'date': $order = 'date DESC';
+            break;
+    }
 }
-else $order = 'id';
-
-$req = $bdd->prepare('
-	SELECT `softwares_tr`.`lang`, `softwares_tr`.`name`, `softwares_tr`.`sw_id`, `softwares`.`category`
-	FROM `softwares`
-	LEFT JOIN `softwares_tr` ON `softwares`.`id`=`softwares_tr`.`sw_id`
-	ORDER BY `softwares`.'.$order);
-$req->execute();
-while($data = $req->fetch()) {
-	if(!isset($entries[$data['sw_id']]))
-		$entries[$data['sw_id']] = array('cat'=>$data['category'], 'trs'=>array());
-	$entries[$data['sw_id']]['trs'][$data['lang']] = array('title'=>$data['name']);
+else
+{
+    $order = 'id';
+}
+$SQL = <<<SQL
+    SELECT softwares_tr.lang, softwares_tr.name, softwares_tr.sw_id, softwares.category
+    FROM softwares
+    LEFT JOIN softwares_tr ON softwares.id=softwares_tr.sw_id
+    ORDER BY softwares.{$order}
+    SQL;
+foreach ($bdd->query($SQL) as $data)
+{
+    if (!isset($entries[$data['sw_id']]))
+    {
+        $entries[$data['sw_id']] = ['cat' => $data['category'], 'trs' => []];
+    }
+    $entries[$data['sw_id']]['trs'][$data['lang']] = ['title' => $data['name']];
 }
 
-foreach($entries as $sw_id => $entry) {
-	$entry_tr = '';
-	if(array_key_exists($lang, $entry['trs']))
-		$entry_tr = $lang;
-	else {
-		foreach($langs_prio as &$i_lang) {
-			if(array_key_exists($i_lang, $entry['trs'])) {
-				$entry_tr = $i_lang;
-				break;
-			}
-		}
-	}
-	unset($i_lang);
-	if(empty($entry_tr))// Error: sw has no translations
-		continue;
-	
-	echo '<li><a href="/a'.$sw_id.'">A'.$sw_id.'&nbsp;: '.str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']).'</a> (<a href="/c'.$entry['cat'].'">'.$cat[$entry['cat']].'</a>)</li>';
+foreach ($entries as $sw_id => $entry)
+{
+    $entry_tr = '';
+    if (array_key_exists($lang, $entry['trs']))
+    {
+        $entry_tr = $lang;
+    }
+    else
+    {
+        foreach ($langs_prio as &$i_lang)
+        {
+            if (array_key_exists($i_lang, $entry['trs']))
+            {
+                $entry_tr = $i_lang;
+                break;
+            }
+        }
+    }
+    unset($i_lang);
+    if (empty($entry_tr)) // Error: sw has no translations
+    {continue;
+    }
+
+    echo '<li><a href="/a'.$sw_id.'">A'.$sw_id.'&nbsp;: '.str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']).'</a> (<a href="/c'.$entry['cat'].'">'.$cat[$entry['cat']].'</a>)</li>';
 }
 $req->closeCursor();
 ?>
 </ul>
-<p><b><?php echo tr($tr,'nb_found',array('count'=>count($entries))); ?></p>
+<p><b><?= tr($tr, 'nb_found', ['count' => count($entries)]) ?></p>
 </main>
 <?php require_once('include/footer.php'); ?>
 </body>

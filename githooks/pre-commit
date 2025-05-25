@@ -1,0 +1,2 @@
+#!/bin/sh
+php locales/update_tr_timestamps.php

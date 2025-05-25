@@ -1,0 +1,16 @@
+stages:
+  - coding-style
+
+php-cs-fixer:
+  stage: coding-style
+  variables:
+    PHP_CS_FIXER_IGNORE_ENV: "1"
+  script:
+    - composer install --no-interaction --prefer-dist --no-progress
+    - composer exec php-cs-fixer -- fix --dry-run --diff --allow-risky=yes --using-cache=no
+
+rector-check:
+  stage: coding-style
+  script:
+    - composer install --no-interaction --prefer-dist --no-progress
+    - composer exec rector -- process --dry-run --clear-cache --no-progress-bar

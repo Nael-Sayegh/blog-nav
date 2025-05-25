@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'article',
   '_todo_level' => 4,
   '_last_author' => 'Pascal',
@@ -27,4 +29,4 @@
   'comment_sent' => 'La komento estas sukcese sendita.',
   'files_date' => 'ŝanĝita je',
   'files_sums' => 'Kontrolsumoj',
-); ?>
+];

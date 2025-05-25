@@ -1,1 +1,3 @@
-<?php $modemaintenance=false; ?>
+<?php
+
+$modemaintenance = false;

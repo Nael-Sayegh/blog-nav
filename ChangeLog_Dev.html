@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Change Log - ProgAccess-Dev</title>
+</head>
+<body>
+<h1>Change Log - ProgAccess-Dev</h1>
+<h2>ProgAccess 20.0 (Mise à jour anniversaire des 10 ans)</h2>
+<h3>Contexte de cette mise à jour majeure</h3>
+<p>ProgAccess atteint ses 10 ans et n'a pas reçu d'évolution majeure depuis un long moment.<br>
+De plus, depuis 2015, 2 développeurs principaux ont travaillé sur le code, avec des styles différents, repassants l'un derrière l'autre, corrigeant de petites choses à droite à gauche, etc.<br>
+Il était grand temps de nettoyer, reformater et moderniser le code, pour assurer une base technique plus lisible, propre, maintenable. Pour se faire, 2 outils de "Linting" (formatage et vérification de code) ont été mis en place, permettant par la même occasion de corriger des bugs passés à la trappe, et d'éviter de potentielles erreurs. Dans le même temps, nous avons également migrés vers un système de gestion de bases de données plus performant.<br>
+Repartant de cette nouvelle base, de nombreux correctifs ont été apportés, et des évolutions ont été réalisées pour proposer de nouvelles fonctionnalités, et cela n'est que le début d'un chantier d'amélioration du site qui va se poursuivre dans les prochains mois.<br>
+Nous sommes fiers de vous présenter, ci-dessous, l'ensemble des changements apportés à ProgAccess 20.0, publié à tous le 25 Mai 2025 dans l'après-midi, pile pour les 10 ans du site.</p>
+<ul style="list-style-type: none;">
+<li>Nouveautés et améliorations
+<ul style="liststyle-type: none;">
+<li>Possibilité de trier les fichiers d'un article et les articles d'une catégorie</li>
+<li>Possibilité réservée aux membres de noter un article</li>
+<li>Possibilité pour les membres autorisés de voir la liste des autres membres</li>
+<li>À l'inscription, un bouton permet de générer un mot de passe. La fonction de génération native des navigateurs est désormais également prise en charge.</li>
+<li>Nouveau système pour la réinitialisation de mot de passe plus simple et sécurisé</li>
+<li>Support de l'authentification à 2 facteurs</li>
+<li>Possibilité de recevoir les notifications par mail (à activer dans le profil)</li>
+<li>Affichage de la description des catégories dans le menu</li>
+<li>Possibilité de revenir directement à la page précédente à la connexion</li>
+<li>Refonte du système de tickets
+<ul>
+<li>Possibilité de répondre par mail</li>
+<li>Envoi d'une copie par défaut</li>
+<li>Possibilité de trier (pour les admins)</li>
+<li>Nouveau statut "Fermé" pour conserver un ticket en empêchant d'y répondre</li>
+<li>Garantie que tout le monde reçoit toujours les réponses (équipe + expéditeur d'origine</li>
+<li>Possibilité pour les admins de créer un ticket depuis l'administration</li>
+</ul></li>
+<li>Support de l'écriture en MarkDown dans les commentaires et descriptions d'articles</li>
+<li>Lors de l'accès à la page de la lettre d'informations, redirection sur les paramètres d'abonnement associés à l'adresse mail du compte si authentifié</li>
+<li>Tous les mails ont désormais une version HTML et une version textuelle et reprennent tous le même modèle</li>
+<li>Nouveau système de gestion des droits des admin et membres</li>
+<li>Les admin sont désormais informés lorsqu'un membre supprime son compte</li>
+<li>Le tout premier compte créé hérite désormais automatiquement du rang admin</li>
+<li>Toutes les publications sociales seront maintenant également envoyées sur Discord</li>
+<li>Automatisation du calcul des statistiques en fonction des fichiers composant le projet</li>
+<li>Affichage de la date de dernière traduction dans la langue courante en bas de page</li>
+<li>L'adresse IP des membres commentant les articles n'est plus stockée</li>
+<li>Animation pendant le téléversement d'un fichier dans la zone d'admin</li>
+</ul></li>
+<li>Correctifs
+<ul style="list-style-type: none;">
+<li>Correction de l'affichage de la plateforme d'un fichier</li>
+<li>Correction de la redirection vers l'accueil lors de la sélection d'une catégorie dans le menu déroulant et de l'appui sur le bouton "Valider"</li>
+<li>Les membres bannis peuvent désormais accéder au formulaire de contact</li>
+<li>Correction de 'laffichage des dates et heures dans les langues autres que le français</li>
+<li>Affichage du site d'un article toujours garanti dans l'admin</li>
+<li>Correction de la redirection sur la liste des fichiers de l'article lors de l'ajout d'un miroir via l'admin</li>
+<li>Garantie que les valeurs architecture et plateforme d'un fichier ne soient plus réinitialisées par erreur, correction de leur sélection à la modification d'un fichier dans l'admin</li>
+<li>Correction de la suppression d'un article via l'admin</li>
+</ul></li>
+<li>Suppressions
+<ul style="list-style-type: none;">
+<li>Suppression du gadget horloge et de l'option pour afficher la date et l'heure dans le pied de page</li>
+<li>Suppression de la traduction des fichiers depuis l'interface d'admin (Git est utilisé à la place)</li>
+</ul></li>
+<li>Technique
+<ul style="list-style-type: none;">
+<li>Migration vers PostGreSQL</li>
+<li>Désactivation de la publication sur les réseaux sociaux en zone dev</li>
+<li>Vérification de zone dev toujours basé sur la fonction isDev() plutôt que la constante DEV</li>
+<li>Nouvelles fonctions getTeamEmails() et sendMail() pour supprimer les parties de code répliquées trop de fois</li>
+<li>Nouvelle clé works dans $login pour tester si un admin dispose des droits pour le bon site</li>
+<li>Envoi de la lettre d'informations seulement depuis le domaine de prod ou en mode debug</li>
+<li>Linting du code avec Rector et PHP-CS-Fixer (+CI)</li>
+<li>Renommage de quelques variables pour utiliser des noms anglophones</li>
+<li>Écriture des requêtes SQL et des mails dans des HereDoc</li>
+<li>Clés de configuration liées aux réseaux sociaux (publication et liens des comptes), au panneau de contrôle du serveur et au webmail rendues optionnelles</li>
+<li>Class CSS sr_only pour tous les éléments devant être uniquement visibles des lecteurs d'écran</li>
+<li>Nouvelles clé de configuration&nbsp;:
+<ul>
+<li>MASTODON_MAX_LEN&nbsp;: longueur maximale d'un toot</li>
+<li>IMAP_INBOX&nbsp;: chaîne de connexion IMAP pour le bot de gestion des tickets</li>
+<li>TICKETS_BOT_MAIL&nbsp;: adresse mail du bot de gestion des tickets</li>
+<li>TICKETS_BOT_PSW&nbsp;: mot de passe du bot de gestion des tickets</li></ul></li>
+<li>Nouveau script tasks/TicketsBot.php à exécuter régulièrement via Cron</li>
+<li>Schéma SQL renommé ProgAccess.sql dans le dépôt Git</li>
+<li>CRONTAB ajoutée au dépôt Git</li>
+<li>Hook de pre-commit pour automatiser la mise à jour des dates de dernière traduction ajoutée, à installer via install_hooks.sh</li>
+<li>Gadget infos déplacé vers gadgets/infos.php plutôt que GEOIP/infos.php</li>
+<li>L'API permet de récupérer les informations d'un compte en passant en paramètre POST le nom d'utilisateur (login_name) et le mot de passe (login_psw) à api/account.php. ProgAccess devient ainsi un tiers d'authentification.</li>
+</ul></li>
+<li>Multiples autres ajustements, corrections de bugs, et améliorations de sécurité et de performance</li>
+</ul>
+<h3>Et après</h3>
+<p>À court therme, nous prévoyons les améliorations suivantes, par ordre théorique d'implémentation</p>
+<ul>
+<li>Reprise de toutes les descriptions d'articles</li>
+<li>Distinction entre la date de publication initiale et la date de dernière édition d'un article</li>
+<li>Améliorer et compléter la documentation de l'API</li>
+<li>Terminer d'intégrer l'intégralité du site au système de traductions et reprendre l'ensemble des traductions devenues obsolètes avec le temps</li>
+<li>Permettre aux membres de proposer des mises à jour d'articles et des nouveaux articles</li>
+<li>Ajouter le support des périphériques d'authentification (Web-Authn)</li>
+</ul>
+<p>Ces changements seront progressivement intégrés dans les prochaines semaines, reportez vous toujours à <a href="https://gitlab.progaccess.net/ProgAccess/ProgAccess">GitLab</a> pour connaître les dernières améliorations.</p>
+</body>
+</html>

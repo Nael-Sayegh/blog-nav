@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'contacter',
   '_todo_level' => 0,
   '_last_author' => 'Corentin',
@@ -29,4 +31,4 @@
   'f_obj_graph' => 'Rapport de problème graphique',
   'f_obj_other' => 'autre',
   'mailformtitle' => 'Mail',
-); ?>
+];

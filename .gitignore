@@ -8,3 +8,5 @@ source
 .well-known
 rss_feed.xml
 /vendor/
+.php-cs-fixer.cache
+GEOIP

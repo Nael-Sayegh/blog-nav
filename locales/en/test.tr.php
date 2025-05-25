@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'test',
   '_todo_level' => 1,
   '_last_author' => 'Pascal',
@@ -6,4 +8,4 @@
   'hello' => 'Hello all!',
   'description' => 'This is a false test page.',
   'link' => 'Click here',
-); ?>
+];

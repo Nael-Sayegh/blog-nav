@@ -1,90 +1,193 @@
 <?php
-$ulmenu_js = function() {
-	global $lang, $args, $tr0, $site_name; ?>
-<ul class="ulmenu_js" role="menu">
-	<li><form method="get"><?php echo args_html_form($args); ?><select aria-label="<?php echo tr($tr0,'menu_changelang'); ?>" title="<?php echo tr($tr0,'menu_changelang'); ?>" name="lang" autocomplete="off"><?php echo langs_html_opts($lang); ?></select><input type="submit" value="OK"></form></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/index.php') echo 'aria-current="page"'; ?>><a href="/"><?php echo tr($tr0,'menu_homepage'); ?></a></li>
-	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_articles'); ?></li>
-	<?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_ulli_js.html'); ?>
-	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_news'); ?></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><a href="/newsletter.php"><?php echo tr($tr0,'menu_nl',array('site'=>$site_name)); ?></a></li>
-	<li role="menuitem"><a type="application/rss+xml" href="/rss_feed.xml"><?php echo tr($tr0,'menu_rss'); ?></a></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/history.php') echo 'aria-current="page"'; ?>><a href="/history.php"><?php echo tr($tr0,'menu_journal'); ?></a></li>
-	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_usefull'); ?></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/settings.php') echo 'aria-current="page"'; ?>><a href="/settings.php"><?php echo tr($tr0,'menu_sets'); ?></a></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/gadgets.php') echo 'aria-current="page"'; ?>><a href="/gadgets.php"><?php echo tr($tr0,'menu_gadgets'); ?></a></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><a href="/contact.php"><?php echo tr($tr0,'menu_infos',array('site'=>$site_name)); ?></a></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contact_form.php') echo 'aria-current="page"'; ?>><a href="/contact_form.php"><?php echo tr($tr0,'menu_contact'); ?></a></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/privacy.php') echo 'aria-current="page"'; ?>><a href="/privacy.php"><?php echo tr($tr0,'menu_privacy'); ?></a></li>
-	<li class="menusep" aria-hidden="true">&nbsp;</li>
-</ul>
-<?php };
-$ulmenu_njs = function() {
-	global $lang, $args, $tr0, $site_name; ?>
-<ul class="ulmenu_njs" role="menu">
-	<li><form method="get"><?php echo args_html_form($args); ?><select aria-label="<?php echo tr($tr0,'menu_changelang'); ?>" title="<?php echo tr($tr0,'menu_changelang'); ?>" name="lang" autocomplete="off"><?php echo langs_html_opts($lang); ?></select><input type="submit" value="OK"></form></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/index.php') echo 'aria-current="page"'; ?>><a href="/"><?php echo tr($tr0,'menu_homepage'); ?></a></li>
-	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_articles'); ?></li>
-	<?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_ulli_njs.html'); ?>
-	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_news'); ?></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><a href="/newsletter.php"><?php echo tr($tr0,'menu_nl',array('site'=>$site_name)); ?></a></li>
-	<li role="menuitem"><a type="application/rss+xml" href="/rss_feed.xml"><?php echo tr($tr0,'menu_rss'); ?></a></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/history.php') echo 'aria-current="page"'; ?>><a href="/history.php"><?php echo tr($tr0,'menu_journal'); ?></a></li>
-	<li class="menutitle" role="menuitem" aria-disabled="true"><?php echo tr($tr0,'menu_usefull'); ?></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/settings.php') echo 'aria-current="page"'; ?>><a href="/settings.php"><?php echo tr($tr0,'menu_sets'); ?></a></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/gadgets.php') echo 'aria-current="page"'; ?>><a href="/gadgets.php"><?php echo tr($tr0,'menu_gadgets'); ?></a></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><a href="/contact.php"><?php echo tr($tr0,'menu_infos',array('site'=>$site_name)); ?></a></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/contact_form.php') echo 'aria-current="page"'; ?>><a href="/contact_form.php"><?php echo tr($tr0,'menu_contact'); ?></a></li>
-	<li role="menuitem" <?php if($_SERVER['DOCUMENT_URI'] == '/privacy.php') echo 'aria-current="page"'; ?>><a href="/privacy.php"><?php echo tr($tr0,'menu_privacy'); ?></a></li>
-	<li class="menusep" aria-hidden="true">&nbsp;</li>
-</ul>
-<?php }; ?>
-<nav id="nav" style="display: block;" onload="showjs('boutonjs')">
-<h2 id="menusite"><?php echo tr($tr0,'menu_menutitle'); ?></h2>
-<?php
-if(isset($_COOKIE['menu']) && $_COOKIE['menu'] == '1') { ?>
-<form method="get"><?php echo args_html_form($args); ?><select aria-label="<?php echo tr($tr0,'menu_changelang'); ?>" title="<?php echo tr($tr0,'menu_changelang'); ?>" name="lang" autocomplete="off"><?php echo langs_html_opts($lang); ?></select><input type="submit" value="OK"></form>
-<form method="get" action="/nav_redirect.php">
-<label for="menu_menu"><?php echo tr($tr0,'menu_linklistlabel'); ?></label>
-<select name="d" id="menu_menu" onKeyPress="redirect(event,this);">
-<option value="/" <?php if($_SERVER['DOCUMENT_URI'] == '/index.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_homepage'); ?></option>
-<option disabled>── <?php echo tr($tr0,'menu_articles'); ?> ──</option>
-<?php include($_SERVER['DOCUMENT_ROOT'].'/cache/menu_select.html'); ?>
-<option disabled>── <?php echo tr($tr0,'menu_news'); ?> ──</option>
-<option value="/newsletter.php" <?php if($_SERVER['DOCUMENT_URI'] == '/newsletter.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_nl',array('site'=>$site_name)); ?></option>
-<option value="/rss_feed.xml"><?php echo tr($tr0,'menu_rss'); ?></option>
-<option value="/history.php" <?php if($_SERVER['DOCUMENT_URI'] == '/history.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_journal'); ?></option>
-<option disabled>── <?php echo tr($tr0,'menu_usefull'); ?> ──</option>
-<option value="/settings.php" <?php if($_SERVER['DOCUMENT_URI'] == '/settings.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_sets'); ?></option>
-<option value="/gadgets.php" <?php if($_SERVER['DOCUMENT_URI'] == '/gadgets.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_gadgets'); ?></option>
-<option value="/contact.php" <?php if($_SERVER['DOCUMENT_URI'] == '/contact.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_infos',array('site'=>$site_name)); ?></option>
-<option value="/contact_form.php" <?php if($_SERVER['DOCUMENT_URI'] == '/contact_form.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_contact'); ?></option>
-<option value="/privacy.php" <?php if($_SERVER['DOCUMENT_URI'] == '/privacy.php') echo 'aria-current="page"'; ?>><?php echo tr($tr0,'menu_privary'); ?></option>
-</select>
-<br>
-<input type="submit" value="<?php echo tr($tr0,'menu_linklistlabelbutton'); ?>">
-</form>
-<?php } else { ?>
-<div id="boutonjs" style="display:none;">
-<button type="button" id="popup_ulli_menu" onclick="rdisp('ulli_menu','popup_ulli_menu')" aria-haspopup="true" aria-expanded="false"><?php echo tr($tr0,'menu_switchmenu'); ?></button>
-<div id="ulli_menu" style="display: block;">
-<?php $ulmenu_js(); ?>
+function is_current(?string $path)
+{
+    if (!$path)
+    {
+        return false;
+    }
+    $current = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '';
+    $cur_norm  = rtrim($current, '/');
+    $path_norm = rtrim($path, '/');
+    return $cur_norm === $path_norm;
+}
+
+function render_menu(string $mode, array $items)
+{
+    global $lang, $tr0, $args, $site_name;
+
+    if ($mode === 'select')
+    {
+        echo '<form method="get">';
+        echo args_html_form($args);
+        echo '<select name="lang" autocomplete="off"'.'aria-label="'.tr($tr0, 'menu_changelang').'"'.'title="'.    tr($tr0, 'menu_changelang').'">'.langs_html_opts($lang).'</select>
+        <input type="submit" value="OK">
+        </form>
+        <form method="get" action="/nav_redirect.php">';
+        echo args_html_form($args);
+        echo '<label for="menu_select">'.tr($tr0, 'menu_linklistlabel').'</label><select name="d" id="menu_select" onkeypress="redirect(event,this);">';
+        $openGroup = false;
+        foreach ($items as $it)
+        {
+            switch ($it['type'] ?? 'link')
+            {
+                case 'menutitle':
+                    if ($openGroup)
+                    {
+                        echo '</optgroup>';
+                    }
+                    echo '<optgroup label="'.tr($tr0, $it['label']).'">';
+                    $openGroup = true;
+                    break;
+
+                case 'separator':
+                    if ($openGroup)
+                    {
+                        echo '</optgroup>';
+                        $openGroup = false;
+                    }
+                    break;
+
+                case 'link':
+                default:
+                    $sel   = is_current($it['url'])
+                           ? ' selected aria-current="page"'
+                           : '';
+                    if (isset($it['raw_label']))
+                    {
+                        $label = htmlspecialchars($it['raw_label']);
+                    }
+                    else
+                    {
+                        $label = tr($tr0, $it['label'], $it['params'] ?? []);
+                    }
+                    $title = htmlspecialchars($it['params']['title'] ?? '');
+                    printf(
+                        '<option value="%s"%s title="%s">%s</option>',
+                        $it['url'],
+                        $sel,
+                        $title,
+                        $label
+                    );
+                    break;
+            }
+        }
+        if ($openGroup)
+        {
+            echo '</optgroup>';
+        }
+        echo '</select><br><input type="submit" value="'.tr($tr0, 'menu_linklistlabelbutton').'"></form>';
+    }
+    else
+    {
+        $cls = $mode === 'listjs' ? 'ulmenu_js' : 'ulmenu_njs';
+        echo "<ul role=\"menu\" class=\"{$cls}\">";
+        printf(
+            '<li><form method="get">%s<select name="lang" autocomplete="off" aria-label="%s" title="%s">%s</select><input type="submit" value="OK"></form></li>',
+            args_html_form($args),
+            tr($tr0, 'menu_changelang'),
+            tr($tr0, 'menu_changelang'),
+            langs_html_opts($lang)
+        );
+        foreach ($items as $it)
+        {
+            switch ($it['type'] ?? 'link')
+            {
+                case 'menutitle':
+                    printf(
+                        '<li class="menutitle" role="menuitem" aria-disabled="true">%s</li>',
+                        tr($tr0, $it['label'])
+                    );
+                    break;
+
+                case 'separator':
+                    echo '<li role="separator" class="menusep"><hr></li>';
+                    break;
+
+                case 'link':
+                default:
+                    $cur   = is_current($it['url']) ? ' aria-current="page"' : '';
+                    if (isset($it['raw_label']))
+                    {
+                        $label = htmlspecialchars($it['raw_label']);
+                    }
+                    else
+                    {
+                        $label = tr($tr0, $it['label'], $it['params'] ?? []);
+                    }
+                    $title = htmlspecialchars($it['params']['title'] ?? '');
+                    printf(
+                        '<li role="menuitem"%s><a href="%s" title="%s">%s</a></li>',
+                        $cur,
+                        $it['url'],
+                        $title,
+                        $label
+                    );
+                    break;
+            }
+        }
+        echo '<li class="menusep" aria-hidden="true">&nbsp;</li>
+        </ul>';
+    }
+}
+
+$cats = get_categories();
+$items = [];
+
+$items[] = ['type' => 'link', 'url' => '/', 'label' => 'menu_homepage'];
+
+$items[] = ['type' => 'menutitle', 'label' => 'menu_articles'];
+foreach ($cats as $cat)
+{
+    $items[] = [
+        'type'      => 'link',
+        'url'       => '/c'.$cat['id'],
+        'raw_label' => $cat['name'],
+        'params'    => ['title' => $cat['title']],
+    ];
+}
+$items[] = ['type' => 'menutitle', 'label' => 'menu_news'];
+
+$items[] = ['type' => 'link', 'url' => '/newsletter.php', 'label' => 'menu_nl'];
+$items[] = ['type' => 'link', 'url' => '/rss_feed.xml',  'label' => 'menu_rss'];
+$items[] = ['type' => 'link', 'url' => '/history.php',   'label' => 'menu_journal'];
+$items[] = ['type' => 'menutitle', 'label' => 'menu_usefull'];
+
+foreach ([
+    '/settings.php'     => 'menu_sets',
+    '/gadgets.php'      => 'menu_gadgets',
+    '/contact.php'      => 'menu_infos',
+    '/contact_form.php' => 'menu_contact',
+    '/privacy.php'      => 'menu_privacy',
+] as $url => $key)
+{
+    $params = $url === '/contact.php' ? ['site' => $site_name] : [];
+    $items[] = ['type' => 'link', 'url' => $url, 'label' => $key, 'params' => $params];
+}
+?>
+<nav id="nav">
+<h2 id="menusite"><?= tr($tr0, 'menu_menutitle') ?></h2>
+<?php if (!empty($_COOKIE['menu']) && $_COOKIE['menu'] === '1'):
+    render_menu('select', $items);
+else: ?>
+<div id="boutonjs">
+<button type="button" id="popup_ulli_menu" onclick="rdisp('ulli_menu','popup_ulli_menu')" aria-haspopup="true" aria-expanded="false"><?= tr($tr0, 'menu_switchmenu') ?></button>
+<div id="ulli_menu">
+<?php render_menu('listjs', $items); ?>
 </div>
 </div>
-<script>document.getElementById("boutonjs").style.display="block";
-if(820 >= window.innerWidth) rdisp("ulli_menu","popup_ulli_menu");</script>
+<script>
+    document.getElementById("boutonjs").style.display = "block";
+    if (window.innerWidth <= 820)
+    {
+        rdisp("ulli_menu", "popup_ulli_menu");
+    }
+</script>
 <noscript>
 <details open>
-<summary><?php echo tr($tr0,'menu_switchmenu'); ?></summary>
-<div id="ulli_menu2" style="display: block;">
-<?php $ulmenu_njs(); ?>
-</div>
+<summary><?= tr($tr0, 'menu_switchmenu') ?></summary>
+<?php render_menu('listnjs', $items); ?>
 </details>
 </noscript>
-<?php
-}
-unset($ulmenu_js);
-unset($ulmenu_njs);
-?>
-<a style="position:absolute; top:-999px; left:-9999px;" href="#hautpage" accesskey="h"><?php echo tr($tr0,'menu_toplink'); ?></a>
+<?php endif; ?>
+<a href="#hautpage" accesskey="h" class="sr_only"><?= tr($tr0, 'menu_toplink') ?></a>
 </nav>

@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'slider',
   '_todo_level' => 0,
   '_last_author' => 'Pascal',
@@ -13,4 +15,4 @@
   'previous' => 'Précédent',
   'next' => 'Suivant',
   'stop' => 'Pause',
-); ?>
+];

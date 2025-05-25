@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'gadgets',
   '_todo_level' => 0,
   '_last_author' => 'Corentin',
@@ -8,9 +10,8 @@
   'gadget' => 'Les gadgets',
   'info' => 'Infos diverses vous concernant',
   'password_gen' => 'Générateur de mots de passe',
-  'clock' => 'Horloge',
   'flip_coin' => 'Pile ou face',
   'service' => 'Les services',
   'browser_hp' => 'Page d\'accueil pour navigateur',
   'api' => 'API JSON',
-); ?>
+];
