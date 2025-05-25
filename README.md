@@ -23,17 +23,44 @@ ProgAccess is not designed to run on any other instance than the official ones (
 Dependencies:
 * PHP
 * PHP PDO
-* MySQL
+* PostGreSQL (Should work also with MySQL/MariaDB)
 * Apache or Nginx
 * cron (or any alternative)
 * SMTP server
+* Composer
 
 Steps:
 * This repository has to be the server root.
 * The folders `.`, `files`, `locales`, `cache` have to be writable by PHP.
-* Create MySQL database and tables.
+* Create database and tables, DB schema is present in ProgAccess.sql.
 * Copy `inclus/config.php` to `inclus/config.local.php` and edit the copy. Ensure that this file is not readable from the network.
-* Create cron jobs for the files in `tasks` (TODO: add crontab to repo)
+* Create cron jobs for the files in `tasks`, you can find an example of CRONTAB in CRONTAB file.
+
+### Install dependencies
+
+To install external libraries, e.g. PHPMailer, simply run
+
+composer install
+
+Note: this command will also install dev libraries, Rector and PHP-CS-Fixer, for linting. TO only install libraries used in production, run instead:
+
+composer install --no-dev
+
+### Install Git hooks
+
+To enable Git pre-commit hook which automatically updates timestamp of translation files, simply run:
+
+./install_hooks.sh
+
+### Other steps
+
+Currently, to use our system, you should also create a [MTCaptcha](https://www.mtcaptcha.com/) account and put your public and private keys in config file.
+
+
+## GitLab CI
+
+Our repo contains a .gitlab-ci.yml file, which includes steps to run with GitLab CI. CI only run Rector and PHP-CS-Fixer checks, so if you want to automatically run these checks on your MR, you should configures CI in your repo.
+
 
 ## License
 

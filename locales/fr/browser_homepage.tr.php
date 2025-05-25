@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'browser_homepage',
   '_todo_level' => 0,
   '_last_author' => 'Corentin',
@@ -16,4 +18,4 @@ Pour placer cette page comme votre page d\'accueil rendez-vous dans les options 
 Appuyer sur les touches CTRL et L en même temps pour vous rendre sur la barre d\'adresse de votre navigateur puis placez-vous à la fin du texte affiché (après le .php).<br>
 Ajouter le texte suivant (sans les guillemets)&nbsp;: "?mot=…".<br>
 Remplacez les points de suspension par l\'un des textes ci-dessous, selon le moteur de recherche que vous souhaitez utiliser.</p>',
-); ?>
+];

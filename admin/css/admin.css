@@ -1,41 +1,41 @@
 @font-face {
-	font-family: Cantarell;
-	src: url(/css/Cantarell-Regular.otf);
+font-family: Cantarell;
+src: url(/css/Cantarell-Regular.otf);
 }
 
 body {
-	font-family: Cantarell;
+font-family: Cantarell;
 }
 
 ul {
-	list-style-type: none;
+list-style-type: none;
 }
 
 thead {
-	font-weight: bold;
+font-weight: bold;
 }
 
 @media (max-width: 671px) {
-	#login_username, #login_psw {
-	width: 120px;
-	}
-	#login_signup {
-	display: block;
-	margin-top: 5px;
-	color: #045fb4 !important;
-	}
-	body {
-	background-size: 100vw auto;
-	}
+#login_username, #login_psw {
+width: 120px;
+}
+#login_signup {
+display: block;
+margin-top: 5px;
+color: #045fb4 !important;
+}
+body {
+background-size: 100vw auto;
+}
 }
 
 @media (max-width: 600px) {
-		#loginbox_form {
-	display: none;
-	}
-	#loginbox_link {
-	display: inline !important;
-	}
+#loginbox_form {
+display: none;
+}
+#loginbox_link {
+display: inline !important;
+}
 }
 
 #loginbox {
@@ -75,6 +75,6 @@ width: 1px;
 .rk_b {color: #808080;}
 
 .ta {
-	width: 100%;
-	height: 6em;
+width: 100%;
+height: 6em;
 }

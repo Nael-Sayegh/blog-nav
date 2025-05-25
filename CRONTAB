@@ -1,0 +1,11 @@
+50 19 * * * php /path/to/tasks/nl_manager.php
+
+0 9 * * * php /path/to/tasks/birthday.php
+
+5 8 * * 3 [ `date +\%d` -le 7 ] && /chemin/vers/GEOIP/geoip2.sh >> /path/to/GEOIP/GeoIP2.log 2>&1
+
+0 0 * * * php /path/to/tasks/stats_daily.php
+
+0 0 * * * php /path/to/tasks/accounts_manager.php
+
+* * * * * php /path/to/tasks/TicketsBot.php

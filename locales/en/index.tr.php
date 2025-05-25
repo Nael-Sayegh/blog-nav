@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'index',
   '_todo_level' => 4,
   '_last_author' => 'Pascal',
@@ -57,4 +59,4 @@ We also rely on all of you, without whom the site wouldn\'t exist today.</p>
 <li>HTML 5.1</li>
 </ul>',
 'mailconfirmtext' => 'Thanks for your message. You should receive an answer e-mail soon.',
-); ?>
+];

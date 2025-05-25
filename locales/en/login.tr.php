@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'login',
   '_todo_level' => 1,
   '_last_author' => 'Pascal',
@@ -15,4 +17,4 @@
   'forgot_psw' => 'Forgot password? Click here!',
   'signup' => 'Not a member yet? Sign up and take advantage!',
   'cookies' => 'By using this form, you must accept to receive cookies from {{site}} (needed to use member zone).',
-) ?>
+];

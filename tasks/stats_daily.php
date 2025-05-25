@@ -1,24 +1,39 @@
 <?php
+
 $document_root = __DIR__.'/..';
 require_once($document_root.'/include/consts.php');
 
 # delete visitors entries up to 1 week
-$req = $bdd->prepare('DELETE FROM `count_visitors` WHERE `lastvisit`<?');
-$req->execute(array(time()-604800));
+$SQL = <<<SQL
+    DELETE FROM count_visitors WHERE lastvisit<:last
+    SQL;
+$req = $bdd->prepare($SQL);
+$req->execute([':last' => time() - 604800]);
 
 # count daily visitors
-$visitors = array();
+$visitors = [];
 $date = date('Y-m-d', strtotime('-1 day'));
-$req = $bdd->prepare('SELECT `domain` FROM `count_visitors` WHERE `lastvisit` BETWEEN ? AND ?');
-$req->execute(array(time()-86400, time()));
-while($data = $req->fetch()) {
-	if(isset($visitors[$data['domain']]))
-		$visitors[$data['domain']][0] ++;
-	else
-		$visitors[$data['domain']] = array(1, $data['domain']);
+$SQL = <<<SQL
+    SELECT domain FROM count_visitors WHERE lastvisit BETWEEN :beg AND :end
+    SQL;
+$req = $bdd->prepare($SQL);
+$req->execute([':beg' => time() - 86400, ':end' => time()]);
+while ($data = $req->fetch())
+{
+    if (isset($visitors[$data['domain']]))
+    {
+        $visitors[$data['domain']][0]++;
+    }
+    else
+    {
+        $visitors[$data['domain']] = [1, $data['domain']];
+    }
 }
-foreach($visitors as &$domain) {
-	$req = $bdd->prepare('INSERT INTO `daily_visitors` (`date`,`visitors`,`domain`) VALUES (?,?,?)');
-	$req->execute(array($date, $domain[0], $domain[1]));
+foreach ($visitors as &$domain)
+{
+    $SQL = <<<SQL
+        INSERT INTO daily_visitors (date,visitors,domain) VALUES (:date,:v,:d)
+        SQL;
+    $req = $bdd->prepare($SQL);
+    $req->execute([':date' => $date, ':v' => $domain[0], ':d' => $domain[1]]);
 }
-?>

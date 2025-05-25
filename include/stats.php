@@ -1,71 +1,127 @@
 <?php
+
 require_once('dbconnect.php');
 
 $domain = '';
-if(!isset($stats_page)) $stats_page = '';
-	if(isDev()) $domain = 'dev';
-	else if(!isDev()) $domain = 'prod';
-	else if(isDev() && strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], ONION_DOMAIN)) $domain = 'onion_dev';
-	else if(!isDev() && strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], ONION_DOMAIN)) $domain = 'onion';
-
-require_once('isbot.php');
-if(!(isset($logged) and $logged and $settings['rank'] == 'a') and !$isbot) {
-	$req = $bdd->prepare('SELECT id FROM `count_visits` WHERE `date`=CURDATE() AND `page`=? AND `domain`=? LIMIT 1');
-	$req->execute(array($stats_page, $domain));
-	if($data = $req->fetch()) {
-		$req = $bdd->prepare('UPDATE `count_visits` SET `visits`=`visits`+1 WHERE `date`=CURDATE() AND `page`=? AND `domain`=? LIMIT 1');
-		$req->execute(array($stats_page, $domain));
-	}
-	else {
-		$req = $bdd->prepare('INSERT INTO `count_visits`(`date`,`visits`,`page`,`domain`) VALUES(CURDATE(),1,?,?)');
-		$req->execute(array($stats_page, $domain));
-	}
-
-	$req = $bdd->prepare('SELECT id FROM `count_visitors` WHERE `addr`=? AND `domain`=? LIMIT 1');
-	$req->execute(array(sha1($_SERVER['REMOTE_ADDR']), $domain));
-	if($data = $req->fetch()) {
-		$req = $bdd->prepare('UPDATE `count_visitors` SET `lastvisit`=? WHERE `addr`=? AND `domain`=? LIMIT 1');
-		$req->execute(array(time(), sha1($_SERVER['REMOTE_ADDR']), $domain));
-	}
-	else {
-		$req = $bdd->prepare('INSERT INTO `count_visitors`(`addr`,`lastvisit`,`domain`) VALUES(?,?,?)');
-		$req->execute(array(sha1($_SERVER['REMOTE_ADDR']), time(), $domain));
-	}
+if (!isset($stats_page))
+{
+    $stats_page = '';
+}
+if (isDev())
+{
+    $domain = 'dev';
+}
+elseif (!isDev())
+{
+    $domain = 'prod';
+}
+elseif (isDev() && strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], ONION_DOMAIN))
+{
+    $domain = 'onion_dev';
+}
+elseif (!isDev() && strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], ONION_DOMAIN))
+{
+    $domain = 'onion';
 }
 
-if(!isset($stats_no)) {
-	$date = date('Y-m-d');
-	$xpage = 0;
-	$xpagetoday = 0;
-	$xvisits = 0;
-	$xvisitstoday = 0;
-	$req = $bdd->prepare('SELECT `page`,`date`,`visits` FROM `count_visits` WHERE `domain`=? AND `date`>?');
-	$req->execute(array($domain, time()-31557600));
-	while($data = $req->fetch()) {
-		if($data['page'] == $stats_page) {
-			$xpage += $data['visits'];
-			if($data['date'] == $date)
-				$xpagetoday += $data['visits'];
-		}
-		$xvisits += $data['visits'];
-		if($data['date'] == $date)
-			$xvisitstoday += $data['visits'];
-	}
-	
-	$xvisitors = 0;
-	$xconn = 0;
-	$xtoday = 0;
-	$req = $bdd->prepare('SELECT `lastvisit` FROM `count_visitors` WHERE `domain`=?');
-	$req->execute(array($domain));
-	while($data = $req->fetch()) {
-		if($data['lastvisit'] > strtotime('midnight'))
-			$xtoday ++;
-		if($data['lastvisit'] > time()-600)
-			$xconn ++;
-		$xvisitors ++;
-	}
-	
-	echo '<ul id="compteur">
+require_once('isbot.php');
+if (!(isset($logged) && $logged && $login['rank'] === 'a') && !$isbot)
+{
+    $SQL = <<<SQL
+        SELECT id FROM count_visits WHERE date=CURRENT_DATE AND page=:page AND domain=:domain LIMIT 1
+        SQL;
+    $req = $bdd->prepare($SQL);
+    $req->execute([':page' => $stats_page, ':domain' => $domain]);
+    if ($data = $req->fetch())
+    {
+        $SQL = <<<SQL
+            UPDATE count_visits SET visits=visits+1 WHERE date=CURRENT_DATE AND page=:page AND domain=:domain
+            SQL;
+        $req = $bdd->prepare($SQL);
+        $req->execute([':page' => $stats_page, ':domain' => $domain]);
+    }
+    else
+    {
+        $SQL = <<<SQL
+            INSERT INTO count_visits(date,visits,page,domain) VALUES(CURRENT_DATE,1,:page,:domain)
+            SQL;
+        $req = $bdd->prepare($SQL);
+        $req->execute([':page' => $stats_page, ':domain' => $domain]);
+    }
+    $SQL = <<<SQL
+        SELECT id FROM count_visitors WHERE addr=:addr AND domain=:domain LIMIT 1
+        SQL;
+    $req = $bdd->prepare($SQL);
+    $req->execute([':addr' => sha1((string) $_SERVER['REMOTE_ADDR']), ':domain' => $domain]);
+    if ($data = $req->fetch())
+    {
+        $SQL = <<<SQL
+            UPDATE count_visitors SET lastvisit=:lastvisit WHERE addr=:addr AND domain=:domain
+            SQL;
+        $req = $bdd->prepare($SQL);
+        $req->execute([':lastvisit' => time(), ':addr' => sha1((string) $_SERVER['REMOTE_ADDR']), ':domain' => $domain]);
+    }
+    else
+    {
+        $SQL = <<<SQL
+            INSERT INTO count_visitors(addr,lastvisit,domain) VALUES(:addr,:lastvisit,:domain)
+            SQL;
+        $req = $bdd->prepare($SQL);
+        $req->execute([':addr' => sha1((string) $_SERVER['REMOTE_ADDR']), ':lastvisit' => time(), ':domain' => $domain]);
+    }
+}
+
+if (!isset($stats_no))
+{
+    $date = date('Y-m-d');
+    $xpage = 0;
+    $xpagetoday = 0;
+    $xvisits = 0;
+    $xvisitstoday = 0;
+    $SQL = <<<SQL
+        SELECT page,date,visits FROM count_visits WHERE domain=:domain AND date>:date
+        SQL;
+    $req = $bdd->prepare($SQL);
+    $req->execute([':domain' => $domain, ':date' => date('Y-m-d H:i:s', time() - 31557600)]);
+    while ($data = $req->fetch())
+    {
+        if ($data['page'] === $stats_page)
+        {
+            $xpage += $data['visits'];
+            if ($data['date'] === $date)
+            {
+                $xpagetoday += $data['visits'];
+            }
+        }
+        $xvisits += $data['visits'];
+        if ($data['date'] === $date)
+        {
+            $xvisitstoday += $data['visits'];
+        }
+    }
+
+    $xvisitors = 0;
+    $xconn = 0;
+    $xtoday = 0;
+    $SQL = <<<SQL
+        SELECT lastvisit FROM count_visitors WHERE domain=:domain
+        SQL;
+    $req = $bdd->prepare($SQL);
+    $req->execute([':domain' => $domain]);
+    while ($data = $req->fetch())
+    {
+        if ($data['lastvisit'] > strtotime('midnight'))
+        {
+            $xtoday++;
+        }
+        if ($data['lastvisit'] > time() - 600)
+        {
+            $xconn++;
+        }
+        $xvisitors++;
+    }
+
+    echo '<ul id="compteur">
 	<li>Page chargée '.$xpage.' fois depuis un an dont '.$xpagetoday.' ce jour</li>
 	<li>'.$xvisits.' pages chargées depuis un an dont '.$xvisitstoday.' aujourd\'hui</li>
 	<li>'.$xvisitors.' visiteurs depuis une semaine dont '.$xtoday.' aujourd\'hui</li>
@@ -73,4 +129,3 @@ if(!isset($stats_no)) {
 }
 
 $req->closeCursor();
-?>

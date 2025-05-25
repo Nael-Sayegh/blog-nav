@@ -1,17 +1,21 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'default',
   '_todo_level' => 2,
-  '_last_author' => 'O. D.',
-  '_last_modif' => 1585217501,
+  '_last_author' => 'Corentin',
+  '_last_modif' => 1747146244,
   'slogan' => 'Accessibility everywhere, by everyone, for everyone',
   'banner_homelink' => 'Back to homepage',
-  'fndate' => '%Y-%m-%d',
-  'ftdate' => '%A %e of %B %Y',
-  'ftime' => '%H:%M',
-  'fstime' => '%H:%M',
-  'fndatetime' => '%Y-%m-%d at %H:%M',
-  'ftdatetime' => '%A %e of %B %Y at %H:%M',
+  'fndate'      => 'dd/MM/yyyy',
+  'ftdate'      => 'EEEE, MMMM d, y',
+  'ftime'       => 'HH:mm',
+  'fstime'      => 'HH:mm',
+  'fndatetime'  => 'dd/MM/yyyy HH:mm',
+  'ftdatetime'  => 'EEEE, MMMM d, y HH:mm',
   'decimal_separator' => '.',
+  'timezone'    => 'Europe/Paris',
+  'lc_code'     => 'en_GB.UTF8',
   'byte_letter' => 'B',
   'loginbox_profilelink' => 'Profile & Settings',
   'loginbox_alistlink' => 'Members list',
@@ -87,4 +91,4 @@ The text is under {{trlicense}} license.',
   'masto_share_desc' => 'Please enter your Mastodon instance (e.g. mastodon.social) for sharing',
   'masto_share_instance_error' => 'Please enter your instance without https:// or other paths!',
   'masto_share_btn' => 'Mastodon',
-); ?>
+];

@@ -5,6 +5,6 @@ Disallow: /r.php
 Disallow: /r
 Disallow: /audio/*
 Disallow: /css/*
-Disallow: /image/*
+Disallow: /images/*
 Disallow: /scripts/*
 Disallow: /sources/*

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="512" height="512">
-	<title>ZettaScript Logo</title>
-	<desc></desc>
-	
-	<circle cx="256" cy="256" r="232" fill="#0080FF" />
-	<path d="M170 106 Q187 110 204 110 L348 110 L354 119 L198 366 L315 366 Q334 366 344 321 L356 325 L353 388 L156 388 L150 379 L307 132 L204 132 Q185 132 175 175 L164 172" fill="white" />
-</svg>

@@ -10,11 +10,11 @@ font-family: Cantarell;
 }
 
 body {
-	background: white url("/image/logogrey672-450.png") no-repeat right bottom;
+	background: white url("/images/logogrey672-450.png") no-repeat right bottom;
 }
 
 #hautpage {
-background: #045FB4 url("/image/logo128-170.png") no-repeat left top;
+background: #045FB4 url("/images/logo128-170.png") no-repeat left top;
 min-height: 128px;
 color: white;
 }
@@ -149,9 +149,6 @@ margin-bottom: 20px;
 	.ulmenu_js li, .ulmenu_njs li {
 	border-top: 1px solid #AAAAAA;
 	margin-left: -40px !important;
-	padding-left: initial !important;
-	margin-bottom: initial !important;
-	background-image: none !important;
 	}
 
 	.ulmenu_js li a, .ulmenu_njs li a:visited {
@@ -188,6 +185,15 @@ position: absolute;
 top: 0;
 right: 2px;
 padding: 3px;
+background-color: #045fb4;
+}
+
+#loginbox summary {
+cursor: pointer;
+}
+
+#loginbox summary:hover, #loginbox summary:focus {
+text-decoration: underline;
 }
 
 #login_submit {
@@ -210,7 +216,6 @@ box-shadow: 0px 0px 4px white;
 
 .hlink, #hautpage a {
 color: white !important;
-background-color: #045fb4;
 }
 
 .hlink:hover, #hautpage a:hover {
@@ -225,10 +230,10 @@ ul {
 list-style-type: none;
 }
 
-ul li {
+#container ul li {
 margin-bottom: 5px;
 padding-left: 24px;
-background-image: url(/image/li.png);
+background-image: url(/images/li.png);
 background-position: left top;
 background-repeat: no-repeat;
 }
@@ -436,13 +441,20 @@ margin-top: 10px;
 }
 .comment_h {
 background-color: rgba(0.5, 0.5, 0.5, 0.1);
+font-size: 120%;
+display: inline-block;
+width: 100%;
+padding: 0 16px;
+box-sizing: border-box;
 }
-.comment_h * {
-margin-left: 5px;
+.comment blockquote {
+margin: 0 8px;
 }
-.comment_p {
-padding: 5px;
+.comment blockquote p {
 margin: 0;
+}
+.comment_a a {
+margin-left: 16px;
 }
 
 .nobt {
@@ -486,4 +498,10 @@ width: 1px;
 .table1 td, .table1 th {
 	padding: 1px 3px 1px 3px;
 	border: 1px solid #04b404;
+}
+
+.sr_only {
+position:absolute;
+top:-999px;
+left:-9999px;
 }

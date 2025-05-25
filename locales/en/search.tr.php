@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'search',
   '_todo_level' => 1,
   '_last_author' => 'Pascal',
@@ -8,4 +10,4 @@
   'noresult' => 'Sorry, nothing found for "{{terms}}".',
   'found' => 'Found {{count}} results in {{time}} ms.',
   'result_hits' => '{{hits}} visits, {{dl}} downloads',
-) ?>
+];

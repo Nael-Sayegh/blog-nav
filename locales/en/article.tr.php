@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'article',
   '_todo_level' => 1,
   '_last_author' => 'Corentin',
@@ -38,4 +40,4 @@
   'comments_subscribe_long' => 'Be notified on new comments on this article',
   'comments_unsubscribe' => 'Don\'t follow anymore',
   'comments_unsubscribe_long' => 'Do not be notified anymore on new comments on this article',
-); ?>
+];

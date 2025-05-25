@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'login',
   '_todo_level' => 2,
   '_last_author' => 'Pascal',
@@ -15,4 +17,4 @@
   'account_created' => 'Via konto estas sukcese kreita! Retmesaĝon ni sendis al vi por konfirmi vian conton.',
   'signup' => 'Kreu konton por akcesi al pli kapabloj!',
   'cookies' => 'Uzante ĉin formularon, vi devas uzi necesajn kuketojn.',
-); ?>
+];

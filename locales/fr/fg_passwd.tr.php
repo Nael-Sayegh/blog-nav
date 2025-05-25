@@ -1,17 +1,23 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'fg_passwd',
   '_todo_level' => 0,
   '_last_author' => 'Corentin',
   '_last_modif' => 1609230733,
   'title' => 'Mot de passe oublié',
-  'log_success' => 'Votre mot de passe a été réinitialisé et vous a été envoyé par email',
-  'log_error' => 'Les informations fournies ne permettent pas de vous identifier. Veuillez <a href="/contact_form.php">nous contacter pour obtenir de l\'aide',
-  'intro_text' => 'Remplissez le formulaire ci-dessous pour réinitialiser votre mot de passe {{site}}',
-  'perso_inf' => 'Informations personnelles&nbsp;:',
-  'username' => 'Votre nom d\'utilisateur&nbsp;:',
-  'email' => 'Votre adresse mail&nbsp;:',
-  'member_id' => 'Votre numéro de membre&nbsp;:',
-  'idk' => 'Je ne sais pas',
-  'signup_date' => 'Votre date d\'inscription&nbsp;:',
-  'confirm_btn' => 'Confirmer',
-); ?>
+  'mail_sent' => 'Consultez vos mails, un lien de réinitialisation vous y a été envoyé',
+  'invalid_or_expired' => 'Ce token est invalide ou a expiré. Veuillez recommencer',
+  'pwd_mismatch' => 'Les deux mots de passe saisis ne correspondent pas',
+  'pwd_too_short' => 'Votre mot de passe doit contenir au moins 8 caractères',
+  'pwd_no_reuse' => 'Le nouveau mot de passe doit être différent du dernier utilisé',
+  'intro_text' => 'Remplissez le formulaire ci-dessous pour demander la réinitialisation de votre mot de passe {{site}}',
+  'choose_new_pwd' => 'Remplissez le formulaire ci-dessous pour choisir votre nouveau mot de passe',
+  'login_field' => 'Nom d\'utilisateur ou adresse mail',
+  'request_btn' => 'Réinitialiser',
+  'new_password' => 'Nouveau mot de passe&nbsp;:',
+  'confirm_password' => 'Nouveau mot de passe (Vérification)&nbsp;:',
+  'gen-psw' => 'Générer un mot de passe',
+  'reset_btn' => 'Confirmer',
+  'js-to-gen' => 'Activez JavaScript si vous souhaitez générer un mot de passe via le site',
+];

@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'sendconfirm',
   '_todo_level' => 4,
   '_last_author' => 'Pascal',
@@ -12,4 +14,4 @@
   'signature' => 'Best regards,<br>Team {{site}}',
   'admin' => 'administrators {{site}}',
   'team' => 'team {{site}}',
-); ?>
+];

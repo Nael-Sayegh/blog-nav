@@ -1,32 +1,38 @@
 <?php
+
 $document_root = __DIR__.'/..';
 require_once($document_root.'/include/consts.php');
 
 $SESSION_EXPIRE = 8640000; // time after expiration to delete session (100 days)
 
 // Update account rank
+$SQL = <<<SQL
+    SELECT * FROM accounts
+    SQL;
+foreach ($bdd->query($SQL) as $data)
+{
+    $change = false;
+    $rank = $data['rank'];
 
-$req = $bdd->prepare('SELECT * FROM `accounts`');
-$req->execute();
+    if ($data['rank'] === '0' && $data['signup_date'] + 1209600 < time())
+    {
+        $rank = '1';
+        $change = true;
+    }
 
-while($data = $req->fetch()) {
-	$change = false;
-	$rank = $data['rank'];
-	
-	if($data['rank'] == '0' and $data['signup_date']+1209600 < time()) {
-		$rank = '1';
-		$change = true;
-	}
-
-	if($change) {
-		$req2 = $bdd->prepare('UPDATE `accounts` SET `rank`=? WHERE `id`=? LIMIT 1');
-		$req2->execute(array($rank, $data['id']));
-	}
+    if ($change)
+    {
+        $SQL2 = <<<SQL
+            UPDATE accounts SET rank=:rk WHERE id=:id
+            SQL;
+        $req2 = $bdd->prepare($SQL2);
+        $req2->execute([':rk' => $rank, ':id' => $data['id']]);
+    }
 }
 
 // Remove expired sessions
-
-$req = $bdd->prepare('DELETE FROM `sessions` WHERE `expire`<?');
-$req->execute(array(time()-$SESSION_EXPIRE));
-
-?>
+$SQL = <<<SQL
+    DELETE FROM sessions WHERE expire<:exp
+    SQL;
+$req = $bdd->prepare($SQL);
+$req->execute([':exp' => time() - $SESSION_EXPIRE]);

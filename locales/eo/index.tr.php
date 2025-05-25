@@ -1,4 +1,6 @@
-<?php $tr=array (
+<?php
+
+$tr = [
   '_' => 'index',
   '_todo_level' => 4,
   '_last_author' => 'Pascal',
@@ -55,4 +57,4 @@ Nous nous appuyons également sur vous tous sans qui le site n\'existerait pas a
 	<li>WCAG 2.0 (Level AA)</li>
 	<li>HTML 5.1</li>
 </ul>',
-); ?>
+];
