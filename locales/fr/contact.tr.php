@@ -4,7 +4,7 @@ $tr = [
   '_' => 'contact',
   '_todo_level' => 0,
   '_last_author' => 'Corentin',
-  '_last_modif' => 1747856433,
+  '_last_modif' => 1748185111,
   'title' => 'À propos de {{site}}',
   'maintext' => <<<ENDSTR
       <p>Cette page a pour but de vous apporter des informations diverses et variées sur ProgAccess.</p>
@@ -17,9 +17,6 @@ $tr = [
       <ul>
       <li>Dessinateur du logo du site&nbsp;: <a href="https://facebook.com/crayongra">David Engélibert</a>.</li>
       <li><a href="/contact_form.php">Contactez-nous</a>.</li>
-      </ul>
-      <ul>
-      <li><a href="https://discord.gg/nd45eqN">Rejoignez-nous sur Discord</a></li>
       </ul>
 
       <h2>Histoire du site</h2>
