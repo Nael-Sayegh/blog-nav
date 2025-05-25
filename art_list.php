@@ -6,13 +6,13 @@ $tr = load_tr($lang, 'art_list');
 $title = tr($tr, 'title');
 $stats_page = 'art-list';
 $sound_path = '/audio/page_sounds/article.mp3';
-$cat = [];
+$catMap = [];
 $SQL = <<<SQL
-    SELECT * FROM softwares_categories
+    SELECT id, name FROM softwares_categories
     SQL;
 foreach ($bdd->query($SQL) as $data)
 {
-    $cat[$data['id']] = $data['name'];
+    $catMap[$data['id']] = $data['name'];
 }
 ?>
 <!DOCTYPE html>
@@ -88,7 +88,7 @@ foreach ($entries as $sw_id => $entry)
     {continue;
     }
 
-    echo '<li><a href="/a'.$sw_id.'">A'.$sw_id.'&nbsp;: '.str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']).'</a> (<a href="/c'.$entry['cat'].'">'.$cat[$entry['cat']].'</a>)</li>';
+    echo '<li><a href="/a'.$sw_id.'" role="heading" aria-level="2">A'.$sw_id.'&nbsp;: '.str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']).'</a> (<a href="/c'.$entry['cat'].'">'.$catMap[$entry['cat']].'</a>)</li>';
 }
 $req->closeCursor();
 ?>
