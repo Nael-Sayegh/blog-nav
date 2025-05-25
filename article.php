@@ -73,6 +73,24 @@ function getSoftwareFiles($swId)
     return $req->fetchAll();
 }
 
+function canManageComment(array $comment)
+{
+    global $logged, $login;
+    if (empty($logged) || !$logged)
+    {
+        return false;
+    }
+    if ($comment['nickname'] === $login['id'] && $comment['date'] > time() - 86400 && checkMemberRights('comment_articles'))
+    {
+        return true;
+    }
+    if ($login['rank'] === 'a' && in_array($login['works'], ['1','2'], true) && checkAdminRights('manage_comments'))
+    {
+        return true;
+    }
+    return false;
+}
+
 $comlog = '';
 if (isset($_GET['comment']) && isset($_POST['text']) && isset($logged) && $logged && checkMemberRights('comment_articles'))
 {
@@ -150,52 +168,29 @@ if (isset($_GET['comment']) && isset($_POST['text']) && isset($logged) && $logge
         $comlog = tr($tr, 'comment_toolong');
     }
 }
-if (isset($_GET['cdel']) && isset($logged) && $logged && checkMemberRights('comment_articles'))
+if (isset($_GET['cdel']))
 {
-    if ($login['rank'] === 'a' && in_array($login['works'], ['1', '2']) && checkAdminRights('manage_comments'))
+    $req = $bdd->prepare('SELECT * FROM softwares_comments WHERE id=:id LIMIT 1');
+    $req->execute(['id' => $_GET['cdel']]);
+    $comment = $req->fetch(PDO::FETCH_ASSOC);
+    if ($comment && canManageComment($comment))
     {
-        $SQL = <<<SQL
-            DELETE FROM softwares_comments WHERE id=:id
-            SQL;
-        $req = $bdd->prepare($SQL);
-        $req->execute([':id' => $_GET['cdel']]);
-    }
-    else
-    {
-        $SQL = <<<SQL
-            DELETE FROM softwares_comments WHERE id=:id AND date>:date AND nickname=:nick
-            SQL;
-        $req = $bdd->prepare($SQL);
-        $req->execute([':id' => $_GET['cdel'], ':date' => time() - 86400, ':nick' => $login['id']]);
+        $del = $bdd->prepare('DELETE FROM softwares_comments WHERE id=:id');
+        $del->execute(['id' => $_GET['cdel']]);
     }
 }
-if (isset($_GET['cedit2']) && isset($_POST['text']) && isset($logged) && $logged && checkMemberRights('comment_articles'))
+if (isset($_GET['cedit2']) && isset($_POST['text']))
 {
-    if ($login['rank'] === 'a' && in_array($login['works'], ['1', '2']) && checkAdminRights('manage_comments'))
+    $req = $bdd->prepare('SELECT * FROM softwares_comments WHERE id=:id LIMIT 1');
+    $req->execute(['id' => $_GET['cedit2']]);
+    $comment = $req->fetch(PDO::FETCH_ASSOC);
+    if ($comment && canManageComment($comment))
     {
-        $SQL = <<<SQL
-            SELECT id FROM softwares_comments WHERE id=:id LIMIT 1
-            SQL;
-        $req = $bdd->prepare($SQL);
-        $req->execute([':id' => $_GET['cedit2']]);
-    }
-    else
-    {
-        $SQL = <<<SQL
-            SELECT id FROM softwares_comments WHERE id=:id AND date>:date AND nickname=:nick LIMIT 1
-            SQL;
-        $req = $bdd->prepare($SQL);
-        $req->execute([':id' => $_GET['cedit2'], ':date' => time() - 86400, ':nick' => $login['id']]);
-    }
-    if ($data = $req->fetch())
-    {
-        if (strlen((string) $_POST['text']) <= 1023)
+        $newText = (string) $_POST['text'];
+        if (mb_strlen($newText) <= 1023)
         {
-            $SQL2 = <<<SQL
-                UPDATE softwares_comments SET text=:text WHERE id=:id
-                SQL;
-            $req2 = $bdd->prepare($SQL2);
-            $req2->execute([':text' => $_POST['text'], ':id' => $data['id']]);
+            $upd = $bdd->prepare('UPDATE softwares_comments SET text=:text WHERE id=:id');
+            $upd->execute(['text' => $newText, 'id'   => $comment['id']]);
             header('Location: /a'.$sw['id']);
             exit();
         }
@@ -566,34 +561,25 @@ while ($data = $req->fetch())
     echo ' ('.date('d/m/Y, H:i', $data['date']).')';
     echo '</span>';
     echo '<blockquote>'.convertToMD(str_replace("\n", '<br>', htmlentities((string) $data['text']))).'</blockquote></div>';
-    if (isset($logged) && $logged && (($data['nickname'] === $login['id'] && $data['date'] > time() - 86400) || checkMemberRights('comment_articles') || ($login['rank'] === 'a' && in_array($login['works'], ['1', '2']) && checkAdminRights('manage_comments'))))
+    if (canManageComment($data))
     {
         echo '<span class="comment_a"><a href="?id='.$sw['id'].'&cedit='.$data['id'].'#cedit">'.tr($tr, 'comments_mod').'</a> <a href="?id='.$sw['id'].'&cdel='.$data['id'].'" onclick="return confirm(\''.tr($tr, 'confirm_del_com').'\')">'.tr($tr, 'comments_rm').'</a></span>';
     }
 }
 $req->closeCursor();
 
-if (isset($_GET['cedit']) && isset($logged) && $logged)
+if (isset($_GET['cedit']))
 {
-    if ((checkMemberRights('comment_articles')) || ($login['rank'] === 'a' && in_array($login['works'], ['1', '2']) && checkAdminRights('manage_comments')))
-    {
-        $SQL = <<<SQL
-            SELECT id, text FROM softwares_comments WHERE id=:swid
-            SQL;
-        $req = $bdd->prepare($SQL);
-        $req->execute([':swid' => $_GET['cedit']]);
-    }
-    else
-    {
-        $SQL = <<<SQL
-            SELECT id, text FROM softwares_comments WHERE id=:swid AND date>:date AND nickname=:nick
-            SQL;
-        $req = $bdd->prepare($SQL);
-        $req->execute([':swid' => $_GET['cedit'], ':date' => time() - 86400, ':nick' => $login['id']]);
-    }
+    $SQL = <<<SQL
+            SELECT * FROM softwares_comments WHERE id=:swid AND date>:date
+        SQL;
+    $req = $bdd->prepare($SQL);
+    $req->execute([':swid' => $_GET['cedit'], ':date' => time() - 86400]);
     if ($data = $req->fetch())
     {
-        ?>
+        if (canManageComment($data))
+        {
+            ?>
 <form action="?id=<?php echo $sw['id'].'&cedit2='.$data['id'] ?>" method="post" id="cedit">
 <fieldset><legend><?= tr($tr, 'comments_mod') ?></legend>
 <label for="fc_text"><?= tr($tr, 'comments_text') ?></label><br>
@@ -602,7 +588,8 @@ if (isset($_GET['cedit']) && isset($logged) && $logged)
 </fieldset>
 </form>
 <script>init_close_confirm();</script>
-<?php }$req->closeCursor();
+<?php }
+        } $req->closeCursor();
 }
 if (isset($logged) && $logged && (checkMemberRights('comment_articles') || ($login['rank'] === 'a' && checkAdminRights('manage_comments'))))
 { ?>
