@@ -35,7 +35,7 @@ if (isset($_GET['g']))
         SELECT page,date,visits FROM count_visits WHERE domain=:domain AND date>:date
         SQL;
     $req = $bdd->prepare($SQL);
-    $req->execute([':domain' => $domain, ':date' => time() - 31557600]);
+    $req->execute([':domain' => $domain, ':date' => date('Y-m-d', time() - 31557600)]);
     while ($data = $req->fetch())
     {
         $xvisits += $data['visits'];
