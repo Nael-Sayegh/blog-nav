@@ -27,13 +27,13 @@ if (defined('MASTO_URL') && ($mastoUrl = constant('MASTO_URL')))
 { ?>
 <a target="_blank" rel="me" href="<?= $mastoUrl ?>" title="<?= tr($tr0, 'footer_link_masto', ['site' => $site_name]) ?>"><img id="mastodon" alt="<?= tr($tr0, 'footer_link_masto', ['site' => $site_name]) ?>" src="/images/mastodon-purple.svg" style="width:32px;height:32px;"></a>
 <?php }
+if (defined('DISCORD_URL') && ($discordUrl = constant('DISCORD_URL')))
+{ ?>
+<a target="_blank" href="<?= $discordUrl ?>" title="<?= tr($tr0, 'footer_link_discord', ['site' => $site_name]) ?>"><img id="discord" alt="<?= tr($tr0, 'footer_link_discord', ['site' => $site_name]) ?>" src="/images/discord.svg" style="width:32px;height:32px;"></a><br>
+<?php }
 if (defined('CESIUM_URL') && ($cesiumUrl = constant('CESIUM_URL')))
 { ?>
 <a target="_blank" href="<?= $cesiumUrl ?>" title="<?= tr($tr0, 'footer_link_g1', ['site' => $site_name]) ?>"><img id="g1" alt="<?= tr($tr0, 'footer_link_g1', ['site' => $site_name]) ?>" src="/images/gbreve-simple.svg" style="width:32px;height:32px;"></a>
-<?php }
-if (defined('DISCORD_URL') && ($discordUrl = constant('DISCORD_URL')))
-{ ?>
-<a target="_blank" href="<?= $discordUrl ?>" title="<?= tr($tr0, 'footer_link_discord', ['site' => $site_name]) ?>"><img id="discord" alt="<?= tr($tr0, 'footer_link_discord', ['site' => $site_name]) ?>" src="/images/discord.svg" style="width:32px;height:32px;"></a>
 <?php } ?>
 </details>
 <?php endif; ?>
