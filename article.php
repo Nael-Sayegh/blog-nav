@@ -563,7 +563,7 @@ while ($data = $req->fetch())
     echo '<blockquote>'.convertToMD(str_replace("\n", '<br>', htmlentities((string) $data['text']))).'</blockquote></div>';
     if (canManageComment($data))
     {
-        echo '<span class="comment_a"><a href="?id='.$sw['id'].'&cedit='.$data['id'].'#cedit">'.tr($tr, 'comments_mod').'</a> <a href="?id='.$sw['id'].'&cdel='.$data['id'].'" onclick="return confirm(\''.tr($tr, 'confirm_del_com').'\')">'.tr($tr, 'comments_rm').'</a></span>';
+        echo '<span class="comment_a"><a href="?id='.$sw['id'].'&cedit='.$data['id'].'#cedit">'.tr($tr, 'comments_mod').'</a> | <a href="?id='.$sw['id'].'&cdel='.$data['id'].'" onclick="return confirm(\''.tr($tr, 'confirm_del_com').'\')">'.tr($tr, 'comments_rm').'</a></span><span class="sr_only"><br></span>';
     }
 }
 $req->closeCursor();
