@@ -132,7 +132,7 @@ if (!isDev() || isset($debug))
         $update_author = $data['authors'];
         $update_date = $data['date'];
     }
-    $subject = '🗞️ Lettre d\'informations '.$site_name.' du '.$daydate;
+    $subject = '🗞️ Lettre d\'informations du '.$daydate;
     $newsletterCss = <<<CSS
         @font-face
         {
