@@ -53,7 +53,7 @@ foreach ($bdd->query($SQL) as $data)
         strtolower(htmlentities((string) $data['account_name'], ENT_QUOTES)),
         $data['account_id'],
         $data['account_rank'] === 'a' ? '/E'.$data['team_id'] : '',
-        urank($data['account_rank'], htmlentities((string) $data['account_name']), false),
+        urank($data['account_rank'], strip_tags((string) $data['account_name']), false),
         (
             isset($sets['bd_m'], $sets['bd_d'])
         && ($sets['bd_m'] == date('n') && $sets['bd_d'] == date('j')
