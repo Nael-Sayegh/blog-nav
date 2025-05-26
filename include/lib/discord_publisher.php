@@ -5,6 +5,7 @@ require_once $document_root.'/include/config.local.php';
 require_once $document_root.'/include/consts.php';
 function send_discord($message)
 {
+    global $site_name;
     if (!isDev() && (defined('DISCORD_WEBHOOK_URL') && constant('DISCORD_WEBHOOK_URL')))
     {
         $timestamp = date('c', strtotime('now'));
