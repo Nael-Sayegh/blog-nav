@@ -83,7 +83,6 @@ if (isset($_GET['id']) && $_GET['id'] !== '')
                 $req2 = $bdd->prepare($SQL2);
                 $req2->execute([':id' => $_GET['id']]);
                 $SQL2 = <<<SQL
-                    $SQL2 = <<<SQL
                     UPDATE softwares SET downloads=downloads+1 WHERE id=:id
                     SQL;
                 $req2 = $bdd->prepare($SQL2);
