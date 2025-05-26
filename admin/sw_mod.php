@@ -839,8 +839,8 @@ if (isset($_GET['addfile']))
 {
     echo ' checked';
 } ?>><br>
-<button type="submit" onclick="this.disabled = true">Ajouter</button>
-<progress class="upload-progress"></progress>
+<button type="submit">Ajouter</button>
+<progress class="upload-progress" id="upload-progress"></progress>
 
 <script>
 function f_addfile_group_method() {
@@ -870,6 +870,10 @@ break;
 }
 }
 f_addfile_group_method();
+document.getElementById('f_addfile_form')
+    .addEventListener('submit', function(){
+      document.getElementById('upload-progress').style.display = 'block';
+    });
 </script>
 </fieldset>
 </form>
@@ -1002,8 +1006,8 @@ if (isset($_GET['modf']))
 {
     echo ' checked';
 } ?>><br>
-<button type="submit" onclick="this.disabled = true">Modifier</button>
-<progress class="upload-progress"></progress>
+<button type="submit">Modifier</button>
+<progress class="upload-progress" id="upload-progress"></progress>
 
 <script>
 function f_modf_group_method() {
@@ -1036,6 +1040,10 @@ e.preventDefault();
 }
 }
 f_modf_group_method();
+  document.getElementById('f_modf_form')
+    .addEventListener('submit', function(){
+      document.getElementById('upload-progress').style.display = 'block';
+    });
 </script>
 </form>
 <?php }$req->closeCursor();
