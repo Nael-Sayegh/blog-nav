@@ -1,4 +1,5 @@
 <?php
+ob_start();
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/log.php');
 require_once('include/consts.php');
@@ -78,6 +79,7 @@ else
 }
 ?>
 </main>
-<?php require_once('include/footer.php'); ?>
+<?php require_once('include/footer.php');
+ob_end_flush(); ?>
 </body>
 </html>
