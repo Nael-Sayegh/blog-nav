@@ -14,7 +14,7 @@ require_once('include/load_sound.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <?php
-if (isset($_GET['id']))
+if (isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) !== false)
 {
     $SQL = <<<SQL
         SELECT * FROM site_updates WHERE id=:id LIMIT 1
@@ -24,7 +24,7 @@ if (isset($_GET['id']))
     if ($data = $req->fetch())
     {
         $versionxx = substr((string) $data['name'], 1);
-        echo '<h2>'.$versionxx.' (V'.$data['id'].')</h2><a href="/update.php">Liste des versions</a><br>';
+        echo '<h2>Version '.$versionxx.' (V'.$data['id'].')</h2><a href="/update.php">Liste des versions</a><br>';
         $SQL2 = <<<SQL
             SELECT * FROM site_updates WHERE id<:id ORDER BY date DESC LIMIT 1
             SQL;
@@ -51,6 +51,11 @@ if (isset($_GET['id']))
         {
             echo '<hr><p>À cette version, le code du site est composé de <strong>'.$codestat[0].'</strong> fichiers, <strong>'.$codestat[1].'</strong> lignes, soit <strong>'.$codestat[2].'</strong> octets ('.human_filesize($codestat[2]).'o).<br>Seuls les fichiers PHP, HTML, CSS, JS, XML et texte brut sont pris en compte. Les fichiers dont nous ne sommes pas les auteurs ne sont pas comptés (bibliothèques, outils), ni les fichiers dynamiques (caches générés automatiquement), ni les fichiers de traduction (ne contenant que du texte).</p>';
         }
+    }
+    else
+    {
+        header('Location: /update.php');
+        exit();
     }
 }
 else
