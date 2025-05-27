@@ -94,7 +94,7 @@ if (isset($_GET['mod']))
 <form action="?mod2=<?= $data['id'] ?>" method="post">
 <label for="f2_name">Nom&nbsp;:</label><input type="text" name="name" id="f2_name" maxlength="255" value="<?= $data['name'] ?>" required><br>
 <label for="f2_text">Texte descriptif HTML&nbsp;:</label><br>
-<textarea name="text" id="f2_text" maxlength="8192" rows="20" cols="500"><?= $data['text'] ?></textarea><br>
+<textarea name="text" id="f2_text" maxlength="50000" rows="20" cols="500"><?= $data['text'] ?></textarea><br>
 <input type="submit" value="Modifier">
 </form>
 <?php }
@@ -105,7 +105,7 @@ if (isset($_GET['mod']))
 <form action="?add" method="post">
 <label for="f_name">Nom&nbsp;:</label><input type="text" name="name" id="f_name" maxlength="255" required><br>
 <label for="f_text">Texte descriptif HTML&nbsp;:</label><br>
-<textarea name="text" id="f_text" maxlength="8192" rows="20" cols="500"></textarea><br>
+<textarea name="text" id="f_text" maxlength="50000" rows="20" cols="500"></textarea><br>
 <input type="submit" value="Ajouter">
 </form>
 </body>
