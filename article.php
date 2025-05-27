@@ -2,7 +2,7 @@
 $stats_page = 'article';
 if (!isset($_GET['id']))
 {
-    header('Location: /');
+    header('Location: /art_list.php');
     exit();
 }
 set_include_path($_SERVER['DOCUMENT_ROOT']);
@@ -12,15 +12,23 @@ require_once('include/isbot.php');
 require_once('include/package_managers.php');
 require_once('include/sendMail.php');
 require_once('include/lib/MDConverter.php');
-$SQL = <<<SQL
-    SELECT * FROM softwares WHERE id=:id
-    SQL;
-$req = $bdd->prepare($SQL);
-$req->execute([':id' => $_GET['id']]);
-$sw = $req->fetch();
-if (!$sw)
+if (filter_var($_GET['id'], FILTER_VALIDATE_INT) !== false)
 {
-    header('Location: /');
+    $SQL = <<<SQL
+        SELECT * FROM softwares WHERE id=:id
+        SQL;
+    $req = $bdd->prepare($SQL);
+    $req->execute([':id' => $_GET['id']]);
+    $sw = $req->fetch();
+    if (!$sw)
+    {
+        header('Location: /art_list.php');
+        exit();
+    }
+}
+else
+{
+    header('Location: /art_list.php');
     exit();
 }
 if (!(isset($logged) && $logged && $login['rank'] === 'a') && !$isbot)
