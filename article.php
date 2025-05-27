@@ -2,7 +2,7 @@
 $stats_page = 'article';
 if (!isset($_GET['id']))
 {
-    header('Location: /');
+    header('Location: /art_list.php');
     exit();
 }
 set_include_path($_SERVER['DOCUMENT_ROOT']);
