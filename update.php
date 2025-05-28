@@ -62,9 +62,20 @@ if (isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) !== false
 else
 {
     if (isDev())
-    {
-        include('ChangeLog_Dev.html');
-    }
+    { ?>
+<h2><?= $site_name ?> 20.1</h2>
+<p>Lors de la publication de <a href="/u135"><?= $site_name ?> 20.0</a> le 25 Mai 2025, plusieurs évolutions futures ont été annoncées. <?= $site_name ?> 20.1 introduit certaines d'entre elles.</p>
+<ul>
+<li>Nouveautés et changements
+<ul>
+<li></li>
+</ul></li>
+<li>Correctifs
+<ul>
+<li></li>
+</ul></li>
+</ul>
+    <?php }
     $SQL = <<<SQL
         SELECT * FROM site_updates ORDER BY date DESC
         SQL;
