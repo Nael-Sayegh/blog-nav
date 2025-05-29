@@ -43,10 +43,13 @@ require_once('include/load_sound.php'); ?>
 <li>Adresse IP&nbsp;: <?= $_SERVER['REMOTE_ADDR'] ?></li>
 <li>Hôte&nbsp;: <?= gethostbyaddr($_SERVER['REMOTE_ADDR']) ?></li>
 </ul></li>
+<?php if(isset($_SERVER['HTTP_SEC_CH_UA_PLATFORM']))
+{ ?>
 <li>Système&nbsp;:
 <ul>
-<li>Plateforme&nbsp;: <?php echo(trim((string) $_SERVER['HTTP_SEC_CH_UA_PLATFORM'], '"') ?? 'Inconnue'); ?></li>
+<li>Plateforme&nbsp;: <?php echo trim((string) $_SERVER['HTTP_SEC_CH_UA_PLATFORM'], '"'); ?></li>
 </ul></li>
+<?php } ?>
 </ul>
 <a href="/gadgets.php">Retour à la liste des gadgets.</a>
 </main>
