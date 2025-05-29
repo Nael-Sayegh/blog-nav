@@ -3,7 +3,7 @@
 $isbot = false;
 if (!empty($_SERVER['HTTP_USER_AGENT']))
 {
-    $uabots = ['DotBot','bingbot','Googlebot','Ahrefsbot','Twitterbot','applebot','PaperLiBot','SemrushBot','SurdotlyBot','SocialRankIOBot','ubermetrics','facebookexternalhit','LivelapBot','TrendsmapResolver','bot@linkfluence.com','YandexBot','MJ12bot','Mastodon','Akkoma','SummalyBot','Pleroma'];
+    $uabots = ['DotBot','bingbot','Googlebot','Ahrefsbot','Twitterbot','applebot','PaperLiBot','SemrushBot','SurdotlyBot','SocialRankIOBot','ubermetrics','facebookexternalhit','LivelapBot','TrendsmapResolver','bot@linkfluence.com','YandexBot','MJ12bot','Mastodon','Akkoma','SummalyBot','Pleroma','discordbot'];
     foreach ($uabots as &$uabot)
     {
         if (str_contains((string) $_SERVER['HTTP_USER_AGENT'], $uabot))
