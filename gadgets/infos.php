@@ -2,8 +2,8 @@
 require_once('../GEOIP/vendor/autoload.php');
 use GeoIp2\Database\Reader;
 
-$reader = new Reader('GeoLite2-City.mmdb', ['fr']);
-$reader2 = new Reader('GeoLite2-ASN.mmdb', ['fr']);
+$reader = new Reader('../GEOIP/GeoLite2-City.mmdb', ['fr']);
+$reader2 = new Reader('../GEOIP/GeoLite2-ASN.mmdb', ['fr']);
 $record = $reader->city($_SERVER['REMOTE_ADDR']);
 $record2 = $reader2->asn($_SERVER['REMOTE_ADDR']);
 function getCurrentIP()
