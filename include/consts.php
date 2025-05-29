@@ -128,19 +128,19 @@ function get_article_prefered_tr($article_id, $lang)
 function getVersionFromGit()
 {
     global $tr0, $site_name;
-
-    $hash = trim(shell_exec('git --git-dir="'.GIT_DIR.'" rev-parse --verify HEAD'));
-    $shortHash = trim(shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%h ' . $hash));
+    $gitDir = $_SERVER['DOCUMENT_ROOT'].'/'.GIT_DIR;
+    $hash = trim(shell_exec('git --git-dir="'.$gitDir.'" rev-parse --verify HEAD'));
+    $shortHash = trim(shell_exec('git --git-dir="'.$gitDir.'" show -s --format=%h ' . $hash));
     $link = '<a href="' . GIT_COMMIT_BASE_URL . $hash . '">(' . $shortHash . ')</a>';
 
     if (isDev())
     {
-        $timestamp = trim(shell_exec('git --git-dir="'.GIT_DIR.'" show -s --format=%ct ' . $hash));
+        $timestamp = trim(shell_exec('git --git-dir="'.$gitDir.'" show -s --format=%ct ' . $hash));
         $commitVersion = getFormattedDate($timestamp, 'yy.MM.dd.HHmm');
     }
     else
     {
-        $tag = trim(shell_exec('git --git-dir="'.GIT_DIR.'" describe --tags --abbrev=0 2>/dev/null'));
+        $tag = trim(shell_exec('git --git-dir="'.$gitDir.'" describe --tags --abbrev=0 2>/dev/null'));
         $commitVersion = $tag ?: 'unknown';
     }
 
