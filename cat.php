@@ -24,14 +24,12 @@ $title = str_replace('{{site}}', $site_name, $data['name']);
 $cat_text = $data['text'];
 
 $args['id'] = $cat_id;
-$sound_path = '/audio/categories/'.$cat_id.'.mp3';
 $stats_page = 'cat'; ?>
 <!DOCTYPE html>
 <html lang="<?= $lang ?>">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <?= str_replace('{{site}}', $site_name, $cat_text) ?>
@@ -93,11 +91,11 @@ foreach ($entries as $sw_id => $entry)
     printf(
         '<div class="software" role="heading" aria-level="2" data-date="%d" data-hits="%d" data-name="%s">
     <a class="software_title" href="a%d">%s</a>
+    </div>
     <p>%s<br>
     <span class="software_hits">%s</span>
     <span class="software_date">(%s)</span>
-    </p>
-    </div>',
+    </p>',
         $entry['date'],
         $entry['hits'],
         htmlspecialchars(strtolower(str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']))),

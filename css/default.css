@@ -10,7 +10,7 @@ font-family: Cantarell;
 }
 
 body {
-	background: white url("/images/logogrey672-450.png") no-repeat right bottom;
+	background: grey url("/images/logogrey672-450.png") no-repeat right bottom;
 }
 
 #hautpage {
@@ -135,14 +135,14 @@ margin-bottom: 20px;
 	}
 
 	.menutitle {
-	background-color: #04B404;
+	background-color: blue;
 	color: white;
 	font-weight: bold;
 	text-align: center;
 	}
 
 	.menusep {
-	background-color: #04B404;
+	background-color: blue;
 	height: 5px;
 	}
 	
@@ -152,7 +152,7 @@ margin-bottom: 20px;
 	}
 
 	.ulmenu_js li a, .ulmenu_njs li a:visited {
-	color: #003f94;
+	color: white;
 	}
 
 	.ulmenu_js li a:hover, .ulmenu_njs a:hover {
@@ -409,7 +409,7 @@ margin: 0;
 
 a, a:visited {
 text-decoration:none;
-color: #003f94;
+color: white;
 }
 
 a:hover, a:focus {
@@ -504,4 +504,8 @@ width: 1px;
 position:absolute;
 top:-999px;
 left:-9999px;
+}
+
+p {
+    color: white;
 }

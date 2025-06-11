@@ -5,7 +5,6 @@ requireMemberRight('view_members');
 $stats_page = 'liste_comptes';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/consts.php');
-$sound_path = '/audio/page_sounds/member.mp3';
 $css_path .= '<style>#member-list tr:nth-child(odd){background-color:#E0E0E0;}</style>';
 $title = 'Liste des membres '.$site_name;
 ?>
@@ -13,8 +12,7 @@ $title = 'Liste des membres '.$site_name;
 <html lang="fr">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <div id="js-sort-container" hidden style="margin:1em 0;">

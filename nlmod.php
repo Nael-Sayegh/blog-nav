@@ -108,14 +108,12 @@ else
 }
 
 $title = 'Lettre d\'informations';
-$sound_path = '/audio/page_sounds/nl.mp3';
 $stats_page = 'nlmod'; ?>
 <!DOCTYPE html>
 <html lang="<?= $lang ?>">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <?php

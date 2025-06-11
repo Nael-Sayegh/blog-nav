@@ -4,7 +4,6 @@ require_once('include/log.php');
 require_once('include/consts.php');
 $tr = load_tr($lang, 'redirlogin');
 $title = tr($tr, 'title');
-$sound_path = '/audio/page_sounds/member.mp3';
 $stats_page = 'redirlogin';
 if (session_status() !== PHP_SESSION_ACTIVE)
 {
@@ -21,8 +20,7 @@ if (!str_starts_with((string) $back, '/'))
 <html lang="<?= $lang ?>">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <?= str_replace('{{membername}}', $login['username'], tr($tr, 'maintext')) ?>
@@ -36,7 +34,7 @@ require_once('include/load_sound.php'); ?>
 <?php }
     if (in_array($login['works'], ['0', '2']))
     { ?>
-<li><a href="https://www.nvda.fr/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?= tr($tr, 'adminlink').' (NVDA.FR)' ?></a></li>
+<li><a href="https://www.nael-accessvision.com/admin?cid=<?php print $_COOKIE['connectid']; ?>&ses=<?php print $_COOKIE['session']; ?>"><?= tr($tr, 'adminlink').' (Nael-Accessvision)' ?></a></li>
 <?php }
     } ?>
 <li><a href="/"><?= tr($tr, 'homelink') ?></a></li>

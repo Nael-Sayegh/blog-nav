@@ -122,10 +122,10 @@ if (!isset($stats_no))
     }
 
     echo '<ul id="compteur">
-	<li>Page chargée '.$xpage.' fois depuis un an dont '.$xpagetoday.' ce jour</li>
-	<li>'.$xvisits.' pages chargées depuis un an dont '.$xvisitstoday.' aujourd\'hui</li>
-	<li>'.$xvisitors.' visiteurs depuis une semaine dont '.$xtoday.' aujourd\'hui</li>
-	<li>'.$xconn.' connectés.</li></ul>';
+	<li>'.tr($tr0,'footer_charged_page',['xpage'=>$xpage,'xpagetoday',$xpagetoday]).'</li>
+	<li>'.tr($tr0,'footer_total_chaged_pages',['xvisits'=>$xvisits,'xvisitstoday'=>$xvisitstoday]).'</li>
+	<li>'.tr($tr0,'footer_visitors',['xvisitors'=>$xvisitors,'xtoday'=>$xtoday]).'</li>
+	<li>'.tr($tr0,'footer_connected',['xconn'=>$xconn]).'</li></ul>';
 }
 
 $req->closeCursor();

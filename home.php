@@ -17,7 +17,6 @@ $qrProvider = new EndroidQrCodeProvider();
 $tfa = new TwoFactorAuth($qrProvider);
 
 $tr = load_tr($lang, 'home');
-$sound_path = '/audio/page_sounds/member.mp3';
 $title = tr($tr, 'title');
 
 $log = '';
@@ -269,8 +268,7 @@ if (isset($_GET['2fa_disabled']))
 <html lang="<?= $lang ?>">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <div id="alertZone" role="alert" aria-live="assertive"></div>

@@ -95,14 +95,12 @@ if (isset($_GET['stop']))
     $log .= 'Vous avez bien été désinscrit de la lettre d\'informations '.$site_name.'. Un mail vous a été envoyé pour confirmer. Vous ne recevrez plus aucun mail de notre part.';
 }
 
-$title = 'Lettre d\'informations';
-$sound_path = '/audio/page_sounds/nl.mp3'; ?>
+$title = 'Lettre d\'informations'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <div id="alertZone" role="alert" aria-live="assertive"></div>

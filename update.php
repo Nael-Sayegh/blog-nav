@@ -4,14 +4,12 @@ set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/log.php');
 require_once('include/consts.php');
 $title = 'Mise à jour du site';
-$stats_page = 'update';
-$sound_path = '/audio/page_sounds/update.mp3'; ?>
+$stats_page = 'update'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <?php

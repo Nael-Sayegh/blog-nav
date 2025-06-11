@@ -5,7 +5,6 @@ $stats_page = 'signup';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/consts.php');
 require_once('include/lib/mtcaptcha/lib/class.mtcaptchalib.php');
-$sound_path = '/audio/page_sounds/member.mp3';
 $title = 'Se créer un compte '.$site_name;
 
 $log = '';
@@ -82,7 +81,7 @@ if (isset($_GET['a']) && $_GET['a'] === 'form' && isset($_POST['username']) && i
             }
             $password = password_hash($_POST['psw'], PASSWORD_DEFAULT);
             $mhash = hash('sha512', strval(time() + random_int(1000000, 99999999)).$password.strval(random_int(100000, 99999999)));
-            $settings = ['mhash' => $mhash,'menu' => '0','fontsize' => '16','audio' => '0','date' => '0','infosdef' => '1'];
+            $settings = ['mhash' => $mhash,'menu' => '0','fontsize' => '16','date' => '0','infosdef' => '1'];
             if (isset($_COOKIE['menu']) && $_COOKIE['menu'] === '1')
             {
                 $settings['menu'] = '1';
@@ -90,10 +89,6 @@ if (isset($_GET['a']) && $_GET['a'] === 'form' && isset($_POST['username']) && i
             if (isset($_COOKIE['fontsize']) && in_array($_COOKIE['fontsize'], ['11','16','20','24']))
             {
                 $settings['fontsize'] = $_COOKIE['fontsize'];
-            }
-            if (isset($_COOKIE['audio']) && in_array($_COOKIE['audio'], ['0','1','2','3','4','5','6','7','8','9','10']))
-            {
-                $settings['audio'] = $_COOKIE['audio'];
             }
             if (isset($_COOKIE['date']) && $_COOKIE['date'] === '1')
             {
@@ -103,12 +98,13 @@ if (isset($_GET['a']) && $_GET['a'] === 'form' && isset($_POST['username']) && i
             {
                 $settings['infosdef'] = '0';
             }
+            $right = ['view_members' => 0];
             $email = $_POST['mail'];
             $SQL = <<<SQL
-                INSERT INTO accounts (username, email, id64, password, signup_date, settings) VALUES(:username,:mail,:id,:psw,:date,:set)
+                INSERT INTO accounts (username, email, id64, password, signup_date, settings, rights) VALUES(:username,:mail,:id,:psw,:date,:set,:rights)
                 SQL;
             $req = $bdd->prepare($SQL);
-            $req->execute([':username' => $username, ':mail' => $email, ':id' => $id64, ':psw' => $password, ':date' => time(), ':set' => json_encode($settings)]);
+            $req->execute([':username' => $username, ':mail' => $email, ':id' => $id64, ':psw' => $password, ':date' => time(), ':set' => json_encode($settings), ':rights' => json_encode($right)]);
             $id = $bdd->lastInsertId();
 
 
@@ -142,8 +138,7 @@ if (isset($_GET['a']) && $_GET['a'] === 'form' && isset($_POST['username']) && i
 <html lang="fr">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <div id="alertZone" role="alert" aria-live="assertive"></div>

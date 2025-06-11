@@ -2,14 +2,12 @@
 require_once('include/log.php');
 require_once('include/consts.php');
 $title = ' politique de confidentialité '.$site_name;
-$sound_path = '/audio/page_sounds/privacy.mp3';
 $stats_page = 'conf'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <h2><?php print $site_name; ?> respecte votre vie privée</h2>
@@ -30,7 +28,7 @@ Un cookie ne peut aucunement représenter une menace de sécurité.</p>
 <p>En tout cas, ProgAccess ne dépose des cookies dans votre ordinateur qu'avec votre consentement au préalable&nbsp;: un message vous prévient si l'usage des cookies est nécessaire pour utiliser une certaine fonctionnalité.<br>
 Les cookies utilisés servent exclusivement à la sauvegarde des paramètres de personnalisation et à l'utilisation de l'espace membres ProgAccess.</p>
 <h3>En savoir plus</h3>
-<p>Si vous désirez en savoir plus sur la sécurité de vos données, nos méthodes, votre anonymat, ou toute autre chose, vous pouvez nous contacter via le <a href="/contact_form.php">formulaire de contact</a> avec le sujet "<i>demande sur la politique de confidentialité</i>".</p>
+<p>Si vous désirez en savoir plus sur la sécurité de vos données, nos méthodes, votre anonymat, ou toute autre chose, vous pouvez nous contacter via le <a href="/contact.php">page de contact</a> avec le sujet "<i>demande sur la politique de confidentialité</i>".</p>
 <p>Vous disposez également d'un droit d'accès, de modification et de suppression de vos données, à condition de pouvoir vous identifier comme le propriétaire de ces données.</p>
 <h3>Esprit critique</h3>
 <p>Il nous est absolument impossible de vous prouver que les promesses ci-dessus seront tenues. Il en va de même pour n'importe quel service en ligne. Nous vous invitons donc à ne pas les croire si vous ne leur accordez aucune confiance particulière, et à ne pas donner des informations à des gens à qui vous ne voudriez pas donner ces informations. Considérez que dès que vous donnez une information à quelqu'un (ou à une machine appartenant à quelqu'un), vous lui donnez tout contrôle dessus.</p>

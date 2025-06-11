@@ -5,7 +5,6 @@ require_once('include/consts.php');
 $tr = load_tr($lang, 'art_list');
 $title = tr($tr, 'title');
 $stats_page = 'art-list';
-$sound_path = '/audio/page_sounds/article.mp3';
 $catMap = [];
 $SQL = <<<SQL
     SELECT id, name FROM softwares_categories
@@ -19,8 +18,7 @@ foreach ($bdd->query($SQL) as $data)
 <html lang="fr">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <form method="get">

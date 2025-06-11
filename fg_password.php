@@ -7,7 +7,6 @@ require_once('include/consts.php');
 require_once('include/sendMail.php');
 $tr = load_tr($lang, 'fg_passwd');
 $title = tr($tr, 'title');
-$sound_path = '/audio/page_sounds/member.mp3';
 $step = $_GET['step'] ?? 'request';
 $token = $_GET['token'] ?? null;
 $errors  = [];
@@ -109,8 +108,7 @@ if ($step === 'reset')
 <html lang="fr">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <?php if ($success): ?>

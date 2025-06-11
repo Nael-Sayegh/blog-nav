@@ -7,7 +7,6 @@ $back = $_SESSION['intended_403'] ?? ($_SERVER['HTTP_REFERER'] ?? null);
 <head>
 <meta charset="utf-8">
 <title>403 accès refusé</title>
-<audio src="/audio/forbidden.mp3" autoplay></audio>
 </head>
 <body>
 <h1>Erreur 403&nbsp;: accès refusé</h1>

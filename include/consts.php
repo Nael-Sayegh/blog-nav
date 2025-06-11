@@ -51,6 +51,10 @@ function bparse($text, $vars)
     $vars['url'] = $site_url;
     foreach ($vars as $var1 => $var2)
     {
+        if ($var2 === null)
+        {
+            $var2 = '';
+        }
         $text = str_replace('{{'.$var1.'}}', $var2, $text);
     }
     return $text;
@@ -194,7 +198,7 @@ function setTimeZone($timezone, $lc_code)
     setlocale(LC_ALL, $lc_code);
 }
 
-function getUserById($id)
+function getUsernameById($id)
 {
     global $bdd;
     if (is_numeric($id))
@@ -205,9 +209,21 @@ function getUserById($id)
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':id' => $id]);
-        if ($user = $req->fetch(PDO::FETCH_OBJ))
+        if ($user = $req->fetch())
         {
-            return $user;
+            if ($user['rank'] === "a")
+            {
+                $req2 = $bdd->prepare('SELECT short_name FROM team WHERE account_id = '.$user['id']);
+                $req2->execute();
+                if ($admin = $req2->fetch())
+                {
+                    return $admin['short_name'];
+                }
+            }
+            else
+            {
+                return $user['username'];
+            }
         }
     }
     return false;

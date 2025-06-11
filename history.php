@@ -2,14 +2,12 @@
 require_once('include/log.php');
 require_once('include/consts.php');
 $title = 'Journal des modifications '.$site_name;
-$sound_path = '/audio/page_sounds/history.mp3';
 $stats_page = 'journal'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <p>Vous avez ici la liste des logiciels mis à jour ou ajoutés ce mois-ci.</p>

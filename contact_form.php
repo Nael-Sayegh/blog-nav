@@ -6,7 +6,6 @@ require_once('include/lib/mtcaptcha/lib/class.mtcaptchalib.php');
 require_once('include/lib/MDConverter.php');
 $tr = load_tr($lang, 'contacter');
 $title = 'Contacter l\'équipe '.$site_name;
-$sound_path = '/audio/page_sounds/contact.mp3';
 $stats_page = 'contacter';
 
 $log = '';

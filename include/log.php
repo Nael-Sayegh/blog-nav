@@ -9,7 +9,7 @@ function check_login($session, $connectid)
     global $bdd, $login, $nolog, $settings, $admin_name;
     require_once($_SERVER['DOCUMENT_ROOT'].'/include/dbconnect.php');
     $SQL = <<<SQL
-        SELECT sessions.id AS session_id, sessions.session, sessions.connectid, sessions.expire, sessions.token, accounts.id, accounts.id64, accounts.email, accounts.username, accounts.signup_date, accounts.password, accounts.settings, accounts.confirmed, accounts.subscribed_comments, accounts.rank, accounts.rights AS rights, accounts.twofa_enabled, accounts.twofa_secret, team.id AS team_id, team.works AS works, team.short_name AS short_name, team.rights AS admin_rights
+        SELECT sessions.id AS session_id, sessions.session, sessions.connectid, sessions.expire, sessions.token, accounts.id, accounts.id64, accounts.email, accounts.username, accounts.signup_date, accounts.password, accounts.settings, accounts.confirmed, accounts.subscribed_comments, accounts.rank, accounts.rights AS member_rights, accounts.twofa_enabled, accounts.twofa_secret, team.id AS team_id, team.works AS works, team.short_name AS short_name, team.rights AS admin_rights
         FROM sessions 
         LEFT JOIN accounts ON accounts.id = sessions.account 
         LEFT JOIN team ON team.account_id = sessions.account 
@@ -50,7 +50,7 @@ function check_login($session, $connectid)
             }
             unset($setting);
             unset($sets);
-            $login['rights'] ??= '';
+            $login['member_rights'] ??= '';
             $login['works'] = isset($login['works']) ? (string)$login['works'] : '0';
             $admin_name = $login['short_name'] ?? '';
             $login['admin_rights'] ??= '';
@@ -106,6 +106,6 @@ if (isset($adminonly) && $adminonly && $login['rank'] !== 'a')
 }
 if (isset($justpa) && $justpa && $login['works'] === '0')
 {
-    header('Location: https://www.nvda.fr/admin/');
+    header('Location: https://www.nael-accessvision.com/admin/');
     exit();
 }

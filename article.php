@@ -279,8 +279,6 @@ if (isset($_GET['deleterating']) && isset($logged) && $logged && checkMemberRigh
     header("Location: /a{$sw['id']}");
     exit();
 }
-
-$sound_path = '/audio/page_sounds/article.mp3';
 $catMap = [];
 $SQL = <<<SQL
     SELECT id, name FROM softwares_categories
@@ -294,11 +292,9 @@ foreach ($bdd->query($SQL) as $data)
 <html lang="<?= $lang ?>">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
-<p><a href="/art_list.php"><?= tr($tr, 'categories_link') ?></a></p>
 <?php
 if (isset($logged) && $logged && $login['rank'] === 'a' && in_array($login['works'], ['1', '2']) && checkAdminRights('manage_comments'))
 { ?>
@@ -308,17 +304,7 @@ if (isset($logged) && $logged && $login['rank'] === 'a' && in_array($login['work
 <li><a href="/admin/translate.php?type=article&id=<?= $sw['id'] ?>"><?= str_replace('{{title}}', $title, tr($tr, 'adminlink_trs').' '.$sw['name']) ?></a></li>
 </ul>
 <?php
-} ?>
-<details>
-<summary><?= tr($tr, 'detailskw') ?></summary>
-<ul>
-<?php foreach (explode(' ', (string) $sw_tr['keywords']) as $keyword)
-{
-    print '<li>'.$keyword.'</li>';
 }
-?></ul>
-</details>
-<?php
 if (isset($logged) && $logged && $login['rank'] !== 'a')
 {
     $SQL = <<<SQL
@@ -331,25 +317,6 @@ if (isset($logged) && $logged && $login['rank'] !== 'a')
     echo '<a id="btsub1" class="comments_btsubscription" href="?id='.$sw['id'].'&subscribe-comments&token='.$login['token'].'" title="'.tr($tr, 'comments_subscribe_long').'" onclick="subscribe_comments(event, true)" style="display:'.($sub ? 'none' : 'initial').'">'.tr($tr, 'comments_subscribe').'</a>';
 }
 echo '<div id="descart" role="article">'.convertToMD(str_replace('{{site}}', $site_name, $sw_tr['text'])).'</div>';
-if (isset($logged) && $logged && checkMemberRights('comment_articles')): ?>
-<form action="?id=<?= $sw['id'] ?>&rate" method="post" class="rating-form">
-<fieldset>
-<legend><?= tr($tr, 'rating_label') ?></legend>
-<div class="rating-radios">
-<?php for ($i = 1; $i <= 5; $i++): ?>
-<input type="radio" name="rating" id="rating<?= $i ?>" value="<?= $i ?>"<?= $user_rating === $i ? 'checked' : '' ?>>
-<label for="rating<?= $i ?>"><?= $i ?></label>
-<?php endfor; ?>
-</div>
-</fieldset>
-<button type="submit"><?= tr($tr, ($user_rating === null) ? 'rating_submit' : 'rating_update') ?></button><?php if ($user_rating !== null)
-{
-    echo ' | <a href="?deleterating">'.tr($tr, 'delete_rating').'</a>';
-} ?>
-</form>
-<?php else: ?>
-<p><em><?= tr($tr, 'rating_login_required') ?></em></p>
-<?php endif;
 $fichiersexistants = false;
 $first = true;
 $altc = true;
@@ -554,7 +521,35 @@ endif; ?>
 </tr>
 </tbody>
 </table>
+<details>
+<summary><?= tr($tr, 'detailskw') ?></summary>
+<ul>
+<?php foreach (explode(' ', (string) $sw_tr['keywords']) as $keyword)
+{
+    print '<li>'.$keyword.'</li>';
+}
+?></ul>
+</details>
 <h2><?= tr($tr, 'comments_title') ?></h2>
+<?php if (isset($logged) && $logged && checkMemberRights('comment_articles')): ?>
+<form action="?id=<?= $sw['id'] ?>&rate" method="post" class="rating-form">
+<fieldset>
+<legend><?= tr($tr, 'rating_label') ?></legend>
+<div class="rating-radios">
+<?php for ($i = 1; $i <= 5; $i++): ?>
+<input type="radio" name="rating" id="rating<?= $i ?>" value="<?= $i ?>"<?= $user_rating === $i ? 'checked' : '' ?>>
+<label for="rating<?= $i ?>"><?= $i == 1 ? $i . " (".tr($tr,'rating_1_explanation').")" : ($i == 5 ? $i ." (".tr($tr,'rating_5_explanation').")" : $i) ?></label>
+<?php endfor; ?>
+</div>
+</fieldset>
+<button type="submit"><?= tr($tr, ($user_rating === null) ? 'rating_submit' : 'rating_update') ?></button><?php if ($user_rating !== null)
+{
+    echo ' | <a href="?deleterating">'.tr($tr, 'delete_rating').'</a>';
+} ?>
+</form>
+<?php else: ?>
+<p><em><?= tr($tr, 'rating_login_required') ?></em></p>
+<?php endif; ?>
 <div id="comments">
 <?php
 $SQL = <<<SQL
@@ -565,7 +560,7 @@ $req->execute([':swid' => $sw['id']]);
 while ($data = $req->fetch())
 {
     echo '<div class="comment"><span class="comment_h" role="heading" aria-level="3">';
-    echo(($user = getUserById($data['nickname'])) ? ($user !== false ? $user->username.($user->rank === 'a' ? ' ('.tr($tr, 'comments_admin').')' : '') : tr($tr, 'empty_nickname')) : tr($tr, 'empty_nickname'));
+    echo(($user = getUsernameById($data['nickname'])) ? ($user !== false ? $user : tr($tr, 'empty_nickname')) : tr($tr, 'empty_nickname'));
     echo ' ('.date('d/m/Y, H:i', $data['date']).')';
     echo '</span>';
     echo '<blockquote>'.convertToMD(str_replace("\n", '<br>', htmlentities((string) $data['text']))).'</blockquote></div>';
@@ -608,7 +603,7 @@ if (isset($logged) && $logged && (checkMemberRights('comment_articles') || ($log
 } ?>
 <fieldset><legend><?= tr($tr, 'comments_send') ?></legend>
 <p><?= tr($tr, 'comments_warn') ?></p>
-<p><?= tr($tr, 'comments_nickname', ['nickname' => $login['username']]) ?></p>
+<p><?= tr($tr, 'comments_nickname', ['nickname' => getUsernameById($login['id'])]) ?></p>
 <label for="fc_text"><?= tr($tr, 'comments_text') ?></label><br>
 <textarea id="fc_text" class="ta" name="text" maxlength="1023" onkeyup="close_confirm=true"><?php if (isset($_POST['text']) && strlen((string) $_POST['text']) <= 1023)
 {

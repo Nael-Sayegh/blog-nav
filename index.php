@@ -4,15 +4,13 @@ $stats_page = 'index';
 require_once('include/log.php');
 require_once('include/consts.php');
 $tr = load_tr($lang, 'index');
-$title = tr($tr, 'title');
-$sound_path = '/audio/page_sounds/homepage.mp3'; ?>
+$title = tr($tr, 'title'); ?>
 <!DOCTYPE html>
 <html lang="<?= $lang ?>">
 <?php $css_path .= '<link rel="stylesheet" href="/css/slider.css">';
 require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <div id="container">
 <?php
 if ((isset($_COOKIE['infosdef']) && $_COOKIE['infosdef'] === '1') || !isset($_COOKIE['infosdef']))

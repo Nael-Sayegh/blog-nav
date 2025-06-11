@@ -69,4 +69,6 @@ $tr = [
   'rating_details' => '{{avg}} (d\'après {{count}} notants)',
   'rating_no_votes' => 'Personne n\'a encore noté cet article',
   'delete_rating' => 'Supprimer ma note',
+  'rating_1_explanation' => 'Null',
+  'rating_5_explanation' => 'Très bien',
 ];

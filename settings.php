@@ -19,13 +19,6 @@ if (isset($_GET['act']) && $_GET['act'] === 'form')
     }
     setcookie('fontsize', (string) $fontsize, ['expires' => time() + 31536000, 'path' => '/', 'secure' => true, 'httponly' => true, 'samesite' => 'strict']);
 
-    $audio = '0';
-    if (isset($_POST['audio']) && in_array($_POST['audio'], ['0','1','2','3','4','5','6','7','8','9','10']))
-    {
-        $audio = $_POST['audio'];
-    }
-    setcookie('audio', (string) $audio, ['expires' => time() + 31536000, 'path' => '/', 'secure' => true, 'httponly' => true, 'samesite' => 'strict']);
-
     $infosdef = '0';
     if (isset($_POST['infosdef']))
     {
@@ -39,7 +32,6 @@ if (isset($_GET['act']) && $_GET['act'] === 'form')
         $settings = json_decode((string) $login['settings'], true);
         $settings['menu'] = $menu;
         $settings['fontsize'] = $fontsize;
-        $settings['audio'] = $audio;
         $settings['infosdef'] = $infosdef;
         $SQL = <<<SQL
             UPDATE accounts SET settings=:set WHERE id=:id
@@ -58,7 +50,6 @@ elseif (isset($_GET['act']) && $_GET['act'] === '0')
         $settings = json_decode((string) $login['settings'], true);
         $settings['menu'] = '0';
         $settings['fontsize'] = '16';
-        $settings['audio'] = '0';
         $settings['infosdef'] = '1';
         $SQL = <<<SQL
             UPDATE accounts SET settings=:set WHERE id=:id
@@ -70,21 +61,18 @@ elseif (isset($_GET['act']) && $_GET['act'] === '0')
     {
         setcookie('menu', '', ['expires' => 0, 'secure' => 0]);
         setcookie('fontsize', '', ['expires' => 0, 'secure' => 0]);
-        setcookie('audio', '', ['expires' => 0, 'secure' => 0]);
         setcookie('infosdef', '', ['expires' => 0, 'secure' => 0]);
     }
     header('Location: /');
     exit();
 }
 $stats_page = 'parametres';
-$title = tr($tr, 'title');
-$sound_path = '/audio/page_sounds/settings.mp3'; ?>
+$title = tr($tr, 'title'); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <?= tr($tr, 'maintext') ?>
@@ -96,7 +84,6 @@ if ($logged)
 }
 $menu = $_COOKIE['menu'] ?? '0';
 $fontsize = $_COOKIE['font_size'] ?? '16';
-$audio = $_COOKIE['audio'] ?? '0';
 $infosdef = $_COOKIE['infosdef'] ?? '1';
 ?>
 <h3><?= tr($tr, 'gui') ?></h3>
@@ -125,9 +112,6 @@ $infosdef = $_COOKIE['infosdef'] ?? '1';
 {
     echo 'checked="checked"';
 } ?>><br>
-<h3><?= tr($tr, 'audio') ?></h3>
-<label for="f_audio"><?= tr($tr, 'soundsvolume') ?></label>
-<input type="range" min="0" max="10" step="1" value="<?= $audio ?>" name="audio" id="f_audio"><br>
 <input type="submit" value="<?= tr($tr, 'savebtn') ?>">
 </form>
 <form action="?act=0" method="post" aria-label="Réinitialiser">

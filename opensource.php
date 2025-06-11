@@ -2,14 +2,12 @@
 require_once('include/log.php');
 require_once('include/consts.php');
 $title = 'Open-source';
-$sound_path = '/audio/page_sounds/contact.mp3';
 $stats_page = 'open-source'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <p>Nous avons développé durant des années le site en source fermée, et avons décidé durant l'été 2018 de le libérer. Le code source est donc désormais disponible librement <a href="<?= GIT_URL ?>">sur GitLab</a> sous licence GNU AGPL.</p>

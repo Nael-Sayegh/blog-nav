@@ -5,7 +5,7 @@ $titlemodifie = str_replace(' ', ' ', $title);
 <footer id="footer">
 <a class="sr_only" href="#hautpage" accesskey="H"><?= tr($tr0, 'footer_toplink') ?></a>
 <div id="social_share" role="complementary">
-<details open>
+<details>
 <summary><?= tr($tr0, 'footer_share') ?></summary>
 <ul>
 <li><a href="https://www.facebook.com/sharer.php?u=<?php print $permalink; ?>&t=<?php print $titlemodifie; ?>" target="_blank" title="<?= tr($tr0, 'footer_fb') ?>"><img src="/images/facebook.png" alt="<?= tr($tr0, 'footer_fb') ?>"></a></li>
@@ -14,6 +14,9 @@ $titlemodifie = str_replace(' ', ' ', $title);
 </ul>
 </details>
 </div>
+<a href="contact_form.php"><?php echo tr($tr0,'footer_contact'); ?></a><br>
+<h1><?php echo tr($tr0,'footer_youtube'); ?></h1><br aria-hidden="true">
+<span class="youtube"><a href=https://www.youtube.com/channel/UC1Ot4mhqH0LtRJj0C4ctzPw>Nael accessvision</a><br><br class="smartphone"></span>
 <?php
 include('include/stats.php');
 if ((defined('FB_URL') && constant('FB_URL')) || (defined('MASTO_URL') && constant('MASTO_URL')) || (defined('CESIUM_URL') && constant('CESIUM_URL'))): ?>
@@ -37,7 +40,8 @@ if (defined('CESIUM_URL') && ($cesiumUrl = constant('CESIUM_URL')))
 <?php } ?>
 </details>
 <?php endif; ?>
-Copyleft 2015-<?php print date('Y'); ?> <?= tr($tr0, 'footer_copyright', ['site' => $site_name]) ?><br>
+<a href="mention.php"><?php echo tr($tr0,'footer_mention'); ?></a><br>
+Copyright &copy 2020-<?php print date('Y'); ?> <?= tr($tr0, 'footer_copyright', ['site' => $site_name]) ?><br>
 <?= tr($tr0, 'footer_license', ['site' => $site_name,'license' => '<a href="https://www.gnu.org/licenses/licenses.html#AGPL" title="GNU Affero General Public License v3">GNU AGPL v3</a>','trlicense' => '<a href="http://creativecommons.org/licenses/by-sa/4.0/" title="Creative Commons Attribution-ShareAlike 4.0 International License">CC BY-SA 4.0</a>']) ?><br>
 <p><?php getContentLastModif(); ?><br>
 <?php getVersionFromGit(); ?></p>

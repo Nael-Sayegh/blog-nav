@@ -1,9 +1,9 @@
 <?php set_include_path($_SERVER['DOCUMENT_ROOT']);
 require('include/log.php');
 require_once('include/consts.php');
-$tr = load_tr($lang, 'contact');
+$tr = load_tr($lang, 'legal');
 $title = tr($tr, 'title');
-$stats_page = 'contact'; ?>
+$stats_page = 'legal'; ?>
 <!DOCTYPE html>
 <html lang="<?= $lang ?>">
 <?php require_once('include/header.php'); ?>

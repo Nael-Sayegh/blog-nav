@@ -159,7 +159,7 @@ if (isset($_GET['create']) && $_POST['name'] && $_POST['mail'] && $_POST['obj'] 
     $req = $bdd->prepare($SQL);
     $message = json_encode([['e' => $_POST['name'],'m' => 0,'d' => $time, 't' => $msg]]);
     $hash = hash('sha512', strval(time()).strval(random_int(0, mt_getrandmax())).$_POST['name'].strval(random_int(0, mt_getrandmax())));
-    $req->execute([':subject' => $obj, ':mail' => $_POST['mail'], ':name' => $_POST['name'], ':msg' => $message, ':hash' => $hash, ':date' => $time]);
+    $req->execute([':subject' => $_POST['obj'], ':mail' => $_POST['mail'], ':name' => $_POST['name'], ':msg' => $message, ':hash' => $hash, ':date' => $time]);
     $ticketId = $bdd->lastInsertId();
     $subject = "{$_POST['obj']} (Ticket #{$ticketId}#)";
     $teamBody = <<<HTML

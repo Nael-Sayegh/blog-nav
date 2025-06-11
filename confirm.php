@@ -17,9 +17,12 @@ if (isset($_GET['id']) && isset($_GET['h']))
         {
             $countReq = $bdd->query('SELECT COUNT(*) FROM accounts');
             $totalAccounts = (int) $countReq->fetchColumn();
-            $SQL = <<<SQL
-                UPDATE accounts SET confirmed = true'.($totalAccounts === 1 ? ', rank = :adminRank' : '').' WHERE id = :id
-                SQL;
+            $SQL = "UPDATE accounts SET confirmed = true";
+            if ($totalAccounts === 1)
+            {
+                $SQL .= ", rank = :adminRank";
+            }
+            $SQL .= " WHERE id = :id";
             $req = $bdd->prepare($SQL);
             $params = [':id' => $data['id']];
             if ($totalAccounts === 1)

@@ -72,7 +72,7 @@ if ($logged)
         $rep['myinfo']['mail'] = $login['email'];
         $rep['myinfo']['settings'] = $settings;
         $rep['myinfo']['rank'] = $login['rank'];
-        $rep['myinfo']['rights'] = $login['rights'];
+        $rep['myinfo']['rights'] = $login['member_rights'];
         $rep['myinfo']['twofa_enabled'] = $login['twofa_enabled'];
         $rep['myinfo']['twofa_secret'] = $login['twofa_secret'];
         $rep['myinfo']['signup_date'] = $login['signup_date'];

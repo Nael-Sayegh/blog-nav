@@ -13,7 +13,6 @@ if (isset($_GET['redirect']))
     $_SESSION['intended_after_login'] = filter_var($_GET['redirect'], FILTER_SANITIZE_URL);
 }
 $tr = load_tr($lang, 'login');
-$sound_path = '/audio/page_sounds/member.mp3';
 $title = tr($tr, 'title');
 
 $log = '';
@@ -100,8 +99,7 @@ elseif (isset($_GET['goodbye']))
 <html lang="<?= $lang ?>">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <div id="alertZone" role="alert" aria-live="assertive"></div>

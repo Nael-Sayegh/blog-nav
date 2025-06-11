@@ -42,7 +42,7 @@ function buildUserMenu(int $nNotifs)
         {
             $cid = urlencode((string) $_COOKIE['connectid']);
             $ses = urlencode((string) $_COOKIE['session']);
-            $items[] = ['href' => "https://www.nvda.fr/admin?cid={$cid}&ses={$ses}", 'label' => tr($tr0, 'loginbox_adminlink').' (NVDA.FR)'];
+            $items[] = ['href' => "https://www.nael-accessvision.com/admin?cid={$cid}&ses={$ses}", 'label' => tr($tr0, 'loginbox_adminlink').' (nael-accessvision)'];
         }
     }
 
@@ -71,7 +71,7 @@ function renderLoginBox($login, $logged, $settings)
         $displayName = getDisplayName();
 
         $menuItems = buildUserMenu($nNotifs);
-        echo "<div id=\"loginbox\"><details><summary>{$displayName}</summary><ul role=\"menu\">";
+        echo "<div id=\"loginbox\"><details><summary>{$displayName}</summary><ul>";
         foreach ($menuItems as $item)
         {
             echo '<li><a role="menuitem" class="hlink" href="'.$item['href'].'">'.$item['label'].'</a></li>';

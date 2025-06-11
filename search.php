@@ -4,7 +4,6 @@ require_once('include/log.php');
 require_once('include/consts.php');
 $tr = load_tr($lang, 'search');
 $title = tr($tr, 'title');
-$sound_path = '/audio/page_sounds/search.mp3';
 $stats_page = 'recherche';
 $css_path .= '<link rel="stylesheet" href="/css/search.css">';
 $searchterms = '';
@@ -33,8 +32,7 @@ if (isset($_GET['q']) && $_GET['q'] !== '' && strlen((string) $_GET['q']) <= 255
 <html lang="<?= $lang ?>">
 <?php require_once('include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php');
-require_once('include/load_sound.php'); ?>
+<?php require_once('include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php
 if (!empty($searchterms))

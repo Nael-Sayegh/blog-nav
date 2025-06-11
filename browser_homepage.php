@@ -3,7 +3,6 @@ require_once('include/log.php');
 require_once('include/consts.php');
 $tr = load_tr($lang, 'browser_homepage');
 $title = tr($tr, 'title');
-$sound_path = '/audio/page_sounds/homepage.mp3';
 $log = '';
 if (isset($_GET['act']) && $_GET['act'] === 'form')
 {

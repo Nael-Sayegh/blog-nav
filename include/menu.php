@@ -117,7 +117,7 @@ function render_menu(string $mode, array $items)
                     }
                     $title = htmlspecialchars($it['params']['title'] ?? '');
                     printf(
-                        '<li role="menuitem"%s><a href="%s" title="%s">%s</a></li>',
+                        '<li role="link"%s><a role="menuitem" href="%s" title="%s">%s</a></li>',
                         $cur,
                         $it['url'],
                         $title,
@@ -155,14 +155,13 @@ $items[] = ['type' => 'menutitle', 'label' => 'menu_usefull'];
 
 foreach ([
     '/settings.php'     => 'menu_sets',
-    '/gadgets.php'      => 'menu_gadgets',
-    '/contact.php'      => 'menu_infos',
-    '/contact_form.php' => 'menu_contact',
+//    '/gadgets.php'      => 'menu_gadgets',
+    '/contact.php'      => 'menu_contact',
+//    '/contact_form.php' => 'menu_contact',
     '/privacy.php'      => 'menu_privacy',
 ] as $url => $key)
 {
-    $params = $url === '/contact.php' ? ['site' => $site_name] : [];
-    $items[] = ['type' => 'link', 'url' => $url, 'label' => $key, 'params' => $params];
+    $items[] = ['type' => 'link', 'url' => $url, 'label' => $key, 'params' => isset($params)?$params:[]];
 }
 ?>
 <nav id="nav">
