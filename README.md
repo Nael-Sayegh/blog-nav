@@ -1,4 +1,4 @@
-# Blog Nael-Accessvision
+# Nael-Accessvision Blog
 
 This is the source code of [the ProgAccess website](https://progaccess.net).
 
