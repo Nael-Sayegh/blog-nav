@@ -31,9 +31,9 @@ $title = 'Liste des membres '.$site_name;
 <?php
 include_once('include/user_rank.php');
 $SQL = <<<SQL
-    SELECT accounts.id AS account_id, accounts.username AS account_name, accounts.signup_date AS account_signup_date, accounts.rank AS account_rank, accounts.settings AS settings, team.id AS team_id 
-    FROM accounts 
-    LEFT JOIN team ON team.account_id = accounts.id 
+    SELECT accounts.id AS account_id, accounts.username AS account_name, accounts.signup_date AS account_signup_date, accounts.rank AS account_rank, accounts.settings AS settings, team.id AS team_id
+    FROM accounts
+    LEFT JOIN team ON team.account_id = accounts.id
     ORDER BY accounts.signup_date DESC
     SQL;
 $n = 0;

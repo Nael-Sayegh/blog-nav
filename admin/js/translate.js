@@ -4,7 +4,7 @@ function trsfiles_add_tr(model)
     if(!key.match(/^[a-zA-Z0-9*_-]+$/))
         return;
     document.getElementById("tr_trsfiles_edit_add").value = "";
-    
+
     var html = '<tr>';
     if(model)
         html += '<td class="trform2"></td>';

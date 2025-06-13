@@ -168,7 +168,7 @@ if (!isDev() || isset($debug))
         <h2>Bonjour {{mail_user}},</h2>
         HTML;
     $body2 = <<<HTML
-        <hr><div role="complementary" aria-label="Informations sur l'abonnement"><p>Vous recevez la lettre d'informations {$site_name} car vous vous y êtes inscrit jusqu'au 
+        <hr><div role="complementary" aria-label="Informations sur l'abonnement"><p>Vous recevez la lettre d'informations {$site_name} car vous vous y êtes inscrit jusqu'au
         HTML;
     $body3 = <<<HTML
         , <a id="link" href="{SITE_URL}/nlmod.php?id=
@@ -182,7 +182,7 @@ if (!isDev() || isset($debug))
 
         TEXT;
     $altBody2 = <<<TEXT
-        Vous recevez la lettre d'informations {$site_name} car vous vous y êtes inscrit jusqu'au 
+        Vous recevez la lettre d'informations {$site_name} car vous vous y êtes inscrit jusqu'au
         TEXT;
     $altBody3 = <<<TEXT
 

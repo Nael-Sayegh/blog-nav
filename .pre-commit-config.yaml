@@ -1,0 +1,31 @@
+ci:
+    autofix_commit_msg: |
+        style(pre-commit.ci): auto fixes from pre-commit hooks
+
+        for more information, see https://pre-commit.ci
+    autoupdate_branch: 'dev'
+    autoupdate_commit_msg: 'ci(deps): pre-commit autoupdate'
+    autoupdate_schedule: weekly
+default_stages:
+  - "pre-commit"
+default_install_hook_types:
+  - "pre-commit"
+  - "commit-msg"
+  - "post-checkout"
+  - "post-merge"
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+        exclude: '(^.+\.(md|txt|css)$)|(^LICENSE$)'
+      - id: mixed-line-ending
+        exclude: '(^.+\.(md|txt|css)$)|(^LICENSE$)'
+        args:
+          - "--fix=lf"
+      - id: trailing-whitespace
+        exclude: '(^.+\.(md|txt|css)$)|(^LICENSE$)'
+      - id: check-case-conflict

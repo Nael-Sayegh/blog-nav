@@ -1082,7 +1082,7 @@ if (isset($_GET['listfiles']))
         const rows    = Array.from(tbody.querySelectorAll('tr'));
         function sortRows(criteria)
         {
-            const sorted = rows.slice().sort((a, b) => 
+            const sorted = rows.slice().sort((a, b) =>
             {
                 let va = a.dataset[criteria], vb = b.dataset[criteria];
                 if (['date','hits','filesize'].includes(criteria))
@@ -1122,7 +1122,7 @@ elseif (isset($_GET['list']))
         const rows    = Array.from(tbody.querySelectorAll('tr'));
         function sortRows(criteria)
         {
-            const sorted = rows.slice().sort((a, b) => 
+            const sorted = rows.slice().sort((a, b) =>
             {
                 let va = a.dataset[criteria], vb = b.dataset[criteria];
                 if (['date','hits'].includes(criteria))

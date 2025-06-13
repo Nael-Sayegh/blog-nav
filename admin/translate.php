@@ -31,9 +31,9 @@ if (isset($_GET['type']))
     if ($_GET['type'] === 'article' && isset($_GET['id']))
     {
         $SQL = <<<SQL
-            SELECT softwares.*, softwares_categories.name AS category_name 
-            FROM softwares 
-            LEFT JOIN softwares_categories ON softwares_categories.id=softwares.category 
+            SELECT softwares.*, softwares_categories.name AS category_name
+            FROM softwares
+            LEFT JOIN softwares_categories ON softwares_categories.id=softwares.category
             WHERE softwares.id=:id LIMIT 1
             SQL;
         $req = $bdd->prepare($SQL);
@@ -334,7 +334,7 @@ if (isset($_GET['type']))
 <thead><tr><th></th><th>Langue</th><th>Dernier auteur</th><th>Dernière modif</th><th>État</th><th>Publiée</th><th>Actions</th></tr></thead>
 <tbody><?php
             $SQL2 = <<<SQL
-                SELECT softwares_tr.*, languages.name AS language FROM softwares_tr 
+                SELECT softwares_tr.*, languages.name AS language FROM softwares_tr
                 LEFT JOIN languages ON languages.lang=softwares_tr.lang
                 WHERE sw_id=:swid
                 SQL;

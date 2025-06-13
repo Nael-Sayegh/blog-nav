@@ -139,6 +139,6 @@ Veuillez noter que la lettre d'informations <?php print $site_name; ?> est envoy
 <input type="submit" value="S'abonner">
 </form>
 </main>
-<?php require_once('include/footer.php'); ?> 
+<?php require_once('include/footer.php'); ?>
 </body>
 </html>

@@ -195,6 +195,6 @@ if (isset($_GET['redir']) && $_GET['redir'])
 </form>
 <p>Ne plus recevoir de lettres d'information&nbsp;: <a href="?stop&id=<?= $nldata['hash'] ?>">Se désabonner</a></p>
 </main>
-<?php require_once('include/footer.php'); ?> 
+<?php require_once('include/footer.php'); ?>
 </body>
 </html>

@@ -121,8 +121,8 @@ if (isset($_GET['comment']) && isset($_POST['text']) && isset($logged) && $logge
         $sql = <<<SQL
             SELECT accounts.id, accounts.rank, accounts.subscribed_comments, subscriptions_comments.id AS is_sub
             FROM accounts
-            LEFT JOIN subscriptions_comments 
-            ON subscriptions_comments.account = accounts.id 
+            LEFT JOIN subscriptions_comments
+            ON subscriptions_comments.account = accounts.id
             AND subscriptions_comments.article = :swid
             SQL;
         $req2 = $bdd->prepare($sql);
@@ -676,7 +676,7 @@ function subscribe_comments(e, mod)
         const rows    = Array.from(tbody.querySelectorAll('tr'));
         function sortRows(criteria)
         {
-            const sorted = rows.slice().sort((a, b) => 
+            const sorted = rows.slice().sort((a, b) =>
             {
                 let va = a.dataset[criteria], vb = b.dataset[criteria];
                 if (['date','hits','filesize'].includes(criteria))

@@ -11,14 +11,14 @@ class ComposerStaticInit8c86e9952b1644f397343b1eabc0f525
     );
 
     public static $prefixLengthsPsr4 = array (
-        'F' => 
+        'F' =>
         array (
             'Facebook\\' => 9,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Facebook\\' => 
+        'Facebook\\' =>
         array (
             0 => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook',
         ),
