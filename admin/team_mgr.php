@@ -119,7 +119,7 @@ if (isset($_GET['mod']))
 <option value="0" <?php if ($data['works'] === '0')
 {
     echo 'selected';
-} ?>>NVDA.FR</option>
+} ?>>Nael-Accessvision</option>
 <option value="1" <?php if ($data['works'] === '1')
 {
     echo 'selected';
@@ -127,7 +127,7 @@ if (isset($_GET['mod']))
 <option value="2" <?php if ($data['works'] === '2')
 {
     echo 'selected';
-} ?>>NVDA.FR et <?php print $site_name; ?></option>
+} ?>>Nael-Accessvision et <?php print $site_name; ?></option>
 </select><br>
 <label for="f2_mastodon">Pseudo Mastodon (sans le @ et avec l'instance si différent de mastodon.progaccess.net)&nbsp;:</label><input type="text" name="mastodon" id="f2_mastodon" maxlength="255" value="<?= $data['mastodon'] ?>"><br>
 <fieldset>
@@ -171,9 +171,9 @@ foreach ($bdd->query($SQL) as $data)
 <textarea id="f_bio" name="bio" style="width:100%;height:10em;"></textarea><br>
 <label for="f_works">Travaille pour&nbsp;:</label>
 <select id="f_works" name="works">
-<option value="0">NVDA.FR</option>
+<option value="0">Nael-Accessvision</option>
 <option value="1"><?php print $site_name; ?></option>
-<option value="2">NVDA.FR et <?php print $site_name; ?></option>
+<option value="2">Nael-Accessvision et <?php print $site_name; ?></option>
 </select><br>
 <label for="f_mastodon">Pseudo Mastodon (sans le @ et avec l'instance si différent de mastodon.progaccess.net)&nbsp;:</label><input type="text" name="mastodon" id="f_mastodon" maxlength="255"><br>
 <fieldset>
