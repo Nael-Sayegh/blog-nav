@@ -2,7 +2,7 @@
 
 $logonly = true;
 $adminonly = true;
-$justpa = true;
+$justbn = true;
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
 requireAdminRight('view_phpinfo');
 echo phpinfo();

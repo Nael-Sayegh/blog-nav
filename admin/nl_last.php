@@ -1,6 +1,6 @@
 <?php $logonly = true;
 $adminonly = true;
-$justpa = true;
+$justbn = true;
 $titlePAdm = 'Réinitialiser la date de dernier envoi';
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');

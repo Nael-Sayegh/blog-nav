@@ -104,7 +104,7 @@ if (isset($adminonly) && $adminonly && $login['rank'] !== 'a')
     require_once($_SERVER['DOCUMENT_ROOT'].'/403/403.php');
     exit();
 }
-if (isset($justpa) && $justpa && $login['works'] === '0')
+if (isset($justbn) && $justbn && $login['works'] === '1')
 {
     header('Location: https://www.nael-accessvision.com/admin/');
     exit();
