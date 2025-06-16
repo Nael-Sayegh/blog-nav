@@ -40,7 +40,7 @@ if (defined('CESIUM_URL') && ($cesiumUrl = constant('CESIUM_URL')))
 <?php } ?>
 </details>
 <?php endif; ?>
-<a href="mention.php"><?php echo tr($tr0,'footer_mention'); ?></a><br>
+<a href="legal.php"><?php echo tr($tr0,'footer_mention'); ?></a><br>
 Copyright &copy 2020-<?php print date('Y'); ?> <?= tr($tr0, 'footer_copyright', ['site' => $site_name]) ?><br>
 <?= tr($tr0, 'footer_license', ['site' => $site_name,'license' => '<a href="https://www.gnu.org/licenses/licenses.html#AGPL" title="GNU Affero General Public License v3">GNU AGPL v3</a>','trlicense' => '<a href="http://creativecommons.org/licenses/by-sa/4.0/" title="Creative Commons Attribution-ShareAlike 4.0 International License">CC BY-SA 4.0</a>']) ?><br>
 <p><?php getContentLastModif(); ?><br>
