@@ -613,8 +613,8 @@ if (isset($logged) && $logged && (checkMemberRights('comment_articles') || ($log
 </fieldset>
 </form>
 <script>init_close_confirm();</script>
-<?php }
-/*else
+<?php /*}
+else
 {
     echo tr($tr, 'limitcommentext');
 }*/ ?>-->
