@@ -542,10 +542,10 @@ endif; ?>
 <?php //endfor; ?>
 </div>
 </fieldset>
-<button type="submit"><?= tr($tr, ($user_rating === null) ? 'rating_submit' : 'rating_update') ?></button><?php /*if ($user_rating !== null)
+<button type="submit"><?= tr($tr, ($user_rating === null) ? 'rating_submit' : 'rating_update') ?></button><?php /* if ($user_rating !== null)
 {
     echo ' | <a href="?deleterating">'.tr($tr, 'delete_rating').'</a>';
-}*/ ?>
+} */ ?>
 </form>
 <?php //else: ?>
 <p><em><?= tr($tr, 'rating_login_required') ?></em></p>
