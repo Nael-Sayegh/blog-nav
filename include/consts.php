@@ -213,7 +213,7 @@ function getUsernameById($id)
         {
             if ($user['rank'] === "a")
             {
-                $req2 = $bdd->prepare('SELECT short_name FROM team WHERE account_id = '.$user['id']);
+                $req2 = $bdd2->prepare('SELECT short_name FROM team WHERE account_id = '.$user['id']);
                 $req2->execute();
                 if ($admin = $req2->fetch())
                 {
