@@ -510,15 +510,15 @@ if (!$first)
         $avg = rtrim(rtrim($avg, '0'), '.');
     }
 ?>
-<tr>
+<!--<tr>
 <td><?= tr($tr, 'rating_average') ?></td>
-<td><?php if ($rating_count === 0): ?>
+<td><?php //if ($rating_count === 0): ?>
 <em><?= tr($tr, 'rating_no_votes') ?></em>
-<?php else:
+<?php /*else:
     echo tr($tr, 'rating_details', ['avg' => numberlocale($avg), 'count' => $rating_count]);
-endif; ?>
+endif;*/ ?>
 </td>
-</tr>
+</tr>-->
 </tbody>
 </table>
 <details>
