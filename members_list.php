@@ -7,7 +7,7 @@ set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/consts.php');
 $css_path .= '<style>#member-list tr:nth-child(odd){background-color:#E0E0E0;}</style>';
 
-$tr = tr($lang, 'members_list');
+$tr = load_tr($lang, 'members_list');
 $title = tr($tr,'title');
 ?>
 <!DOCTYPE html>
