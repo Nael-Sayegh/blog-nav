@@ -4,9 +4,9 @@ $tr = [
   '_' => 'privacy',
   '_todo_level' => 0,
   '_last_author' => 'Nael Sayegh',
-  '_last_modif' => 1750692240,
+  '_last_modif' => 1750692493,
   'title' => 'politique de confidentialité {{site}}',
-  'maintext' => <<<html
+  'maintext' => <<<ENDSTR
     <h2>{{site}} respecte votre vie privée</h2>
     <p>Aucune de vos données personnelles (cookies, adresse IP, etc.) n'est transmise à un tiers.<br>
     Votre adresse IP est conservée temporairement pour des raisons techniques (comptage anonyme des visiteurs, antispam, utilisation de l'espace membre, modification d'un commentaire sur un article), mais ne servira pas à vous identifier.</p>
@@ -26,5 +26,5 @@ $tr = [
     <h3>En savoir plus</h3>
     <p>Si vous désirez en savoir plus sur la sécurité de vos données, nos méthodes, votre anonymat, ou toute autre chose, vous pouvez nous contacter via le <a href="/contact.php">page de contact</a> avec le sujet "<i>demande sur la politique de confidentialité</i>".</p>
     <p>Vous disposez également d'un droit d'accès, de modification et de suppression de vos données, à condition de pouvoir vous identifier comme le propriétaire de ces données.</p>
-    html,
+    ENDSTR,
 ];
