@@ -9,8 +9,6 @@ return static function (RectorConfig $config): void {
     $config->paths([
         __DIR__,
         __DIR__.'/admin',
-        __DIR__.'/api',
-        __DIR__.'/gadgets',
         __DIR__.'/include',
         __DIR__.'/tasks',
         __DIR__.'/a',
