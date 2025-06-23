@@ -1,4 +1,5 @@
 <?php set_include_path($_SERVER['DOCUMENT_ROOT']);
+set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/log.php');
 require_once('include/consts.php');
 $tr = load_tr($lang, 'privacy');

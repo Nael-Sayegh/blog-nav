@@ -6,7 +6,9 @@ $stats_page = 'liste_comptes';
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 require_once('include/consts.php');
 $css_path .= '<style>#member-list tr:nth-child(odd){background-color:#E0E0E0;}</style>';
-$title = 'Liste des membres '.$site_name;
+
+$tr = tr($lang, 'members_list');
+$title = tr($tr,'title');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,17 +18,17 @@ $title = 'Liste des membres '.$site_name;
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <div id="js-sort-container" hidden style="margin:1em 0;">
-  <label for="js_sort">Trier par :</label>
+  <label for="js_sort"><?= tr($tr,'sort_by'); ?></label>
   <select id="js_sort">
-    <option value="signup_date">Date d’inscription</option>
-    <option value="username">Ordre alphabétique</option>
+    <option value="signup_date"><?= tr($tr,'sort_by_sigup_date'); ?></option>
+    <option value="username"><?= tr($tr,'sort_by_alpha'); ?></option>
   </select>
 </div>
 <noscript>
-  <p>Activez JavaScript pour trier les membres</p>
+  <?= tr($tr,'enable_js'); ?>
 </noscript>
 <table style="width:100%;">
-<thead><tr><th>Numéro de membre</th><th>Nom</th><th>Inscription</th><th>Rang</th><?php /*<th>Actions</th>*/ ?></tr></thead>
+<thead><tr><th><?= tr($tr,'table_id_member'); ?></th><th><?= tr($tr,'table_name'); ?></th><th><?= tr($tr,'table_signup'); ?></th><th><?= tr($tr,'table_rank'); ?></th><?php /*<th>Actions</th>*/ ?></tr></thead>
 <tbody id="member-list">
 <?php
 include_once('include/user_rank.php');
