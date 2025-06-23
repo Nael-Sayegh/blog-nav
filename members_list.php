@@ -67,7 +67,7 @@ foreach ($bdd2->query($SQL) as $data)
 ?>
 </tbody>
 </table>
-<p><b><?= $n ?></b> membres trouvés</p>
+<?= tr($tr,'table_count_members',['count'=>$n]); ?>
 </main>
 <?php require_once('include/footer.php'); ?>
 <script>
