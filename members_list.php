@@ -20,7 +20,7 @@ $title = tr($tr,'title');
 <div id="js-sort-container" hidden style="margin:1em 0;">
   <label for="js_sort"><?= tr($tr,'sort_by'); ?></label>
   <select id="js_sort">
-    <option value="signup_date"><?= tr($tr,'sort_by_sigup_date'); ?></option>
+    <option value="signup_date"><?= tr($tr,'sort_by_signup_date'); ?></option>
     <option value="username"><?= tr($tr,'sort_by_alpha'); ?></option>
   </select>
 </div>
