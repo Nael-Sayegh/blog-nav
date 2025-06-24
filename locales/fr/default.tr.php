@@ -4,7 +4,7 @@ $tr = [
   '_' => 'default',
   '_todo_level' => 0,
   '_last_author' => 'Nael Sayegh',
-  '_last_modif' => 1750579091,
+  '_last_modif' => 1750746386,
   'slogan' => 'Trouvez votre solution!',
   'banner_homelink' => 'Retour à l\'accueil',
   'fndate' => 'dd/MM/yyyy',
@@ -45,7 +45,6 @@ $tr = [
   'footer_fb' => 'Facebook',
   'footer_x' => 'X',
   'footer_copyright' => '{{site}}',
-  'footer_license' => 'Le <a href="/opensource.php">code de {{site}}</a> est mis à disposition sous licence {{license}}.<br>
 Le texte est sous licence {{trlicense}}.',
   'footer_toplink' => 'Haut de page',
   'footer_menulink' => 'Menu',
