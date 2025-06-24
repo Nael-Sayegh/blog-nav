@@ -69,7 +69,7 @@ elseif (isset($_GET['act']) && $_GET['act'] === '0')
 $stats_page = 'parametres';
 $title = tr($tr, 'title'); ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?= $lang; ?>">
 <?php require_once('include/header.php'); ?>
 <body>
 <?php require_once('include/banner.php'); ?>
