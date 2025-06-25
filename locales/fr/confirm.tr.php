@@ -4,7 +4,7 @@ $tr = [
   '_' => 'confirm',
   '_todo_level' => 0,
   '_last_author' => 'Nael Sayegh',
-  '_last_modif' => 1750836061,
+  '_last_modif' => 1750836574,
   'mail_info_subject' => 'Vos informations de membre',
   'mail_info_body_html' => <<<HTML
       <h2>Bonjour {{username}} et bienvenue dans la communauté {{site}}</h2>
@@ -13,7 +13,7 @@ $tr = [
       <li>Nom d'utilisateur : {{username}}</li>
       <li>Adresse mail : {{email}}</li>
       <li>Numéro de membre : M{{id}}</li>
-      <li>Date d'inscription : {{memberSignupDate}}</li>
+      <li>Date d'inscription : {{signup_date}}</li>
       </ul>
     HTML,
   'mail_info_body_text' => <<<TEXT
@@ -23,6 +23,6 @@ $tr = [
       - Nom d'utilisateur : {{username}}
       - Adresse mail : {{email}}
       - Numéro de membre : M{{id}}
-      - Date d'inscription : {{memberSignupDate}}
+      - Date d'inscription : {{signup_date}}
     TEXT,
 ];
