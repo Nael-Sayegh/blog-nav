@@ -44,26 +44,11 @@ $SQL = <<<SQL
     SQL;
 $req = $bdd->prepare($SQL);
 $req->execute([':sw_id' => $sw['id'], ':lang' => $lang]);
+// Only show articles that have a translation in the user's current language
 if (!$sw_tr = $req->fetch())
 {
-    foreach ($langs_prio as &$i)
-    {
-        $SQL = <<<SQL
-            SELECT * FROM softwares_tr WHERE sw_id=:sw_id AND lang=:lang AND published=true LIMIT 1
-            SQL;
-        $req = $bdd->prepare($SQL);
-        $req->execute([':sw_id' => $sw['id'], ':lang' => $i]);
-        if ($sw_tr = $req->fetch())
-        {
-            break;
-        }
-    }
-    unset($i);
-    if (!$sw_tr)
-    {
-        header('Location: /?sw_tr_error');
-        exit();
-    }
+    header('Location: /?sw_tr_error');
+    exit();
 }
 
 $tr = load_tr($lang, 'article');
