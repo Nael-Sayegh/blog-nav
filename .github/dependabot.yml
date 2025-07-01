@@ -1,0 +1,31 @@
+version: 2
+updates:
+  # Composer dependencies for main project
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    # Equivalent to Renovate's rebaseStalePrs
+    rebase-strategy: "auto"
+    # Equivalent to vulnerability alerts and lock file maintenance
+    open-pull-requests-limit: 10
+    assignees:
+      - "Nael-Sayegh"
+    labels:
+      - "dependencies"
+      - "php"
+    # Note: Dependabot automatically ignores vendor/ directories
+    # The include/lib/facebook/composer.json path from Renovate's ignorePaths
+    # is handled by only monitoring the root directory
+
+  # Git submodules (equivalent to Renovate's git-submodules: enabled)
+  - package-ecosystem: "gitsubmodule"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+    assignees:
+      - "Nael-Sayegh"
+    labels:
+      - "dependencies"
+      - "submodules"
