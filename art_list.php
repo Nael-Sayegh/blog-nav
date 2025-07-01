@@ -65,26 +65,12 @@ foreach ($bdd->query($SQL) as $data)
 
 foreach ($entries as $sw_id => $entry)
 {
-    $entry_tr = '';
-    if (array_key_exists($lang, $entry['trs']))
+    // Only show articles that have a translation in the user's current language
+    if (!array_key_exists($lang, $entry['trs']))
     {
-        $entry_tr = $lang;
+        continue; // Skip articles without translation in current language
     }
-    else
-    {
-        foreach ($langs_prio as &$i_lang)
-        {
-            if (array_key_exists($i_lang, $entry['trs']))
-            {
-                $entry_tr = $i_lang;
-                break;
-            }
-        }
-    }
-    unset($i_lang);
-    if (empty($entry_tr)) // Error: sw has no translations
-    {continue;
-    }
+    $entry_tr = $lang;
 
     echo '<li><a href="/a'.$sw_id.'" role="heading" aria-level="2">A'.$sw_id.'&nbsp;: '.str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']).'</a> (<a href="/c'.$entry['cat'].'">'.$catMap[$entry['cat']].'</a>)</li>';
 }
