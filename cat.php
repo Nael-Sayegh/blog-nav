@@ -51,11 +51,13 @@ $SQL = <<<SQL
     SELECT softwares_tr.id, softwares_tr.lang, softwares_tr.name, softwares_tr.description, softwares_tr.sw_id, softwares.hits, softwares.downloads, softwares.date
     FROM softwares
     LEFT JOIN softwares_tr ON softwares.id=softwares_tr.sw_id
-    WHERE softwares.category=:sw_cat AND softwares_tr.published=true
+    WHERE softwares.category=:sw_cat AND softwares_tr.lang=:lang AND softwares_tr.published=true
     ORDER BY softwares.date DESC
     SQL;
 $req = $bdd->prepare($SQL);
-$req->execute([':sw_cat' => $cat_id]);
+$req->execute([':sw_cat' => $cat_id,
+':lang' => $lang]
+);
 while ($data = $req->fetch())
 {
     if (!isset($entries[$data['sw_id']]))
