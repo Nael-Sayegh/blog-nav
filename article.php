@@ -81,7 +81,7 @@ function getSoftwareFiles($swId)
     return $req->fetchAll();
 }
 
-function canManageComment(array $comment)
+/*function canManageComment(array $comment)
 {
     global $logged, $login;
     if (empty($logged) || !$logged)
@@ -278,7 +278,7 @@ if (isset($_GET['deleterating']) && isset($logged) && $logged && checkMemberRigh
     $req->execute([':sw' => $sw['id'], 'acc' => $login['id']]);
     header("Location: /a{$sw['id']}");
     exit();
-}
+}*/
 $catMap = [];
 $SQL = <<<SQL
     SELECT id, name FROM softwares_categories
@@ -305,7 +305,7 @@ if (isset($logged) && $logged && $login['rank'] === 'a' && in_array($login['work
 </ul>
 <?php
 }
-if (isset($logged) && $logged && $login['rank'] !== 'a')
+/*if (isset($logged) && $logged && $login['rank'] !== 'a')
 {
     $SQL = <<<SQL
         SELECT id FROM subscriptions_comments WHERE account=:acc AND article=:id LIMIT 1
@@ -315,7 +315,7 @@ if (isset($logged) && $logged && $login['rank'] !== 'a')
     $sub = $req->fetch() ? true : false;
     echo '<a id="btunsub1" class="comments_btsubscription" href="?id='.$sw['id'].'&unsubscribe-comments&token='.$login['token'].'" title="'.tr($tr, 'comments_unsubscribe_long').'" onclick="subscribe_comments(event, false)" style="display:'.($sub ? 'initial' : 'none').'">'.tr($tr, 'comments_unsubscribe').'</a>';
     echo '<a id="btsub1" class="comments_btsubscription" href="?id='.$sw['id'].'&subscribe-comments&token='.$login['token'].'" title="'.tr($tr, 'comments_subscribe_long').'" onclick="subscribe_comments(event, true)" style="display:'.($sub ? 'none' : 'initial').'">'.tr($tr, 'comments_subscribe').'</a>';
-}
+}*/
 echo '<div id="descart" role="article">'.convertToMD(str_replace('{{site}}', $site_name, $sw_tr['text'])).'</div>';
 $fichiersexistants = false;
 $first = true;
@@ -510,15 +510,15 @@ if (!$first)
         $avg = rtrim(rtrim($avg, '0'), '.');
     }
 ?>
-<tr>
+<!--<tr>
 <td><?= tr($tr, 'rating_average') ?></td>
-<td><?php if ($rating_count === 0): ?>
+<td><?php //if ($rating_count === 0): ?>
 <em><?= tr($tr, 'rating_no_votes') ?></em>
-<?php else:
+<?php /*else:
     echo tr($tr, 'rating_details', ['avg' => numberlocale($avg), 'count' => $rating_count]);
-endif; ?>
+endif;*/ ?>
 </td>
-</tr>
+</tr>-->
 </tbody>
 </table>
 <details>
@@ -530,29 +530,29 @@ endif; ?>
 }
 ?></ul>
 </details>
-<h2><?= tr($tr, 'comments_title') ?></h2>
-<?php if (isset($logged) && $logged && checkMemberRights('comment_articles')): ?>
-<form action="?id=<?= $sw['id'] ?>&rate" method="post" class="rating-form">
+<!--<h2><?= tr($tr, 'comments_title') ?></h2>-->
+<?php /*if (isset($logged) && $logged && checkMemberRights('comment_articles')):*/ ?>
+<!--<form action="?id=<?= $sw['id'] ?>&rate" method="post" class="rating-form">
 <fieldset>
 <legend><?= tr($tr, 'rating_label') ?></legend>
 <div class="rating-radios">
-<?php for ($i = 1; $i <= 5; $i++): ?>
+<?php /*for ($i = 1; $i <= 5; $i++):*/ ?>
 <input type="radio" name="rating" id="rating<?= $i ?>" value="<?= $i ?>"<?= $user_rating === $i ? 'checked' : '' ?>>
 <label for="rating<?= $i ?>"><?= $i == 1 ? $i . " (".tr($tr,'rating_1_explanation').")" : ($i == 5 ? $i ." (".tr($tr,'rating_5_explanation').")" : $i) ?></label>
-<?php endfor; ?>
+<?php //endfor; ?>
 </div>
 </fieldset>
-<button type="submit"><?= tr($tr, ($user_rating === null) ? 'rating_submit' : 'rating_update') ?></button><?php if ($user_rating !== null)
+<button type="submit"><?= tr($tr, ($user_rating === null) ? 'rating_submit' : 'rating_update') ?></button><?php /* if ($user_rating !== null)
 {
     echo ' | <a href="?deleterating">'.tr($tr, 'delete_rating').'</a>';
-} ?>
+} */ ?>
 </form>
-<?php else: ?>
+<?php //else: ?>
 <p><em><?= tr($tr, 'rating_login_required') ?></em></p>
-<?php endif; ?>
+<?php //endif; ?>
 <div id="comments">
 <?php
-$SQL = <<<SQL
+/*$SQL = <<<SQL
     SELECT * FROM softwares_comments WHERE sw_id=:swid ORDER BY date DESC LIMIT 20
     SQL;
 $req = $bdd->prepare($SQL);
@@ -581,7 +581,7 @@ if (isset($_GET['cedit']))
     if ($data = $req->fetch())
     {
         if (canManageComment($data))
-        {
+        {*/
             ?>
 <form action="?id=<?php echo $sw['id'].'&cedit2='.$data['id'] ?>" method="post" id="cedit">
 <fieldset><legend><?= tr($tr, 'comments_mod') ?></legend>
@@ -591,33 +591,33 @@ if (isset($_GET['cedit']))
 </fieldset>
 </form>
 <script>init_close_confirm();</script>
-<?php }
+<?php /*}
         } $req->closeCursor();
 }
 if (isset($logged) && $logged && (checkMemberRights('comment_articles') || ($login['rank'] === 'a' && checkAdminRights('manage_comments'))))
-{ ?>
+{*/ ?>
 <form action="?id=<?php echo $sw['id'] ?>&comment" method="post" id="comment_write">
-<?php if ($comlog !== '')
+<?php /*if ($comlog !== '')
 {
     echo '<strong>'.$comlog.'</strong>';
-} ?>
+}*/ ?>
 <fieldset><legend><?= tr($tr, 'comments_send') ?></legend>
 <p><?= tr($tr, 'comments_warn') ?></p>
 <p><?= tr($tr, 'comments_nickname', ['nickname' => getUsernameById($login['id'])]) ?></p>
 <label for="fc_text"><?= tr($tr, 'comments_text') ?></label><br>
-<textarea id="fc_text" class="ta" name="text" maxlength="1023" onkeyup="close_confirm=true"><?php if (isset($_POST['text']) && strlen((string) $_POST['text']) <= 1023)
+<textarea id="fc_text" class="ta" name="text" maxlength="1023" onkeyup="close_confirm=true"><?php /*if (isset($_POST['text']) && strlen((string) $_POST['text']) <= 1023)
 {
     echo htmlentities((string) $_POST['text']);
-} ?></textarea><br>
+}*/ ?></textarea><br>
 <input type="submit" value="<?= tr($tr, 'comments_ok') ?>">
 </fieldset>
 </form>
 <script>init_close_confirm();</script>
-<?php }
+<?php /*}
 else
 {
     echo tr($tr, 'limitcommentext');
-} ?>
+}*/ ?>-->
 </div>
 </main>
 <?php require_once('include/footer.php');
