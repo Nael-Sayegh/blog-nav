@@ -9,3 +9,7 @@ $SQL = <<<SQL
     SQL;
 $req = $bdd->prepare($SQL);
 $req->execute([':exp' => time() - 2419200]);
+
+foreach ($bdd->query($SQL) as $data) {
+    // Traitement des données
+}
