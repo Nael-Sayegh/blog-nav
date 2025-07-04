@@ -42,7 +42,7 @@ function buildUserMenu(int $nNotifs)
         {
             $cid = urlencode((string) $_COOKIE['connectid']);
             $ses = urlencode((string) $_COOKIE['session']);
-            $items[] = ['href' => "https://www.blog.nael-accessvision.com/admin?cid={$cid}&ses={$ses}", 'label' => tr($tr0, 'loginbox_adminlink').' (Blog nael-accessvision)'];
+            $items[] = ['href' => "https://www.nael-accessvision.com/admin?cid={$cid}&ses={$ses}", 'label' => tr($tr0, 'loginbox_adminlink').' (nael-accessvision)'];
         }
     }
 

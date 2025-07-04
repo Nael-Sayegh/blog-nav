@@ -106,6 +106,6 @@ if (isset($adminonly) && $adminonly && $login['rank'] !== 'a')
 }
 if (isset($justbn) && $justbn && $login['works'] === '1')
 {
-    header('Location: https://www.blog.nael-accessvision.com/admin/');
+    header('Location: https://www.nael-accessvision.com/admin/');
     exit();
 }

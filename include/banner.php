@@ -5,7 +5,7 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && str_contains((string) $_SERVER['HTTP_U
 {
     include 'include/trident.php';
 }
-//include 'include/loginbox.php';
+include 'include/loginbox.php';
 include 'include/searchtool.php'; ?>
 </header>
 <?php include 'include/menu.php'; ?>
