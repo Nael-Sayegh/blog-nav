@@ -89,13 +89,14 @@ foreach ($entries as $sw_id => $entry)
     }
 
     printf(
-        '<div class="software" role="heading" aria-level="2" data-date="%d" data-hits="%d" data-name="%s">
-    <a class="software_title" href="a%d">%s</a>
-    </div>
-    <p>%s<br>
-    <span class="software_hits">%s</span>
-    <span class="software_date">(%s)</span>
-    </p>',
+        '<div class="software" data-date="%d" data-hits="%d" data-name="%s">
+        <span role="heading" aria-level="2">
+        <a class="software_title" href="a%d">%s</a>
+        </span>
+        <p>%s<br>
+        <span class="software_hits">%s</span>
+        <span class="software_date">(%s)</span>
+        </p></div>',
         $entry['date'],
         $entry['hits'],
         htmlspecialchars(strtolower(str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']))),
