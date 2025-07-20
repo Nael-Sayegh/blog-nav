@@ -51,43 +51,25 @@ $SQL = <<<SQL
     SELECT softwares_tr.id, softwares_tr.lang, softwares_tr.name, softwares_tr.description, softwares_tr.sw_id, softwares.hits, softwares.downloads, softwares.date
     FROM softwares
     LEFT JOIN softwares_tr ON softwares.id=softwares_tr.sw_id
-    WHERE softwares.category=:sw_cat AND softwares_tr.published=true
+    WHERE softwares.category=:sw_cat AND softwares_tr.published=true AND softwares_tr.lang=:lang
     ORDER BY softwares.date DESC
     SQL;
 $req = $bdd->prepare($SQL);
-$req->execute([':sw_cat' => $cat_id]);
+$req->execute([':sw_cat' => $cat_id, ':lang' => $lang]);
 while ($data = $req->fetch())
 {
-    if (!isset($entries[$data['sw_id']]))
-    {
-        $entries[$data['sw_id']] = ['hits' => $data['hits'], 'dl' => $data['downloads'], 'date' => $data['date'], 'trs' => []];
-    }
-    $entries[$data['sw_id']]['trs'][$data['lang']] = ['id' => $data['id'], 'title' => $data['name'], 'desc' => $data['description']];
+    $entries[$data['sw_id']] = [
+        'hits' => $data['hits'],
+        'dl' => $data['downloads'],
+        'date' => $data['date'],
+        'id' => $data['id'],
+        'title' => $data['name'],
+        'desc' => $data['description']
+    ];
 }
 
 foreach ($entries as $sw_id => $entry)
 {
-    $entry_tr = '';
-    if (array_key_exists($lang, $entry['trs']))
-    {
-        $entry_tr = $lang;
-    }
-    else
-    {
-        foreach ($langs_prio as &$i_lang)
-        {
-            if (array_key_exists($i_lang, $entry['trs']))
-            {
-                $entry_tr = $i_lang;
-                break;
-            }
-        }
-    }
-    unset($i_lang);
-    if (empty($entry_tr)) // Error: sw has no translations
-    {continue;
-    }
-
     printf(
         '<div class="software" data-date="%d" data-hits="%d" data-name="%s">
         <span role="heading" aria-level="2">
@@ -99,10 +81,10 @@ foreach ($entries as $sw_id => $entry)
         </p></div>',
         $entry['date'],
         $entry['hits'],
-        htmlspecialchars(strtolower(str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']))),
+        htmlspecialchars(strtolower(str_replace('{{site}}', $site_name, $entry['title']))),
         $sw_id,
-        str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['title']),
-        str_replace('{{site}}', $site_name, $entry['trs'][$entry_tr]['desc']),
+        str_replace('{{site}}', $site_name, $entry['title']),
+        str_replace('{{site}}', $site_name, $entry['desc']),
         tr($tr, 'hits', ['hits' => $entry['hits']]),
         tr($tr, 'date', ['date' => getFormattedDate($entry['date'], tr($tr0, 'fndatetime'))])
     );
