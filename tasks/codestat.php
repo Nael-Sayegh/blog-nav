@@ -119,8 +119,3 @@ foreach ($files as $file)
 $outfile = fopen($document_root.'/cache/codestatc.php', 'w');
 fputs($outfile, '<?php $codestat_n_files='.$n_files.';$codestat_n_lines='.$n_lines.';$codestat_n_chars='.$n_chars.'; ?>');
 fclose($outfile);
-
-foreach ($bdd->query($SQL) as $data)
-{
-    // ... existing code ...
-}
