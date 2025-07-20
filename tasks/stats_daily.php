@@ -18,7 +18,7 @@ $SQL = <<<SQL
     SQL;
 $req = $bdd->prepare($SQL);
 $req->execute([':beg' => time() - 86400, ':end' => time()]);
-foreach ($bdd->query($SQL) as $data)
+while ($data = $req->fetch())
 {
     if (isset($visitors[$data['domain']]))
     {
