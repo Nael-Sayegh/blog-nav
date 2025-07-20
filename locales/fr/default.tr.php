@@ -4,7 +4,7 @@ $tr = [
   '_' => 'default',
   '_todo_level' => 0,
   '_last_author' => 'Nael Sayegh',
-  '_last_modif' => 1751651997,
+  '_last_modif' => 1753024769,
   'slogan' => 'Trouvez votre solution!',
   'banner_homelink' => 'Retour à l\'accueil',
   'fndate' => 'dd/MM/yyyy',
@@ -93,4 +93,9 @@ Le texte est sous licence {{trlicense}}.',
   'footer_total_chaged_pages' => '{{xvisits}} pages chargées depuis un an dont {{xvisitstoday}} aujourd\'hui',
   'footer_visitors' => '{{xvisitors}} visiteurs depuis une semaine dont {{xtoday}} aujourd\'hui',
   'footer_connected' => '{{xconn}} connectés.',
+  'footer_prosite' => <<<ENDSTR
+    <h2>Besoin d'aide ou d'assistance en informatique professionnelle&nbsp;?</h2>
+    <p>Si vous avez besoin de formation, d'assistance ou d'aide personnalisée en informatique ou aux démarches administratives en ligne, rendez-vous sur notre site dédié&nbsp;:<br>
+    <a href="https://nael-accessvision.com">nael-accessvision.com</a> pour découvrir nos services professionnels.</p><br aria-hidden="true">
+  ENDSTR,
 ];
