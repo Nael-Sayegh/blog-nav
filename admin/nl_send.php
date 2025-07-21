@@ -1,6 +1,6 @@
 <?php $logonly = true;
 $adminonly = true;
-$justpa = true;
+$justbn = true;
 $titlePAdm = 'Envoyer la lettre d\'informations';
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');

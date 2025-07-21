@@ -1,6 +1,6 @@
 <?php $logonly = true;
 $adminonly = true;
-$justpa = true;
+$justbn = true;
 $titlePAdm = 'Versions du site';
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');

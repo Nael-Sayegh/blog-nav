@@ -15,8 +15,9 @@ $titlemodifie = str_replace(' ', ' ', $title);
 </details>
 </div>
 <a href="contact.php"><?php echo tr($tr0,'footer_contact'); ?></a><br>
-<h1><?php echo tr($tr0,'footer_youtube'); ?></h1><br aria-hidden="true">
-<span class="youtube"><a href=https://www.youtube.com/channel/UC1Ot4mhqH0LtRJj0C4ctzPw>Nael accessvision</a><br><br class="smartphone"></span>
+<?= tr($tr0,'footer_prosite'); ?><br aria-hidden="true">
+<h2><?php echo tr($tr0,'footer_youtube'); ?></h2><br aria-hidden="true">
+<span class="youtube"><a href=https://www.youtube.com/channel/UC1Ot4mhqH0LtRJj0C4ctzPw>Nael accessvision</a><br><br aria-hidden="true"></span>
 <?php
 include('include/stats.php');
 if ((defined('FB_URL') && constant('FB_URL')) || (defined('MASTO_URL') && constant('MASTO_URL')) || (defined('CESIUM_URL') && constant('CESIUM_URL'))): ?>
@@ -40,9 +41,8 @@ if (defined('CESIUM_URL') && ($cesiumUrl = constant('CESIUM_URL')))
 <?php } ?>
 </details>
 <?php endif; ?>
-<a href="mention.php"><?php echo tr($tr0,'footer_mention'); ?></a><br>
+<a href="legal.php"><?php echo tr($tr0,'footer_mention'); ?></a><br>
 Copyright &copy 2020-<?php print date('Y'); ?> <?= tr($tr0, 'footer_copyright', ['site' => $site_name]) ?><br>
-<?= tr($tr0, 'footer_license', ['site' => $site_name,'license' => '<a href="https://www.gnu.org/licenses/licenses.html#AGPL" title="GNU Affero General Public License v3">GNU AGPL v3</a>','trlicense' => '<a href="http://creativecommons.org/licenses/by-sa/4.0/" title="Creative Commons Attribution-ShareAlike 4.0 International License">CC BY-SA 4.0</a>']) ?><br>
 <p><?php getContentLastModif(); ?><br>
 <?php getVersionFromGit(); ?></p>
 </footer>
