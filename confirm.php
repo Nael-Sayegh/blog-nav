@@ -1,7 +1,7 @@
 <?php
 
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-$require_once('include/log.php');
+require_once('include/log.php');
 require_once('include/consts.php');
 require_once('include/sendMail.php');
 $tr = load_tr($lang,'confirm');
