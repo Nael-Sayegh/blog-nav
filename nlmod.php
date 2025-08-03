@@ -86,7 +86,7 @@ if ($nldata = $req->fetch())
             $f_lang = $_POST['lang'];
         }
         $SQL = <<<SQL
-            UPDATE newsletter_mails SET freq=:frq, freq_n=:frqn, notif_site=:notifsite, notif_upd=:notifupd, notif_upd_n=:notifupdn, lang=:lng WHERE id=:id
+            UPDATE newsletter_mails SET freq_n=:frq, freq=:frqn, notif_site=:notifsite, notif_upd_n=:notifupd, notif_upd=:notifupdn, lang=:lng WHERE id=:id
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':frq' => $freq, ':frqn' => $freq_n, ':notifsite' => $f_site, ':notifupd' => $f_upd, ':notifupdn' => $f_upd_n, ':lng' => $f_lang, ':id' => $nldata['id']]);
