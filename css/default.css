@@ -81,9 +81,6 @@ margin-bottom: 20px;
 }
 
 @media (max-width: 600px) {
-	#slider {
-	display: none;
-	}
 	#loginbox_form {
 	display: none;
 	}
@@ -304,9 +301,6 @@ background-color: white;
 color: #045fb4;
 }
 
-#footer {
-text-shadow: 0px 0px 4px white;
-}
 
 th {
 	text-align: left;
