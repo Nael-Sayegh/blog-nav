@@ -11,7 +11,7 @@ if (!isset($_GET['id']))
     exit();
 }
 $SQL = <<<SQL
-    SELECT * FROM newsletter_mails WHERE hash=:hash AND expire>=:exp
+    SELECT * FROM nav.newsletter_mails WHERE hash=:hash AND expire>=:exp
     SQL;
 $req = $bdd->prepare($SQL);
 $req->execute([':hash' => $_GET['id'], ':exp' => time()]);
@@ -20,7 +20,7 @@ if ($nldata = $req->fetch())
     if (isset($_GET['stop']))
     {
         $SQL2 = <<<SQL
-            DELETE FROM newsletter_mails WHERE id=:id
+            DELETE FROM nav.newsletter_mails WHERE id=:id
             SQL;
         $req2 = $bdd->prepare($SQL2);
         $req2->execute([':id' => $nldata['id']]);
@@ -45,7 +45,7 @@ if ($nldata = $req->fetch())
     if (!$nldata['confirm'])
     {
         $SQL2 = <<<SQL
-            UPDATE newsletter_mails SET confirm=true, lastmail=:last, lastmail_n=:lastn WHERE id=:id
+            UPDATE nav.newsletter_mails SET confirm=true, lastmail=:last, lastmail_n=:lastn WHERE id=:id
             SQL;
         $req2 = $bdd->prepare($SQL2);
         $req2->execute([':last' => time(), ':lastn' => time(), ':id' => $nldata['id']]);
@@ -86,7 +86,7 @@ if ($nldata = $req->fetch())
             $f_lang = $_POST['lang'];
         }
         $SQL = <<<SQL
-            UPDATE newsletter_mails SET freq_n=:frq, freq=:frqn, notif_site=:notifsite, notif_upd_n=:notifupd, notif_upd=:notifupdn, lang=:lng WHERE id=:id
+            UPDATE nav.newsletter_mails SET freq_n=:frq, freq=:frqn, notif_site=:notifsite, notif_upd_n=:notifupd, notif_upd=:notifupdn, lang=:lng WHERE id=:id
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':frq' => $freq, ':frqn' => $freq_n, ':notifsite' => $f_site, ':notifupd' => $f_upd, ':notifupdn' => $f_upd_n, ':lng' => $f_lang, ':id' => $nldata['id']]);
@@ -94,7 +94,7 @@ if ($nldata = $req->fetch())
         exit();
     }
     $SQL2 = <<<SQL
-        UPDATE newsletter_mails SET expire=:exp WHERE id=:id
+        UPDATE nav.newsletter_mails SET expire=:exp WHERE id=:id
         SQL;
     $req2 = $bdd->prepare($SQL2);
     $req2->execute([':exp' => time() + 31536000, ':id' => $nldata['id']]);

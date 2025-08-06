@@ -205,7 +205,7 @@ function getUsernameById($id)
     {
         $id = (int) $id;
         $SQL = <<<SQL
-            SELECT * FROM accounts WHERE id=:id
+            SELECT * FROM nav.accounts WHERE id=:id
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':id' => $id]);
@@ -213,7 +213,7 @@ function getUsernameById($id)
         {
             if ($user['rank'] === "a")
             {
-                $req2 = $bdd->prepare('SELECT short_name FROM team WHERE account_id = '.$user['id']);
+                $req2 = $bdd->prepare('SELECT short_name FROM nav.team WHERE account_id = '.$user['id']);
                 $req2->execute();
                 if ($admin = $req2->fetch())
                 {
@@ -237,8 +237,8 @@ function getTeamEmails(?string $right = null)
         SELECT
             accounts.email,
             team.rights
-        FROM team
-        LEFT JOIN accounts
+        FROM nav.team
+        LEFT JOIN nav.accounts
             ON accounts.id = team.account_id
         WHERE team.works IN ('1', '2')
         SQL;

@@ -42,7 +42,7 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
             $log .= '<li>'.tr($tr, 'err_mail_length').'</li>';
         }
         $SQL = <<<SQL
-            SELECT username,email FROM accounts WHERE (username=:username OR email=:email) AND id!=:id LIMIT 1
+            SELECT username,email FROM nav.accounts WHERE (username=:username OR email=:email) AND id!=:id LIMIT 1
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':username' => $username, ':email' => $_POST['mail'], ':id' => $login['id']]);
@@ -78,7 +78,7 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
             {
                 $settings['mhash'] = hash('sha512', strval(time() + random_int(100000, 9999999)).$login['password'].strval(random_int(100000, 9999999)));
                 $SQL = <<<SQL
-                    UPDATE accounts SET username=:username, email=:email, confirmed=false, settings=:set, subscribed_comments=:sub WHERE id=:id
+                    UPDATE nav.accounts SET username=:username, email=:email, confirmed=false, settings=:set, subscribed_comments=:sub WHERE id=:id
                     SQL;
                 $req = $bdd->prepare($SQL);
                 $req->execute([':username' => $username, ':email' => $_POST['mail'], ':set' => json_encode($settings), ':sub' => $comments_sub, ':id' => $login['id']]);
@@ -90,7 +90,7 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
             else
             {
                 $SQL = <<<SQL
-                    UPDATE accounts SET username=:username, email=:email, settings=:set, subscribed_comments=:sub WHERE id=:id
+                    UPDATE nav.accounts SET username=:username, email=:email, settings=:set, subscribed_comments=:sub WHERE id=:id
                     SQL;
                 $req = $bdd->prepare($SQL);
                 $req->execute([':username' => $username, ':email' => $_POST['mail'], ':set' => json_encode($settings), ':sub' => $comments_sub, ':id' => $login['id']]);
@@ -122,7 +122,7 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
         if ($ok)
         {
             $SQL = <<<SQL
-                UPDATE accounts SET password=:psw WHERE id=:id
+                UPDATE nav.accounts SET password=:psw WHERE id=:id
                 SQL;
             $req = $bdd->prepare($SQL);
             $req->execute([':psw' => password_hash($_POST['newpsw'], PASSWORD_DEFAULT), ':id' => $login['id']]);
@@ -147,7 +147,7 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
         if ($ok)
         {
             $SQL = <<<SQL
-                DELETE FROM accounts WHERE id=:id
+                DELETE FROM nav.accounts WHERE id=:id
                 SQL;
             $req = $bdd->prepare($SQL);
             $req->execute([':id' => $login['id']]);
@@ -200,7 +200,7 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
     if (isset($_GET['rm_ses']))
     {
         $SQL = <<<SQL
-            UPDATE sessions SET expire=:exp WHERE account=:acc AND id=:id AND expire>:exp2
+            UPDATE nav.sessions SET expire=:exp WHERE account=:acc AND id=:id AND expire>:exp2
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':exp' => time() - 1, ':acc' => $login['id'], ':id' => $_GET['rm_ses'], ':exp2' => time()]);
@@ -211,7 +211,7 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
         if ($tfa->verifyCode($_SESSION['2fa_secret'], $_POST['code']))
         {
             $SQL = <<<SQL
-                UPDATE accounts SET twofa_enabled=true, twofa_secret=:secret WHERE id=:id
+                UPDATE nav.accounts SET twofa_enabled=true, twofa_secret=:secret WHERE id=:id
                 SQL;
             $req = $bdd->prepare($SQL);
             $req->execute([':secret' => $_SESSION['2fa_secret'], ':id' => $login['id']]);
@@ -233,7 +233,7 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
         else
         {
             $SQL = <<<SQL
-                UPDATE accounts SET twofa_enabled=false, twofa_secret=NULL WHERE id=:id
+                UPDATE nav.accounts SET twofa_enabled=false, twofa_secret=NULL WHERE id=:id
                 SQL;
             $req = $bdd->prepare($SQL);
             $req->execute([':id' => $login['id']]);
@@ -348,7 +348,7 @@ echo '<details><summary>'.tr($tr, 'notifs_show_read').'</summary><ul id="notifs_
 <?php
 $time = time();
 $SQL = <<<SQL
-    SELECT * FROM sessions WHERE account=:acc ORDER BY expire DESC
+    SELECT * FROM nav.sessions WHERE account=:acc ORDER BY expire DESC
     SQL;
 $req = $bdd->prepare($SQL);
 $req->execute([':acc' => $login['id']]);

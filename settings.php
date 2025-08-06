@@ -34,7 +34,7 @@ if (isset($_GET['act']) && $_GET['act'] === 'form')
         $settings['fontsize'] = $fontsize;
         $settings['infosdef'] = $infosdef;
         $SQL = <<<SQL
-            UPDATE accounts SET settings=:set WHERE id=:id
+            UPDATE nav.accounts SET settings=:set WHERE id=:id
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':set' => json_encode($settings), ':id' => $login['id']]);
@@ -52,7 +52,7 @@ elseif (isset($_GET['act']) && $_GET['act'] === '0')
         $settings['fontsize'] = '20';
         $settings['infosdef'] = '1';
         $SQL = <<<SQL
-            UPDATE accounts SET settings=:set WHERE id=:id
+            UPDATE nav.accounts SET settings=:set WHERE id=:id
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':set' => json_encode($settings), ':id' => $login['id']]);

@@ -10,9 +10,9 @@ function check_login($session, $connectid)
     require_once($_SERVER['DOCUMENT_ROOT'].'/include/dbconnect.php');
     $SQL = <<<SQL
         SELECT sessions.id AS session_id, sessions.session, sessions.connectid, sessions.expire, sessions.token, accounts.id, accounts.id64, accounts.email, accounts.username, accounts.signup_date, accounts.password, accounts.settings, accounts.confirmed, accounts.subscribed_comments, accounts.rank, accounts.rights AS member_rights, accounts.twofa_enabled, accounts.twofa_secret, team.id AS team_id, team.works AS works, team.short_name AS short_name, team.rights AS admin_rights
-        FROM sessions
-        LEFT JOIN accounts ON accounts.id = sessions.account
-        LEFT JOIN team ON team.account_id = sessions.account
+        FROM nav.sessions
+        LEFT JOIN nav.accounts ON accounts.id = sessions.account
+        LEFT JOIN nav.team ON team.account_id = sessions.account
         WHERE sessions.connectid=:connectid AND sessions.expire>:expire LIMIT 1
         SQL;
     $req = $bdd->prepare($SQL);
@@ -34,7 +34,7 @@ function check_login($session, $connectid)
                 exit();
             }
             $SQL = <<<SQL
-                UPDATE sessions SET expire=:expire WHERE id=:id
+                UPDATE nav.sessions SET expire=:expire WHERE id=:id
                 SQL;
             $req = $bdd->prepare($SQL);
             $req->execute([':expire' => time() + 31557600, ':id' => $login['session_id']]);

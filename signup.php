@@ -38,7 +38,7 @@ if (isset($_GET['a']) && $_GET['a'] === 'form' && isset($_POST['username']) && i
     {
         $username = $_POST['username'];
         $SQL = <<<SQL
-            SELECT username,email FROM accounts WHERE username=:username OR email=:mail LIMIT 1
+            SELECT username,email FROM nav.accounts WHERE username=:username OR email=:mail LIMIT 1
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':username' => $username, ':mail' => $_POST['mail']]);
@@ -63,7 +63,7 @@ if (isset($_GET['a']) && $_GET['a'] === 'form' && isset($_POST['username']) && i
                 $id64 = str_replace('+', '_', $id64);
                 $id64 = str_replace('=', '.', $id64);
                 $SQL = <<<SQL
-                    SELECT id FROM accounts WHERE id64=:id
+                    SELECT id FROM nav.accounts WHERE id64=:id
                     SQL;
                 $req = $bdd->prepare($SQL);
                 $req->execute([':id' => $id64]);
@@ -103,7 +103,7 @@ if (isset($_GET['a']) && $_GET['a'] === 'form' && isset($_POST['username']) && i
             $right = ['view_members' => 0];
             $email = $_POST['mail'];
             $SQL = <<<SQL
-                INSERT INTO accounts (username, email, id64, password, signup_date, settings, rights) VALUES(:username,:mail,:id,:psw,:date,:set,:rights)
+                INSERT INTO nav.accounts (username, email, id64, password, signup_date, settings, rights) VALUES(:username,:mail,:id,:psw,:date,:set,:rights)
                 SQL;
             $req = $bdd->prepare($SQL);
             $req->execute([':username' => $username, ':mail' => $email, ':id' => $id64, ':psw' => $password, ':date' => time(), ':set' => json_encode($settings), ':rights' => json_encode($right)]);
@@ -117,7 +117,7 @@ if (isset($_GET['a']) && $_GET['a'] === 'form' && isset($_POST['username']) && i
             if (isset($_POST['nl']) && $_POST['nl'] === 'on')
             {
                 $SQL = <<<SQL
-                    SELECT id FROM newsletter_mails WHERE mail=:mail LIMIT 1
+                    SELECT id FROM nav.newsletter_mails WHERE mail=:mail LIMIT 1
                     SQL;
                 $req = $bdd->prepare($SQL);
                 $req->execute([':mail' => $email]);
@@ -126,7 +126,7 @@ if (isset($_GET['a']) && $_GET['a'] === 'form' && isset($_POST['username']) && i
                     exit();
                 }
                 $SQL = <<<SQL
-                    INSERT INTO newsletter_mails (hash, mail, expire, freq, notif_site, notif_upd, confirm) VALUES (:hash, :mail, :exp, 3, true, 1, false)
+                    INSERT INTO nav.newsletter_mails (hash, mail, expire, freq, notif_site, notif_upd, confirm) VALUES (:hash, :mail, :exp, 3, true, 1, false)
                     SQL;
                 $req = $bdd->prepare($SQL);
                 $req->execute([':hash' => sha1(strval(random_int(0, mt_getrandmax()) + time()).$email).sha1($email.$_SERVER['REMOTE_ADDR'].strval(random_int(0, mt_getrandmax()))), ':mail' => $email, ':exp' => time() + 86400]);
