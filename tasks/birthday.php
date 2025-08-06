@@ -8,7 +8,7 @@ require_once($document_root.'/include/lib/Mastodon/mastodon_publisher.php');
 require_once($document_root.'/include/lib/discord_publisher.php');
 
 $SQL = <<<SQL
-    SELECT * FROM team ORDER BY age DESC
+    SELECT * FROM nav.team ORDER BY age DESC
     SQL;
 foreach ($bdd->query($SQL) as $data)
 {
@@ -31,7 +31,7 @@ foreach ($bdd->query($SQL) as $data)
 if (date('d/m') === '24/12')
 {
     $SQL = <<<SQL
-        SELECT * FROM team ORDER BY age DESC
+        SELECT * FROM nav.team ORDER BY age DESC
         SQL;
     foreach ($bdd->query($SQL) as $data)
     {
@@ -48,7 +48,7 @@ if (date('d/m') === '24/12')
 elseif (date('d/m') === '01/01')
 {
     $SQL = <<<SQL
-        SELECT * FROM team ORDER BY age DESC
+        SELECT * FROM nav.team ORDER BY age DESC
         SQL;
     foreach ($bdd->query($SQL) as $data)
     {

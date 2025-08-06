@@ -9,7 +9,7 @@ $tr = load_tr($lang,'confirm');
 if (isset($_GET['id']) && isset($_GET['h']))
 {
     $SQL = <<<SQL
-        SELECT id, username, email, signup_date, settings FROM accounts WHERE id=:id AND signup_date<:date AND confirmed=false
+        SELECT id, username, email, signup_date, settings FROM nav.accounts WHERE id=:id AND signup_date<:date AND confirmed=false
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':id' => $_GET['id'], ':date' => time() + 86400]);
@@ -17,9 +17,9 @@ if (isset($_GET['id']) && isset($_GET['h']))
     {
         if (json_decode((string) $data['settings'], true)['mhash'] === $_GET['h'])
         {
-            $countReq = $bdd->query('SELECT COUNT(*) FROM accounts');
+            $countReq = $bdd->query('SELECT COUNT(*) FROM nav.accounts');
             $totalAccounts = (int) $countReq->fetchColumn();
-            $SQL = "UPDATE accounts SET confirmed = true";
+            $SQL = "UPDATE nav.accounts SET confirmed = true";
             if ($totalAccounts === 1)
             {
                 $SQL .= ", rank = :adminRank";
@@ -48,7 +48,7 @@ if (isset($_GET['id']) && isset($_GET['h']))
             sendMail($data['email'], $subject, $body, $altBody);
             header('Location: /login.php?confirmed');
             $SQL2 = <<<SQL
-                UPDATE newsletter_mails SET confirm=true, lastmail=:last WHERE mail=:mail
+                UPDATE nav.newsletter_mails SET confirm=true, lastmail=:last WHERE mail=:mail
                 SQL;
             $req2 = $bdd->prepare($SQL2);
             $req2->execute([':last' => time(), ':mail' => $data['email']]);

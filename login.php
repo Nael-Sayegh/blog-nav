@@ -19,7 +19,7 @@ $log = '';
 if (isset($_POST['username']) && isset($_POST['psw']))
 {
     $SQL = <<<SQL
-        SELECT * FROM accounts WHERE username=:username OR email=:mail LIMIT 2
+        SELECT * FROM nav.accounts WHERE username=:username OR email=:mail LIMIT 2
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':username' => $_POST['username'], ':mail' => $_POST['username']]);
@@ -43,7 +43,7 @@ if (isset($_POST['username']) && isset($_POST['psw']))
             setcookie('session', $session, ['expires' => $expire, 'path' => '/', 'secure' => true, 'httponly' => true, 'samesite' => 'strict']);
             setcookie('connectid', $connectid, ['expires' => $expire, 'path' => '/', 'secure' => true, 'httponly' => true, 'samesite' => 'strict']);
             $SQL2 = <<<SQL
-                INSERT INTO sessions (account, session, connectid, expire, created, token) VALUES (:acc,:session,:connectid,:exp,:create,:token)
+                INSERT INTO nav.sessions (account, session, connectid, expire, created, token) VALUES (:acc,:session,:connectid,:exp,:create,:token)
                 SQL;
             $req2 = $bdd->prepare($SQL2);
             $req2->execute([':acc' => $data['id'], ':session' => password_hash($session, PASSWORD_DEFAULT), ':connectid' => $connectid, ':exp' => $expire, ':create' => $created, ':token' => $token]);
@@ -62,7 +62,7 @@ if (isset($_POST['username']) && isset($_POST['psw']))
 if (isset($_GET['signed']) && isset($_GET['mail']))
 {
     $SQL = <<<SQL
-        SELECT email FROM accounts WHERE id=:id AND confirmed=false LIMIT 1
+        SELECT email FROM nav.accounts WHERE id=:id AND confirmed=false LIMIT 1
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':id' => $_GET['signed']]);

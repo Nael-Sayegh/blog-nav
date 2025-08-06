@@ -15,7 +15,7 @@ if ($step === 'request' && $_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $requestedUser = trim((string) $_POST['login']);
     $SQL = <<<SQL
-        SELECT id, email, username FROM accounts WHERE username=:user OR email=:user LIMIT 1
+        SELECT id, email, username FROM nav.accounts WHERE username=:user OR email=:user LIMIT 1
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':user' => $requestedUser]);
@@ -23,14 +23,14 @@ if ($step === 'request' && $_SERVER['REQUEST_METHOD'] === 'POST')
     if ($user)
     {
         $SQLDel = <<<SQL
-            DELETE FROM password_resets WHERE user_id = :uid
+            DELETE FROM nav.password_resets WHERE user_id = :uid
             SQL;
         $reqDel = $bdd->prepare($SQLDel);
         $reqDel->execute([':uid' => $user['id']]);
         $token = bin2hex(random_bytes(32));
         $expires = date('Y-m-d H:i:s', strtotime('+1 hour'));
         $SQLTok = <<<SQL
-            INSERT INTO password_resets (user_id, token, expires_at) VALUES (:uid, :tok, :exp)
+            INSERT INTO nav.password_resets (user_id, token, expires_at) VALUES (:uid, :tok, :exp)
             SQL;
         $reqTok = $bdd->prepare($SQLTok);
         $reqTok->execute([':uid' => $user['id'], ':tok' => $token, ':exp' => $expires]);
@@ -47,7 +47,7 @@ if ($step === 'request' && $_SERVER['REQUEST_METHOD'] === 'POST')
 if ($step === 'reset')
 {
     $SQL = <<<SQL
-        SELECT pr.id AS pr_id, pr.user_id, a.username, a.password FROM password_resets pr JOIN accounts a ON a.id = pr.user_id WHERE pr.token = :token AND pr.expires_at > NOW() AND pr.used = FALSE LIMIT 1
+        SELECT pr.id AS pr_id, pr.user_id, a.username, a.password FROM nav.password_resets pr JOIN nav.accounts a ON a.id = pr.user_id WHERE pr.token = :token AND pr.expires_at > NOW() AND pr.used = FALSE LIMIT 1
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':token' => $token]);
@@ -79,12 +79,12 @@ if ($step === 'reset')
         {
             $hash = password_hash((string) $p1, PASSWORD_DEFAULT);
             $SQLU = <<<SQL
-                UPDATE accounts SET password = :h WHERE id = :uid
+                UPDATE nav.accounts SET password = :h WHERE id = :uid
                 SQL;
             $reqU = $bdd->prepare($SQLU);
             $reqU->execute([':h' => $hash, ':uid' => $reset['user_id']]);
             $SQLU2 = <<<SQL
-                UPDATE password_resets SET used = TRUE WHERE id = :prid
+                UPDATE nav.password_resets SET used = TRUE WHERE id = :prid
                 SQL;
             $reqU2 = $bdd->prepare($SQLU2);
             $reqU2->execute([':prid' => $reset['pr_id']]);
