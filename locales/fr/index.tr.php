@@ -4,7 +4,7 @@ $tr = [
   '_' => 'index',
   '_todo_level' => 0,
   '_last_author' => 'Pascal',
-  '_last_modif' => 1753024769,
+  '_last_modif' => 1755342349,
   'title' => '{{site}}&nbsp;: {{slogan}}',
   'happynewyear' => '<p role="alert">Toute l\'équipe {{site}} vous souhaite une excellente année {{year}}, vous envoie ses voeux de bonheur, de santé et de sérénité.<br>
 
@@ -19,8 +19,6 @@ Nous espérons vous apporter satisfaction et répondre à tous vos besoins futur
     Si vous avez besoin de formation, d'assistance ou d'aide personnalisée en informatiqueou démarches administratives en ligne, rendez-vous sur notre site dédié&nbsp;:<br>
     <a href="https://nael-accessvision.com">nael-accessvision.com</a> pour découvrir nos services professionnels.</p><br aria-hidden="true">
   ENDSTR,
-  'sliderinactext' => '<p>Vous avez choisis de ne pas utiliser notre système d\'informations défilantes, retrouvez donc ci-dessous nos dernières actualités.</p>',
-  'sliderinactitle' => 'Actualités',
   'mailconfirmtext' => 'Nous vous remercions pour votre message. Nous y répondrons très bientôt.',
   'certif_nvda' => 'Certifié expert NVDA 2025',
 ];
