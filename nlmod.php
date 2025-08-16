@@ -168,7 +168,7 @@ if (isset($_GET['redir']) && $_GET['redir'])
 } ?>><br>
 -->
 <label for="f_notif_up">M'inscrire à la newsletter <?= $site_name; ?></label>
-<input type="checkbox" name="notif_up" id="f_notif_up"<?php if ($nldata['notif_upd'])
+<input type="checkbox" name="notif_up" id="f_notif_up"<?php if ($nldata['notif_upd_n'])
 {
     echo ' checked="checked"';
 } ?>><br>
@@ -193,7 +193,7 @@ if (isset($_GET['redir']) && $_GET['redir'])
 } ?>>Mensuellement</option></select><br>
 -->
 <label for="f_notif_up_n">M'inscrire à la newsletter Blog Nael-Accessvision</label>
-<input type="checkbox" name="notif_up_n" id="f_notif_up_n"<?php if ($nldata['notif_upd_n'])
+<input type="checkbox" name="notif_up" id="f_notif_up_n"<?php if ($nldata['notif_upd_n'])
 {
     echo ' checked="checked"';
 } ?>><br>
