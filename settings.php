@@ -19,20 +19,12 @@ if (isset($_GET['act']) && $_GET['act'] === 'form')
     }
     setcookie('fontsize', (string) $fontsize, ['expires' => time() + 31536000, 'path' => '/', 'secure' => true, 'httponly' => true, 'samesite' => 'strict']);
 
-    $infosdef = '0';
-    if (isset($_POST['infosdef']))
-    {
-        $infosdef = '1';
-    }
-    setcookie('infosdef', $infosdef, ['expires' => time() + 31536000, 'path' => '/', 'secure' => true, 'httponly' => true, 'samesite' => 'strict']);
-
 
     if ($logged && isset($_POST['token']) && $_POST['token'] === $login['token'])
     {
         $settings = json_decode((string) $login['settings'], true);
         $settings['menu'] = $menu;
         $settings['fontsize'] = $fontsize;
-        $settings['infosdef'] = $infosdef;
         $SQL = <<<SQL
             UPDATE nav.accounts SET settings=:set WHERE id=:id
             SQL;
@@ -50,7 +42,6 @@ elseif (isset($_GET['act']) && $_GET['act'] === '0')
         $settings = json_decode((string) $login['settings'], true);
         $settings['menu'] = '0';
         $settings['fontsize'] = '20';
-        $settings['infosdef'] = '1';
         $SQL = <<<SQL
             UPDATE nav.accounts SET settings=:set WHERE id=:id
             SQL;
@@ -61,7 +52,6 @@ elseif (isset($_GET['act']) && $_GET['act'] === '0')
     {
         setcookie('menu', '', ['expires' => 0, 'secure' => 0]);
         setcookie('fontsize', '', ['expires' => 0, 'secure' => 0]);
-        setcookie('infosdef', '', ['expires' => 0, 'secure' => 0]);
     }
     header('Location: /');
     exit();
@@ -84,7 +74,6 @@ if ($logged)
 }
 $menu = $_COOKIE['menu'] ?? '0';
 $fontsize = $_COOKIE['font_size'] ?? '20';
-$infosdef = $_COOKIE['infosdef'] ?? '1';
 ?>
 <h3><?= tr($tr, 'gui') ?></h3>
 <label for="menu_choice"><?= tr($tr, 'combomenu') ?></label>
@@ -107,11 +96,6 @@ $infosdef = $_COOKIE['infosdef'] ?? '1';
 {
     echo'selected';
 }?>><?= tr($tr, '24') ?></option></select><br>
-<label for="f_slideridcc"><?= tr($tr, 'slider') ?></label>
-<input type="checkbox" id="f_slideridcc" name="infosdef" <?php if ($infosdef === '1')
-{
-    echo 'checked="checked"';
-} ?>><br>
 <input type="submit" value="<?= tr($tr, 'savebtn') ?>">
 </form>
 <form action="?act=0" method="post" aria-label="Réinitialiser">
