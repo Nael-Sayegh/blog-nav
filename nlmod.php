@@ -91,7 +91,7 @@ if ($nldata = $req->fetch())
         }
 
         $SQL = <<<SQL
-            UPDATE nav.newsletter_mails SET notif_upd=:notifupd, notif_upd_n=:notifupdn, lang=:lng WHERE id=:id
+            UPDATE nav.newsletter_mails SET notif_upd_n=:notifupd, notif_upd=:notifupdn, lang=:lng WHERE id=:id
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':notifupd' => $f_upd, ':notifupdn' => $f_upd_n, ':lng' => $f_lang, ':id' => $nldata['id']]);
