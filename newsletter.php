@@ -83,7 +83,7 @@ if (isset($_GET['a']) && $_GET['a'] === 's')
             if (sendMail($_POST['mail'], $subject, $body, $altBody))
             {
                 $SQL = <<<SQL
-                INSERT INTO nav.newsletter_mails (hash, mail, freq, freq_n, notif_site, notif_upd, notif_upd_n, lang, lastmail, lastmail_n) VALUES (:hash, :mail, :frq, :frqn, :notifsite, :notifupd, :notifupdn, :lng, :last, :lastn)
+                INSERT INTO nav.newsletter_mails (hash, mail, freq_n, freq, notif_site, notif_upd, notif_upd_n, lang, lastmail, lastmail_n) VALUES (:hash, :mail, :frq, :frqn, :notifsite, :notifupd, :notifupdn, :lng, :last, :lastn)
                 SQL;
                 $req = $bdd->prepare($SQL);
                 $req->execute([':hash' => $hash, ':mail' => $_POST['mail'], ':frq' => $freq, ':frqn' => $freq_n,  ':notifsite' => $f_site, ':notifupd' => $f_upd, ':notifupdn' => $f_upd_n, ':lng' => $lang, ':last' => time(), ':lastn' => time()]);
