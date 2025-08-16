@@ -173,7 +173,7 @@ if (isset($_GET['redir']) && $_GET['redir'])
     echo ' checked="checked"';
 } ?>><br>
 </fieldset>
-<fieldset><legend>Blog Nael-Accessvision</legend>
+<fieldset><legend>Nael-Accessvision</legend>
 <!-- <label for="f_freq_n">Recevoir un mail&nbsp;:</label>
 <select name="freq_n" id="f_freq_n" autocomplete="off"><option value="1"<?php if ($nldata['freq_n'] === 1)
 {
