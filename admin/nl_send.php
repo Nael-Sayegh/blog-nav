@@ -35,6 +35,10 @@ if (isset($_GET['act']) && $_GET['act'] === 'sendnl')
         $req->execute();
         while ($data = $req->fetch())
         {
+            if (isset($allMails[$data['mail']]))
+            {
+                continue;
+            }
             $allMails[$data['mail']] = $data['hash'];
         }
     }
@@ -44,6 +48,10 @@ if (isset($_GET['act']) && $_GET['act'] === 'sendnl')
         $req->execute();
         while ($data = $req->fetch())
         {
+            if (isset($allMails[$data['mail']]))
+            {
+                continue;
+            }
             $allMails[$data['mail']] = $data['hash'];
         }
     }
@@ -51,7 +59,6 @@ if (isset($_GET['act']) && $_GET['act'] === 'sendnl')
     {
         sendMail($email, $_POST['obj'], str_replace('{userid}', $hash, $_POST['text']), 'Ce mail est uniquement disponible au format HTML');
     }
-    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -70,11 +77,11 @@ if (isset($_GET['act']) && $_GET['act'] === 'sendnl')
 <label for="f_obj">Sujet&nbsp;:</label>
 <input type="text" name="obj" id="f_obj" required><br>
 <label for="f_text">Texte (HTML)&nbsp;:</label>
-<textarea name="text" id="f_text" maxlength="20000"><p>Pour vous désinscrire de cette newsletter, cliquez sur le lien suivant&nbsp;: <a href="<?php echo SITE_URL; ?>/nlmod.php?id={userid}"><?php echo SITE_URL; ?>/nlmod.php?id={userid}</a>.</p></textarea><br>
+<textarea name="text" id="f_text" maxlength="20000"><p>Pour vous désinscrire de cette newsletter, cliquez sur le lien suivant&nbsp;: <a href="<?php echo SITE_URL; ?>/nlmod.php?id={userid}">Me désinscrire</a></p></textarea><br>
 <label for="f_site">Envoyer aux abonnés de&nbsp;:</label>
 <select name="site" id="f_site">
 <option value="site1"><?php echo $site_name; ?></option>
-<option value="site2">Blog</option>
+<option value="site2">Nael-Accessvision</option>
 <option value="both">Les deux sites</option>
 </select><br>
 <input type="submit" value="Envoyer">
