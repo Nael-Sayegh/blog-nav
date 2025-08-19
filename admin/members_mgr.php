@@ -10,7 +10,7 @@ requireAdminRight('manage_members');
 if (isset($_GET['delete']))
 {
     $SQL = <<<SQL
-        DELETE FROM accounts WHERE id=:id
+        DELETE FROM nav.accounts WHERE id=:id
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':id' => $_GET['delete']]);
@@ -18,7 +18,7 @@ if (isset($_GET['delete']))
 if (isset($_GET['mod2']) && isset($_POST['username'], $_POST['email'], $_POST['rank']))
 {
     $SQLOld = <<<SQL
-        SELECT rights, twofa_enabled FROM accounts WHERE id = :id
+        SELECT rights, twofa_enabled FROM nav.accounts WHERE id = :id
         SQL;
     $reqOld = $bdd->prepare($SQLOld);
     $reqOld->execute([':id' => $_GET['mod2']]);
@@ -61,7 +61,7 @@ if (isset($_GET['mod2']) && isset($_POST['username'], $_POST['email'], $_POST['r
             $password = password_hash((string) $rawPassword, PASSWORD_DEFAULT);
         }
         $SQL = <<<SQL
-            UPDATE accounts SET username=:username, email=:email, password=:psw, rank=:rank, rights=:rights WHERE id=:id
+            UPDATE nav.accounts SET username=:username, email=:email, password=:psw, rank=:rank, rights=:rights WHERE id=:id
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':username' => htmlentities((string) $_POST['username']), ':email' => $_POST['email'], ':psw' => $password, ':rank' => $_POST['rank'], ':rights' => $json, ':id' => $_GET['mod2']]);
@@ -69,7 +69,7 @@ if (isset($_GET['mod2']) && isset($_POST['username'], $_POST['email'], $_POST['r
     else
     {
         $SQL = <<<SQL
-            UPDATE accounts SET username=:username, email=:email, rank=:rank, rights=:rights WHERE id=:id
+            UPDATE nav.accounts SET username=:username, email=:email, rank=:rank, rights=:rights WHERE id=:id
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':username' => htmlentities((string) $_POST['username']), ':email' => $_POST['email'], ':rank' => $_POST['rank'], ':rights' => $json, ':id' => $_GET['mod2']]);
@@ -97,7 +97,7 @@ if (isset($_GET['mod2']) && isset($_POST['username'], $_POST['email'], $_POST['r
     if (isset($twofaDisabled) && $twofaDisabled === true)
     {
         $SQL = <<<SQL
-            UPDATE accounts SET twofa_enabled=false, twofa_secret=NULL WHERE id=:id
+            UPDATE nav.accounts SET twofa_enabled=false, twofa_secret=NULL WHERE id=:id
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':id' => $_GET['mod2']]);
@@ -173,7 +173,7 @@ if (isset($_GET['mod2']) && isset($_POST['username'], $_POST['email'], $_POST['r
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/include/user_rank.php';
 $SQL = <<<SQL
-    SELECT * FROM accounts
+    SELECT * FROM nav.accounts
     SQL;
 foreach ($bdd->query($SQL) as $data)
 {
@@ -193,7 +193,7 @@ foreach ($bdd->query($SQL) as $data)
 if (isset($_GET['mod']))
 {
     $SQL = <<<SQL
-        SELECT * FROM accounts WHERE id=:id LIMIT 1
+        SELECT * FROM nav.accounts WHERE id=:id LIMIT 1
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':id' => $_GET['mod']]);

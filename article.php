@@ -120,7 +120,7 @@ if (isset($_GET['comment']) && isset($_POST['text']) && isset($logged) && $logge
         $insertNotif = $bdd->prepare($insertNotifSQL);
         $sql = <<<SQL
             SELECT accounts.id, accounts.rank, accounts.subscribed_comments, subscriptions_comments.id AS is_sub
-            FROM accounts
+            FROM nav.accounts
             LEFT JOIN subscriptions_comments
             ON subscriptions_comments.account = accounts.id
             AND subscriptions_comments.article = :swid
@@ -152,7 +152,7 @@ if (isset($_GET['comment']) && isset($_POST['text']) && isset($logged) && $logge
 
         $emails = [];
         $SQL = <<<SQL
-            SELECT accounts.email FROM accounts JOIN subscriptions_comments ON subscriptions_comments.account = accounts.id AND subscriptions_comments.article = :art WHERE (accounts.settings::jsonb)->>'notif_mail' = 'true' AND accounts.rank <> 'a'
+            SELECT accounts.email FROM nav.accounts JOIN subscriptions_comments ON subscriptions_comments.account = accounts.id AND subscriptions_comments.article = :art WHERE (accounts.settings::jsonb)->>'notif_mail' = 'true' AND accounts.rank <> 'a'
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':art' => $sw['id']]);
@@ -160,7 +160,7 @@ if (isset($_GET['comment']) && isset($_POST['text']) && isset($logged) && $logge
         {
             $emails[$row['email']] = true;
         }
-        $req = $bdd->query("SELECT email FROM accounts WHERE rank = 'a' AND (accounts.settings::jsonb)->>'notif_mail' = 'true'");
+        $req = $bdd->query("SELECT email FROM nav.accounts WHERE rank = 'a' AND (accounts.settings::jsonb)->>'notif_mail' = 'true'");
         while ($row = $req->fetch())
         {
             $emails[$row['email']] = true;

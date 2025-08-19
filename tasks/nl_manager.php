@@ -17,7 +17,7 @@ if (!isDev() || isset($debug))
     $daydate = getFormattedDate(time(), tr($tr0, 'fndate'));
     $dayhour = getFormattedDate(time(), tr($tr0, 'ftime'));
     $SQL = <<<SQL
-        DELETE FROM newsletter_mails WHERE expire<:exp
+        DELETE FROM nav.newsletter_mails WHERE expire<:exp
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':exp' => time()]);
@@ -25,7 +25,7 @@ if (!isDev() || isset($debug))
     if (isset($debug))
     {
         $SQL = <<<SQL
-            SELECT * FROM newsletter_mails WHERE confirm=true AND expire<=:exp AND mail=:mail
+            SELECT * FROM nav.newsletter_mails WHERE confirm=true AND expire<=:exp AND mail=:mail
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':exp' => time() + 172800, ':mail' => $debug]);
@@ -34,7 +34,7 @@ if (!isDev() || isset($debug))
     else
     {
         $SQL = <<<SQL
-            SELECT * FROM newsletter_mails WHERE confirm=true AND expire<=:exp
+            SELECT * FROM nav.newsletter_mails WHERE confirm=true AND expire<=:exp
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':exp' => time() + 172800]);
@@ -196,7 +196,7 @@ if (!isDev() || isset($debug))
     if (isset($debug))
     {
         $SQL = <<<SQL
-            SELECT * FROM newsletter_mails WHERE confirm=true AND mail=:mail
+            SELECT * FROM nav.newsletter_mails WHERE confirm=true AND mail=:mail
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':mail' => $debug]);
@@ -205,7 +205,7 @@ if (!isDev() || isset($debug))
     else
     {
         $SQL = <<<SQL
-            SELECT * FROM newsletter_mails WHERE confirm=true AND {$r}
+            SELECT * FROM nav.newsletter_mails WHERE confirm=true AND {$r}
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute();
@@ -332,7 +332,7 @@ if (!isDev() || isset($debug))
                 {
                     echo ' OK';
                     $SQL = <<<SQL
-                        UPDATE newsletter_mails SET lastmail=:last WHERE id=:id
+                        UPDATE nav.newsletter_mails SET lastmail=:last WHERE id=:id
                         SQL;
                     $req2 = $bdd->prepare($SQL);
                     $req2->execute([':last' => time(), ':id' => $data['id']]);
