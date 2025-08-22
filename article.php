@@ -40,7 +40,7 @@ if (!(isset($logged) && $logged && $login['rank'] === 'a') && !$isbot)
     $req->execute([':id' => $sw['id']]);
 }
 $SQL = <<<SQL
-    SELECT * FROM softwares_tr WHERE sw_id=:sw_id AND lang=:lang AND published=true LIMIT 1
+    SELECT * FROM softwares_tr WHERE sw_id=:sw_id AND lang=:lang LIMIT 1
     SQL;
 $req = $bdd->prepare($SQL);
 $req->execute([':sw_id' => $sw['id'], ':lang' => $lang]);
