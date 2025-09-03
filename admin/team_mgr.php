@@ -1,7 +1,7 @@
 <?php
 $logonly = true;
 $adminonly = true;
-$justbn = true;
+$justna = true;
 $titlePAdm = 'Gestion de l\'équipe';
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
@@ -22,7 +22,7 @@ if (isset($_GET['add']) && isset($_POST['name']) && isset($_POST['status']) && i
     }
     $json = json_encode($rightsMap, JSON_PRESERVE_ZERO_FRACTION);
     $SQL = <<<SQL
-        INSERT INTO nav.team (name, status, date, age, account_id, short_name, bio, works, mastodon, rights) VALUES(:name,:status,:date,:age,:acc,:short,:bio,:works,:masto,:rights)
+        INSERT INTO team (name, status, date, age, account_id, short_name, bio, works, mastodon, rights) VALUES(:name,:status,:date,:age,:acc,:short,:bio,:works,:masto,:rights)
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':name' => $_POST['name'], ':status' => $_POST['status'], ':date' => time(), ':age' => strtotime(preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $_POST['age'])), ':acc' => $account_id, ':short' => $_POST['short_name'], ':bio' => $_POST['bio'], ':works' => $_POST['works'], ':masto' => $_POST['mastodon'], ':rights' => $json]);
@@ -30,7 +30,7 @@ if (isset($_GET['add']) && isset($_POST['name']) && isset($_POST['status']) && i
 if (isset($_GET['delete']))
 {
     $SQL = <<<SQL
-        DELETE FROM nav.team WHERE id=:id
+        DELETE FROM team WHERE id=:id
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':id' => $_GET['delete']]);
@@ -45,7 +45,7 @@ if (isset($_GET['mod2']) && isset($_POST['name']) && isset($_POST['status']) && 
     }
     $json = json_encode($rightsMap, JSON_PRESERVE_ZERO_FRACTION);
     $SQL = <<<SQL
-        UPDATE nav.team SET name=:name, status=:status, age=:age, account_id=:acc, short_name=:short, bio=:bio, works=:works, mastodon=:masto, rights=:rights WHERE id=:id
+        UPDATE team SET name=:name, status=:status, age=:age, account_id=:acc, short_name=:short, bio=:bio, works=:works, mastodon=:masto, rights=:rights WHERE id=:id
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':name' => htmlentities((string) $_POST['name']), ':status' => $_POST['status'], ':age' => strtotime(preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $_POST['age'])), ':acc' => $_POST['account_id'], ':short' => $_POST['short_name'], ':bio' => $_POST['bio'], ':works' => $_POST['works'], ':masto' => $_POST['mastodon'], ':rights' => $json, ':id' => $_GET['mod2']]);
@@ -66,7 +66,7 @@ if (isset($_GET['mod2']) && isset($_POST['name']) && isset($_POST['status']) && 
 <tbody>
 <?php
 $SQL = <<<SQL
-    SELECT * FROM nav.team ORDER BY name ASC
+    SELECT * FROM team ORDER BY name ASC
     SQL;
 foreach ($bdd->query($SQL) as $data)
 {
@@ -86,7 +86,7 @@ foreach ($bdd->query($SQL) as $data)
 if (isset($_GET['mod']))
 {
     $SQL = <<<SQL
-        SELECT * FROM nav.team WHERE id=:id LIMIT 1
+        SELECT * FROM team WHERE id=:id LIMIT 1
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':id' => $_GET['mod']]);
@@ -102,7 +102,7 @@ if (isset($_GET['mod']))
 <option value="">Aucun</option>
 <?php
         $SQL2 = <<<SQL
-            SELECT id, username FROM nav.accounts WHERE rank='a' ORDER BY id ASC
+            SELECT id, username FROM accounts WHERE rank='a' ORDER BY id ASC
             SQL;
         foreach ($bdd->query($SQL2) as $data2)
         {
@@ -119,15 +119,15 @@ if (isset($_GET['mod']))
 <option value="0" <?php if ($data['works'] === '0')
 {
     echo 'selected';
-} ?>>Nael-Accessvision</option>
+} ?>><?= $site_name; ?></option>
 <option value="1" <?php if ($data['works'] === '1')
 {
     echo 'selected';
-} ?>><?php print $site_name; ?></option>
+} ?>Blog Nael-Accessvision</option>
 <option value="2" <?php if ($data['works'] === '2')
 {
     echo 'selected';
-} ?>>Nael-Accessvision et <?php print $site_name; ?></option>
+} ?>><?= $site_name; ?> et Blog Nael-Accessvision</option>
 </select><br>
 <label for="f2_mastodon">Pseudo Mastodon (sans le @ et avec l'instance si différent de mastodon.progaccess.net)&nbsp;:</label><input type="text" name="mastodon" id="f2_mastodon" maxlength="255" value="<?= $data['mastodon'] ?>"><br>
 <fieldset>
@@ -157,7 +157,7 @@ if (isset($_GET['mod']))
 <option value="">Aucun</option>
 <?php
 $SQL = <<<SQL
-    SELECT id, username FROM nav.accounts WHERE rank='a' ORDER BY id ASC
+    SELECT id, username FROM accounts WHERE rank='a' ORDER BY id ASC
     SQL;
 foreach ($bdd->query($SQL) as $data)
 {
@@ -171,9 +171,9 @@ foreach ($bdd->query($SQL) as $data)
 <textarea id="f_bio" name="bio" style="width:100%;height:10em;"></textarea><br>
 <label for="f_works">Travaille pour&nbsp;:</label>
 <select id="f_works" name="works">
-<option value="0">Nael-Accessvision</option>
-<option value="1"><?php print $site_name; ?></option>
-<option value="2">Nael-Accessvision et <?php print $site_name; ?></option>
+<option value="0"><?= $site_name; ?></option>
+<option value="1">Blog Nael-Accessvision</option>
+<option value="2"><?= $site_name; ?> et Blog Nael-Accessvision</option>
 </select><br>
 <label for="f_mastodon">Pseudo Mastodon (sans le @ et avec l'instance si différent de mastodon.progaccess.net)&nbsp;:</label><input type="text" name="mastodon" id="f_mastodon" maxlength="255"><br>
 <fieldset>
