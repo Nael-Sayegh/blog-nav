@@ -50,6 +50,10 @@ if (!empty($_SERVER['HTTP_USER_AGENT']))
     $ip = ip2long($_SERVER['REMOTE_ADDR']);
     foreach ($blockedRanges as [$start, $end])
     {
-        $isbot = true;
+        if ($ip >= ip2long($start) && $ip <= ip2long($end))
+        {
+            $isbot = true;
+            break;
+        }
     }
 }
