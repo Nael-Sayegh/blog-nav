@@ -18,7 +18,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/cache/codestatc.php');
 if (isset($_GET['mm0']))
 {
     $maintenance = fopen($_SERVER['DOCUMENT_ROOT'].'/include/maintenance_mode.php', 'w');
-    fputs($maintenance, '<?php $modemaintenance=false; ?>');
+    fwrite($maintenance, '<?php $modemaintenance=false; ?>');
     fclose($maintenance);
     $modemaintenance = false;
 }
