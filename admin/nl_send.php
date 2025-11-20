@@ -1,7 +1,7 @@
 <?php $logonly = true;
 $adminonly = true;
 $justbn = true;
-$titlePAdm = 'Envoyer la lettre d\'informations';
+$titlePAdm = "Envoyer la lettre d'informations";
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/log.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/consts.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/include/sendMail.php');
@@ -70,7 +70,7 @@ if (isset($_GET['act']) && $_GET['act'] === 'sendnl')
 <script type="text/javascript" src="/scripts/default.js"></script>
 </head>
 <body>
-<?php require_once('include/banner.php'); ?>
+<?php require_once(__dir__ . 'include/banner.php'); ?>
 <h2>Envoyer une newsletter aux abonnés</h2>
 <p>Remplir le formulaire ci-dessous pour envoyer une newsletter à tous les abonnés</p>
 <form action="?act=sendnl" method="post">
