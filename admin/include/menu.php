@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 if (basename((string) $_SERVER['SCRIPT_NAME']) === 'index.php')
 {
 
@@ -54,14 +56,14 @@ switch ($_SERVER['DOCUMENT_URI'])
         echo '<details><summary>Menu</summary><ul style="list-style-type: none;"><li><a href="sw_mod.php">Modifier un article</a></li><li><a href="sw_cat.php">Catégories</a></li><li><a href="translate_todo.php">Traductions</a></li></ul></details>';
         break;
     case 'showstats.php':
+    case 'up_publish.php':
+        echo '<details><summary>Menu</summary><ul style="list-style-type: none;"><li><a href="cache_update.php">Caches</a></li></ul></details>';
+        break;
     case 'nl_list.php':
         echo '<details><summary>Menu</summary><ul style="list-style-type: none;"><li><a href="nl_send.php">Envoyer la lettre d\'informations</a></li></ul></details>';
         break;
     case 'nl_send.php':
         echo '<details><summary>Menu</summary><ul style="list-style-type: none;"><li><a href="nl_list.php">Voir les inscrits à la lettre d\'informations</a></li></ul></details>';
-        break;
-    case 'up_publish.php':
-        echo '<details><summary>Menu</summary><ul style="list-style-type: none;"><li><a href="cache_update.php">Caches</a></li></ul></details>';
         break;
     case 'members_gestion':
         echo '<details><summary>Menu</summary><ul style="list-style-type: none;"><li><a href="team_gestion.php">Gérer l\'équipe</a></li></ul></details>';
