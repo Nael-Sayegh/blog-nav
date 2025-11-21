@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('include/log.php');
-require_once('include/consts.php');
-require_once('include/sendMail.php');
+require_once(__dir__ . 'include/log.php');
+require_once(__dir__ . 'include/consts.php');
+require_once(__dir__ . 'include/sendMail.php');
 $tr = load_tr($lang,'confirm');
 
-if (isset($_GET['id']) && isset($_GET['h']))
+if (isset($_GET['id'], $_GET['h']))
 {
     $SQL = <<<SQL
         SELECT id, username, email, signup_date, settings FROM nav.accounts WHERE id=:id AND signup_date<:date AND confirmed=false
