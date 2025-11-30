@@ -3,9 +3,9 @@
 <?php
 if (isset($_SERVER['HTTP_USER_AGENT']) && str_contains((string) $_SERVER['HTTP_USER_AGENT'], 'Trident'))
 {
-    require_once __DIR__ . '/include/trident.php';
+    require_once __DIR__ . '/trident.php';
 }
 require_once __DIR__ . '/loginbox.php';
-include __DIR__ . '/include/searchtool.php'; ?>
+require_once __DIR__ . '/include/searchtool.php'; ?>
 </header>
-<?php include __DIR__ . '/include/menu.php'; ?>
+<?php require_once __DIR__ . '/menu.php'; ?>
