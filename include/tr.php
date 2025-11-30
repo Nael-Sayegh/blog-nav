@@ -5,7 +5,7 @@ declare(strict_types=1);
 require_once(realpath(__DIR__.'/../cache/langs.php'));
 require_once(realpath(__DIR__.'/../cache/langs_index.php'));
 
-function langs_html_opts(string $selected = '')
+function langs_html_opts(string $selected = ''): string|array
 {
     global $langs_html_opts;
     return str_replace('value="'.$selected.'"', 'value="'.$selected.'" selected', $langs_html_opts);
@@ -32,9 +32,9 @@ function load_tr(string $trlang, string $trname)
     })($file);
 }
 
-function tr(&$ttr, $tkey, array $vars = []): string|array
+function tr(array &$ttr, string $tkey, array $vars = []): string|array
 {
-    if (isset($ttr[$tkey]))
+    if (array_key_exists($tkey, $ttr) && $ttr[$tkey] !== null)
     {
         return bparse($ttr[$tkey], $vars);
     }
@@ -42,18 +42,19 @@ function tr(&$ttr, $tkey, array $vars = []): string|array
     global $langs_prio;
 
     $trname = $ttr['_'] ?? null;
-    if (!$trname)
+    if ($trname === null || $trname === '')
     {
         return '';
     }
 
-    foreach ($langs_prio as $lang_prio)
+    foreach ((array) $langs_prio as $lang_prio)
     {
-        $fallback_tr = load_tr($lang_prio, $trname);
-        if (isset($fallback_tr[$tkey]))
+        $fallback_tr = load_tr($lang_prio, $trname) ?? [];
+        if (array_key_exists($tkey, $fallback_tr))
         {
-            $ttr[$tkey] = $fallback_tr[$tkey];
-            return bparse($fallback_tr[$tkey], $vars);
+            $value = $fallback_tr[$tkey] ?? '';
+            $ttr[$tkey] = $value;
+            return bparse($value, $vars);
         }
     }
 
