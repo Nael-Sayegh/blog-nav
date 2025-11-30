@@ -1,49 +1,51 @@
 <?php
 
-require_once('config.local.php');
-require_once('Rights.php');
-require_once('tr.php');
+declare(strict_types=1);
 
-function urlsafe_b64encode($str)
+require_once(__DIR__ . '/config.local.php');
+require_once(__DIR__ . '/Rights.php');
+require_once(__DIR__ . '/tr.php');
+
+function urlsafe_b64encode($str): string
 {
     return strtr(preg_replace('/[\=]+\z/', '', base64_encode((string) $str)), '+/=', '-_');
 }
 
-function urlsafe_b64decode($data)
+function urlsafe_b64decode($data): string
 {
     $data = preg_replace('/[\t-\x0d\s]/', '', strtr($data, '-_', '+/'));
     $mod4 = strlen((string) $data) % 4;
-    if ($mod4)
+    if ($mod4 !== 0)
     {
         $data .= substr('====', $mod4);
     }
-    return base64_decode($data);
+
+    return base64_decode($data, true);
 }
 
-function zeros($n, $d = 3)
+function zeros(string $n, $d = 3): string
 {
     $l = floor(log10($n) + 1);
     if ($l < $d)
     {
         return str_repeat('0', (int)($d - $l)) . $n;
     }
-    else
-    {
-        return strval($n);
-    }
+
+    return strval($n);
 }
 
-function args_html_form($args)
+function args_html_form($args): string
 {
     $r = '';
     foreach ($args as $name => $value)
     {
         $r .= '<input type="hidden" name="'.$name.'" value="'.$value.'">';
     }
+
     return $r;
 }
 
-function bparse($text, $vars)
+function bparse($text, array $vars): string|array
 {
     global $site_name, $slogan, $site_url;
     $vars['site'] = $site_name;
@@ -55,18 +57,20 @@ function bparse($text, $vars)
         {
             $var2 = '';
         }
+
         $text = str_replace('{{'.$var1.'}}', $var2, $text);
     }
+
     return $text;
 }
 
-function numberlocale($n)
+function numberlocale($n): string
 {
     global $tr0;
     return str_replace('.', tr($tr0, 'decimal_separator'), strval($n));
 }
 
-function getFormattedDate($timestamp, $format)
+function getFormattedDate($timestamp, $format): string|false
 {
     global $tr0, $lang;
     $timestamp = (int) $timestamp;
@@ -75,14 +79,14 @@ function getFormattedDate($timestamp, $format)
     return IntlDateFormatter::formatObject($dateTimeObj, $format, $lang);
 }
 
-function human_filesize($bytes, $decimals = 1)
+function human_filesize($bytes, $decimals = 1): string
 {
     $sz = ' kMGTP';
     $factor = floor((strlen((string) $bytes) - 1) / 3);
-    return sprintf("%.{$decimals}f", $bytes / 1024 ** $factor) . ' ' . @$sz[$factor];
+    return sprintf(sprintf('%%.%sf', $decimals), $bytes / 1024 ** $factor) . ' ' . @$sz[$factor];
 }
 
-function get_article_trs($article_id)
+function get_article_trs($article_id): array|false
 {
     global $bdd;
     $SQL = <<<SQL
@@ -99,16 +103,18 @@ function get_article_trs($article_id)
         $article['trs'][$data['lang']] = ['id' => $data['id'], 'title' => $data['name'], 'desc' => $data['description']];
         return $article;
     }
+
     return false;
 }
 
 function get_article_prefered_tr($article_id, $lang)
 {
     global $langs_prio;
-    if (!$article = get_article_trs($article_id))
+    if ((($article = get_article_trs($article_id))) === [] || (($article = get_article_trs($article_id))) === false)
     {
         return false;
     }
+
     $tr = '';
     if (array_key_exists($lang, $article['trs']))
     {
@@ -116,20 +122,21 @@ function get_article_prefered_tr($article_id, $lang)
     }
     else
     {
-        foreach ($langs_prio as &$i_lang)
+        foreach ($langs_prio as &$lang_prio)
         {
-            if (array_key_exists($i_lang, $article['trs']))
+            if (array_key_exists($lang_prio, $article['trs']))
             {
-                $tr = $i_lang;
+                $tr = $lang_prio;
                 break;
             }
         }
     }
+
     $article['prefered_tr'] = $tr;
     return $article;
 }
 
-function getVersionFromGit()
+function getVersionFromGit(): void
 {
     global $tr0, $site_name;
     $gitDir = $_SERVER['DOCUMENT_ROOT'].'/'.GIT_DIR;
@@ -145,13 +152,13 @@ function getVersionFromGit()
     else
     {
         $tag = trim(shell_exec('git --git-dir="'.$gitDir.'" describe --tags --abbrev=0 2>/dev/null'));
-        $commitVersion = $tag ?: 'unknown';
+        $commitVersion = $tag !== '' && $tag !== '0' ? $tag : 'unknown';
     }
 
     echo tr($tr0, 'footer_lastcommit', ['commit_url' => $commitVersion . $link]);
 }
 
-function getContentLastModif()
+function getContentLastModif(): void
 {
     global $tr, $tr0, $lang, $sw_tr;
 
@@ -180,19 +187,12 @@ function getContentLastModif()
     }
 }
 
-function isDev()
+function isDev(): bool
 {
-    if ((isset($_SERVER['HTTP_HOST']) && strstr((string) $_SERVER['HTTP_HOST'], 'dev.')) || DEV === true)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return (isset($_SERVER['HTTP_HOST']) && strstr((string) $_SERVER['HTTP_HOST'], 'dev.')) || DEV === true;
 }
 
-function setTimeZone($timezone, $lc_code)
+function setTimeZone($timezone, $lc_code): void
 {
     date_default_timezone_set($timezone);
     setlocale(LC_ALL, $lc_code);
@@ -211,7 +211,7 @@ function getUsernameById($id)
         $req->execute([':id' => $id]);
         if ($user = $req->fetch())
         {
-            if ($user['rank'] === "a")
+            if ($user['rank'] === 'a')
             {
                 $req2 = $bdd->prepare('SELECT short_name FROM nav.team WHERE account_id = '.$user['id']);
                 $req2->execute();
@@ -226,10 +226,14 @@ function getUsernameById($id)
             }
         }
     }
+
     return false;
 }
 
-function getTeamEmails(?string $right = null)
+/**
+ * @return list
+ */
+function getTeamEmails(?string $right = null): array
 {
     global $bdd;
 
@@ -245,6 +249,7 @@ function getTeamEmails(?string $right = null)
 
     $req = $bdd->prepare($sql);
     $req->execute();
+
     $rows = $req->fetchAll(PDO::FETCH_ASSOC);
     $emails = [];
     foreach ($rows as $row)
@@ -257,6 +262,7 @@ function getTeamEmails(?string $right = null)
                 continue;
             }
         }
+
         $emails[] = $row['email'];
     }
 
@@ -273,8 +279,9 @@ if (!(isset($noct) && $noct))
 {
     header('Content-Type: text/html; charset=UTF-8');
 }
+
 ini_set('default_charset', 'utf-8');
-include_once 'maintenance_mode.php';
+include_once __DIR__ . '/maintenance_mode.php';
 if (isset($modemaintenance) && $modemaintenance && !(isset($logged) && $logged && $login['rank'] === 'a') && !(isset($nomm) && $nomm))
 {
     http_response_code(503);
@@ -296,12 +303,13 @@ if (isset($modemaintenance) && $modemaintenance && !(isset($logged) && $logged &
         HTML;
     exit();
 }
-require_once 'dbconnect.php';
+
+require_once __DIR__ . '/dbconnect.php';
 
 // LANGUAGE
 include_once DOCUMENT_ROOT.'/cache/langs.php';
 $lang = '';
-if (isset($_GET['lang']) && !empty($_GET['lang']) && in_array($_GET['lang'], $langs_prio))
+if (isset($_GET['lang']) && !empty($_GET['lang']) && in_array($_GET['lang'], $langs_prio, true))
 {
     $lang = $_GET['lang'];
     setcookie('lang', (string) $lang, ['expires' => time() + 31557600, 'path' => '/', 'secure' => true, 'httponly' => false, 'samesite' => 'strict']);
@@ -314,10 +322,12 @@ elseif (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
 {
     $lang = substr((string) $_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 }
-if (!in_array($lang, $langs_prio))
+
+if (!in_array($lang, $langs_prio, true))
 {
     $lang = $langs_prio[0];
 }
+
 putenv('LANG='.$lang);
 
 // MISC CONSTS/VARS

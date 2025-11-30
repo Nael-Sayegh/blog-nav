@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'index',
   '_todo_level' => 4,
   '_last_author' => 'Pascal',
-  '_last_modif' => 1751651710,
+  '_last_modif' => 1764523627,
   'title' => '{{site}}&nbsp;: {{slogan}}',
   'happynewyear' => 'The hole team {{site}} wishes you an happy new year {{year}}!',
   'texttitle' => '{{slogan}}',

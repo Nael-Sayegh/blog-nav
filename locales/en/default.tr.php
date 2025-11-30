@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'default',
   '_todo_level' => 2,
   '_last_author' => 'Corentin',
-  '_last_modif' => 1751651710,
+  '_last_modif' => 1764523627,
   'slogan' => 'Find your solution!',
   'banner_homelink' => 'Back to homepage',
   'fndate'      => 'dd/MM/yyyy',
@@ -53,8 +55,8 @@ $tr = [
   'footer_license' => 'The <a href="/opensource.php">code of {{site}}</a> is distributed under {{license}} license.<br>
 The text is under {{trlicense}} license.',
   'footer_opensource' => 'about source code',
-  'footer_stablelink' => 'Site\'s stable zone',
-  'footer_devlink' => 'Site\'s dev zone',
+  'footer_stablelink' => "Site's stable zone",
+  'footer_devlink' => "Site's dev zone",
   'footer_date' => 'When the page loaded, it was {{date}}, {{time}}.',
   'footer_toplink' => 'Page top',
   'footer_menulink' => 'Menu',

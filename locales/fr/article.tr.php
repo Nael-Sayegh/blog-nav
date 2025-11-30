@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'article',
   '_todo_level' => 0,
   '_last_author' => 'Corentin',
-  '_last_modif' => 1609230733,
+  '_last_modif' => 1764523627,
   'comment_sent' => 'Le commentaire a bien été envoyé.',
   'comment_toolong' => 'Le pseudo ne doit pas excéder 31 caractères.<br>Le texte ne doit pas excéder 1023 caractères.',
   'commentmod_toolong' => 'Le texte ne doit pas excéder 1023 caractères.',
@@ -25,7 +27,7 @@ $tr = [
   'packages_title' => 'Paquets pour <em>{{title}}</em>',
   'packages_manager' => 'Gestionnaire',
   'packages_name' => 'Paquet',
-  'packages_info' => 'Plus d\'infos',
+  'packages_info' => "Plus d'infos",
   'packages_install_cmd' => 'Commande&nbsp;:',
   'packages_platform' => 'Plateforme',
   'packages_comment' => 'Commentaire',

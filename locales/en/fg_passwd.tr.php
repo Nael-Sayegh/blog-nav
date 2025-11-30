@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'fg_passwd',
   '_todo_level' => 0,
   '_last_author' => 'Nael Sayegh',
-  '_last_modif' => 1750833523,
+  '_last_modif' => 1764523627,
   'title' => 'Forgot password',
   'mail_sent' => 'Check your emails, a reset link has been sent to you',
   'invalid_or_expired' => 'This token is invalid or has expired. Please try again.',

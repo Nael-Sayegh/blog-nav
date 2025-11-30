@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $atime = microtime(true);
 $noct = true;
 
@@ -40,6 +42,7 @@ if (!isDev() || isset($debug))
         $req->execute([':exp' => time() + 172800]);
         echo "--prod--\n";
     }
+
     while ($data = $req->fetch())
     {
         if (!isset($simulate))
@@ -59,6 +62,7 @@ if (!isDev() || isset($debug))
                 TEXT;
             sendMail($data['mail'], $subject, $body, $altBody);
         }
+
         echo $data['mail'];
     }
 
@@ -66,15 +70,19 @@ if (!isDev() || isset($debug))
     if (localtime()[3] === 1) # premier jour du mois
     {$r .= ' OR freq=5';
     }
+
     if (localtime()[6] === 1 && intval(date('W')) % 2 === 0) # lundi et semaine paire
     {$r .= ' OR freq=4';
     }
+
     if (localtime()[6] === 1) # lundi
     {$r .= ' OR freq=3';
     }
+
     if (localtime()[7] % 2 === 0) # jour pair sur l'année
     {$r .= ' OR freq=2';
     }
+
     $r .= ')';
 
     $cat = [];
@@ -102,8 +110,10 @@ if (!isDev() || isset($debug))
         {
             $sft[$data['sw_id']] = ['category' => $data['category'], 'hits' => $data['hits'], 'date' => $data['date'], 'author' => $data['author'], 'trs' => []];
         }
+
         $sft[$data['sw_id']]['trs'][$data['lang']] = ['name' => $data['name'], 'description' => $data['description']];
     }
+
     $SQL = <<<SQL
         SELECT * FROM softwares_files WHERE date>=:date ORDER BY date DESC
         SQL;
@@ -132,6 +142,7 @@ if (!isDev() || isset($debug))
         $update_author = $data['authors'];
         $update_date = $data['date'];
     }
+
     $subject = '🗞️ Lettre d\'informations du '.$daydate;
     $newsletterCss = <<<CSS
         @font-face
@@ -211,6 +222,7 @@ if (!isDev() || isset($debug))
         $req->execute();
         echo "--prod--\n";
     }
+
     $nba = 0;
     $nbt = 0;
     $nbk = 0;
@@ -234,19 +246,42 @@ if (!isDev() || isset($debug))
                     }
                     else
                     {
-                        foreach ($langs_prio as &$i_lang)
+                        foreach ($langs_prio as &$lang_prio)
                         {
-                            if (array_key_exists($i_lang, $software['trs']))
+                            if (array_key_exists($lang_prio, $software['trs']))
                             {
-                                $entry_tr = $i_lang;
+                                $entry_tr = $lang_prio;
                                 break;
                             }
                         }
                     }
+
                     unset($i_lang);
-                    if (empty($entry_tr)) // Error: sw has no translations
-                    {continue;
+                    if ($entry_tr === 0)
+                    {
+                        continue;
                     }
+
+                    if ($entry_tr === '')
+                    {
+                        continue;
+                    }
+
+                    if ($entry_tr === '0')
+                    {
+                        continue;
+                    }
+
+                    if ($entry_tr === '')
+                    {
+                        continue;
+                    }
+
+                    if ($entry_tr === '0')
+                    {
+                        continue;
+                    }
+
                     $nbs++;
                     $sftDesc = str_replace('{{site}}', $site_name, $software['trs'][$entry_tr]['description']);
                     $sftHour = date('H:i', $software['date']);
@@ -273,6 +308,7 @@ if (!isDev() || isset($debug))
                                 TEXT;
                         }
                     }
+
                     unset($file);
                     $body .= <<<HTML
                         </ul></div>
@@ -283,6 +319,7 @@ if (!isDev() || isset($debug))
                 }
             }
         }
+
         unset($software);
         $lastMailDate = date('d/m/Y', $data['lastmail']);
         $body = <<<HTML
@@ -308,6 +345,7 @@ if (!isDev() || isset($debug))
                     {$updateTextT}
                     TEXT;
             }
+
             $subExpDate = date('d/m/Y, H:i', $data['expire']);
             $body .= <<<HTML
                 {$body2}{$subExpDate}{$body3}{$data['hash']}{$body4}
@@ -321,7 +359,7 @@ if (!isDev() || isset($debug))
 
             if (isset($debug))
             {
-                print('<p>'.$altBody.'</p>');
+                print '<p>'.$altBody.'</p>';
             }
 
             if (!isset($simulate))
@@ -343,9 +381,11 @@ if (!isDev() || isset($debug))
                     echo ' Error!';
                 }
             }
+
             echo "\n";
         }
     }
+
     $btime = microtime(true) - $atime;
     echo $nba.' subscribers, '.$nbt.' sents, '.$nbk.' OK, '.$btime."s\n";
     if ($nbk > 0)

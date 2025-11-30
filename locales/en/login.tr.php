@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'login',
   '_todo_level' => 1,
   '_last_author' => 'Pascal',
-  '_last_modif' => 1751651710,
+  '_last_modif' => 1764523627,
   'title' => 'Login',
   'wrong' => 'Wrong username or password.',
   'confirmed' => 'Your e-mail address has been successfully confirmed.',

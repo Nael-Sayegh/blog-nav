@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'redirlogin',
   '_todo_level' => 0,
   '_last_author' => 'Nael Sayegh',
-  '_last_modif' => 1750595022,
+  '_last_modif' => 1764523627,
   'title' => 'Login successful!',
   'maintext' => '<p>Hello {{membername}}, your login was successful!<br> What would you like to do next?</p>',
   'homelink' => 'Go to homepage',

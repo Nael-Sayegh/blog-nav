@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'legal',
   '_todo_level' => 0,
   '_last_author' => 'Nael',
-  '_last_modif' => 1748185111,
+  '_last_modif' => 1764523627,
   'title' => 'Mentions légales',
   'maintext' => '<h2>Information</h2>
     <p>Nom prénom: Sayegh Nael</p>

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'index',
   '_todo_level' => 0,
   '_last_author' => 'Pascal',
-  '_last_modif' => 1755342349,
+  '_last_modif' => 1764523627,
   'title' => '{{site}}&nbsp;: {{slogan}}',
   'happynewyear' => '<p role="alert">Toute l\'équipe {{site}} vous souhaite une excellente année {{year}}, vous envoie ses voeux de bonheur, de santé et de sérénité.<br>
 

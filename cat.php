@@ -5,8 +5,8 @@ if (!isset($_GET['id']))
     exit();
 }
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('include/log.php');
-require_once('include/consts.php');
+require_once(__DIR__ . '/include/log.php');
+require_once(__DIR__ . '/include/consts.php');
 $SQL = <<<SQL
     SELECT * FROM softwares_categories WHERE id=:id
     SQL;
@@ -27,9 +27,9 @@ $args['id'] = $cat_id;
 $stats_page = 'cat'; ?>
 <!DOCTYPE html>
 <html lang="<?= $lang ?>">
-<?php require_once('include/header.php'); ?>
+<?php require_once(__DIR__ . '/include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php'); ?>
+<?php require_once(__DIR__ . '/include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <?= str_replace('{{site}}', $site_name, $cat_text) ?>
@@ -64,7 +64,7 @@ while ($data = $req->fetch())
         'date' => $data['date'],
         'id' => $data['id'],
         'title' => $data['name'],
-        'desc' => $data['description']
+        'desc' => $data['description'],
     ];
 }
 
@@ -86,13 +86,13 @@ foreach ($entries as $sw_id => $entry)
         str_replace('{{site}}', $site_name, $entry['title']),
         str_replace('{{site}}', $site_name, $entry['desc']),
         tr($tr, 'hits', ['hits' => $entry['hits']]),
-        tr($tr, 'date', ['date' => getFormattedDate($entry['date'], tr($tr0, 'fndatetime'))])
+        tr($tr, 'date', ['date' => getFormattedDate($entry['date'], tr($tr0, 'fndatetime'))]),
     );
 }
 ?>
 </div>
 </main>
-<?php require_once('include/footer.php'); ?>
+<?php require_once(__DIR__ . '/include/footer.php'); ?>
 <script>
     document.addEventListener('DOMContentLoaded', function()
     {

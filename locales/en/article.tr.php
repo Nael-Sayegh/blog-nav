@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'article',
   '_todo_level' => 1,
   '_last_author' => 'Corentin',
-  '_last_modif' => 1751651710,
+  '_last_modif' => 1764523627,
   'comment_sent' => 'The comment has been sent.',
   'comment_toolong' => 'The pseudo cannot exceed 31 characters.<br>The text cannot exceed 1023 characters.',
   'commentmod_toolong' => 'The text cannot exceed 1023 characters.',
   'commentmod_error' => 'Error modifying the comment',
   'categories_link' => 'See here the complete article list',
   'files_title' => 'Available files for <em>{{title}}</em>:',
-  'files_size' => 'File\'s title (size)',
+  'files_size' => "File's title (size)",
   'files_date' => 'Modified on',
   'files_hits' => 'Downloads',
   'files_sums' => 'Check sums',
@@ -38,7 +40,7 @@ $tr = [
   'adminlink_trs' => 'Show translations of',
   'comments_subscribe' => 'Follow',
   'comments_subscribe_long' => 'Be notified on new comments on this article',
-  'comments_unsubscribe' => 'Don\'t follow anymore',
+  'comments_unsubscribe' => "Don't follow anymore",
   'comments_unsubscribe_long' => 'Do not be notified anymore on new comments on this article',
   'sort_label' => 'Sort the files&nbsp;:',
   'sort_date' => 'By date',

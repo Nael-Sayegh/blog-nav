@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'sendconfirm',
   '_todo_level' => 4,
   '_last_author' => 'Pascal',
-  '_last_modif' => 1751651710,
+  '_last_modif' => 1764523627,
   'title' => 'Confirm your member account.',
   'logo' => 'Logo',
   'subject' => '{{site}} account confirmation',

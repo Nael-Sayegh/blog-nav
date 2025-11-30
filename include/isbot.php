@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 $isbot = false;
 if (!empty($_SERVER['HTTP_USER_AGENT']))
 {
-    $uabots = ['DotBot','bingbot','Googlebot','Ahrefsbot','Twitterbot','applebot','PaperLiBot','SemrushBot','SurdotlyBot','SocialRankIOBot','ubermetrics','facebookexternalhit','LivelapBot','TrendsmapResolver','bot@linkfluence.com','YandexBot','MJ12bot','Mastodon','Akkoma','spider','HaloB ot','PetalBot','MojeekBot','OAI-SearchBot','GPTBot','ClaudeBot','coccocbot-web','sqlmap','AdsBot','SemanticScholarBot','meta-externalagent','IbouBot','Thinkbot','ChatGPT-User','Amazonbot','PerplexityBot','Lumibot','nbertaupete95','python-requests','GoogleImageProxy','bot'];
+    $uabots = ['DotBot','bingbot','Googlebot','Ahrefsbot','Twitterbot','applebot','PaperLiBot','SemrushBot','SurdotlyBot','SocialRankIOBot','ubermetrics','facebookexternalhit','LivelapBot','TrendsmapResolver','bot@linkfluence.com','YandexBot','MJ12bot','Mastodon','Akkoma','spider','HaloBot','PetalBot','MojeekBot','OAI-SearchBot','GPTBot','ClaudeBot','coccocbot-web','sqlmap','AdsBot','SemanticScholarBot','meta-externalagent','IbouBot','Thinkbot','ChatGPT-User','Amazonbot','PerplexityBot','Lumibot','nbertaupete95','python-requests','GoogleImageProxy','bot'];
     foreach ($uabots as &$uabot)
     {
-        if (stripos((string) $_SERVER['HTTP_USER_AGENT'], $uabot) !== false || $_SERVER['HTTP_USER_AGENT'] === '-' || $_SERVER['HTTP_USER_AGENT'] === 'Mozilla/5.0'))
+        if (stripos((string) $_SERVER['HTTP_USER_AGENT'], $uabot) !== false || $_SERVER['HTTP_USER_AGENT'] === '-' || $_SERVER['HTTP_USER_AGENT'] === 'Mozilla/5.0')
         {
             $isbot = true;
             break;

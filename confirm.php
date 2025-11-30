@@ -1,12 +1,14 @@
 <?php
 
-set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('include/log.php');
-require_once('include/consts.php');
-require_once('include/sendMail.php');
-$tr = load_tr($lang,'confirm');
+declare(strict_types=1);
 
-if (isset($_GET['id']) && isset($_GET['h']))
+set_include_path($_SERVER['DOCUMENT_ROOT']);
+require_once(__DIR__ . '/include/log.php');
+require_once(__DIR__ . '/include/consts.php');
+require_once(__DIR__ . '/include/sendMail.php');
+$tr = load_tr($lang, 'confirm');
+
+if (isset($_GET['id'], $_GET['h']))
 {
     $SQL = <<<SQL
         SELECT id, username, email, signup_date, settings FROM nav.accounts WHERE id=:id AND signup_date<:date AND confirmed=false
@@ -19,31 +21,39 @@ if (isset($_GET['id']) && isset($_GET['h']))
         {
             $countReq = $bdd->query('SELECT COUNT(*) FROM nav.accounts');
             $totalAccounts = (int) $countReq->fetchColumn();
-            $SQL = "UPDATE nav.accounts SET confirmed = true";
+            $SQL = 'UPDATE nav.accounts SET confirmed = true';
             if ($totalAccounts === 1)
             {
-                $SQL .= ", rank = :adminRank";
+                $SQL .= ', rank = :adminRank';
             }
-            $SQL .= " WHERE id = :id";
+
+            $SQL .= ' WHERE id = :id';
             $req = $bdd->prepare($SQL);
             $params = [':id' => $data['id']];
             if ($totalAccounts === 1)
             {
                 $params[':adminRank'] = 'a';
             }
+
             $req->execute($params);
-            $subject = tr($tr,'mail_info_subject');
+            $subject = tr($tr, 'mail_info_subject');
             $username = htmlentities((string) $data['username']);
             $memberSignupDate = date('d/m/Y à H:i', $data['signup_date']);
-            $body = tr($tr,'mail_info_body_html', ['username' => $username,
+            $body = tr(
+                $tr,
+                'mail_info_body_html',
+                ['username' => $username,
                 'email' => $data['email'],
                 'id' => $data['id'],
-                'signup_date' => $memberSignupDate]
+                'signup_date' => $memberSignupDate],
             );
-            $altBody = tr($tr,'mail_info_body_text', ['username' => $username,
+            $altBody = tr(
+                $tr,
+                'mail_info_body_text',
+                ['username' => $username,
                 'email' => $data['email'],
                 'id' => $data['id'],
-                'signup_date' => $memberSignupDate]
+                'signup_date' => $memberSignupDate],
             );
             sendMail($data['email'], $subject, $body, $altBody);
             header('Location: /login.php?confirmed');
@@ -56,5 +66,6 @@ if (isset($_GET['id']) && isset($_GET['h']))
         }
     }
 }
+
 header('Location: /login.php?confirm_err');
 exit();

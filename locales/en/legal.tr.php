@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'legal',
   '_todo_level' => 2,
   '_last_author' => 'Nael',
-  '_last_modif' => 1751651710,
+  '_last_modif' => 1764523627,
   'title' => 'Legal mention',
   'maintext' => <<<ENDSTR
     <h2>Information</h2>

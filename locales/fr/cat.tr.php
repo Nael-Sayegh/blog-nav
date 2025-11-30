@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'cat',
   '_todo_level' => 0,
   '_last_author' => 'Pascal',
-  '_last_modif' => 1544620842,
+  '_last_modif' => 1764523627,
   'hits' => '{{hits}} visites',
   'date' => 'mise à jour le {{date}}',
   'sort_label' => 'Trier les articles par&nbsp;:',
