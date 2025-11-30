@@ -41,7 +41,7 @@ elseif (isset($_GET['addfile']))
 
 if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_POST['token']) && $_POST['token'] === $login['token']))
 {
-    if (isset($_GET['mod']) && isset($_POST['name']) && isset($_POST['category']))
+    if (isset($_GET['mod'], $_POST['name'], $_POST['category']))
     {
         $mod_keywords = $_POST['keywords'] ?? '';
         $mod_description = $_POST['description'] ?? '';
@@ -275,7 +275,7 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
             exit();
         }
     }
-    if (isset($_GET['addmirror']) && isset($_POST['title']) && isset($_POST['urls']))
+    if (isset($_GET['addmirror'], $_POST['title'], $_POST['urls']))
     {
         $SQL1 = <<<SQL
             SELECT id FROM softwares WHERE id=:id LIMIT 1
@@ -314,7 +314,7 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
             exit();
         }
     }
-    if (isset($_GET['addpackage']) && isset($_POST['manager']) && isset($_POST['name']))
+    if (isset($_GET['addpackage'], $_POST['manager'], $_POST['name']))
     {
         $SQL1 = <<<SQL
             SELECT id FROM softwares WHERE id=:id LIMIT 1
@@ -337,7 +337,7 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
             exit();
         }
     }
-    if (isset($_GET['upload']) && isset($_POST['title']) && isset($_POST['method']))
+    if (isset($_GET['upload'], $_POST['title'], $_POST['method']))
     {
         $ok = false;
         $complete = false;
@@ -359,7 +359,8 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
             switch ($_POST['method'])
             {
                 case 'form':
-                    if (!file_exists($file) && (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK && $_FILES['file']['size'] <= 2147483648)) {
+                    if (!file_exists($file) && (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK && $_FILES['file']['size'] <= 2147483648))
+                    {
                         move_uploaded_file($_FILES['file']['tmp_name'], $file);
                         $filename = (isset($_POST['name']) && !empty($_POST['name'])) ? $_POST['name'] : $_FILES['file']['name'];
                         $filesize = $_FILES['file']['size'];
@@ -911,77 +912,78 @@ if (isset($_GET['modf']))
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':id' => $_GET['modf']]);
-    if ($data = $req->fetch()) {
+    if ($data = $req->fetch())
+    {
         ?>
-<a href="?listfiles=<?php
+<a href="?listfiles=
         <?= $data['sw_id'] ?>
-        ?>">Liste des fichiers de l'article</a>
-<form id="f_modf_form" action="?modf2=<?php
+        ">Liste des fichiers de l'article</a>
+<form id="f_modf_form" action="?modf2=
         <?= $data['id'] ?>
-        ?>" method="post" enctype="multipart/form-data" onsubmit="f_modf_submit(event)">
-<input type="hidden" name="token" value="<?php
+        " method="post" enctype="multipart/form-data" onsubmit="f_modf_submit(event)">
+<input type="hidden" name="token" value="
         <?= $login['token'] ?>
-        ?>">
+        ">
 <h2>Modifier un fichier</h2>
 <fieldset>
 <legend>Métadonnées</legend>
 <label for="f_modf_title">Titre du fichier&nbsp;:</label>
-<input type="text" name="title" id="f_modf_title" value="<?php
+<input type="text" name="title" id="f_modf_title" value="
         <?= $data['title'] ?>
-        ?>" required><br>
+        " required><br>
 <label for="f_modf_name">Nom du fichier&nbsp;:</label>
-<input type="text" name="name" id="f_modf_name" value="<?php
+<input type="text" name="name" id="f_modf_name" value="
         <?= $data['name'] ?>
-        ?>" required><br>
+        " required><br>
 <label for="f_modf_label">Label&nbsp;:</label>
-<input type="text" name="label" id="f_modf_label" value="<?php
+<input type="text" name="label" id="f_modf_label" value="
         <?= $data['label'] ?>
-        ?>" maxlength="16" readonly=<?php
+        " maxlength="16" readonly=<?php
         ?>>
 <?php
         if (!empty($data['label']))
-    {
-        echo '<p>Le label de ce fichier est déjà renseigné, pour le modifier, supprimez ce fichier et ajoutez en un nouveau.</p>';
-    }
+        {
+            echo '<p>Le label de ce fichier est déjà renseigné, pour le modifier, supprimez ce fichier et ajoutez en un nouveau.</p>';
+        }
         ?>
 
 <label for="f_modf_arch">Architecture&nbsp;:</label>
 <select name="arch" id="f_modf_arch">
 <option value=""<?php
-        if (!in_array($data['arch'], $ARCHS))
+        if (!in_array($data['arch'], $ARCHS, true))
         {
             echo 'selected';
         }
         ?>></option>
 <?php
         foreach ($ARCHS as $arch_id => $arch_title)
-                {
-                    echo '<option value="'.$arch_id.'"';
-                    if ($data['arch'] === $arch_id)
-                    {
-                        echo ' selected';
-                    } echo '>'.$arch_title.'</option>';
-                }
+        {
+            echo '<option value="'.$arch_id.'"';
+            if ($data['arch'] === $arch_id)
+            {
+                echo ' selected';
+            } echo '>'.$arch_title.'</option>';
+        }
         ?>
 </select><br>
 
 <label for="f_modf_platform">Plateforme&nbsp;:</label>
 <select name="platform" id="f_modf_platform">
 <option value=""<?php
-        if (!in_array($data['platform'], $PLATFORMS))
-{
-    echo 'selected';
-}
+        if (!in_array($data['platform'], $PLATFORMS, true))
+        {
+            echo 'selected';
+        }
         ?>></option>
 <?php
         foreach ($PLATFORMS as $platform)
-                {
-                    echo '<option value="'.$platform.'"';
-                    if ($data['platform'] === $platform)
-                    {
-                        echo ' selected';
-                    } echo '>'.$platform.'</option>';
-                }
+        {
+            echo '<option value="'.$platform.'"';
+            if ($data['platform'] === $platform)
+            {
+                echo ' selected';
+            } echo '>'.$platform.'</option>';
+        }
         ?>
 </select>
 </fieldset>
@@ -1015,9 +1017,9 @@ if (isset($_GET['modf']))
 <label for="f_modf_social">Annoncer sur les médias sociaux&nbsp;:</label>
 <input type="checkbox" name="social" id="f_modf_social"<?php
         if (!isDev())
-{
-    echo ' checked';
-}
+        {
+            echo ' checked';
+        }
         ?>><br>
 <button type="submit">Modifier</button>
 <progress class="upload-progress" id="upload-progress"></progress>

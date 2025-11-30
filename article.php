@@ -96,7 +96,7 @@ function canManageComment(array $comment)
 }
 
 $comlog = '';
-if (isset($_GET['comment']) && isset($_POST['text']) && isset($logged) && $logged && checkMemberRights('comment_articles'))
+if (isset($_GET['comment'], $_POST['text'], $logged)     && $logged && checkMemberRights('comment_articles'))
 {
     if (strlen((string) $_POST['text']) <= 1023)
     {
@@ -180,7 +180,7 @@ if (isset($_GET['cdel']))
         $del->execute(['id' => $_GET['cdel']]);
     }
 }
-if (isset($_GET['cedit2']) && isset($_POST['text']))
+if (isset($_GET['cedit2'], $_POST['text']))
 {
     $req = $bdd->prepare('SELECT * FROM softwares_comments WHERE id=:id LIMIT 1');
     $req->execute(['id' => $_GET['cedit2']]);
@@ -203,7 +203,7 @@ if (isset($_GET['cedit2']) && isset($_POST['text']))
     }
     $req->closeCursor();
 }
-if (isset($_GET['subscribe-comments']) && isset($_GET['token']) && isset($logged) && $logged && $_GET['token'] === $login['token'] && $login['rank'] !== 'a')
+if (isset($_GET['subscribe-comments'], $_GET['token'], $logged)     && $logged && $_GET['token'] === $login['token'] && $login['rank'] !== 'a')
 {
     $SQL = <<<SQL
         SELECT id FROM subscriptions_comments WHERE account=:acc AND article=:id LIMIT 1
@@ -219,7 +219,7 @@ if (isset($_GET['subscribe-comments']) && isset($_GET['token']) && isset($logged
         $req->execute([':acc' => $login['id'], ':id' => $sw['id']]);
     }
 }
-elseif (isset($_GET['unsubscribe-comments']) && isset($_GET['token']) && isset($logged) && $logged && $_GET['token'] === $login['token'] && $login['rank'] !== 'a')
+elseif (isset($_GET['unsubscribe-comments'], $_GET['token'], $logged)     && $logged && $_GET['token'] === $login['token'] && $login['rank'] !== 'a')
 {
     $SQL = <<<SQL
         DELETE FROM subscriptions_comments WHERE account=:acc AND article=:id
@@ -259,7 +259,7 @@ if (isset($logged) && $logged && checkMemberRights('rate_articles'))
     $val = $urReq->fetchColumn();
     $user_rating = ($val === false ? null : (int) $val);
 }
-if (isset($_GET['deleterating']) && isset($logged) && $logged && checkMemberRights('rate_articles'))
+if (isset($_GET['deleterating'], $logged)   && $logged && checkMemberRights('rate_articles'))
 {
     $SQL = <<<SQL
         DELETE FROM softwares_ratings WHERE sw_id = :sw AND account = :acc
@@ -286,7 +286,7 @@ foreach ($bdd->query($SQL) as $data)
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <?php
-if (isset($logged) && $logged && $login['rank'] === 'a' && in_array($login['works'], ['1', '2']) && checkAdminRights('manage_comments'))
+if (isset($logged) && $logged && $login['rank'] === 'a' && in_array($login['works'], ['1', '2'], true) && checkAdminRights('manage_comments'))
 { ?>
 <ul>
 <li><a href="/admin/sw_mod.php?id=<?= $sw['id'] ?>"><?= str_replace('{{title}}', $title, tr($tr, 'adminlink_article').' '.$sw['name']) ?></a></li>
@@ -353,7 +353,7 @@ foreach ($files as $data)
         $data['hits'],
         $data['filesize'],
         htmlspecialchars((string) $data['title']),
-        htmlspecialchars((string) $data['name'])
+        htmlspecialchars((string) $data['name']),
     );
     echo '<td class="sw_file_ltd"><a class="sw_file_link" href="/dl/';
     if (empty($data['label']))
@@ -528,7 +528,7 @@ endif; ?>
 <div class="rating-radios">
 <?php for ($i = 1; $i <= 5; $i++): ?>
 <input type="radio" name="rating" id="rating<?= $i ?>" value="<?= $i ?>"<?= $user_rating === $i ? 'checked' : '' ?>>
-<label for="rating<?= $i ?>"><?= $i == 1 ? $i . " (".tr($tr,'rating_1_explanation').")" : ($i == 5 ? $i ." (".tr($tr,'rating_5_explanation').")" : $i) ?></label>
+<label for="rating<?= $i ?>"><?= $i == 1 ? $i . ' ('.tr($tr, 'rating_1_explanation').')' : ($i == 5 ? $i .' ('.tr($tr, 'rating_5_explanation').')' : $i) ?></label>
 <?php endfor; ?>
 </div>
 </fieldset>
@@ -550,7 +550,7 @@ $req->execute([':swid' => $sw['id']]);
 while ($data = $req->fetch())
 {
     echo '<div class="comment"><span class="comment_h" role="heading" aria-level="3">';
-    echo(($user = getUsernameById($data['nickname'])) ? ($user !== false ? $user : tr($tr, 'empty_nickname')) : tr($tr, 'empty_nickname'));
+    echo ($user = getUsernameById($data['nickname'])) ? ($user !== false ? $user : tr($tr, 'empty_nickname')) : tr($tr, 'empty_nickname');
     echo ' ('.date('d/m/Y, H:i', $data['date']).')';
     echo '</span>';
     echo '<blockquote>'.convertToMD(str_replace("\n", '<br>', htmlentities((string) $data['text']))).'</blockquote></div>';
@@ -568,23 +568,24 @@ if (isset($_GET['cedit']))
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':swid' => $_GET['cedit'], ':date' => time() - 86400]);
-    if (($data = $req->fetch()) && canManageComment($data)) {
+    if (($data = $req->fetch()) && canManageComment($data))
+    {
         ?>
 <form action="?id=<?php
         echo $sw['id'].'&cedit2='.$data['id'] ?>
         ?>" method="post" id="cedit">
-<fieldset><legend><?php
+<fieldset><legend>
         <?= tr($tr, 'comments_mod') ?>
-        ?></legend>
-<label for="fc_text"><?php
+        </legend>
+<label for="fc_text">
         <?= tr($tr, 'comments_text') ?>
-        ?></label><br>
-<textarea id="fc_text" class="ta" name="text" maxlength="1023" onkeyup="close_confirm=true"><?php
+        </label><br>
+<textarea id="fc_text" class="ta" name="text" maxlength="1023" onkeyup="close_confirm=true">
         <?= htmlentities((string) $data['text']) ?>
-        ?></textarea><br>
-<input type="submit" value="<?php
+        </textarea><br>
+<input type="submit" value="
         <?= tr($tr, 'comments_ok') ?>
-        ?>">
+        ">
 </fieldset>
 </form>
 <script>init_close_confirm();</script>
