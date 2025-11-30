@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 $changedFiles = trim(shell_exec('git diff --cached --name-only'));
 
 $time = time();
 $files = explode("\n", $changedFiles);
 foreach ($files as $file)
 {
-    if (!preg_match('#^locales/.*\.tr\.php$#', $file))
+    if (in_array(preg_match('#^locales/.*\.tr\.php$#', $file), [0, false], true))
     {
         continue;
     }

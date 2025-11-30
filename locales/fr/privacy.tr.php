@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'privacy',
   '_todo_level' => 0,
   '_last_author' => 'Nael Sayegh',
-  '_last_modif' => 1750776404,
+  '_last_modif' => 1764523627,
   'title' => 'politique de confidentialité {{site}}',
   'maintext' => <<<ENDSTR
     <h2>{{site}} respecte votre vie privée</h2>

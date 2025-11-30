@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $isbot = false;
 if (!empty($_SERVER['HTTP_USER_AGENT']))
 {
@@ -12,6 +14,7 @@ if (!empty($_SERVER['HTTP_USER_AGENT']))
             break;
         }
     }
+
     $ipDebut = ip2long('94.130.0.0');
     $ipFin = ip2long('94.130.255.255');
     $ipAbloquer = ip2long($_SERVER['REMOTE_ADDR']);
@@ -19,6 +22,7 @@ if (!empty($_SERVER['HTTP_USER_AGENT']))
     {
         $isbot = true;
     }
+
     $ipDebut1 = ip2long('17.0.0.0');
     $ipFin1 = ip2long('17.255.255.255');
     $ipAbloquer1 = ip2long($_SERVER['REMOTE_ADDR']);
@@ -26,6 +30,7 @@ if (!empty($_SERVER['HTTP_USER_AGENT']))
     {
         $isbot = true;
     }
+
     $ipDebut2 = ip2long('34.64.0.0');
     $ipFin2 = ip2long('34.127.255.255');
     $ipAbloquer2 = ip2long($_SERVER['REMOTE_ADDR']);

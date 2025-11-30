@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'contacter',
   '_todo_level' => 0,
   '_last_author' => 'Corentin',
-  '_last_modif' => 1621431902,
+  '_last_modif' => 1764523627,
   'err_invalidlink' => 'Le lien que vous avez suivi est invalide. Veuillez réessayer.<br>Si le problème persiste, vous pouvez envoyer un nouveau message en faisant référence à l\'ancien dans le texte.',
   'err_nametoolong' => 'Votre nom ne doit pas dépasser les 255 caractères.',
   'err_namerequired' => 'Veuillez renseigner votre nom ou un pseudonyme de votre choix.',
@@ -25,7 +27,7 @@ $tr = [
   'f_obj_tuto' => 'Suggestion de tutoriel',
   'f_obj_modif' => 'Demande de modification',
   'f_obj_site' => 'Demande de site',
-  'f_obj_akbug' => 'Bug de l\'AccessiKey',
+  'f_obj_akbug' => "Bug de l'AccessiKey",
   'f_obj_mkbug' => 'Bug de MaintenanceKey',
   'f_obj_privacy' => 'Demande sur la confidentialité',
   'f_obj_graph' => 'Rapport de problème graphique',

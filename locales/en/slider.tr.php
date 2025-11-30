@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'slider',
   '_todo_level' => 2,
   '_last_author' => 'Pascal',
-  '_last_modif' => 1751651710,
+  '_last_modif' => 1764523627,
   'label' => 'Infos',
   'most_visited' => 'Most visited',
   'last_site_update' => 'Last site version',

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'art_list',
   '_todo_level' => 0,
   '_last_author' => 'Nael Sayegh',
-  '_last_modif' => 1750595022,
+  '_last_modif' => 1764523627,
   'title' => 'List of articles',
   'sort_label' => 'Sort by&nbsp;:',
   'sort_article_id' => 'Article number',

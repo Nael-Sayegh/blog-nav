@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'sendconfirm',
   '_todo_level' => 0,
   '_last_author' => 'Corentin',
-  '_last_modif' => 1557327912,
+  '_last_modif' => 1764523627,
   'title' => 'Confirmation de votre compte membre',
   'subject' => 'Confirmation de compte',
   'hello' => 'Bonjour {{name}},',

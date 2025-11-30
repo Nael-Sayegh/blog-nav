@@ -1,15 +1,18 @@
 <?php
 
-require_once('include/log.php');
-require_once('include/consts.php');
+declare(strict_types=1);
+
+require_once(__DIR__ . '/include/log.php');
+require_once(__DIR__ . '/include/consts.php');
 if (!empty($_SERVER['HTTP_REFERER']) && substr_count('commentcamarche.net', (string) $_SERVER['HTTP_REFERER']) > 0)
 {
     header('Location: /');
     exit();
 }
+
 if (isset($_GET['id']) && $_GET['id'] !== '')
 {
-    require_once('include/dbconnect.php');
+    require_once(__DIR__ . '/include/dbconnect.php');
 
     if (isset($_GET['m']))
     {
@@ -26,12 +29,10 @@ if (isset($_GET['id']) && $_GET['id'] !== '')
                 header('Location: '.$links[random_int(0, count($links) - 1)][1]);
                 exit();
             }
-            else
-            {
-                header('Location: '.$links[intval($_GET['m'])][1]);
-                exit();
-            }
-            require_once('include/isbot.php');
+            header('Location: '.$links[intval($_GET['m'])][1]);
+            exit();
+
+            require_once(__DIR__ . '/include/isbot.php');
             if (!(isset($_COOKIE['admincookie_nostats']) && $_COOKIE['admincookie_nostats'] === 'f537856b32e9e5e0418b224167576240') && !$isbot)
             {
                 $SQL2 = <<<SQL
@@ -50,6 +51,7 @@ if (isset($_GET['id']) && $_GET['id'] !== '')
         {
             echo 'Erreur: Miroir introuvable';
         }
+
         $req->closeCursor();
     }
     else
@@ -66,6 +68,7 @@ if (isset($_GET['id']) && $_GET['id'] !== '')
             {
                 exit('Erreur grave: Fichier inexistant');
             }
+
             header('Content-type: '.$data['filetype']);
             header('Content-Disposition: attachment; filename="'.str_replace('"', '', $data['name']).'"');
             header('Content-Length: '.$data['filesize']);
@@ -73,8 +76,9 @@ if (isset($_GET['id']) && $_GET['id'] !== '')
             {
                 echo fread($file, 8192);
             }
+
             fclose($file);
-            require_once('include/isbot.php');
+            require_once(__DIR__ . '/include/isbot.php');
             if (!(isset($_COOKIE['admincookie_nostats']) && $_COOKIE['admincookie_nostats'] === 'f537856b32e9e5e0418b224167576240') && !$isbot)
             {
                 $SQL2 = <<<SQL
@@ -88,18 +92,17 @@ if (isset($_GET['id']) && $_GET['id'] !== '')
                 $req2 = $bdd->prepare($SQL2);
                 $req2->execute([':id' => $data['sw_id']]);
             }
+
             exit();
         }
-        else
-        {
-            echo 'Erreur: Fichier introuvable';
-        }
+        echo 'Erreur: Fichier introuvable';
+
         $req->closeCursor();
     }
 }
 elseif (isset($_GET['p']) && $_GET['p'] !== '')
 {
-    require_once('include/dbconnect.php');
+    require_once(__DIR__ . '/include/dbconnect.php');
 
     if (isset($_GET['m']))
     {
@@ -116,12 +119,10 @@ elseif (isset($_GET['p']) && $_GET['p'] !== '')
                 header('Location: '.$links[random_int(0, count($links) - 1)][1]);
                 exit();
             }
-            else
-            {
-                header('Location: '.$links[intval($_GET['m'])][1]);
-                exit();
-            }
-            require_once('include/isbot.php');
+            header('Location: '.$links[intval($_GET['m'])][1]);
+            exit();
+
+            require_once(__DIR__ . '/include/isbot.php');
             if (!(isset($_COOKIE['admincookie_nostats']) && $_COOKIE['admincookie_nostats'] === 'f537856b32e9e5e0418b224167576240') && !$isbot)
             {
                 $SQL2 = <<<SQL
@@ -140,6 +141,7 @@ elseif (isset($_GET['p']) && $_GET['p'] !== '')
         {
             echo 'Erreur: Miroir introuvable';
         }
+
         $req->closeCursor();
     }
     else
@@ -156,6 +158,7 @@ elseif (isset($_GET['p']) && $_GET['p'] !== '')
             {
                 exit('Erreur grave: Fichier inexistant');
             }
+
             header('Content-type: '.$data['filetype']);
             header('Content-Disposition: attachment; filename="'.str_replace('"', '', $data['name']).'"');
             header('Content-Length: '.$data['filesize']);
@@ -163,8 +166,9 @@ elseif (isset($_GET['p']) && $_GET['p'] !== '')
             {
                 echo fread($file, 8192);
             }
+
             fclose($file);
-            require_once('include/isbot.php');
+            require_once(__DIR__ . '/include/isbot.php');
             if (!(isset($_COOKIE['admincookie_nostats']) && $_COOKIE['admincookie_nostats'] === 'f537856b32e9e5e0418b224167576240') && !$isbot)
             {
                 $SQL2 = <<<SQL
@@ -178,12 +182,11 @@ elseif (isset($_GET['p']) && $_GET['p'] !== '')
                 $req2 = $bdd->prepare($SQL2);
                 $req2->execute([':id' => $data['sw_id']]);
             }
+
             exit();
         }
-        else
-        {
-            echo 'Erreur: Fichier introuvable';
-        }
+        echo 'Erreur: Fichier introuvable';
+
         $req->closeCursor();
     }
 }

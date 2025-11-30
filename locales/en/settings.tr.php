@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'settings',
   '_todo_level' => 0,
   '_last_author' => 'Nael Sayegh',
-  '_last_modif' => 1750595022,
+  '_last_modif' => 1764523627,
   'title' => 'Settings',
   'maintext' => '<p>This page gives you access to some settings to customize the site as you wish.<br>If you are not logged in as a member, the settings will be saved using cookies; otherwise, they will be stored in our database and will be available whenever you log in to the site (regardless of the device used).</p>',
   'gui' => 'Interface',

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $logonly = true;
 $adminonly = true;
 $justbn = true;

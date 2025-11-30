@@ -6,12 +6,12 @@ if (!isset($_GET['id']))
     exit();
 }
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once('include/log.php');
-require_once('include/consts.php');
-require_once('include/isbot.php');
-require_once('include/package_managers.php');
-require_once('include/sendMail.php');
-require_once('include/lib/MDConverter.php');
+require_once(__DIR__ . '/include/log.php');
+require_once(__DIR__ . '/include/consts.php');
+require_once(__DIR__ . '/include/isbot.php');
+require_once(__DIR__ . '/include/package_managers.php');
+require_once(__DIR__ . '/include/sendMail.php');
+require_once(__DIR__ . '/include/lib/MDConverter.php');
 if (filter_var($_GET['id'], FILTER_VALIDATE_INT) !== false)
 {
     $SQL = <<<SQL
@@ -92,11 +92,7 @@ function canManageComment(array $comment)
     {
         return true;
     }
-    if ($login['rank'] === 'a' && in_array($login['works'], ['1','2'], true) && checkAdminRights('manage_comments'))
-    {
-        return true;
-    }
-    return false;
+    return $login['rank'] === 'a' && in_array($login['works'], ['1','2'], true) && checkAdminRights('manage_comments');
 }
 
 $comlog = '';
@@ -165,16 +161,13 @@ if (isset($_GET['comment']) && isset($_POST['text']) && isset($logged) && $logge
         {
             $emails[$row['email']] = true;
         }
-        if (!empty($emails))
+        if ($emails !== [])
         {
             sendMail(array_keys($emails), $subject, $body, $altBody);
         }
         exit();
     }
-    else
-    {
-        $comlog = tr($tr, 'comment_toolong');
-    }
+    $comlog = tr($tr, 'comment_toolong');
 }
 if (isset($_GET['cdel']))
 {
@@ -202,10 +195,7 @@ if (isset($_GET['cedit2']) && isset($_POST['text']))
             header('Location: /a'.$sw['id']);
             exit();
         }
-        else
-        {
-            $comlog = tr($tr, 'commentmod_toolong');
-        }
+        $comlog = tr($tr, 'commentmod_toolong');
     }
     else
     {
@@ -248,7 +238,7 @@ if (isset($_GET['rate']) && !empty($_POST['rating']) && isset($logged) && $logge
         SQL;
     $req = $bdd->prepare($sql);
     $req->execute([':sw'  => $sw['id'], ':acc' => $login['id'], ':r' => $r]);
-    header("Location: /a{$sw['id']}");
+    header('Location: /a' . $sw['id']);
     exit();
 }
 $statsSQL = <<<SQL
@@ -276,7 +266,7 @@ if (isset($_GET['deleterating']) && isset($logged) && $logged && checkMemberRigh
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':sw' => $sw['id'], 'acc' => $login['id']]);
-    header("Location: /a{$sw['id']}");
+    header('Location: /a' . $sw['id']);
     exit();
 }
 $catMap = [];
@@ -290,9 +280,9 @@ foreach ($bdd->query($SQL) as $data)
 ?>
 <!DOCTYPE html>
 <html lang="<?= $lang ?>">
-<?php require_once('include/header.php'); ?>
+<?php require_once(__DIR__ . '/include/header.php'); ?>
 <body>
-<?php require_once('include/banner.php'); ?>
+<?php require_once(__DIR__ . '/include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <?php
@@ -312,7 +302,7 @@ if (isset($logged) && $logged && $login['rank'] !== 'a')
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':acc' => $login['id'], ':id' => $sw['id']]);
-    $sub = $req->fetch() ? true : false;
+    $sub = (bool) $req->fetch();
     echo '<a id="btunsub1" class="comments_btsubscription" href="?id='.$sw['id'].'&unsubscribe-comments&token='.$login['token'].'" title="'.tr($tr, 'comments_unsubscribe_long').'" onclick="subscribe_comments(event, false)" style="display:'.($sub ? 'initial' : 'none').'">'.tr($tr, 'comments_unsubscribe').'</a>';
     echo '<a id="btsub1" class="comments_btsubscription" href="?id='.$sw['id'].'&subscribe-comments&token='.$login['token'].'" title="'.tr($tr, 'comments_subscribe_long').'" onclick="subscribe_comments(event, true)" style="display:'.($sub ? 'none' : 'initial').'">'.tr($tr, 'comments_subscribe').'</a>';
 }
@@ -578,21 +568,28 @@ if (isset($_GET['cedit']))
         SQL;
     $req = $bdd->prepare($SQL);
     $req->execute([':swid' => $_GET['cedit'], ':date' => time() - 86400]);
-    if ($data = $req->fetch())
-    {
-        if (canManageComment($data))
-        {
-            ?>
-<form action="?id=<?php echo $sw['id'].'&cedit2='.$data['id'] ?>" method="post" id="cedit">
-<fieldset><legend><?= tr($tr, 'comments_mod') ?></legend>
-<label for="fc_text"><?= tr($tr, 'comments_text') ?></label><br>
-<textarea id="fc_text" class="ta" name="text" maxlength="1023" onkeyup="close_confirm=true"><?= htmlentities((string) $data['text']) ?></textarea><br>
-<input type="submit" value="<?= tr($tr, 'comments_ok') ?>">
+    if (($data = $req->fetch()) && canManageComment($data)) {
+        ?>
+<form action="?id=<?php
+        echo $sw['id'].'&cedit2='.$data['id'] ?>
+        ?>" method="post" id="cedit">
+<fieldset><legend><?php
+        <?= tr($tr, 'comments_mod') ?>
+        ?></legend>
+<label for="fc_text"><?php
+        <?= tr($tr, 'comments_text') ?>
+        ?></label><br>
+<textarea id="fc_text" class="ta" name="text" maxlength="1023" onkeyup="close_confirm=true"><?php
+        <?= htmlentities((string) $data['text']) ?>
+        ?></textarea><br>
+<input type="submit" value="<?php
+        <?= tr($tr, 'comments_ok') ?>
+        ?>">
 </fieldset>
 </form>
 <script>init_close_confirm();</script>
-<?php }
-        } $req->closeCursor();
+<?php
+    } $req->closeCursor();
 }
 if (isset($logged) && $logged && (checkMemberRights('comment_articles') || ($login['rank'] === 'a' && checkAdminRights('manage_comments'))))
 { ?>
@@ -620,7 +617,7 @@ else
 } ?>
 </div>
 </main>
-<?php require_once('include/footer.php');
+<?php require_once(__DIR__ . '/include/footer.php');
 
 if (isset($logged) && $logged)
 { ?>

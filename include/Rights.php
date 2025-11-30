@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 const ALL_ADMIN_RIGHTS = [
     'manage_content'         => 'Gérer le contenu utilisateur',
     'manage_translations'    => 'Gérer les traductions',
@@ -27,7 +29,10 @@ const ALL_MEMBER_RIGHTS = [
     'view_members'         => 'Voir la liste des membres',
 ];
 
-function getRights(string $role, ?string $rawJson = null)
+/**
+ * @return int[]|string[]
+ */
+function getRights(string $role, ?string $rawJson = null): array
 {
     global $login;
 
@@ -38,28 +43,22 @@ function getRights(string $role, ?string $rawJson = null)
     }
 
     $all = $role === 'admin' ? ALL_ADMIN_RIGHTS : ALL_MEMBER_RIGHTS;
+    $map = is_array($rawJson) ? $rawJson : json_decode((string)$rawJson, true);
 
-    if (is_array($rawJson))
-    {
-        $map = $rawJson;
-    }
-    else
-    {
-        $map = json_decode((string)$rawJson, true);
-    }
     if (!is_array($map))
     {
         return array_keys($all);
     }
 
     $granted = [];
-    foreach ($all as $key => $_label)
+    foreach (array_keys($all) as $key)
     {
         if (!array_key_exists($key, $map) || (bool) $map[$key])
         {
             $granted[] = $key;
         }
     }
+
     return $granted;
 }
 
@@ -73,7 +72,7 @@ function getMemberRights(?string $rawJson = null)
     return getRights('member', $rawJson);
 }
 
-function checkRights(string $role, string $right)
+function checkRights(string $role, string $right): bool
 {
     return in_array($right, getRights($role), true);
 }
@@ -88,7 +87,7 @@ function checkMemberRights(string $right)
     return checkRights('member', $right);
 }
 
-function requireRight(string $role, string $right)
+function requireRight(string $role, string $right): void
 {
     if (!checkRights($role, $right))
     {
@@ -110,17 +109,17 @@ function requireRight(string $role, string $right)
     }
 }
 
-function requireAdminRight(string $right)
+function requireAdminRight(string $right): void
 {
     requireRight('admin', $right);
 }
 
-function requireMemberRight(string $right)
+function requireMemberRight(string $right): void
 {
     requireRight('member', $right);
 }
 
-function renderAdminMenu(array $structure)
+function renderAdminMenu(array $structure): void
 {
     echo '<table><thead><tr><th>Catégorie</th><th>Option</th></tr></thead><tbody>';
     foreach ($structure as $cat => $items)
@@ -133,19 +132,22 @@ function renderAdminMenu(array $structure)
             {
                 continue;
             }
+
             echo '<tr>';
             if ($first)
             {
                 echo '<td rowspan="'.$rowspan.'" role="heading" aria-level="3">'.htmlspecialchars($cat).'</td>';
                 $first = false;
             }
+
             printf(
                 '<td><a href="%s">%s</a></td>',
                 htmlspecialchars((string) $item['href']),
-                htmlspecialchars((string) $item['label'])
+                htmlspecialchars((string) $item['label']),
             );
             echo '</tr>';
         }
     }
+
     echo '</tbody></table>';
 }

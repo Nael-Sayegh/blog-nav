@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'confirm',
   '_todo_level' => 0,
   '_last_author' => 'Nael Sayegh',
-  '_last_modif' => 1750836574,
+  '_last_modif' => 1764523627,
   'mail_info_subject' => 'Vos informations de membre',
   'mail_info_body_html' => <<<HTML
       <h2>Bonjour {{username}} et bienvenue dans la communauté {{site}}</h2>

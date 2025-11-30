@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'redirlogin',
   '_todo_level' => 0,
   '_last_author' => 'Pascal',
-  '_last_modif' => 1621520332,
+  '_last_modif' => 1764523627,
   'title' => 'Connexion réussie !',
   'maintext' => '<p>Bonjour {{membername}}, votre identification est réussie !<br>
 Que souhaitez-vous faire ensuite ?</p>',

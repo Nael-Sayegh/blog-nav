@@ -1,12 +1,15 @@
 <?php
 
-require_once('dbconnect.php');
+declare(strict_types=1);
+
+require_once(__DIR__ . '/dbconnect.php');
 
 $domain = '';
 if (!isset($stats_page))
 {
     $stats_page = '';
 }
+
 if (isDev())
 {
     $domain = 'dev';
@@ -24,7 +27,7 @@ elseif (!isDev() && strstr($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], ONION_
     $domain = 'onion';
 }
 
-require_once('isbot.php');
+require_once(__DIR__ . '/isbot.php');
 if (!(isset($logged) && $logged && $login['rank'] === 'a') && !$isbot)
 {
     $SQL = <<<SQL
@@ -48,6 +51,7 @@ if (!(isset($logged) && $logged && $login['rank'] === 'a') && !$isbot)
         $req = $bdd->prepare($SQL);
         $req->execute([':page' => $stats_page, ':domain' => $domain]);
     }
+
     $SQL = <<<SQL
         SELECT id FROM count_visitors WHERE addr=:addr AND domain=:domain LIMIT 1
         SQL;
@@ -93,6 +97,7 @@ if (!isset($stats_no))
                 $xpagetoday += $data['visits'];
             }
         }
+
         $xvisits += $data['visits'];
         if ($data['date'] === $date)
         {
@@ -114,18 +119,20 @@ if (!isset($stats_no))
         {
             $xtoday++;
         }
+
         if ($data['lastvisit'] > time() - 600)
         {
             $xconn++;
         }
+
         $xvisitors++;
     }
 
     echo '<ul id="compteur">
-	<li>'.tr($tr0,'footer_charged_page',['xpage'=>$xpage,'xpagetoday'=>$xpagetoday]).'</li>
-	<li>'.tr($tr0,'footer_total_chaged_pages',['xvisits'=>$xvisits,'xvisitstoday'=>$xvisitstoday]).'</li>
-	<li>'.tr($tr0,'footer_visitors',['xvisitors'=>$xvisitors,'xtoday'=>$xtoday]).'</li>
-	<li>'.tr($tr0,'footer_connected',['xconn'=>$xconn]).'</li></ul>';
+	<li>'.tr($tr0, 'footer_charged_page', ['xpage' => $xpage,'xpagetoday' => $xpagetoday]).'</li>
+	<li>'.tr($tr0, 'footer_total_chaged_pages', ['xvisits' => $xvisits,'xvisitstoday' => $xvisitstoday]).'</li>
+	<li>'.tr($tr0, 'footer_visitors', ['xvisitors' => $xvisitors,'xtoday' => $xtoday]).'</li>
+	<li>'.tr($tr0, 'footer_connected', ['xconn' => $xconn]).'</li></ul>';
 }
 
 $req->closeCursor();

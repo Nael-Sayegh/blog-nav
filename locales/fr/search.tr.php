@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 $tr = [
   '_' => 'search',
   '_todo_level' => 0,
   '_last_author' => 'Pascal',
-  '_last_modif' => 1546343059,
+  '_last_modif' => 1764523627,
   'title' => 'Recherche',
   'title2' => 'Rechercher {{terms}}',
   'noresult' => 'Désolé, nous n\'avons rien trouvé pour "{{terms}}".',
