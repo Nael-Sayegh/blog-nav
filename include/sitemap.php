@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-require_once__DIR__ . '/config.local.php';
 require_once __DIR__ . '/dbconnect.php';
 
 function shouldExclude($path, $exclude): bool

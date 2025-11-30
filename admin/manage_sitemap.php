@@ -57,7 +57,7 @@ if ($log !== '' && $log !== '0')
 $sitemap_urls = get_sitemap_urls();
 ?>
     <h1>Sitemap actuel</h1>
-    <?php if (!empty($sitemap_urls)): ?>
+    <?php if ($sitemap_urls !== []): ?>
     <table>
         <thead>
             <tr>

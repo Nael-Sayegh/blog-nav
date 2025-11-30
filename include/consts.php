@@ -30,6 +30,7 @@ function zeros(string $n, $d = 3): string
     {
         return str_repeat('0', (int)($d - $l)) . $n;
     }
+
     return strval($n);
 }
 
@@ -109,7 +110,7 @@ function get_article_trs($article_id): array|false
 function get_article_prefered_tr($article_id, $lang)
 {
     global $langs_prio;
-    if (!$article = get_article_trs($article_id))
+    if ((($article = get_article_trs($article_id))) === [] || (($article = get_article_trs($article_id))) === false)
     {
         return false;
     }

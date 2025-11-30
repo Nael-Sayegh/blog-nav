@@ -261,14 +261,22 @@ if (!isDev() || isset($debug))
                     {
                         continue;
                     }
-                    if ($entry_tr === '' || $entry_tr === '0')
-                    {
-                        continue;
-                    }
+
                     if ($entry_tr === '')
                     {
                         continue;
                     }
+
+                    if ($entry_tr === '0')
+                    {
+                        continue;
+                    }
+
+                    if ($entry_tr === '')
+                    {
+                        continue;
+                    }
+
                     if ($entry_tr === '0')
                     {
                         continue;

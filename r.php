@@ -29,28 +29,12 @@ if (isset($_GET['id']) && $_GET['id'] !== '')
                 header('Location: '.$links[random_int(0, count($links) - 1)][1]);
                 exit();
             }
+
             header('Location: '.$links[intval($_GET['m'])][1]);
             exit();
+        }
 
-            require_once(__DIR__ . '/include/isbot.php');
-            if (!(isset($_COOKIE['admincookie_nostats']) && $_COOKIE['admincookie_nostats'] === 'f537856b32e9e5e0418b224167576240') && !$isbot)
-            {
-                $SQL2 = <<<SQL
-                    UPDATE softwares_mirrors SET hits=hits+1 WHERE id=:id
-                    SQL;
-                $req2 = $bdd->prepare($SQL2);
-                $req2->execute([':id' => $_GET['id']]);
-                $SQL2 = <<<SQL
-                    UPDATE softwares SET downloads=downloads+1 WHERE id=:id
-                    SQL;
-                $req2 = $bdd->prepare($SQL2);
-                $req2->execute([':id' => $data['sw_id']]);
-            }
-        }
-        else
-        {
-            echo 'Erreur: Miroir introuvable';
-        }
+        echo 'Erreur: Miroir introuvable';
 
         $req->closeCursor();
     }
@@ -95,6 +79,7 @@ if (isset($_GET['id']) && $_GET['id'] !== '')
 
             exit();
         }
+
         echo 'Erreur: Fichier introuvable';
 
         $req->closeCursor();
@@ -119,28 +104,12 @@ elseif (isset($_GET['p']) && $_GET['p'] !== '')
                 header('Location: '.$links[random_int(0, count($links) - 1)][1]);
                 exit();
             }
+
             header('Location: '.$links[intval($_GET['m'])][1]);
             exit();
+        }
 
-            require_once(__DIR__ . '/include/isbot.php');
-            if (!(isset($_COOKIE['admincookie_nostats']) && $_COOKIE['admincookie_nostats'] === 'f537856b32e9e5e0418b224167576240') && !$isbot)
-            {
-                $SQL2 = <<<SQL
-                    UPDATE softwares_mirrors SET hits=hits+1 WHERE id=:id
-                    SQL;
-                $req2 = $bdd->prepare($SQL2);
-                $req2->execute([':id' => $data['id']]);
-                $SQL2 = <<<SQL
-                    UPDATE softwares SET downloads=downloads+1 WHERE id=:id
-                    SQL;
-                $req2 = $bdd->prepare($SQL2);
-                $req2->execute([':id' => $data['sw_id']]);
-            }
-        }
-        else
-        {
-            echo 'Erreur: Miroir introuvable';
-        }
+        echo 'Erreur: Miroir introuvable';
 
         $req->closeCursor();
     }
@@ -185,6 +154,7 @@ elseif (isset($_GET['p']) && $_GET['p'] !== '')
 
             exit();
         }
+
         echo 'Erreur: Fichier introuvable';
 
         $req->closeCursor();

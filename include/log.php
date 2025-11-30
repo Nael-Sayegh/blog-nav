@@ -61,6 +61,7 @@ function check_login($session, $connectid): bool
             $req->closeCursor();
             return true;
         }
+
         unset($login);
     }
 

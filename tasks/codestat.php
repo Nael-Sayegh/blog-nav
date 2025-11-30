@@ -57,6 +57,7 @@ function list_files_recursive(string $root, array $include_dirs, array $exclude_
             {
                 continue 2;
             }
+
             if ($rel === $exclude_path)
             {
                 continue 2;
@@ -72,6 +73,7 @@ function list_files_recursive(string $root, array $include_dirs, array $exclude_
                 $included = true;
                 break;
             }
+
             if (str_starts_with($rel, $include_dir.'/'))
             {
                 $included = true;
@@ -89,6 +91,7 @@ function list_files_recursive(string $root, array $include_dirs, array $exclude_
         {
             continue;
         }
+
         if (!in_array($ext, $allowed_exts, true))
         {
             continue;

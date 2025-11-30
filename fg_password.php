@@ -103,7 +103,7 @@ if ($step === 'reset')
 <?php require_once(__DIR__ . '/include/banner.php'); ?>
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
-<?php if ($success): ?>
+<?php if ($success !== '' && $success !== '0' && $success !== []): ?>
 <p class="success"><?php echo $success; ?></p>
 <?php endif;
 foreach ($errors as $e): ?>

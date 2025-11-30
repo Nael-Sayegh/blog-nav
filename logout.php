@@ -18,7 +18,6 @@ if (isset($_GET['token']) && $_GET['token'] === $login['token'])
     header('Location: /');
     exit();
 }
-header('Location: /');
-exit();
 
+header('Location: /');
 exit();

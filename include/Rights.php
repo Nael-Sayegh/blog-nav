@@ -62,12 +62,12 @@ function getRights(string $role, ?string $rawJson = null): array
     return $granted;
 }
 
-function getAdminRights(?string $rawJson = null)
+function getAdminRights(?string $rawJson = null): array
 {
     return getRights('admin', $rawJson);
 }
 
-function getMemberRights(?string $rawJson = null)
+function getMemberRights(?string $rawJson = null): array
 {
     return getRights('member', $rawJson);
 }
@@ -77,12 +77,12 @@ function checkRights(string $role, string $right): bool
     return in_array($right, getRights($role), true);
 }
 
-function checkAdminRights(string $right)
+function checkAdminRights(string $right): bool
 {
     return checkRights('admin', $right);
 }
 
-function checkMemberRights(string $right)
+function checkMemberRights(string $right): bool
 {
     return checkRights('member', $right);
 }

@@ -8,5 +8,6 @@ if (isset($_GET['d']) && !empty($_GET['d']) && (in_array($_GET['d'], $pages, tru
     header('Location: '.$_GET['d']);
     exit();
 }
+
 header('Location: /');
 exit();

@@ -26,7 +26,7 @@ if (isset($_POST['username'], $_POST['psw']))
 
     while ($data = $req->fetch())
     {
-        if (password_verify($_POST['psw'], (string) $data['password']))
+        if (password_verify((string) $_POST['psw'], (string) $data['password']))
         {
             if (!empty($data['twofa_enabled']) && !empty($data['twofa_secret']))
             {
@@ -97,7 +97,7 @@ elseif (isset($_GET['goodbye']))
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <div id="alertZone" role="alert" aria-live="assertive"></div>
-<?php if (!empty($log)): ?>
+<?php if ($log !== '' && $log !== '0' && $log !== []): ?>
 <noscript>
 <p id="log" role="alert"><b><?= $log ?></b></p>
 </noscript>

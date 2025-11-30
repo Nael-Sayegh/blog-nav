@@ -95,7 +95,7 @@ foreach ($mails as $mail)
     $hdr = imap_rfc822_parse_headers($hdrText);
     $from = $hdr->from[0]->mailbox . '@' . $hdr->from[0]->host;
     $rawBodyHtml = convertToMD(getBody($mail->uid, $mbox));
-    $rawBodyText = trim(strip_tags((string) $rawBodyHtml));
+    $rawBodyText = trim(strip_tags($rawBodyHtml));
 
     $subject = iconv_mime_decode((string)$mail->subject, 0, 'UTF-8');
     if (!str_contains($subject, '(Ticket #'))

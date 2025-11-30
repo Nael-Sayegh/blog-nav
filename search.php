@@ -113,7 +113,11 @@ if (!empty($searchterms))
         {
             continue;
         }
-        if ($entry_tr === '' || $entry_tr === '0')
+        if ($entry_tr === '')
+        {
+            continue;
+        }
+        if ($entry_tr === '0')
         {
             continue;
         }
@@ -195,7 +199,7 @@ if (!empty($searchterms))
     {
         echo '<p id="timelog">'.tr($tr, 'found', ['count' => count($results),'time' => numberlocale(intval($btime * 1000000) / 1000)]).'</p>';
     }
-    while (count($results) > 0)
+    while ($results !== [])
     {
         $max = ['pts' => 0];
         foreach ($results as &$rs)
