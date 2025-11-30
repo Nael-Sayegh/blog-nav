@@ -6,6 +6,6 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && str_contains((string) $_SERVER['HTTP_U
     require_once __DIR__ . '/trident.php';
 }
 require_once __DIR__ . '/loginbox.php';
-require_once __DIR__ . '/include/searchtool.php'; ?>
+require_once __DIR__ . '/searchtool.php'; ?>
 </header>
 <?php require_once __DIR__ . '/menu.php'; ?>
