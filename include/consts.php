@@ -25,7 +25,7 @@ function urlsafe_b64decode($data): string
 
 function zeros(string $n, $d = 3): string
 {
-    $l = floor(log10($n) + 1);
+    $l = (int) floor(log10((float) $n) + 1);
     if ($l < $d)
     {
         return str_repeat('0', (int)($d - $l)) . $n;
@@ -45,20 +45,38 @@ function args_html_form($args): string
     return $r;
 }
 
-function bparse($text, array $vars): string|array
+function bparse(null|string|array|Stringable|int|float|bool $text, array $vars): string|array
 {
     global $site_name, $slogan, $site_url;
-    $vars['site'] = $site_name;
+    $site_name ??= '';
+    $slogan ??= '';
+    $site_url ??= '';
+
+    $vars['site']   = $site_name;
     $vars['slogan'] = $slogan;
-    $vars['url'] = $site_url;
-    foreach ($vars as $var1 => $var2)
+    $vars['url']    = $site_url;
+
+    if (is_array($text))
     {
-        if ($var2 === null)
+        foreach ($text as $i => $t)
         {
-            $var2 = '';
+            $t = (string) $t; // cast élément par élément
+            foreach ($vars as $k => $v)
+            {
+                $t = str_replace('{{'.$k.'}}', (string) $v, $t);
+            }
+
+            $text[$i] = $t;
         }
 
-        $text = str_replace('{{'.$var1.'}}', $var2, $text);
+        return $text;
+    }
+
+    $text = (string) $text;
+
+    foreach ($vars as $k => $v)
+    {
+        $text = str_replace('{{'.$k.'}}', (string) $v, $text);
     }
 
     return $text;
@@ -107,7 +125,7 @@ function get_article_trs($article_id): array|false
     return false;
 }
 
-function get_article_prefered_tr($article_id, $lang)
+function get_article_prefered_tr($article_id, $lang): false|array
 {
     global $langs_prio;
     if ((($article = get_article_trs($article_id))) === [] || (($article = get_article_trs($article_id))) === false)
@@ -116,7 +134,7 @@ function get_article_prefered_tr($article_id, $lang)
     }
 
     $tr = '';
-    if (array_key_exists($lang, $article['trs']))
+    if (array_key_exists((string) $lang, $article['trs']))
     {
         $tr = $lang;
     }
@@ -124,7 +142,7 @@ function get_article_prefered_tr($article_id, $lang)
     {
         foreach ($langs_prio as &$lang_prio)
         {
-            if (array_key_exists($lang_prio, $article['trs']))
+            if (array_key_exists((string) $lang_prio, $article['trs']))
             {
                 $tr = $lang_prio;
                 break;
@@ -198,33 +216,46 @@ function setTimeZone($timezone, $lc_code): void
     setlocale(LC_ALL, $lc_code);
 }
 
-function getUsernameById($id)
+function getUserById($id)
 {
     global $bdd;
     if (is_numeric($id))
     {
         $id = (int) $id;
         $SQL = <<<SQL
-            SELECT * FROM nav.accounts WHERE id=:id
+            SELECT * FROM accounts WHERE id=:id
             SQL;
         $req = $bdd->prepare($SQL);
         $req->execute([':id' => $id]);
-        if ($user = $req->fetch())
+        if ($user = $req->fetch(PDO::FETCH_OBJ))
         {
-            if ($user['rank'] === 'a')
-            {
-                $req2 = $bdd->prepare('SELECT short_name FROM nav.team WHERE account_id = '.$user['id']);
-                $req2->execute();
-                if ($admin = $req2->fetch())
-                {
-                    return $admin['short_name'];
-                }
-            }
-            else
-            {
-                return $user['username'];
-            }
+            return $user;
         }
+    }
+
+    return false;
+}
+
+function getLabelById($id, $cat = false)
+{
+    global $bdd;
+
+    if (!is_numeric($id))
+    {
+        return false;
+    }
+
+    $id = (int)$id;
+
+    $table = $cat === true ? 'softwares_categories' : 'softwares';
+
+    $SQL = sprintf('SELECT label FROM %s WHERE id = :id', $table);
+    $req = $bdd->prepare($SQL);
+    $req->execute([':id' => $id]);
+
+    if ($lbl = $req->fetchColumn())
+    {
+        return $lbl;
     }
 
     return false;
@@ -241,8 +272,8 @@ function getTeamEmails(?string $right = null): array
         SELECT
             accounts.email,
             team.rights
-        FROM nav.team
-        LEFT JOIN nav.accounts
+        FROM team
+        LEFT JOIN accounts
             ON accounts.id = team.account_id
         WHERE team.works IN ('1', '2')
         SQL;
@@ -287,11 +318,12 @@ if (isset($modemaintenance) && $modemaintenance && !(isset($logged) && $logged &
     http_response_code(503);
     echo <<<HTML
         <!DOCTYPE html>
-        <html lang="fr">
+        <html lang="{$lang}">
         <head>
         <meta charset="utf-8">
         <meta name="robots" content="noindex, nofollow">
         <title>Site en maintenance</title>
+        <audio src="/audio/forbidden.mp3" autoplay></audio>
         </head>
         <body>
         <h1>Maintenance en cours</h1>
