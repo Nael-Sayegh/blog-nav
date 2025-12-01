@@ -1,5 +1,5 @@
 <?php
-if (!isset($_GET['id']))
+if (!isset($_GET['id']) || !ctype_digit((string) $_GET['id']))
 {
     header('Location: /');
     exit();
