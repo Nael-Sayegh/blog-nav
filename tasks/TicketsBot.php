@@ -100,13 +100,13 @@ foreach ($mails as $mail)
     $subject = iconv_mime_decode((string)$mail->subject, 0, 'UTF-8');
     if (!str_contains($subject, '(Ticket #'))
     {
-        imap_delete($mbox, $mail->uid, FT_UID);
+        imap_delete($mbox, (string) $mail->uid, FT_UID);
         continue;
     }
 
     if (in_array(preg_match('/\(Ticket #(\d+)#\)/', $subject, $m), [0, false], true))
     {
-        imap_delete($mbox, $mail->uid, FT_UID);
+        imap_delete($mbox, (string) $mail->uid, FT_UID);
         continue;
     }
 
@@ -133,7 +133,7 @@ foreach ($mails as $mail)
             Si vous souhaitez nous contacter, veuillez ouvrir un nouveau ticket via le formulaire de contact: {SITE_URL}/contact_form.php
             TEXT;
         sendMail($from, $mailSubj, $body, $altBody);
-        imap_delete($mbox, $mail->uid, FT_UID);
+        imap_delete($mbox, (string) $mail->uid, FT_UID);
         continue;
     }
 
@@ -153,7 +153,7 @@ foreach ($mails as $mail)
             Si vous souhaitez nous contacter, veuillez ouvrir un nouveau ticket via le formulaire de contact: {SITE_URL}/contact_form.php
             TEXT;
         sendMail($from, $mailSubj, $body, $altBody);
-        imap_delete($mbox, $mail->uid, FT_UID);
+        imap_delete($mbox, (string) $mail->uid, FT_UID);
         continue;
     }
 
@@ -287,11 +287,11 @@ foreach ($mails as $mail)
             Merci de bien vouloir renvoyer votre message depuis une adresse remplissant les critères ci-dessus.
             TEXT;
         sendMail($from, $mailSubj, $body, $altBody);
-        imap_delete($mbox, $mail->uid, FT_UID);
+        imap_delete($mbox, (string) $mail->uid, FT_UID);
         continue;
     }
 
-    imap_delete($mbox, $mail->uid, FT_UID);
+    imap_delete($mbox, (string) $mail->uid, FT_UID);
 }
 
 imap_expunge($mbox);
