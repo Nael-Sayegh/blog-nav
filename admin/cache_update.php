@@ -14,11 +14,11 @@ if (isset($_GET['cache']))
     ob_start();
     if ($_GET['cache'] === 'all' || $_GET['cache'] === 'menu')
     {
-        $sql = 'SELECT id, name, text FROM softwares_categories ORDER BY name ASC';
+        $sql = 'SELECT name, text, label FROM softwares_categories ORDER BY name ASC';
         $categories = [];
         foreach ($bdd->query($sql) as $row)
         {
-            $categories[] = ['id' => (int)$row['id'], 'name' => $row['name'], 'title' => ' - '.strip_tags((string) $row['text'])];
+            $categories[] = ['name' => $row['name'], 'title' => ' - '.strip_tags((string) $row['text']), 'label' => (string)$row['label']];
         }
         file_put_contents($cachedir.'menu_categories.json', json_encode($categories, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
     }
