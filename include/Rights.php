@@ -136,7 +136,7 @@ function renderAdminMenu(array $structure): void
             echo '<tr>';
             if ($first)
             {
-                echo '<td rowspan="'.$rowspan.'" role="heading" aria-level="3">'.htmlspecialchars($cat).'</td>';
+                echo '<td rowspan="'.$rowspan.'" role="heading" aria-level="3">'.htmlspecialchars((string) $cat).'</td>';
                 $first = false;
             }
 

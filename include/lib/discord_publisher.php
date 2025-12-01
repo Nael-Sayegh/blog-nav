@@ -20,6 +20,5 @@ function send_discord($message): void
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $response = curl_exec($ch);
-        curl_close($ch);
     }
 }

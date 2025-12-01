@@ -251,7 +251,6 @@ if ((isset($_GET['token']) && $_GET['token'] === $login['token']) || (isset($_PO
                     SQL;
                 $req2 = $bdd->prepare($SQL);
                 $req2->execute([':type' => finfo_file($finfo, $file), ':date' => time(), ':size' => filesize($file), ':md' => md5_file($file), ':sha' => sha1_file($file), ':id' => $data['id']]);
-                finfo_close($finfo);
                 if (isset($_GET['social']) && $_GET['social'] === 'on')
                 {
                     $somsg = $data['title'].' : '.SITE_URL.'/dl/'.(empty($data['label']) ? $data['id'] : $data['label']).' '.SITE_URL.'/a'.$data['sw_id'].' '.$admin_name;

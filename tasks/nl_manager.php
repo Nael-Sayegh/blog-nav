@@ -240,7 +240,7 @@ if (!isDev() || isset($debug))
                 if ($software['date'] > $data['lastmail'])
                 {
                     $entry_tr = '';
-                    if (array_key_exists($data['lang'], $software['trs']))
+                    if (array_key_exists((string) $data['lang'], $software['trs']))
                     {
                         $entry_tr = $data['lang'];
                     }
@@ -248,7 +248,7 @@ if (!isDev() || isset($debug))
                     {
                         foreach ($langs_prio as &$lang_prio)
                         {
-                            if (array_key_exists($lang_prio, $software['trs']))
+                            if (array_key_exists((string) $lang_prio, $software['trs']))
                             {
                                 $entry_tr = $lang_prio;
                                 break;

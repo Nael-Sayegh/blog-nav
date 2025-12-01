@@ -528,7 +528,7 @@ endif; ?>
 <div class="rating-radios">
 <?php for ($i = 1; $i <= 5; $i++): ?>
 <input type="radio" name="rating" id="rating<?= $i ?>" value="<?= $i ?>"<?= $user_rating === $i ? 'checked' : '' ?>>
-<label for="rating<?= $i ?>"><?= $i == 1 ? $i . ' ('.tr($tr, 'rating_1_explanation').')' : ($i == 5 ? $i .' ('.tr($tr, 'rating_5_explanation').')' : $i) ?></label>
+<label for="rating<?= $i ?>"><?= $i === 1 ? $i . ' ('.tr($tr, 'rating_1_explanation').')' : ($i === 5 ? $i .' ('.tr($tr, 'rating_5_explanation').')' : $i) ?></label>
 <?php endfor; ?>
 </div>
 </fieldset>

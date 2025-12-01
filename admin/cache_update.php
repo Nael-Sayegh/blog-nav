@@ -41,7 +41,7 @@ if (isset($_GET['cache']))
 
     $obcache = ob_get_contents();
     ob_end_clean();
-    if ($obcache === '' || $obcache === '0' || $obcache === false)
+    if (in_array($obcache, ['', '0', false], true))
     {
         header('Location: cache_update.php');
         exit();

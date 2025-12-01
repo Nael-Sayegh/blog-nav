@@ -97,7 +97,7 @@ elseif (isset($_GET['goodbye']))
 <main id="container">
 <h1 id="contenu"><?php print $title; ?></h1>
 <div id="alertZone" role="alert" aria-live="assertive"></div>
-<?php if ($log !== '' && $log !== '0' && $log !== []): ?>
+<?php if (!in_array($log, ['', '0', []], true)): ?>
 <noscript>
 <p id="log" role="alert"><b><?= $log ?></b></p>
 </noscript>

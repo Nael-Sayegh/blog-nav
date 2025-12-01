@@ -93,7 +93,7 @@ if (!empty($searchterms))
     foreach ($entries as $sw_id => $entry)
     {
         $entry_tr = '';
-        if (array_key_exists($lang, $entry['trs']))
+        if (array_key_exists((string) $lang, $entry['trs']))
         {
             $entry_tr = $lang;
         }
@@ -101,7 +101,7 @@ if (!empty($searchterms))
         {
             foreach ($langs_prio as &$lang_prio)
             {
-                if (array_key_exists($lang_prio, $entry['trs']))
+                if (array_key_exists((string) $lang_prio, $entry['trs']))
                 {
                     $entry_tr = $lang_prio;
                     break;
