@@ -74,7 +74,7 @@ while ($data = $req->fetch())
 
 $visitors = [];
 $SQL = <<<SQL
-    SELECT date,visitors FROM daily_visitors WHERE'.{$reqp}.' date BETWEEN :beg AND :end ORDER BY date ASC
+    SELECT date,visitors FROM daily_visitors WHERE {$reqp} date BETWEEN :beg AND :end ORDER BY date ASC
     SQL;
 $req = $bdd->prepare($SQL);
 $req->execute([':beg' => $from, ':end' => $to]);
