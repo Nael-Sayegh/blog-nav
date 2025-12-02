@@ -141,7 +141,7 @@ foreach ($visits as &$visit)
             else
             {
                 echo '>0';
-                if (!isset($allpages[$pages]))
+                if (!isset($allpages[$page]))
                 {
                     $allpages[$page] = 0;
                 }
