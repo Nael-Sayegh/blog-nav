@@ -51,7 +51,7 @@ if (!empty($domain))
     $reqp = ' domain="'.$domain.'" AND';
 }
 $SQL = <<<SQL
-    SELECT * FROM count_visits WHERE'.{$reqp}.' date BETWEEN :beg AND :end ORDER BY date ASC
+    SELECT * FROM count_visits WHERE {$reqp} date BETWEEN :beg AND :end ORDER BY date ASC
     SQL;
 $req = $bdd->prepare($SQL);
 $req->execute([':beg' => $from, ':end' => $to]);
