@@ -99,7 +99,7 @@ function renderLoginBox($login, $logged, $settings): void
             <summary>{$memberArea}</summary>
             <form action="/login.php?a=form" method="post" aria-label="{$loginLabel}">
             <input type="text" name="username" placeholder="{$usernameLabel}" maxlength="32" aria-label="{$usernameLabel}" required><br>
-            <input type="password" name="psw" placeholder="{$passwordLabel}" maxlength="64" aria-label="{$passwordLabel}}" required><br>
+            <input type="password" name="psw" placeholder="{$passwordLabel}" maxlength="64" aria-label="{$passwordLabel}" required><br>
             <input type="hidden" name="redirect" value="{$redir}">
             <button type="submit">{$loginBtnLabel}</button><br>
             <span><a class="hlink" href="/fg_password.php">{$fgpswLabel}</a> – <a class="hlink" href="/signup.php">{$signupLabel}</a></span>
