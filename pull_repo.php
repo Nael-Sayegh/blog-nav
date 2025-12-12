@@ -17,7 +17,7 @@ if (GIT_TYPE === 'GL')
     if ($token === '')
     {
         http_response_code(401);
-        echo "Missing GitLab token\n";
+        error_log("Missing GitLab token\n");
         exit;
     }
 
@@ -37,7 +37,7 @@ elseif (GIT_TYPE === 'GH')
     if ($signature === '')
     {
         http_response_code(401);
-        echo "Missing GitHub signature\n";
+        error_log("Missing GitHub signature\n");
         exit;
     }
 
@@ -48,7 +48,7 @@ elseif (GIT_TYPE === 'GH')
     if (!hash_equals($expectedSha256, $signature) && !hash_equals($expectedSha1, $signature))
     {
         http_response_code(403);
-        echo "Invalid GitHub signature\n";
+        error_log("Invalid GitHub signature\n");
         exit;
     }
 
@@ -57,7 +57,7 @@ elseif (GIT_TYPE === 'GH')
 else
 {
     http_response_code(500);
-    echo "Invalid GIT_TYPE (expected GL or GH)\n";
+    error_log("Invalid GIT_TYPE (expected GL or GH)\n");
     exit;
 }
 
@@ -67,17 +67,17 @@ $out = [];
 $code = 0;
 exec($cmd, $out, $code);
 
-echo "=== git pull ===\n";
-echo implode("\n", $out) . "\n\n";
+error_log("=== git pull ===\n" . implode("\n", $out) . "\n\n");
+error_log(implode("\n", $out) . "\n\n");
 
 if ($code !== 0)
 {
     http_response_code(500);
-    echo "pull NOT OK (exit {$code})\n";
+    error_log("pull NOT OK (exit {$code})\n");
     exit;
 }
 
-echo "pull OK\n";
+error_log("pull OK\n");
 
 
 $cmd = 'cd ' . escapeshellarg(__DIR__) . ' && composer install 2>&1';
@@ -86,15 +86,15 @@ $out = [];
 $code = 0;
 exec($cmd, $out, $code);
 
-echo "\n=== composer install ===\n";
-echo implode("\n", $out) . "\n\n";
+error_log("\n=== composer install ===\n");
+error_log(implode("\n", $out) . "\n\n");
 
 if ($code !== 0)
 {
     http_response_code(500);
-    echo "composer install NOT OK (exit {$code})\n";
+    error_log("composer install NOT OK (exit {$code})\n");
     exit;
 }
 
 http_response_code(200);
-echo "composer install OK\n";
+error_log("composer install OK\n");
