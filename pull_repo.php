@@ -80,7 +80,7 @@ if ($code !== 0)
 error_log("pull OK\n");
 
 
-$cmd = 'cd ' . escapeshellarg(__DIR__) . ' && composer install 2>&1';
+$cmd = 'cd ' . escapeshellarg(__DIR__) . ' && composer install --no-dev 2>&1';
 
 $out = [];
 $code = 0;
